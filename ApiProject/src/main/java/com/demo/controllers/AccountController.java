@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.demo.Dtos.Input.AccountInput;
+import com.demo.Dtos.Output.AccountOutput;
 import com.demo.models.Account;
 import com.demo.services.AccountService;
-
-import demo.com.Dtos.Input.AccountInput;
-import demo.com.Dtos.Output.AccountOutput;
 
 @RestController
 @RequestMapping("api/account")

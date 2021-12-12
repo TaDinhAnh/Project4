@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.demo.Dtos.Input.AccountInput;
+import com.demo.Dtos.Output.AccountOutput;
 import com.demo.models.Account;
 import com.demo.reponsitories.AccountReponsitory;
-
-import demo.com.Dtos.Input.AccountInput;
-import demo.com.Dtos.Output.AccountOutput;
 
 @Service
 public class AccountService implements IAccountService {

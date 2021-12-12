@@ -1,4 +1,4 @@
-package demo.com.Dtos.Output;
+package com.demo.Dtos.Output;
 
 import java.util.Date;
 

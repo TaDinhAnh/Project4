@@ -1,4 +1,4 @@
-package demo.com.Dtos.Input;
+package com.demo.Dtos.Input;
 
 import com.demo.common.ERole;
 

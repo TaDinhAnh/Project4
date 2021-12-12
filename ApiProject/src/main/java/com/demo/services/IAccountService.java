@@ -4,10 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.demo.Dtos.Input.AccountInput;
+import com.demo.Dtos.Output.AccountOutput;
 import com.demo.models.Account;
-
-import demo.com.Dtos.Input.AccountInput;
-import demo.com.Dtos.Output.AccountOutput;
 
 @Service
 public interface IAccountService {
