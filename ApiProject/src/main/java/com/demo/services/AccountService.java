@@ -29,7 +29,7 @@ public class AccountService implements IAccountService {
 		accountOutput.setRole(account.getRole());
 		accountOutput.setStatus(account.getStatus());
 		accountOutput.setUsername(account.getUsername());
-		accountOutput.setUpdatedAt(account.getCreatedAt());
+		accountOutput.setUpdatedAt(account.getUpdatedAt());
 		return accountOutput;
 	}
 
@@ -47,7 +47,7 @@ public class AccountService implements IAccountService {
 			acc.setRole(account.getRole());
 			acc.setStatus(account.getStatus());
 			acc.setUsername(account.getUsername());
-			acc.setUpdatedAt(account.getCreatedAt());
+			acc.setUpdatedAt(account.getUpdatedAt());
 			accOutputs.add(acc);
 		}
 		return accOutputs;

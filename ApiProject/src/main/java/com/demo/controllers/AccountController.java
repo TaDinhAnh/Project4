@@ -28,6 +28,7 @@ public class AccountController {
 		try {
 			return new ResponseEntity<AccountOutput>(accountService.findById(id), HttpStatus.OK);
 		} catch (Exception e) {
+			System.out.print(e.getMessage());
 			return new ResponseEntity<AccountOutput>(HttpStatus.BAD_REQUEST);
 		}
 	}

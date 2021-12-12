@@ -1,0 +1,15 @@
+CREATE DATABASE project4;
+
+USE project4;
+
+CREATE TABLE Account(
+Id int PRIMARY KEY AUTO_INCREMENT,
+username varchar(250),
+password varchar(250),
+createdAt date,
+updatedAt date,
+status int,
+role int
+);
+INSERT INTO account(username, password, createdAt, updatedAt, status, role)
+VALUES('user1','123', '2000/03/15', '2000/03/15',1,1)

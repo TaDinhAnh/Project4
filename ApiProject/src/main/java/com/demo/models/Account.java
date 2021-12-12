@@ -47,7 +47,7 @@ public class Account {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
+	@Column(name = "createdat")
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -55,7 +55,7 @@ public class Account {
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-
+	@Column(name = "updatedat")
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
