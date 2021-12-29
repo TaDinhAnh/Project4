@@ -1,5 +1,5 @@
 package com.demo.common;
 
-public enum ERole {
+public class Constant {
 
 }
