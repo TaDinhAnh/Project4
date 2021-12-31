@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.demo.Dtos.Input.AuctionInput;
 import com.demo.Dtos.Output.AuctionOutput;
 import com.demo.common.EAuction;
+import com.demo.models.Account;
 import com.demo.models.Auction;
 import com.demo.reponsitories.AuctionRepository;
 
@@ -17,6 +18,8 @@ public class AuctionService implements IAuctionService {
 	
 	@Autowired
 	private AuctionRepository auctionRepositories;
+	
+	@Autowired IAccountService accountService;
 
 	@Override
 	public List<AuctionOutput> getListAuctionById(int idVendor) {
@@ -25,7 +28,10 @@ public class AuctionService implements IAuctionService {
 
 	@Override
 	public boolean createAuction(AuctionInput auctionInput) {
+		Account account = accountService.findById(auctionInput.getVenderId());
+		if(account == null) return false;
 		Auction auction = new Auction();
+		auction.setAccount(account);
 		auction.setEventdate(auctionInput.getEventdate());
 		auction.setHourEnd(auctionInput.getHourEnd());
 		auction.setHourStart(auctionInput.getHourStart());
@@ -37,6 +43,8 @@ public class AuctionService implements IAuctionService {
 	@Override
 	public AuctionOutput updateAuction(AuctionInput auctionInput, int id) {
 		Auction auction = find(id);
+		if(auction == null)
+			return null;
 		auction.setEventdate(auctionInput.getEventdate());
 		auction.setHourEnd(auctionInput.getHourEnd());
 		auction.setHourStart(auctionInput.getHourStart());
@@ -47,7 +55,12 @@ public class AuctionService implements IAuctionService {
 	}
 	
 	public Auction find(int id) {
-		return auctionRepositories.findById(id).get();
+		try {
+			return auctionRepositories.findById(id).get();
+		} catch (Exception e) {
+			return null;
+		}
+		
 	}
 	
 	

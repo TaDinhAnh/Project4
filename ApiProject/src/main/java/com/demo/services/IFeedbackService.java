@@ -8,3 +8,4 @@ import com.demo.Dtos.Input.FeedbackInput;
 public interface IFeedbackService {
 	boolean createFeedBack(FeedbackInput feedbackInput);
 }
+

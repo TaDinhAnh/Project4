@@ -2,21 +2,45 @@ package com.demo.Dtos.Input;
 
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class AuctionInput {
+	@Min(value = 1)
+	private int vendorId;
+	@JsonFormat(pattern = "HH:mm:ss")
+	@Temporal(TemporalType.TIME)
 	private Date hourStart;
+	@JsonFormat(pattern = "HH:mm:ss")
+	@Temporal(TemporalType.TIME)
 	private Date hourEnd;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
 	private Date eventdate;
+	@NotEmpty
 	private String description;
 	
 	public AuctionInput() {
 		super();
 	}
-	public AuctionInput(Date hourStart, Date hourEnd, Date eventdate, String description) {
+	public AuctionInput(int venderId, Date hourStart, Date hourEnd, Date eventdate, String description) {
 		super();
+		this.vendorId = venderId; 
 		this.hourStart = hourStart;
 		this.hourEnd = hourEnd;
 		this.eventdate = eventdate;
 		this.description = description;
+	}
+	
+	public int getVenderId() {
+		return vendorId;
+	}
+	public void setVenderId(int venderId) {
+		this.vendorId = venderId;
 	}
 	public Date getHourStart() {
 		return hourStart;

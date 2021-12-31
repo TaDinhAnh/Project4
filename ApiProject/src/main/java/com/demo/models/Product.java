@@ -19,15 +19,15 @@ import com.demo.common.EProduct;
 public class Product implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private Account category;
+	private Category category;
 	private String name;
 	private Double priceMin;
 	private String image;
 	private String description;
 	private Integer vendorId;
 	private EProduct status;
-	private Boolean isDelete;
-	private Boolean isAccept;
+	private Boolean isDelete = false;
+	private Boolean isAccept = false;
 	private Set<Auctionhistory> auctionhistories = new HashSet<Auctionhistory>(0);
 	private Set<Feedback> feedbacks = new HashSet<Feedback>(0);
 	private Set<Orders> orderses = new HashSet<Orders>(0);
@@ -36,7 +36,7 @@ public class Product implements java.io.Serializable {
 	public Product() {
 	}
 
-	public Product(Account category, String name, Double priceMin, String image, String description, Integer vendorId,
+	public Product(Category category, String name, Double priceMin, String image, String description, Integer vendorId,
 			EProduct status, Boolean isDelete, Boolean isAccept, Set<Auctionhistory> auctionhistories,
 			Set<Feedback> feedbacks, Set<Orders> orderses, Set<Auctionproduct> auctionproducts) {
 		this.category = category;
@@ -68,11 +68,11 @@ public class Product implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CateID")
-	public Account getCategory() {
+	public Category getCategory() {
 		return this.category;
 	}
 
-	public void setCategory(Account category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
@@ -85,7 +85,7 @@ public class Product implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "PriceMin", precision = 22, scale = 0)
+	@Column(name = "pricemin", precision = 22, scale = 0)
 	public Double getPriceMin() {
 		return this.priceMin;
 	}
@@ -183,5 +183,7 @@ public class Product implements java.io.Serializable {
 	public void setAuctionproducts(Set<Auctionproduct> auctionproducts) {
 		this.auctionproducts = auctionproducts;
 	}
+
+	
 
 }
