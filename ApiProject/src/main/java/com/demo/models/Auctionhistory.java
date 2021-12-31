@@ -1,19 +1,20 @@
 package com.demo.models;
-
-
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "auctionhistory")
 public class Auctionhistory implements java.io.Serializable {
-
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Account account;
@@ -32,10 +33,11 @@ public class Auctionhistory implements java.io.Serializable {
 		this.price = price;
 		this.time = time;
 	}
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	@GeneratedValue(strategy = IDENTITY)
+
+	@Column(name = "Id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
 	}
@@ -44,6 +46,8 @@ public class Auctionhistory implements java.io.Serializable {
 		this.id = id;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "AccountId")
 	public Account getAccount() {
 		return this.account;
 	}
@@ -52,6 +56,8 @@ public class Auctionhistory implements java.io.Serializable {
 		this.account = account;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "AuctionId")
 	public Auction getAuction() {
 		return this.auction;
 	}
@@ -60,6 +66,8 @@ public class Auctionhistory implements java.io.Serializable {
 		this.auction = auction;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ProId")
 	public Product getProduct() {
 		return this.product;
 	}
@@ -68,6 +76,7 @@ public class Auctionhistory implements java.io.Serializable {
 		this.product = product;
 	}
 
+	@Column(name = "Price", precision = 22, scale = 0)
 	public Double getPrice() {
 		return this.price;
 	}
@@ -76,6 +85,8 @@ public class Auctionhistory implements java.io.Serializable {
 		this.price = price;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "Time", length = 19)
 	public Date getTime() {
 		return this.time;
 	}

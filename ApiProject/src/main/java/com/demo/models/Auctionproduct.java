@@ -1,19 +1,18 @@
 package com.demo.models;
-
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "autionproduct")
+@Table(name = "auctionproduct")
 public class Auctionproduct implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private AuctionproductId id;
 	private Auction auction;
@@ -35,9 +34,11 @@ public class Auctionproduct implements java.io.Serializable {
 		this.product = product;
 		this.status = status;
 	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+
+	@EmbeddedId
+
+	@AttributeOverrides({ @AttributeOverride(name = "proId", column = @Column(name = "ProId", nullable = false)),
+			@AttributeOverride(name = "auctionId", column = @Column(name = "AuctionId", nullable = false)) })
 	public AuctionproductId getId() {
 		return this.id;
 	}
@@ -46,6 +47,8 @@ public class Auctionproduct implements java.io.Serializable {
 		this.id = id;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "AuctionId", nullable = false, insertable = false, updatable = false)
 	public Auction getAuction() {
 		return this.auction;
 	}
@@ -54,6 +57,8 @@ public class Auctionproduct implements java.io.Serializable {
 		this.auction = auction;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ProId", nullable = false, insertable = false, updatable = false)
 	public Product getProduct() {
 		return this.product;
 	}
@@ -62,6 +67,7 @@ public class Auctionproduct implements java.io.Serializable {
 		this.product = product;
 	}
 
+	@Column(name = "Status")
 	public Boolean getStatus() {
 		return this.status;
 	}

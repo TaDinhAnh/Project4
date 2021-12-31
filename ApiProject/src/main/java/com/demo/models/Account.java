@@ -5,12 +5,18 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.demo.common.ERole;
+
+
 @Entity
 @Table(name = "account")
 public class Account implements java.io.Serializable {
@@ -23,18 +29,19 @@ public class Account implements java.io.Serializable {
 	private Date dob;
 	private String image;
 	private ERole role;
-	private Boolean isDelete = false;
-	private Set orderses = new HashSet(0);
-	private Set auctions = new HashSet(0);
-	private Set feedbacks = new HashSet(0);
-	private Set auctionhistories = new HashSet(0);
-	private Set products = new HashSet(0);
+	private Boolean isDelete;
+	private Set<Orders> orderses = new HashSet<Orders>(0);
+	private Set<Auction> auctions = new HashSet<Auction>(0);
+	private Set<Feedback> feedbacks = new HashSet<Feedback>(0);
+	private Set<Auctionhistory> auctionhistories = new HashSet<Auctionhistory>(0);
+	private Set<Product> products = new HashSet<Product>(0);
 
 	public Account() {
 	}
 
 	public Account(String gmail, String password, String fullname, String phone, Date dob, String image, ERole role,
-			Boolean isDelete, Set orderses, Set auctions, Set feedbacks, Set auctionhistories, Set products) {
+			Boolean isDelete, Set<Orders> orderses, Set<Auction> auctions, Set<Feedback> feedbacks,
+			Set<Auctionhistory> auctionhistories, Set<Product> products) {
 		this.gmail = gmail;
 		this.password = password;
 		this.fullname = fullname;
@@ -49,10 +56,11 @@ public class Account implements java.io.Serializable {
 		this.auctionhistories = auctionhistories;
 		this.products = products;
 	}
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	@GeneratedValue(strategy = IDENTITY)
+
+	@Column(name = "Id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
 	}
@@ -61,6 +69,7 @@ public class Account implements java.io.Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "Gmail", length = 250)
 	public String getGmail() {
 		return this.gmail;
 	}
@@ -69,6 +78,7 @@ public class Account implements java.io.Serializable {
 		this.gmail = gmail;
 	}
 
+	@Column(name = "Password", length = 250)
 	public String getPassword() {
 		return this.password;
 	}
@@ -77,6 +87,7 @@ public class Account implements java.io.Serializable {
 		this.password = password;
 	}
 
+	@Column(name = "Fullname", length = 250)
 	public String getFullname() {
 		return this.fullname;
 	}
@@ -85,6 +96,7 @@ public class Account implements java.io.Serializable {
 		this.fullname = fullname;
 	}
 
+	@Column(name = "Phone", length = 10)
 	public String getPhone() {
 		return this.phone;
 	}
@@ -93,6 +105,8 @@ public class Account implements java.io.Serializable {
 		this.phone = phone;
 	}
 
+	@Temporal(TemporalType.DATE)
+	@Column(name = "Dob", length = 10)
 	public Date getDob() {
 		return this.dob;
 	}
@@ -101,6 +115,7 @@ public class Account implements java.io.Serializable {
 		this.dob = dob;
 	}
 
+	@Column(name = "Image", length = 250)
 	public String getImage() {
 		return this.image;
 	}
@@ -109,6 +124,7 @@ public class Account implements java.io.Serializable {
 		this.image = image;
 	}
 
+	@Column(name = "Role")
 	public ERole getRole() {
 		return this.role;
 	}
@@ -117,6 +133,7 @@ public class Account implements java.io.Serializable {
 		this.role = role;
 	}
 
+	@Column(name = "isdelete")
 	public Boolean getIsDelete() {
 		return this.isDelete;
 	}
@@ -125,43 +142,48 @@ public class Account implements java.io.Serializable {
 		this.isDelete = isDelete;
 	}
 
-	public Set getOrderses() {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
+	public Set<Orders> getOrderses() {
 		return this.orderses;
 	}
 
-	public void setOrderses(Set orderses) {
+	public void setOrderses(Set<Orders> orderses) {
 		this.orderses = orderses;
 	}
 
-	public Set getAuctions() {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
+	public Set<Auction> getAuctions() {
 		return this.auctions;
 	}
 
-	public void setAuctions(Set auctions) {
+	public void setAuctions(Set<Auction> auctions) {
 		this.auctions = auctions;
 	}
 
-	public Set getFeedbacks() {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
+	public Set<Feedback> getFeedbacks() {
 		return this.feedbacks;
 	}
 
-	public void setFeedbacks(Set feedbacks) {
+	public void setFeedbacks(Set<Feedback> feedbacks) {
 		this.feedbacks = feedbacks;
 	}
 
-	public Set getAuctionhistories() {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
+	public Set<Auctionhistory> getAuctionhistories() {
 		return this.auctionhistories;
 	}
 
-	public void setAuctionhistories(Set auctionhistories) {
+	public void setAuctionhistories(Set<Auctionhistory> auctionhistories) {
 		this.auctionhistories = auctionhistories;
 	}
 
-	public Set getProducts() {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+	public Set<Product> getProducts() {
 		return this.products;
 	}
 
-	public void setProducts(Set products) {
+	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
 

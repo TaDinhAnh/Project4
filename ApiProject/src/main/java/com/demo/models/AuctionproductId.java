@@ -1,7 +1,10 @@
 package com.demo.models;
 
-public class AuctionproductId implements java.io.Serializable {
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
+@Embeddable
+public class AuctionproductId implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private int proId;
 	private int auctionId;
@@ -13,6 +16,8 @@ public class AuctionproductId implements java.io.Serializable {
 		this.proId = proId;
 		this.auctionId = auctionId;
 	}
+
+	@Column(name = "ProId", nullable = false)
 	public int getProId() {
 		return this.proId;
 	}
@@ -21,6 +26,7 @@ public class AuctionproductId implements java.io.Serializable {
 		this.proId = proId;
 	}
 
+	@Column(name = "auctionid", nullable = false)
 	public int getAuctionId() {
 		return this.auctionId;
 	}

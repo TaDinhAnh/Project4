@@ -36,7 +36,7 @@ CREATE TABLE Account(
    	CONSTRAINT FK_Product_Cate FOREIGN KEY (CateID)
   	REFERENCES Category(Id),
    	CONSTRAINT FK_Product_Account FOREIGN KEY (CateID)
-  	REFERENCES Account(Id)
+  	REFERENCES Category(Id)
  );
  
  CREATE TABLE FeedBack(
@@ -87,13 +87,13 @@ CREATE TABLE Account(
   	REFERENCES Product(Id),
    	CONSTRAINT FK_AuctionHistory_Auction FOREIGN KEY (AuctionId)
   	REFERENCES Auction(Id),
-    CONSTRAINT FK_AuctionHistory_Acction FOREIGN KEY (AccountId)
+    CONSTRAINT FK_AuctionHistory_Account FOREIGN KEY (AccountId)
   	REFERENCES Account(Id)
  );
  
  CREATE TABLE Orders(
-   Id int PRIMARY KEY AUTO_INCREMENT,
-	AuctionId int,
+    Id int PRIMARY KEY AUTO_INCREMENT,
+    AuctionId int,
     ProId int,
     AccountId int,
     SuccessDate date,
@@ -105,7 +105,7 @@ CREATE TABLE Account(
   	REFERENCES Product(Id),
    	CONSTRAINT FK_Orders_Auction FOREIGN KEY (AuctionId)
   	REFERENCES Auction(Id),
-    CONSTRAINT FK_Orders_Acction FOREIGN KEY (AccountId)
+    CONSTRAINT FK_Orders_Account FOREIGN KEY (AccountId)
   	REFERENCES Account(Id)
  );
  

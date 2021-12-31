@@ -2,24 +2,23 @@ package com.demo.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "feedback")
 public class Feedback implements java.io.Serializable {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Account account;
 	private Product product;
 	private String content;
-	private Boolean isDel = false;
+	private Boolean isDel;
 
 	public Feedback() {
 	}
@@ -31,16 +30,20 @@ public class Feedback implements java.io.Serializable {
 		this.isDel = isDel;
 	}
 
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+
+	@Column(name = "Id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
 	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "accountid")
 	public Account getAccount() {
 		return this.account;
 	}
@@ -49,6 +52,8 @@ public class Feedback implements java.io.Serializable {
 		this.account = account;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "proid")
 	public Product getProduct() {
 		return this.product;
 	}
@@ -57,6 +62,7 @@ public class Feedback implements java.io.Serializable {
 		this.product = product;
 	}
 
+	@Column(name = "Content", length = 250)
 	public String getContent() {
 		return this.content;
 	}
@@ -65,6 +71,7 @@ public class Feedback implements java.io.Serializable {
 		this.content = content;
 	}
 
+	@Column(name = "isdel")
 	public Boolean getIsDel() {
 		return this.isDel;
 	}
