@@ -1,13 +1,15 @@
 package com.demo.models;
-
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.demo.common.EProduct;
@@ -17,7 +19,7 @@ import com.demo.common.EProduct;
 public class Product implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private Account category;
+	private Category category;
 	private String name;
 	private Double priceMin;
 	private String image;
@@ -25,18 +27,18 @@ public class Product implements java.io.Serializable {
 	private Integer vendorId;
 	private EProduct status;
 	private Boolean isDelete = false;
-	private Boolean isAccept;
-	private Set auctionhistories = new HashSet(0);
-	private Set feedbacks = new HashSet(0);
-	private Set orderses = new HashSet(0);
-	private Set auctionproducts = new HashSet(0);
+	private Boolean isAccept = false;
+	private Set<Auctionhistory> auctionhistories = new HashSet<Auctionhistory>(0);
+	private Set<Feedback> feedbacks = new HashSet<Feedback>(0);
+	private Set<Orders> orderses = new HashSet<Orders>(0);
+	private Set<Auctionproduct> auctionproducts = new HashSet<Auctionproduct>(0);
 
 	public Product() {
 	}
 
-	public Product(Account category, String name, Double priceMin, String image, String description, Integer vendorId,
-			EProduct status, Boolean isDelete, Boolean isAccept, Set auctionhistories, Set feedbacks, Set orderses,
-			Set auctionproducts) {
+	public Product(Category category, String name, Double priceMin, String image, String description, Integer vendorId,
+			EProduct status, Boolean isDelete, Boolean isAccept, Set<Auctionhistory> auctionhistories,
+			Set<Feedback> feedbacks, Set<Orders> orderses, Set<Auctionproduct> auctionproducts) {
 		this.category = category;
 		this.name = name;
 		this.priceMin = priceMin;
@@ -51,10 +53,11 @@ public class Product implements java.io.Serializable {
 		this.orderses = orderses;
 		this.auctionproducts = auctionproducts;
 	}
- 
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	@GeneratedValue(strategy = IDENTITY)
+
+	@Column(name = "Id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
 	}
@@ -63,14 +66,17 @@ public class Product implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Account getCategory() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CateID")
+	public Category getCategory() {
 		return this.category;
 	}
 
-	public void setCategory(Account category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
+	@Column(name = "Name", length = 500)
 	public String getName() {
 		return this.name;
 	}
@@ -79,6 +85,7 @@ public class Product implements java.io.Serializable {
 		this.name = name;
 	}
 
+	@Column(name = "pricemin", precision = 22, scale = 0)
 	public Double getPriceMin() {
 		return this.priceMin;
 	}
@@ -87,6 +94,7 @@ public class Product implements java.io.Serializable {
 		this.priceMin = priceMin;
 	}
 
+	@Column(name = "Image", length = 250)
 	public String getImage() {
 		return this.image;
 	}
@@ -95,6 +103,7 @@ public class Product implements java.io.Serializable {
 		this.image = image;
 	}
 
+	@Column(name = "Description", length = 500)
 	public String getDescription() {
 		return this.description;
 	}
@@ -103,6 +112,7 @@ public class Product implements java.io.Serializable {
 		this.description = description;
 	}
 
+	@Column(name = "vendorid")
 	public Integer getVendorId() {
 		return this.vendorId;
 	}
@@ -111,6 +121,7 @@ public class Product implements java.io.Serializable {
 		this.vendorId = vendorId;
 	}
 
+	@Column(name = "Status")
 	public EProduct getStatus() {
 		return this.status;
 	}
@@ -119,6 +130,7 @@ public class Product implements java.io.Serializable {
 		this.status = status;
 	}
 
+	@Column(name = "isdelete")
 	public Boolean getIsDelete() {
 		return this.isDelete;
 	}
@@ -127,6 +139,7 @@ public class Product implements java.io.Serializable {
 		this.isDelete = isDelete;
 	}
 
+	@Column(name = "isaccept")
 	public Boolean getIsAccept() {
 		return this.isAccept;
 	}
@@ -135,35 +148,39 @@ public class Product implements java.io.Serializable {
 		this.isAccept = isAccept;
 	}
 
-	public Set getAuctionhistories() {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	public Set<Auctionhistory> getAuctionhistories() {
 		return this.auctionhistories;
 	}
 
-	public void setAuctionhistories(Set auctionhistories) {
+	public void setAuctionhistories(Set<Auctionhistory> auctionhistories) {
 		this.auctionhistories = auctionhistories;
 	}
 
-	public Set getFeedbacks() {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	public Set<Feedback> getFeedbacks() {
 		return this.feedbacks;
 	}
 
-	public void setFeedbacks(Set feedbacks) {
+	public void setFeedbacks(Set<Feedback> feedbacks) {
 		this.feedbacks = feedbacks;
 	}
 
-	public Set getOrderses() {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	public Set<Orders> getOrderses() {
 		return this.orderses;
 	}
 
-	public void setOrderses(Set orderses) {
+	public void setOrderses(Set<Orders> orderses) {
 		this.orderses = orderses;
 	}
 
-	public Set getAuctionproducts() {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	public Set<Auctionproduct> getAuctionproducts() {
 		return this.auctionproducts;
 	}
 
-	public void setAuctionproducts(Set auctionproducts) {
+	public void setAuctionproducts(Set<Auctionproduct> auctionproducts) {
 		this.auctionproducts = auctionproducts;
 	}
 
