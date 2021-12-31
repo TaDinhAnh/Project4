@@ -1,11 +1,16 @@
 package com.demo.services;
-
 import org.springframework.stereotype.Service;
-
-import com.demo.Dtos.Input.FeedbackInput;
+import java.util.List;
+import com.demo.Dtos.Input.FeedBackInput;
+import com.demo.Dtos.Output.FeedBackOutput;
 
 @Service
 public interface IFeedbackService {
-	boolean createFeedBack(FeedbackInput feedbackInput);
+	boolean createFeedBack(FeedBackInput feedbackInput);
+
+	List<FeedBackOutput> getlistFeedback();
+
+	List<FeedBackOutput> getAll();
+	
 }
 

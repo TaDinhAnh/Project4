@@ -1,4 +1,5 @@
 package com.demo.models;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,12 +15,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import com.demo.common.EAuction;
 @Entity
 @Table(name = "auction")
 public class Auction implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
+
 	private Integer id;
 	private Account account;
 	private Date hourStart;
@@ -27,7 +28,7 @@ public class Auction implements java.io.Serializable {
 	private Date eventdate;
 	private String description;
 	private EAuction status;
-	private Boolean isDel;
+	private Boolean isDel = false;
 	private Set<Orders> orderses = new HashSet<Orders>(0);
 	private Set<Auctionhistory> auctionhistories = new HashSet<Auctionhistory>(0);
 	private Set<Auctionproduct> auctionproducts = new HashSet<Auctionproduct>(0);

@@ -62,6 +62,27 @@ public class AuctionService implements IAuctionService {
 		}
 		
 	}
-	
-	
+	@Override
+	public AuctionOutput getDetailAuction(int id) {
+		return auctionRepositories.getDetailAuction(id);		
+	}
+
+	@Override
+	public List<AuctionOutput> getlistAuction() {
+		return auctionRepositories.getlistAuction();
+	}
+
+	@Override
+	public Auction findById(int id) {
+		try {
+			return auctionRepositories.findById(id).get();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<AuctionOutput> getAll() {
+		return auctionRepositories.getAll();
+	}
 }

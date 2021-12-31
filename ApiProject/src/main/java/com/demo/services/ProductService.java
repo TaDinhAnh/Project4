@@ -1,8 +1,8 @@
 package com.demo.services;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.demo.Dtos.Input.ProductInput;
 import com.demo.Dtos.Output.ProductOutput;
 import com.demo.models.Account;
@@ -25,9 +25,19 @@ public class ProductService implements IProductService {
 	public Product findById(int id) {
 		try {
 			return productReponsitory.findById(id).get();
-		} catch (Exception e) {
+		}catch (Exception e) {
 			return null;
 		}
+	}
+
+	@Override
+	public List<ProductOutput> getListProductByClient() {
+		return productReponsitory.getListProductByClient();
+	}
+
+	@Override
+	public List<ProductOutput> getListProduct(String name) {
+		return productReponsitory.getListProduct(name);
 	}
 	@Override
 	public ProductOutput createProduct(ProductInput productInput) {
@@ -64,6 +74,12 @@ public class ProductService implements IProductService {
 		return new ProductOutput(product.getId(), product.getCategory().getName(), 
 				product.getName(), product.getPriceMin(), product.getImage(), product.getDescription(),
 				product.getStatus(), product.getIsAccept());
+	}
+	@Override
+	public boolean acceptProduct(int id) {
+		Product product = findById(id);
+		product.setIsAccept(true);
+		return productReponsitory.save(product) != null;
 	}
 
 }

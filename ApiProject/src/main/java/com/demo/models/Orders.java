@@ -56,7 +56,7 @@ public class Orders implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "AccountId")
+	@JoinColumn(name = "accountid")
 	public Account getAccount() {
 		return this.account;
 	}
@@ -66,7 +66,7 @@ public class Orders implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "AuctionId")
+	@JoinColumn(name = "auctionid")
 	public Auction getAuction() {
 		return this.auction;
 	}
@@ -76,7 +76,7 @@ public class Orders implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ProId")
+	@JoinColumn(name = "proid")
 	public Product getProduct() {
 		return this.product;
 	}
@@ -86,7 +86,7 @@ public class Orders implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "SuccessDate", length = 10)
+	@Column(name = "successdate", length = 10)
 	public Date getSuccessDate() {
 		return this.successDate;
 	}

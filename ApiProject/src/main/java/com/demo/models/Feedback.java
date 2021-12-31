@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Table(name = "feedback")
 public class Feedback implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
+
 	private Integer id;
 	private Account account;
 	private Product product;

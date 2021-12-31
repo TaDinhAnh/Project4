@@ -16,7 +16,6 @@ import javax.persistence.TemporalType;
 
 import com.demo.common.ERole;
 
-
 @Entity
 @Table(name = "account")
 public class Account implements java.io.Serializable {
@@ -29,7 +28,7 @@ public class Account implements java.io.Serializable {
 	private Date dob;
 	private String image;
 	private ERole role;
-	private Boolean isDelete;
+	private Boolean isDelete = false;
 	private Set<Orders> orderses = new HashSet<Orders>(0);
 	private Set<Auction> auctions = new HashSet<Auction>(0);
 	private Set<Feedback> feedbacks = new HashSet<Feedback>(0);

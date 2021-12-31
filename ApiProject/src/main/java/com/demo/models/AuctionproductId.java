@@ -6,6 +6,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class AuctionproductId implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
+
 	private int proId;
 	private int auctionId;
 
@@ -49,7 +50,6 @@ public class AuctionproductId implements java.io.Serializable {
 
 	public int hashCode() {
 		int result = 17;
-
 		result = 37 * result + this.getProId();
 		result = 37 * result + this.getAuctionId();
 		return result;

@@ -16,12 +16,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "category")
 public class Category implements java.io.Serializable {
-	
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Category category;
 	private String name;
-	private Boolean isDelete;
+	private Boolean isDelete = false;
 	private Set<Category> categories = new HashSet<Category>(0);
 	private Set<Product> products = new HashSet<Product>(0);
 

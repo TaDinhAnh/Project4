@@ -47,7 +47,7 @@ public class Auctionhistory implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "AccountId")
+	@JoinColumn(name = "accountid")
 	public Account getAccount() {
 		return this.account;
 	}
@@ -57,7 +57,7 @@ public class Auctionhistory implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "AuctionId")
+	@JoinColumn(name = "auctionid")
 	public Auction getAuction() {
 		return this.auction;
 	}
@@ -67,7 +67,7 @@ public class Auctionhistory implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ProId")
+	@JoinColumn(name = "proid")
 	public Product getProduct() {
 		return this.product;
 	}
