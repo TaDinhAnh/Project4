@@ -1,9 +1,14 @@
 package com.demo.Dtos.Input;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 public class FeedbackInput {
+	@Min(value = 1)
 	private int accountId;
+	@Min(value = 1)
 	private int productId;
+	@NotEmpty
 	private String content;
 	public int getAccountId() {
 		return accountId;

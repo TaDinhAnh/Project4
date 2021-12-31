@@ -13,7 +13,11 @@ public class ProductService implements IProductService {
 	private ProductReponsitory productReponsitory;
 	@Override
 	public Product findById(int id) {
-		return productReponsitory.findById(id).get();
+		try {
+			return productReponsitory.findById(id).get();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }

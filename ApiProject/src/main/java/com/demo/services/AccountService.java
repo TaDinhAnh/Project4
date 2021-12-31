@@ -8,12 +8,17 @@ import com.demo.reponsitories.AccountReponsitory;
 
 @Service
 public class AccountService implements IAccountService {
-	
+
 	@Autowired
 	private AccountReponsitory accountReponsitory;
+
 	@Override
 	public Account findById(int id) {
-		return accountReponsitory.findById(id).get();
+		try {
+			return accountReponsitory.findById(id).get();
+		} catch (Exception e) {
+			return null;
+		}
 	}
-	
+
 }
