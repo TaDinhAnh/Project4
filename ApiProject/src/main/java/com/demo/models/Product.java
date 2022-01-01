@@ -25,7 +25,7 @@ public class Product implements java.io.Serializable {
 	private String image;
 	private String description;
 	private Integer vendorId;
-	private EProduct status;
+	private EProduct status = EProduct.unsold;
 	private Boolean isDelete = false;
 	private Boolean isAccept = false;
 	private Set<Auctionhistory> auctionhistories = new HashSet<Auctionhistory>(0);

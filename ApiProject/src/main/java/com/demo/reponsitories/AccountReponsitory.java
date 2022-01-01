@@ -10,7 +10,7 @@ import com.demo.models.Account;
 
 @Repository
 public interface AccountReponsitory extends CrudRepository<Account, Integer> {
-	@Query("select new com.demo.Dtos.Output.AccountOutput(id, gmail, fullname, phone,  dob, image, role ) from Account where isDelete = 1")
+	@Query("select new com.demo.Dtos.Output.AccountOutput(id, gmail, fullname, phone,  dob, image, role ) from Account")
 	public List<AccountOutput> getListAccount();
 
 	@Query("from Account where gmail= :gmail")

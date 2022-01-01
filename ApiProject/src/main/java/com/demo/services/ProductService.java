@@ -78,6 +78,8 @@ public class ProductService implements IProductService {
 	@Override
 	public boolean acceptProduct(int id) {
 		Product product = findById(id);
+		if(product == null )
+			return false;
 		product.setIsAccept(true);
 		return productReponsitory.save(product) != null;
 	}

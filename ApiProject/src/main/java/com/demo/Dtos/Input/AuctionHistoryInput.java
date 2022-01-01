@@ -2,11 +2,23 @@ package com.demo.Dtos.Input;
 
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class AuctionHistoryInput {
+	@Min(value = 1)
 	private int accountid;
+	@Min(value = 1)
 	private int auctionid;
+	@Min(value = 1)
 	private int productid;
+	@Min(value = 1)
 	private Double price;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	@Temporal(TemporalType.DATE)
 	private Date time;
 
 	public int getAccountid() {

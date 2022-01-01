@@ -17,19 +17,29 @@ public class CategoryService implements ICategoryService {
 	@Override
 	public boolean createCategory(CategoryInput categoryInput) {
 		Category category = new Category();
+		if (categoryInput != null) {
+			Category categoryChild = findById(categoryInput.getPresentid());
+			if (categoryChild == null)
+				return false;
+			category.setCategory(categoryChild);
+		}
 		category.setName(categoryInput.getName());
-		category.setCategory(findById(categoryInput.getPresentid()));
 		return categoryReponsitory.save(category) != null;
 	}
-
+	
 	@Override
 	public boolean updateCategory(int id, CategoryInput categoryInput) {
 		Category category = findById(id);
 		if (category == null) {
 			return false;
 		}
+		if (categoryInput != null) {
+			Category categoryChild = findById(categoryInput.getPresentid());
+			if (categoryChild == null)
+				return false;
+			category.setCategory(categoryChild);
+		}
 		category.setName(categoryInput.getName());
-		category.setCategory(findById(categoryInput.getPresentid()));
 		return categoryReponsitory.save(category) != null;
 	}
 

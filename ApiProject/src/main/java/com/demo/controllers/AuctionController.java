@@ -20,47 +20,52 @@ import com.demo.validators.Validate;
 @RestController
 @RequestMapping("api/auction")
 public class AuctionController {
-	
+
 	@Autowired
 	private IAuctionService auctionService;
-	
+
 	@Autowired
 	private Validate validate;
-	
-	@RequestMapping(value = {"/{idVendor}" }, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+
+	@RequestMapping(value = {
+			"vendor/{idVendor}" }, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AuctionOutput>> getListAuctionByIdVendor(@PathVariable("idVendor") int idVendor) {
-		if(idVendor <=0) {
+		if (idVendor <= 0) {
 			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.BAD_REQUEST);
 		}
 		List<AuctionOutput> auctionOutputs = auctionService.getListAuctionById(idVendor);
-		if(auctionOutputs == null || auctionOutputs.size() <= 0) {
+		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
 			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<AuctionOutput>>(auctionService.getListAuctionById(idVendor), HttpStatus.OK);
 	}
-	@RequestMapping( method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+
+	@RequestMapping(method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> createAuction(@RequestBody @Valid AuctionInput auctionInput, BindingResult bind) {
+
 		validate.validate(auctionInput, bind);
-		if(bind.hasErrors()) {
-			return new ResponseEntity<Boolean>(false,HttpStatus.BAD_REQUEST);
+		if (bind.hasErrors()) {
+			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
 		}
-		if(auctionService.createAuction(auctionInput)) {
+
+		if (auctionService.createAuction(auctionInput)) {
 			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-		}else {		
+		} else {
 			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	@RequestMapping( value = "/{id}", method = RequestMethod.PUT, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<AuctionOutput> updateAuction(@RequestBody @Valid AuctionInput auctionInput, @PathVariable int id, BindingResult bind) {
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<AuctionOutput> updateAuction(@RequestBody @Valid AuctionInput auctionInput,
+			@PathVariable int id, BindingResult bind) {
 		validate.validate(auctionInput, bind);
-		if(bind.hasErrors() || id <=0) {
+		if (bind.hasErrors()) {
 			return new ResponseEntity<AuctionOutput>(HttpStatus.BAD_REQUEST);
 		}
 		AuctionOutput auctionOutput = auctionService.updateAuction(auctionInput, id);
-		if(auctionInput != null) {
+		if (auctionInput != null) {
 			return new ResponseEntity<AuctionOutput>(auctionOutput, HttpStatus.OK);
-		}else {		
+		} else {
 			return new ResponseEntity<AuctionOutput>(HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -86,7 +91,7 @@ public class AuctionController {
 		return new ResponseEntity<AuctionOutput>(auctionService.getDetailAuction(id), HttpStatus.OK);
 
 	}
-	
+
 	@RequestMapping(value = "admin", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AuctionOutput>> findAll() {
 		List<AuctionOutput> auctionOutputs = auctionService.getAll();

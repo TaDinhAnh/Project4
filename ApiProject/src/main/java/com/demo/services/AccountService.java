@@ -14,6 +14,8 @@ public class AccountService implements IAccountService {
 
 	@Override
 	public boolean createAccount(AccountInput accountInput) {
+		Account accDB = findByGmail(accountInput.getGmail());
+		if(accDB != null) return false;
 		Account account = new Account();
 		account.setDob(accountInput.getDob());
 		account.setFullname(accountInput.getFullname());
@@ -39,11 +41,9 @@ public class AccountService implements IAccountService {
 		account.setFullname(accountInput.getFullname());
 		account.setGmail(accountInput.getGmail());
 		account.setPhone(accountInput.getPhone());
-		account.setPassword(accountInput.getPassword());
-		account.setRole(accountInput.getRole());
-		accountResponsitory.save(account);
-		return new AccountOutput(account.getGmail(), account.getFullname(), account.getPhone(), account.getDob(),
-				account.getImage());
+		account = accountResponsitory.save(account);
+		return new AccountOutput(account.getId(),account.getGmail(), account.getFullname(), account.getPhone(), account.getDob(),
+				account.getImage(), account.getRole());
 	}
 
 	@Override

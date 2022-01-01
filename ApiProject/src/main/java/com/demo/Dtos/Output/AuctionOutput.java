@@ -1,11 +1,20 @@
 package com.demo.Dtos.Output;
 
 import java.util.Date;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import com.demo.common.EAuction;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AuctionOutput {
 	private int id;
+	@JsonFormat(pattern = "HH:mm:ss")
+	@Temporal(TemporalType.TIME)
 	private Date hourStart;
+	@JsonFormat(pattern = "HH:mm:ss")
+	@Temporal(TemporalType.TIME)
 	private Date hourEnd;
 	private Date eventdate;
 	private String description;

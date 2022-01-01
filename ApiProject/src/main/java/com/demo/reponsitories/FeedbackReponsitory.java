@@ -15,7 +15,8 @@ public interface FeedbackReponsitory extends CrudRepository<Feedback, Integer>{
 			+ "content) from Feedback where isDel = 0 order by id desc ")
 	public List<FeedBackOutput> getListFeedBack(); 
 	
-	@Query("select new com.demo.Dtos.Output.FeedBackOutput(id, account.fullname, product.name,  content) from Feedback")
+	@Query("select new com.demo.Dtos.Output.FeedBackOutput(id, account.fullname, product.name,  "
+			+ "content) from Feedback order by id desc")
 	public List<FeedBackOutput> getAll(); 
 	
 }
