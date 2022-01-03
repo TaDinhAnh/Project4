@@ -45,7 +45,6 @@ public class Auction implements java.io.Serializable {
 		this.eventdate = eventdate;
 		this.description = description;
 		this.status = status;
-		this.isDel = isDel;
 		this.orderses = orderses;
 		this.auctionhistories = auctionhistories;
 		this.auctionproducts = auctionproducts;

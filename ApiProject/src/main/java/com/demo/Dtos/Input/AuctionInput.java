@@ -27,20 +27,20 @@ public class AuctionInput {
 	public AuctionInput() {
 		super();
 	}
-	public AuctionInput(int venderId, Date hourStart, Date hourEnd, Date eventdate, String description) {
+	public AuctionInput(int vendorId, Date hourStart, Date hourEnd, Date eventdate, String description) {
 		super();
-		this.vendorId = venderId; 
+		this.vendorId = vendorId; 
 		this.hourStart = hourStart;
 		this.hourEnd = hourEnd;
 		this.eventdate = eventdate;
 		this.description = description;
 	}
 	
-	public int getVenderId() {
+	public int getVendorId() {
 		return vendorId;
 	}
-	public void setVenderId(int venderId) {
-		this.vendorId = venderId;
+	public void setVendorId(int vendorId) {
+		this.vendorId = vendorId;
 	}
 	public Date getHourStart() {
 		return hourStart;
