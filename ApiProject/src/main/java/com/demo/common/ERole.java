@@ -4,5 +4,4 @@ public enum ERole {
 	admin,
 	vendor,
 	customer
-
 }

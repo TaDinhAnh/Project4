@@ -1,56 +1,60 @@
 package com.demo.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.demo.models.Category;
+import com.demo.reponsitories.CategoryReponsitory;
+import java.util.List;
 import com.demo.Dtos.Input.CategoryInput;
 import com.demo.Dtos.Output.CategoryOutput;
-import com.demo.models.Category;
-
-import com.demo.reponsitories.ICategoryResponsitory;
-
-;
 
 @Service
 public class CategoryService implements ICategoryService {
 
 	@Autowired
-	private ICategoryResponsitory categoryResponsitory;
+	private CategoryReponsitory categoryReponsitory;
 
 	@Override
 	public boolean createCategory(CategoryInput categoryInput) {
 		Category category = new Category();
+		if (categoryInput != null) {
+			Category categoryChild = findById(categoryInput.getPresentid());
+			if (categoryChild == null)
+				return false;
+			category.setCategory(categoryChild);
+		}
 		category.setName(categoryInput.getName());
-		category.setCategory(findById(categoryInput.getPresentid()));
-		return categoryResponsitory.save(category) != null;
+		return categoryReponsitory.save(category) != null;
 	}
-
+	
 	@Override
 	public boolean updateCategory(int id, CategoryInput categoryInput) {
 		Category category = findById(id);
-		if(category == null) {
+		if (category == null) {
 			return false;
 		}
+		if (categoryInput != null) {
+			Category categoryChild = findById(categoryInput.getPresentid());
+			if (categoryChild == null)
+				return false;
+			category.setCategory(categoryChild);
+		}
 		category.setName(categoryInput.getName());
-		category.setCategory(findById(categoryInput.getPresentid()));
-		return categoryResponsitory.save(category) != null;
+		return categoryReponsitory.save(category) != null;
 	}
 
 	@Override
 	public Category findById(int id) {
 		try {
-			return categoryResponsitory.findById(id).get();
+			return categoryReponsitory.findById(id).get();
 		} catch (Exception e) {
 			return null;
 		}
-
 	}
 
 	@Override
 	public List<CategoryOutput> getListCategory() {
-		return categoryResponsitory.getListCategory();
+		return categoryReponsitory.getListCategory();
 	}
 
 }

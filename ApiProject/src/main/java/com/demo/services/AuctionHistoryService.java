@@ -1,16 +1,8 @@
 package com.demo.services;
-
-import java.text.SimpleDateFormat;
-import java.time.OffsetDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.demo.Dtos.Input.AuctionHistoryInput;
 import com.demo.Dtos.Output.AuctionHistoryOutput;
 import com.demo.models.Account;

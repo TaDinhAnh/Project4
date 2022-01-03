@@ -4,5 +4,4 @@ public enum EOrder {
 	cancel,
 	unpaid,
 	paid
-
 }

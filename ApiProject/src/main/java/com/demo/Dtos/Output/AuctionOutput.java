@@ -2,17 +2,48 @@ package com.demo.Dtos.Output;
 
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import com.demo.common.EAuction;
-import com.demo.models.Account;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AuctionOutput {
 	private int id;
+	@JsonFormat(pattern = "HH:mm:ss")
+	@Temporal(TemporalType.TIME)
 	private Date hourStart;
+	@JsonFormat(pattern = "HH:mm:ss")
+	@Temporal(TemporalType.TIME)
 	private Date hourEnd;
 	private Date eventdate;
 	private String description;
 	private EAuction status;
+	private Boolean isDel;
 
+	public AuctionOutput() {
+		super();
+	}
+
+	public AuctionOutput(int id, Date hourStart, Date hourEnd, Date eventdate, String description, EAuction status, boolean isDel) {
+		super();
+		this.id = id;
+		this.hourStart = hourStart;
+		this.hourEnd = hourEnd;
+		this.eventdate = eventdate;
+		this.description = description;
+		this.status = status;
+		this.isDel = isDel;
+	}
+	public AuctionOutput(int id, Date hourStart, Date hourEnd, Date eventdate, String description, EAuction status) {
+		super();
+		this.id = id;
+		this.hourStart = hourStart;
+		this.hourEnd = hourEnd;
+		this.eventdate = eventdate;
+		this.description = description;
+		this.status = status;
+	}
 	public int getId() {
 		return id;
 	}
@@ -61,18 +92,12 @@ public class AuctionOutput {
 		this.status = status;
 	}
 
-	public AuctionOutput() {
-		super();
+	public Boolean getIsDel() {
+		return isDel;
 	}
 
-	public AuctionOutput(int id, Date hourStart, Date hourEnd, Date eventdate, String description, EAuction status) {
-		super();
-		this.id = id;
-		this.hourStart = hourStart;
-		this.hourEnd = hourEnd;
-		this.eventdate = eventdate;
-		this.description = description;
-		this.status = status;
+	public void setIsDel(Boolean isDel) {
+		this.isDel = isDel;
 	}
 
 }

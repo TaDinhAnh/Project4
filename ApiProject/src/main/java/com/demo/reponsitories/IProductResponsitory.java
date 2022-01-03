@@ -6,10 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import com.demo.Dtos.Output.AccountOutput;
 import com.demo.Dtos.Output.ProductOutput;
-import com.demo.common.EProduct;
 import com.demo.models.Product;
 
 @Repository

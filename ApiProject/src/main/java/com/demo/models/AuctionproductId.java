@@ -27,7 +27,7 @@ public class AuctionproductId implements java.io.Serializable {
 		this.proId = proId;
 	}
 
-	@Column(name = "AuctionId", nullable = false)
+	@Column(name = "auctionid", nullable = false)
 	public int getAuctionId() {
 		return this.auctionId;
 	}
@@ -50,7 +50,6 @@ public class AuctionproductId implements java.io.Serializable {
 
 	public int hashCode() {
 		int result = 17;
-
 		result = 37 * result + this.getProId();
 		result = 37 * result + this.getAuctionId();
 		return result;

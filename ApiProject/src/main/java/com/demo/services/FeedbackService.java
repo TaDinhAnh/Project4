@@ -7,38 +7,42 @@ import org.springframework.stereotype.Service;
 
 import com.demo.Dtos.Input.FeedBackInput;
 import com.demo.Dtos.Output.FeedBackOutput;
+import com.demo.models.Account;
 import com.demo.models.Feedback;
-import com.demo.reponsitories.IAccountResponsitory;
-import com.demo.reponsitories.IFeedbackResponsitory;
-import com.demo.reponsitories.IProductResponsitory;
+import com.demo.models.Product;
+import com.demo.reponsitories.FeedbackReponsitory;
 
 @Service
 public class FeedbackService implements IFeedbackService {
 	@Autowired
-	private IFeedbackResponsitory feedbackResponsitory;
+	private FeedbackReponsitory feedbackReponsitory;
+
 	@Autowired
 	private IAccountService accountService;
+
 	@Autowired
 	private IProductService productService;
 
-	@Override
-	public boolean createFeedback(FeedBackInput feedbackInput) {
+	public boolean createFeedBack(FeedBackInput feedbackInput) {
+		Account account = accountService.findById(feedbackInput.getAccountId());
+		Product product = productService.findById(feedbackInput.getProductId());
+		if (product == null || account == null)
+			return false;
 		Feedback feedback = new Feedback();
-		feedback.setAccount(accountService.findById(feedbackInput.getAccountId()));
+		feedback.setAccount(account);
+		feedback.setProduct(product);
 		feedback.setContent(feedbackInput.getContent());
-		feedback.setProduct(productService.findById(feedbackInput.getProductId()));
-		return feedbackResponsitory.save(feedback) != null;
+		return feedbackReponsitory.save(feedback) != null;
 	}
 
 	@Override
 	public List<FeedBackOutput> getlistFeedback() {
-		return feedbackResponsitory.getListFeedBack();
+		return feedbackReponsitory.getListFeedBack();
 	}
 
 	@Override
 	public List<FeedBackOutput> getAll() {
-		return feedbackResponsitory.getAll();
+		return feedbackReponsitory.getAll();
 	}
-
 
 }

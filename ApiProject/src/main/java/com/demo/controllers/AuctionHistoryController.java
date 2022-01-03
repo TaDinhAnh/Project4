@@ -2,25 +2,22 @@ package com.demo.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MimeTypeUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.demo.Dtos.Input.AccountInput;
 import com.demo.Dtos.Input.AuctionHistoryInput;
-import com.demo.Dtos.Output.AccountOutput;
 import com.demo.Dtos.Output.AuctionHistoryOutput;
-import com.demo.models.Account;
-import com.demo.models.Auctionhistory;
-import com.demo.reponsitories.IAuctionHistoryResponsitory;
-import com.demo.services.IAccountService;
 import com.demo.services.IAuctionHistoryService;
+import com.demo.validators.Validate;
 
 @RequestMapping("api/auctionhistory")
 @RestController
@@ -28,11 +25,14 @@ public class AuctionHistoryController {
 
 	@Autowired
 	private IAuctionHistoryService auctionHistoryService;
-
+	
+	@Autowired
+	private Validate validate;
 	@RequestMapping(value = { "" }, method = RequestMethod.POST, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Boolean> create(@RequestBody AuctionHistoryInput auctionhistoryInput) {
-		if (auctionhistoryInput == null) {
-			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
+	public ResponseEntity<Boolean> create(@RequestBody @Valid AuctionHistoryInput auctionhistoryInput, BindingResult bind) {
+		validate.validate(auctionhistoryInput, bind);
+		if(bind.hasErrors()) {
+			return new ResponseEntity<Boolean>(false,HttpStatus.BAD_REQUEST);
 		}
 		if (auctionHistoryService.createAuctionHistory(auctionhistoryInput)) {
 			return new ResponseEntity<Boolean>(true, HttpStatus.OK);

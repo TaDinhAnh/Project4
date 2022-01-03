@@ -1,7 +1,10 @@
 package com.demo.Dtos.Input;
 
+import javax.validation.constraints.NotEmpty;
+
 public class CategoryInput {
 	private int presentid;
+	@NotEmpty
 	private String name;
 
 

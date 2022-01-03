@@ -2,13 +2,23 @@ package com.demo.Dtos.Input;
 
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 import com.demo.common.ERole;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AccountInput {
+	@NotEmpty
 	private String gmail;
+	
 	private String password;
+	@NotEmpty
 	private String fullname;
+	@NotEmpty
 	private String phone;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
 	private Date dob;
 	private String image;
 	private ERole role;

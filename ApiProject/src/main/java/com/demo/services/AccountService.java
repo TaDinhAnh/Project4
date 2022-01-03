@@ -1,24 +1,21 @@
 package com.demo.services;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException.NotFound;
-
 import com.demo.Dtos.Input.AccountInput;
 import com.demo.Dtos.Output.AccountOutput;
 import com.demo.models.Account;
-import com.demo.reponsitories.IAccountResponsitory;
-
-import net.bytebuddy.asm.Advice.Thrown;
+import com.demo.reponsitories.AccountReponsitory;
 
 @Service
 public class AccountService implements IAccountService {
 	@Autowired
-	private IAccountResponsitory accountResponsitory;
+	private AccountReponsitory accountResponsitory;
 
 	@Override
 	public boolean createAccount(AccountInput accountInput) {
+		Account accDB = findByGmail(accountInput.getGmail());
+		if(accDB != null) return false;
 		Account account = new Account();
 		account.setDob(accountInput.getDob());
 		account.setFullname(accountInput.getFullname());
@@ -44,11 +41,9 @@ public class AccountService implements IAccountService {
 		account.setFullname(accountInput.getFullname());
 		account.setGmail(accountInput.getGmail());
 		account.setPhone(accountInput.getPhone());
-		account.setPassword(accountInput.getPassword());
-		account.setRole(accountInput.getRole());
-		accountResponsitory.save(account);
-		return new AccountOutput(account.getGmail(), account.getFullname(), account.getPhone(), account.getDob(),
-				account.getImage());
+		account = accountResponsitory.save(account);
+		return new AccountOutput(account.getId(),account.getGmail(), account.getFullname(), account.getPhone(), account.getDob(),
+				account.getImage(), account.getRole());
 	}
 
 	@Override
@@ -68,7 +63,5 @@ public class AccountService implements IAccountService {
 		} catch (Exception e) {
 			return null;
 		}
-		
 	}
-
 }

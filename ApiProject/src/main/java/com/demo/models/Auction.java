@@ -15,9 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import com.demo.common.EAuction;
-
 @Entity
 @Table(name = "auction")
 public class Auction implements java.io.Serializable {
@@ -47,7 +45,6 @@ public class Auction implements java.io.Serializable {
 		this.eventdate = eventdate;
 		this.description = description;
 		this.status = status;
-		this.isDel = isDel;
 		this.orderses = orderses;
 		this.auctionhistories = auctionhistories;
 		this.auctionproducts = auctionproducts;

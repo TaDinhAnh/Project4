@@ -1,5 +1,4 @@
 package com.demo.models;
-
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +18,6 @@ import com.demo.common.EOrder;
 @Table(name = "orders")
 public class Orders implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
-
 	private Integer id;
 	private Account account;
 	private Auction auction;
