@@ -28,7 +28,8 @@ public class AuctionService implements IAuctionService {
 
 	@Override
 	public boolean createAuction(AuctionInput auctionInput) {
-		Account account = accountService.findById(auctionInput.getVenderId());
+		System.out.println(auctionInput.getVendorId());
+		Account account = accountService.findById(auctionInput.getVendorId());
 		if(account == null) return false;
 		Auction auction = new Auction();
 		auction.setAccount(account);
@@ -36,7 +37,8 @@ public class AuctionService implements IAuctionService {
 		auction.setHourEnd(auctionInput.getHourEnd());
 		auction.setHourStart(auctionInput.getHourStart());
 		auction.setDescription(auctionInput.getDescription());
-		auction.setStatus(EAuction.comingsoon);
+		auction.setStatus(EAuction.comingsoon);		
+		System.out.println(account.getId());
 		return auctionRepositories.save(auction) != null;
 	}
 
