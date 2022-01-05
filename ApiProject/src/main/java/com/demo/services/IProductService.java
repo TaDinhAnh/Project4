@@ -15,5 +15,6 @@ public interface IProductService {
 	boolean acceptProduct(int id);
 	ProductOutput createProduct(ProductInput productInput);
 	ProductOutput updateProduct(ProductInput productInput, int id);
+	ProductOutput find(int id);
 
 }

@@ -6,6 +6,16 @@ public class ProductOutput {
 	private int id;
 	private String category;
 	private String name;
+	private byte[] displayImg;
+	public byte[] getDisplayImg() {
+		return displayImg;
+	}
+
+	public void setDisplayImg(byte[] displayImg) {
+		this.displayImg = displayImg;
+	}
+
+
 	private Double priceMin;
 	private String image;
 	private String description;
