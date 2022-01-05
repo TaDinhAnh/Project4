@@ -16,5 +16,7 @@ public interface IAccountService {
 	Account findByGmail(String gmail);
 
 	Account findById(int id);
+	
+	boolean changeAvatar(String nameImg, int id);
 
 }
