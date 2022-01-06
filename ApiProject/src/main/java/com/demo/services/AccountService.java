@@ -1,5 +1,7 @@
 package com.demo.services;
 import java.util.List;
+
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.demo.Dtos.Input.AccountInput;
@@ -20,7 +22,7 @@ public class AccountService implements IAccountService {
 		account.setDob(accountInput.getDob());
 		account.setFullname(accountInput.getFullname());
 		account.setGmail(accountInput.getGmail());
-		account.setPhone(accountInput.getPhone());
+		account.setPhone(BCrypt.hashpw(accountInput.getPassword(), null));
 		account.setPassword(accountInput.getPassword());
 		account.setRole(accountInput.getRole());
 		return accountResponsitory.save(account) != null;
