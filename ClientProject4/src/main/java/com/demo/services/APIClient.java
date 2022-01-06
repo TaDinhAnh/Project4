@@ -15,7 +15,7 @@ public class APIClient {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8799/api/")
+                .baseUrl("http://localhost:9799/api/")
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder()
                 		.setDateFormat("dd/MM/yyyy").create()))
                 .client(client)

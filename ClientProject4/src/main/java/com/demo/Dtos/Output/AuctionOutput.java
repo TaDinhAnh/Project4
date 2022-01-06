@@ -9,16 +9,24 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.demo.common.EAuction;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.gson.annotations.SerializedName;
 
 public class AuctionOutput {
+	@SerializedName("id")
 	private int id;
+	@SerializedName("hourStart")
 	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date hourStart;
+	@SerializedName("hourEnd")
 	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date hourEnd;
+	@SerializedName("eventdate")
 	private Date eventdate;
+	@SerializedName("description")
 	private String description;
+	@SerializedName("status")
 	private EAuction status;
+	@SerializedName("isDel")
 	private Boolean isDel;
 
 	public AuctionOutput() {

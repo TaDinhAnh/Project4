@@ -2,6 +2,9 @@ package com.demo.services;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.demo.Dtos.Input.AccountInput;
 import com.demo.Dtos.Output.AccountOutput;
 
@@ -23,5 +26,11 @@ public interface AccountAPIService {
 	
 	@POST("account")
 	Call<Boolean> create(@Body AccountInput accountInput);
+	
+	@POST("account/changeAvatar/{id}/{imgOld}")
+	Call<byte[]> changeAvatar(@Param("file") MultipartFile file, @Path("id") int id, @Path("imgOld")String imgOld);
+	
+	@GET("account/getAvatar/{filename}")
+	Call<byte[]> getImg(@Path("filename") String filename);
 	
 }
