@@ -21,6 +21,7 @@ public class AuctionOutput {
 	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date hourEnd;
 	@SerializedName("eventdate")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date eventdate;
 	@SerializedName("description")
 	private String description;
