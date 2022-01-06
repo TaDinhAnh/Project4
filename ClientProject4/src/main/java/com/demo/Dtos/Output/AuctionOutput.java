@@ -2,24 +2,17 @@ package com.demo.Dtos.Output;
 
 import java.util.Date;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.demo.common.EAuction;
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import com.google.gson.annotations.SerializedName;
 
 public class AuctionOutput {
 	@SerializedName("id")
 	private int id;
 	@SerializedName("hourStart")
-	@DateTimeFormat(pattern = "HH:mm:ss")
-	private Date hourStart;
+	private String hourStart;
 	@SerializedName("hourEnd")
-	@DateTimeFormat(pattern = "HH:mm:ss")
-	private Date hourEnd;
+	private String hourEnd;
 	@SerializedName("eventdate")
 	private Date eventdate;
 	@SerializedName("description")
@@ -33,7 +26,7 @@ public class AuctionOutput {
 		super();
 	}
 
-	public AuctionOutput(int id, Date hourStart, Date hourEnd, Date eventdate, String description, EAuction status, boolean isDel) {
+	public AuctionOutput(int id, String hourStart, String hourEnd, Date eventdate, String description, EAuction status, boolean isDel) {
 		super();
 		this.id = id;
 		this.hourStart = hourStart;
@@ -43,7 +36,7 @@ public class AuctionOutput {
 		this.status = status;
 		this.isDel = isDel;
 	}
-	public AuctionOutput(int id, Date hourStart, Date hourEnd, Date eventdate, String description, EAuction status) {
+	public AuctionOutput(int id, String hourStart, String hourEnd, Date eventdate, String description, EAuction status) {
 		super();
 		this.id = id;
 		this.hourStart = hourStart;
@@ -60,19 +53,19 @@ public class AuctionOutput {
 		this.id = id;
 	}
 
-	public Date getHourStart() {
+	public String getHourStart() {
 		return hourStart;
 	}
 
-	public void setHourStart(Date hourStart) {
+	public void setHourStart(String hourStart) {
 		this.hourStart = hourStart;
 	}
 
-	public Date getHourEnd() {
+	public String getHourEnd() {
 		return hourEnd;
 	}
 
-	public void setHourEnd(Date hourEnd) {
+	public void setHourEnd(String hourEnd) {
 		this.hourEnd = hourEnd;
 	}
 
