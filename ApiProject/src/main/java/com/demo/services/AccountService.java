@@ -64,4 +64,12 @@ public class AccountService implements IAccountService {
 			return null;
 		}
 	}
+
+	@Override
+	public boolean changeAvatar(String nameImg, int id) {
+		Account account = findById(id);
+		if(account == null) return true;
+		account.setImage(nameImg);
+		return accountResponsitory.save(account) == null;
+	}
 }
