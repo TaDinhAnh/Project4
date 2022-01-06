@@ -2,16 +2,30 @@ package com.demo.Dtos.Output;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.google.gson.annotations.SerializedName;
+
 public class AuctionHistoryOutput {
+	@SerializedName("id")
 	private int id;
+	@SerializedName("accountname")
 	private String accountname;
+	@SerializedName("productname")
 	private String productname;
+	@SerializedName("hourStart")
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date hourStart;
+	@SerializedName("hourEnd")
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date hourEnd;
+	@SerializedName("eventdate")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date eventdate;
+	@SerializedName("price")
 	private Double price;
+	@SerializedName("time")
 	private Date time;
-	
 
 	public int getId() {
 		return id;
@@ -77,11 +91,9 @@ public class AuctionHistoryOutput {
 		this.time = time;
 	}
 
-
 	public AuctionHistoryOutput() {
 		super();
 	}
-
 
 	public AuctionHistoryOutput(int id, String accountname, String productname, Date hourStart, Date hourEnd,
 			Date eventdate, Double price, Date time) {
@@ -95,7 +107,5 @@ public class AuctionHistoryOutput {
 		this.price = price;
 		this.time = time;
 	}
-	
-
 
 }

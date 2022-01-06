@@ -1,15 +1,24 @@
 package com.demo.Dtos.Output;
 
 import com.demo.common.EProduct;
+import com.google.gson.annotations.SerializedName;
 
 public class ProductOutput {
+	@SerializedName("id")
 	private int id;
+	@SerializedName("category")
 	private String category;
+	@SerializedName("name")
 	private String name;
+	@SerializedName("priceMin")
 	private Double priceMin;
+	@SerializedName("image")
 	private String image;
+	@SerializedName("description")
 	private String description;
+	@SerializedName("status")
 	private EProduct status;
+	@SerializedName("isAccept")
 	private Boolean isAccept;
 
 	public int getId() {

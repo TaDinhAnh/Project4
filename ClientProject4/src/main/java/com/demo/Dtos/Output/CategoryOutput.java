@@ -1,7 +1,11 @@
 package com.demo.Dtos.Output;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CategoryOutput {
+	@SerializedName("presentName")
 	private String presentName;
+	@SerializedName("name")
 	private String name;
 
 	public String getPresentName() {

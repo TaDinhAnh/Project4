@@ -1,12 +1,16 @@
 package com.demo.Dtos.Output;
 
-public class FeedBackOutput {
+import com.google.gson.annotations.SerializedName;
 
+public class FeedBackOutput {
+	@SerializedName("id")
 	private int id;
+	@SerializedName("accountName")
 	private String accountName;
+	@SerializedName("productName")
 	private String productName;
+	@SerializedName("content")
 	private String content;
-	
 
 	public int getId() {
 		return id;
@@ -51,7 +55,5 @@ public class FeedBackOutput {
 		this.productName = productName;
 		this.content = content;
 	}
-	
-	
 
 }
