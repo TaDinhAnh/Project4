@@ -63,7 +63,7 @@ public class AuctionHistoryController {
 			return new ResponseEntity<List<AuctionHistoryOutput>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<AuctionHistoryOutput>>(
-				auctionHistoryService.getAuctionHistoryByCustomer(accountid), HttpStatus.OK);
+				auctionHistoryOutputs, HttpStatus.OK);
 
 	}
 	
@@ -78,7 +78,7 @@ public class AuctionHistoryController {
 			return new ResponseEntity<List<AuctionHistoryOutput>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<AuctionHistoryOutput>>(
-				auctionHistoryService.getAuctionHistoryById(id), HttpStatus.OK);
+				auctionHistoryOutputs, HttpStatus.OK);
 
 	}
 

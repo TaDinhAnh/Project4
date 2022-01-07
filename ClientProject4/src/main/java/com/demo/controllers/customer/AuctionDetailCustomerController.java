@@ -20,7 +20,7 @@ public class AuctionDetailCustomerController {
 	@RequestMapping(value = {"", "index" }, method = RequestMethod.GET)
 	public String index(@RequestParam("id") int id, ModelMap modelMap) throws IOException {		
 		AuctionHistoryAPIService auctionHistoryAPIService = APIClient.getClient().create(AuctionHistoryAPIService.class);
-		List<AuctionHistoryOutput> auctionHistoryOutput  = auctionHistoryAPIService.getAuctionHistoryById(id).execute().body();
+		List<AuctionHistoryOutput> auctionHistoryOutput  = auctionHistoryAPIService.getAuctionHistoryById(1).execute().body();
 		modelMap.put("auctionhistory", auctionHistoryOutput);
 		return "customer/auction/detailAuction/index";
 	}

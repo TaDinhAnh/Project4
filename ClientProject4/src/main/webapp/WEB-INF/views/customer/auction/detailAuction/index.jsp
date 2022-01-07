@@ -15,20 +15,22 @@
           </div>
           <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
             <div class="post-information">
+             <c:forEach var="item" items="${auctionhistory }">
               <ul class="list-inline text-center color-a">
                 <li class="list-inline-item mr-2">
                   <strong>Author: </strong>
-                  <span class="color-text-a">${auctionhistory.productname }</span>
+                  <span class="color-text-a">${item.productname }</span>
                 </li>
                 <li class="list-inline-item mr-2">
-                  <strong>Category: </strong>
+                  <strong>Category: ${item.category } </strong>
 <%--                   <span class="color-text-a">${auctionhistory.category }</span> --%>
                 </li>
                 <li class="list-inline-item">
-                  <strong>Date: </strong>
+                  <strong>Date: ${item.time } </strong>
 <%--                   <span class="color-text-a">${auctionhistory.evendate }</span> --%>
                 </li>
               </ul>
+              </c:forEach>
             </div>
             <div class="post-content color-text-a">
               <p class="post-intro">
