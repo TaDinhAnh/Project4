@@ -10,19 +10,48 @@
 <title>EstateAgency Bootstrap Template - Index</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
-<link href="${pageContext.request.contextPath }/resources/assets/customer/img/favicon.png" rel="icon">
-<link href="${pageContext.request.contextPath }/resources/assets/customer/img/apple-touch-icon.png" rel="apple-touch-icon">
+<link
+	href="${pageContext.request.contextPath }/resources/assets/customer/img/favicon.png"
+	rel="icon">
+<link
+	href="${pageContext.request.contextPath }/resources/assets/customer/img/apple-touch-icon.png"
+	rel="apple-touch-icon">
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath }/resources/assets/customer/vendor/animate.css/animate.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/resources/assets/customer/vendor/bootstrap/css/bootstrap.min.css"
+<link
+	href="${pageContext.request.contextPath }/resources/assets/customer/vendor/animate.css/animate.min.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath }/resources/assets/customer/vendor/bootstrap-icons/bootstrap-icons.css"
+<link
+	href="${pageContext.request.contextPath }/resources/assets/customer/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath }/resources/assets/customer/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/resources/assets/customer/css/style.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath }/resources/assets/customer/vendor/bootstrap-icons/bootstrap-icons.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath }/resources/assets/customer/vendor/swiper/swiper-bundle.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath }/resources/assets/customer/css/style.css"
+	rel="stylesheet">
+
+<script>
+	var myVar = setInterval(myTimer, 1000);
+	var my = setInterval(myDate, 1000);
+	function myTimer() {		
+		var d = new Date();
+		var t = d.toLocaleTimeString();
+		$("#timeClock").html(t);
+	}
+	function myDate() {		
+		var date = new Date();
+		var day = date.toDateString();
+		$("#day").html(day);
+	}
+	
+</script>
 </head>
+
 <body>
 	<div class="click-closed"></div>
 	<div class="box-collapse">
@@ -132,36 +161,73 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
 						href="${pageContext.request.contextPath }/customer/home">Home</a></li>
-					<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath }/customer/about">About</a>
-					</li>
-					<li class="nav-item"><a class="nav-link "
-						href="${pageContext.request.contextPath }/customer/property">Property</a></li>
+<!-- 					<li class="nav-item"><a class="nav-link " -->
+<%-- 						href="${pageContext.request.contextPath }/customer/about">About</a> --%>
+<!-- 					</li> -->
+<!-- 					<li class="nav-item"><a class="nav-link " -->
+<%-- 						href="${pageContext.request.contextPath }/customer/property">Property</a></li> --%>
 
-					<li class="nav-item"><a class="nav-link "
-						href="${pageContext.request.contextPath }/customer/blog">Blog</a></li>
+<!-- 					<li class="nav-item"><a class="nav-link " -->
+<%-- 						href="${pageContext.request.contextPath }/customer/blog">Blog</a></li> --%>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">Auction</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/auction/comingsoon">The
+								auction is about to begin </a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/auction/happenning"">The
+								auction is ongoing. </a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/aution/happened"">The
+								auction is over.</a>
+						</div></li>
 
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Pages</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item " href="${pageContext.request.contextPath }/customer/pagePropertySingle">Property
-								Single</a> <a class="dropdown-item " href="${pageContext.request.contextPath }/customer/pageBlogSingle"">Blog
-								Single</a> <a class="dropdown-item " href="${pageContext.request.contextPath }/customer/pageAgentsGrid"">Agents
-								Grid</a> <a class="dropdown-item " href="${pageContext.request.contextPath }/customer/pageAgentSingle"">Agent
+							<a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/pagePropertySingle">Property
+								Single</a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/pageBlogSingle"">Blog
+								Single</a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/pageAgentsGrid"">Agents
+								Grid</a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/pageAgentSingle"">Agent
 								Single</a>
 						</div></li>
-					<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath }/customer/contact"">Contact</a>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">Account</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/account/changeInfor">Change Infor
+								</a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction History
+								</a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/pageAgentsGrid"">Sign in
+								</a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/pageAgentSingle"">Sign out
+								</a>
+						</div></li>
+					<li class="nav-item"><a class="nav-link "
+						href="${pageContext.request.contextPath }/customer/contact"">Contact</a>
 					</li>
 				</ul>
 			</div>
+			<div class="nav-item;" style="color:#6c757d; font-size:16px; padding-right: 3px"><span id="day"> </span><span id="timeClock"></span></div>
 			<button type="button"
 				class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
 				data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
 				<i class="bi bi-search"></i>
 			</button>
 		</div>
-	</nav>	
+	</nav>
 	<main id="main">
 		<jsp:invoke fragment="content"></jsp:invoke>
 	</main>
@@ -245,11 +311,18 @@
 				<div class="col-md-12">
 					<nav class="nav-footer">
 						<ul class="list-inline">
-							<li class="list-inline-item"><a href="${pageContext.request.contextPath }/customer/home">Home</a></li>
-							<li class="list-inline-item"><a href="${pageContext.request.contextPath }/customer/about">About</a></li>
-							<li class="list-inline-item"><a href="${pageContext.request.contextPath }/customer/property">Property</a></li>
-							<li class="list-inline-item"><a href="${pageContext.request.contextPath }/customer/blog">Blog</a></li>
-							<li class="list-inline-item"><a href="${pageContext.request.contextPath }/customer/contact">Contact</a></li>
+							<li class="list-inline-item"><a
+								href="${pageContext.request.contextPath }/customer/home">Home</a></li>
+							<li class="list-inline-item"><a
+								href="${pageContext.request.contextPath }/customer/about">About</a></li>
+							<li class="list-inline-item"><a
+								href="${pageContext.request.contextPath }/customer/property">Property</a></li>
+							<li class="list-inline-item"><a
+								href="${pageContext.request.contextPath }/customer/blog">Blog</a></li>
+							<li class="list-inline-item"><a
+								href="${pageContext.request.contextPath }/customer/contact">Contact</a></li>
+
+
 						</ul>
 					</nav>
 					<div class="socials-a">
@@ -285,10 +358,17 @@
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
-	<script src="${pageContext.request.contextPath }/resources/assets/customer/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="${pageContext.request.contextPath }/resources/assets/customer/vendor/swiper/swiper-bundle.min.js"></script>
-	<script src="${pageContext.request.contextPath }/resources/assets/customer/vendor/php-email-form/validate.js"></script>
-	<script src="${pageContext.request.contextPath }/resources/assets/customer/js/main.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/assets/customer/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/assets/customer/vendor/swiper/swiper-bundle.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/assets/customer/vendor/php-email-form/validate.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/assets/customer/js/main.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath }/resources/assets/customer/js/jquery-3.6.0.min.js"></script>
 
 </body>
 

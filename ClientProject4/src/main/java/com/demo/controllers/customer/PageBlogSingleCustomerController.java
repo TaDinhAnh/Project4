@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = {"customer/pageBlogSingle" })
+@RequestMapping(value = { "customer/account/changeInfor" })
 public class PageBlogSingleCustomerController {
 
-	@RequestMapping(value = {"", "index" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String index() {
-		return "customer/pageBlogSingle/index";
+		return "customer/account/changeInfor/index";
 	}
 }

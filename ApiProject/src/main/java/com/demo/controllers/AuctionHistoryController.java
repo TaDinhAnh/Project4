@@ -66,5 +66,20 @@ public class AuctionHistoryController {
 				auctionHistoryService.getAuctionHistoryByCustomer(accountid), HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(value = "/auction/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AuctionHistoryOutput>> getAuctionHistoryById(
+			@PathVariable("id") int id) {
+		if (id <= 0) {
+			return new ResponseEntity<List<AuctionHistoryOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		List<AuctionHistoryOutput> auctionHistoryOutputs = auctionHistoryService.getAuctionHistoryById(id);
+		if (auctionHistoryOutputs == null ) {
+			return new ResponseEntity<List<AuctionHistoryOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AuctionHistoryOutput>>(
+				auctionHistoryService.getAuctionHistoryById(id), HttpStatus.OK);
+
+	}
 
 }

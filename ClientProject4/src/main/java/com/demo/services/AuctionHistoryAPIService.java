@@ -22,5 +22,8 @@ public interface AuctionHistoryAPIService {
 
 	@POST("auctionhistory")
 	Call<Boolean> create(@Body AuctionHistoryInput auctionHistoryInput);
+	
+	@GET("auctionhistory/auction/{id}")
+	Call<List<AuctionHistoryOutput>> getAuctionHistoryById(@Path("id") int id);
 
 }

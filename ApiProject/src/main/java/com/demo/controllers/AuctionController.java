@@ -72,11 +72,11 @@ public class AuctionController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AuctionOutput>> find() {
-			List<AuctionOutput> auctionOutputs = auctionService.getlistAuction();
-			if (auctionOutputs == null || auctionOutputs.size() <= 0) {
-				return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
-			}
-			return new ResponseEntity<List<AuctionOutput>>(auctionService.getlistAuction(), HttpStatus.OK);
+		List<AuctionOutput> auctionOutputs = auctionService.getlistAuction();
+		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
+			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AuctionOutput>>(auctionService.getlistAuction(), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -99,6 +99,33 @@ public class AuctionController {
 			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<AuctionOutput>>(auctionService.getlistAuction(), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "over", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AuctionOutput>> getlistAuctionOver() {
+		List<AuctionOutput> auctionOutputs = auctionService.getlistAuctionOver();
+		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
+			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AuctionOutput>>(auctionService.getlistAuctionOver(), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "happening", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AuctionOutput>> getlistAuctionHapping() {
+		List<AuctionOutput> auctionOutputs = auctionService.getlistAuctionHappening();
+		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
+			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AuctionOutput>>(auctionService.getlistAuctionHappening(), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "comingsoon", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AuctionOutput>> getlistAuctionComingsoon() {
+		List<AuctionOutput> auctionOutputs = auctionService.getlistAuctionComingsoon();
+		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
+			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AuctionOutput>>(auctionService.getlistAuctionComingsoon(), HttpStatus.OK);
 	}
 
 }

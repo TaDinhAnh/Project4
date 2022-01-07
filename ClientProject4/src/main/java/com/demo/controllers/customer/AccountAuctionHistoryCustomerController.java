@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = {"customer/pagePropertySingle" })
-public class PagePropertySingleCustomerController {
+@RequestMapping(value = {"customer/account/auctionhistory" })
+public class AccountAuctionHistoryCustomerController {
 
 	@RequestMapping(value = {"", "index" }, method = RequestMethod.GET)
 	public String index() {
-		return "customer/pagePropertySingle/index";
+		return "customer/account/auctionhistory/index";
 	}
 }

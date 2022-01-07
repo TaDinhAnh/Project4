@@ -1,7 +1,7 @@
 package com.demo.common;
 
 public enum EAuction {
-	upcoming,
+	happened,
 	happening,
 	comingsoon
 }

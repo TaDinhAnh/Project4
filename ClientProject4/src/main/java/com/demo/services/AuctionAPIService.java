@@ -32,4 +32,13 @@ public interface AuctionAPIService {
 	@GET("auction/admin")
 	Call<List<AuctionOutput>> findAll();
 
+	@GET("auction/over")
+	Call<List<AuctionOutput>> getlistAuctionOver();
+
+	@GET("auction/happening")
+	Call<List<AuctionOutput>> getlistAuctionHapping();
+
+	@GET("auction/comingsoon")
+	Call<List<AuctionOutput>> getlistAuctionComingsoon();
+
 }

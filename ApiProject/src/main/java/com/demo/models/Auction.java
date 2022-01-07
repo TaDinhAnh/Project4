@@ -20,7 +20,6 @@ import com.demo.common.EAuction;
 @Table(name = "auction")
 public class Auction implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
-
 	private Integer id;
 	private Account account;
 	private Date hourStart;

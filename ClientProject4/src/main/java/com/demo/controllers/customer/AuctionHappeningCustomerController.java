@@ -8,19 +8,19 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.demo.Dtos.Output.ProductOutput;
+import com.demo.Dtos.Output.AuctionOutput;
 import com.demo.services.APIClient;
-import com.demo.services.ProductAPIService;
+import com.demo.services.AuctionAPIService;
 
 @Controller
-@RequestMapping(value = {"customer/property" })
-public class PropertyCustomerController {
+@RequestMapping(value = {"customer/auction/happenning" })
+public class AuctionHappeningCustomerController {
 
 	@RequestMapping(value = {"", "index" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap) throws IOException {
-		ProductAPIService productAPIService = APIClient.getClient().create(ProductAPIService.class);
-		List<ProductOutput> productOutputs = productAPIService.findList().execute().body();
-		modelMap.put("products", productOutputs);
-		return "customer/property/index";
+		AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
+		List<AuctionOutput> auctionOutputs  = auctionAPIService.getlistAuctionHapping().execute().body();
+		modelMap.put("auctions", auctionOutputs);
+		return "customer/auction/happening/index";
 	}
 }

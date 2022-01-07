@@ -2,13 +2,16 @@ package com.demo.Dtos.Output;
 
 import java.util.Date;
 
-import com.demo.common.EAuction;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import com.demo.common.EAuction;
 import com.google.gson.annotations.SerializedName;
 
 public class AuctionOutput {
 	@SerializedName("id")
 	private int id;
+	@SerializedName("fullname")
+	private String fullname;
 	@SerializedName("hourStart")
 	private String hourStart;
 	@SerializedName("hourEnd")
@@ -27,7 +30,8 @@ public class AuctionOutput {
 		super();
 	}
 
-	public AuctionOutput(int id, String hourStart, String hourEnd, Date eventdate, String description, EAuction status, boolean isDel) {
+	public AuctionOutput(int id, String hourStart, String hourEnd, Date eventdate, String description, EAuction status,
+			boolean isDel) {
 		super();
 		this.id = id;
 		this.hourStart = hourStart;
@@ -37,15 +41,27 @@ public class AuctionOutput {
 		this.status = status;
 		this.isDel = isDel;
 	}
-	public AuctionOutput(int id, String hourStart, String hourEnd, Date eventdate, String description, EAuction status) {
+
+	public AuctionOutput(int id, String fullname, String hourStart, String hourEnd, Date eventdate, String description,
+			EAuction status) {
 		super();
 		this.id = id;
+		this.fullname = fullname;
 		this.hourStart = hourStart;
 		this.hourEnd = hourEnd;
 		this.eventdate = eventdate;
 		this.description = description;
 		this.status = status;
 	}
+
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
 	public int getId() {
 		return id;
 	}

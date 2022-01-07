@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.io.IOException;
 import java.util.List;
 import com.demo.Dtos.Output.AuctionOutput;
+import com.demo.Dtos.Output.ProductOutput;
 import com.demo.services.APIClient;
 import com.demo.services.AuctionAPIService;
+import com.demo.services.ProductAPIService;
 
 @Controller
 @RequestMapping(value = { "customer/home" })
@@ -17,11 +19,10 @@ public class HomeCustomerController {
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap) throws IOException {
-
-		AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
-		List<AuctionOutput> auctionOutputs = auctionAPIService.find().execute().body();
-		modelMap.put("auctions", auctionOutputs);
-		for (AuctionOutput a : auctionOutputs) {
+		ProductAPIService productAPIService = APIClient.getClient().create(ProductAPIService.class);
+		List<ProductOutput> productOutputs = productAPIService.findList().execute().body();
+		modelMap.put("products", productOutputs);
+		for (ProductOutput a : productOutputs) {
 			System.out.println(a.getDescription());
 		}
 
