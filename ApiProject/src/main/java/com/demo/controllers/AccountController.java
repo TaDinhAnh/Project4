@@ -41,7 +41,19 @@ public class AccountController {
 		}
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
-
+	@RequestMapping(value = { "/login" }, method = RequestMethod.POST, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> Login(@RequestBody @Valid com.demo.Dtos.Input.Login login, BindingResult bind) {
+		validate.validate(login, bind);
+		if (bind.hasErrors()) {
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		String jwtToken = accountService.login(login);
+		if(jwtToken == null)
+			return new ResponseEntity<String>("Email or Password invalid",HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>(jwtToken, HttpStatus.OK);
+	}
+	
+	
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AccountOutput>> findList() {
 		List<AccountOutput> accountOutputs = accountService.getListAccount();

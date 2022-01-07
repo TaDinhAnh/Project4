@@ -5,7 +5,9 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.demo.Dtos.Input.AccountInput;
+import com.demo.Dtos.Input.Login;
 import com.demo.Dtos.Output.AccountOutput;
+import com.demo.common.JwtTokenUtils;
 import com.demo.models.Account;
 import com.demo.reponsitories.AccountReponsitory;
 
@@ -29,8 +31,10 @@ public class AccountService implements IAccountService {
 	}
 
 	@Override
-	public Account login(Account accoount) {
-		return null;
+	public String login(Login loginInfo) {
+		Account account = findByGmail(loginInfo.getEmail());
+		if(account == null || !account.getPassword().equals(loginInfo.getPassword())) return null;
+		return JwtTokenUtils.generateToken(account) ;
 	}
 
 	@Override

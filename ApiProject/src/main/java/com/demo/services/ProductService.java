@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.demo.Dtos.Input.ProductInput;
 import com.demo.Dtos.Output.ProductOutput;
-import com.demo.common.UploadImg;
 import com.demo.models.Account;
 import com.demo.models.Category;
 import com.demo.models.Product;
@@ -95,7 +94,6 @@ public class ProductService implements IProductService {
 		ProductOutput productOutput = productReponsitory.find(id);
 		if (productOutput == null)
 			return null;
-		productOutput.setDisplayImg(UploadImg.DisplayImg("a6.jpg"));
 		return productOutput;
 	}
 
