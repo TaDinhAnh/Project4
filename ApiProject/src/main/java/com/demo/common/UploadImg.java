@@ -32,13 +32,16 @@ public class UploadImg {
 	}
 
 	public static void DelFile(String fileName) {
+		if (fileName.equals("default.png")) {
+			return;
+		}
 		File file = new File("src\\main\\resources\\img\\avatar\\" + fileName);
 		file.delete();
 	}
 
-	public static byte[] DisplayImg(String fileName) {
+	public static byte[] DisplayImg(String fileName, String url) {
 		try {
-			File img = new File("src\\main\\resources\\img\\avatar\\" + fileName);
+			File img = new File("src\\main\\resources\\img\\" + url + "\\" + fileName);
 			if (!img.exists() && !img.isDirectory())
 				return null;
 			return Files.readAllBytes(img.toPath());

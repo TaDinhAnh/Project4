@@ -14,11 +14,12 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtTokenUtils implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public static final long JWT_TOKEN_VALIDITY = 24 * 60 * 60;
+	public static final long JWT_TOKEN_VALIDITY = 1000 * 60 * 60 * 24;
 
 	private static String secret = Constant.jwtSecret;
-
-	public static String getUsernameFromToken(String token) {
+	
+	
+	public static String getGmailFromToken(String token) {
 		return getClaimFromToken(token, Claims::getSubject);
 	}
 
@@ -35,7 +36,7 @@ public class JwtTokenUtils implements Serializable {
 		return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 	}
 
-	private static Boolean isTokenExpired(String token) {
+	public static Boolean isTokenExpired(String token) {
 		final Date expiration = getExpirationDateFromToken(token);
 		return expiration.before(new Date());
 	}
@@ -51,17 +52,12 @@ public class JwtTokenUtils implements Serializable {
 		Header header = Jwts.header();
 		header.setType("jwt");
 		return Jwts.builder().setHeader((Map<String, Object>) header)
-				.setClaims(claims).setSubject(account.getFullname())
+				.setClaims(claims).setSubject(account.getGmail())
 				.claim("fullname", account.getFullname())
 				.claim("gmail", account.getGmail())
 				.claim("role", account.getRole())
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
 				.signWith(SignatureAlgorithm.HS512, secret).compact();
-	}
-
-	public static Boolean validateToken(String token, Account account) {
-		final String username = getUsernameFromToken(token);
-		return (username.equals(account.getFullname()) && !isTokenExpired(token));
 	}
 }

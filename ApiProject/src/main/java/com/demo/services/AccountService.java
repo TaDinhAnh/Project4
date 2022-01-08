@@ -24,8 +24,8 @@ public class AccountService implements IAccountService {
 		account.setDob(accountInput.getDob());
 		account.setFullname(accountInput.getFullname());
 		account.setGmail(accountInput.getGmail());
-		account.setPhone(BCrypt.hashpw(accountInput.getPassword(), null));
-		account.setPassword(accountInput.getPassword());
+		account.setPhone(accountInput.getPhone());
+		account.setPassword(BCrypt.hashpw(accountInput.getPassword(), BCrypt.gensalt(12)));
 		account.setRole(accountInput.getRole());
 		return accountResponsitory.save(account) != null;
 	}
@@ -33,7 +33,7 @@ public class AccountService implements IAccountService {
 	@Override
 	public String login(Login loginInfo) {
 		Account account = findByGmail(loginInfo.getEmail());
-		if(account == null || !account.getPassword().equals(loginInfo.getPassword())) return null;
+		if(account == null || !BCrypt.checkpw(loginInfo.getPassword(), account.getPassword())) return null;
 		return JwtTokenUtils.generateToken(account) ;
 	}
 

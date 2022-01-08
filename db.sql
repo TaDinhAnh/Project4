@@ -109,16 +109,16 @@ CREATE TABLE Account(
     REFERENCES Account(Id)
  );
 
-insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('lharragin0@friendfeed.com', 'ghnJLHd', 'Lil Harragin', '426 146 9220', '2020/01/06', 'Alcelaphus buselaphus cokii', 1, false);
-insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('swix1@ezinearticles.com', 'qKOlSboHctr', 'Suellen Wix', '758 759 5902', '2020/04/07', 'Pavo cristatus', 1, false);
-insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('bgerleit2@csmonitor.com', 'eqGfrWNnh', 'Bealle Gerleit', '208 563 7924', '2019/10/28', 'Gazella thompsonii', 1, false);
-insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('lpresnail3@thetimes.co.uk', 'qQd2yFg1zo', 'Loretta Presnail', '256 828 0265', '2019/08/26', 'Uraeginthus granatina', 2, false);
-insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('kmagrannell4@ucoz.com', 'lZZBuuE', 'Koressa Magrannell', '191 751 7597', '2020/07/26', 'Paroaria gularis', 1, false);
-insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('jwawer5@xrea.com', 'FM7FZr', 'Janith Wawer', '742 968 6232', '2019/12/24', 'Melursus ursinus', 2, false);
-insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('hayling6@mapquest.com', 'SvbUfAi', 'Halimeda Ayling', '532 577 0547', '2020/10/27', 'Cereopsis novaehollandiae', 0, false);
-insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('cbainbridge7@seesaa.net', 'U9QBiNppI', 'Cirilo Bainbridge', '934 566 6533', '2020/04/15', 'Tayassu pecari', 0, false);
-insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('xfearey8@canalblog.com', 'lc49KT', 'Xena Fearey', '298 388 5138', '2019/11/09', 'Eremophila alpestris', 1, true);
-insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('mgipp9@nifty.com', 'mQ7A19DSsh', 'Mia Gipp', '333 881 7563', '2020/01/13', 'Anitibyx armatus', 1, true);
+insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('lharragin0@friendfeed.com', '$2a$12$E1EYEyrsqHAtid6f9PPaf.Ek53XrHnNGp.g7JreLEPUfqc7lPMMaO', 'Lil Harragin', '426 146 9220', '2020/01/06', 'default.png', 1, false);
+insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('swix1@ezinearticles.com', '$2a$12$E1EYEyrsqHAtid6f9PPaf.Ek53XrHnNGp.g7JreLEPUfqc7lPMMaO', 'Suellen Wix', '758 759 5902', '2020/04/07', 'default.png', 1, false);
+insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('bgerleit2@csmonitor.com', '$2a$12$E1EYEyrsqHAtid6f9PPaf.Ek53XrHnNGp.g7JreLEPUfqc7lPMMaO', 'Bealle Gerleit', '208 563 7924', '2019/10/28', 'default.png', 1, false);
+insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('lpresnail3@thetimes.co.uk', '$2a$12$E1EYEyrsqHAtid6f9PPaf.Ek53XrHnNGp.g7JreLEPUfqc7lPMMaO', 'Loretta Presnail', '256 828 0265', '2019/08/26', 'default.png', 2, false);
+insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('kmagrannell4@ucoz.com', '$2a$12$E1EYEyrsqHAtid6f9PPaf.Ek53XrHnNGp.g7JreLEPUfqc7lPMMaO', 'Koressa Magrannell', '191 751 7597', '2020/07/26', 'default.png', 1, false);
+insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('jwawer5@xrea.com', '$2a$12$E1EYEyrsqHAtid6f9PPaf.Ek53XrHnNGp.g7JreLEPUfqc7lPMMaO', 'Janith Wawer', '742 968 6232', '2019/12/24', 'default.png', 2, false);
+insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('hayling6@mapquest.com', '$2a$12$E1EYEyrsqHAtid6f9PPaf.Ek53XrHnNGp.g7JreLEPUfqc7lPMMaO', 'Halimeda Ayling', '532 577 0547', '2020/10/27', 'default.png', 0, false);
+insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('cbainbridge7@seesaa.net', '$2a$12$E1EYEyrsqHAtid6f9PPaf.Ek53XrHnNGp.g7JreLEPUfqc7lPMMaO', 'Cirilo Bainbridge', '934 566 6533', '2020/04/15', 'default.png', 0, false);
+insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('xfearey8@canalblog.com', '$2a$12$E1EYEyrsqHAtid6f9PPaf.Ek53XrHnNGp.g7JreLEPUfqc7lPMMaO', 'Xena Fearey', '298 388 5138', '2019/11/09', 'default.png', 1, true);
+insert into Account (Gmail, Password, Fullname, Phone, Dob, Image, Role, IsDelete) values ('mgipp9@nifty.com', '$2a$12$E1EYEyrsqHAtid6f9PPaf.Ek53XrHnNGp.g7JreLEPUfqc7lPMMaO', 'Mia Gipp', '333 881 7563', '2020/01/13', 'default.png', 1, true);
 
 insert into Category (Name , PresentID , IsDelete ) values ('Drywall & Acoustical (FED)', 1, true);
 insert into Category (Name , PresentID , IsDelete ) values ('Marlite Panels (FED)', 1, true);
@@ -133,19 +133,19 @@ insert into Category (Name , PresentID , IsDelete ) values ('Glass & Glazing', 3
 insert into Category (Name , PresentID , IsDelete ) values ('Roofing (Asphalt)', null, true);
 insert into Category (Name , PresentID , IsDelete ) values ('Masonry', null, false);
 
-insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Epoxy Flooring', 1, '5.32', 'Intrepid', 'Excise conjunctiv lesion', 2, 1, false, true);
-insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Retaining Wall and Brick Pavers', 5, '9.47', 'LeBaron', 'Lid reconstr w graft NEC', 3, 1,  false, true);
-insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Masonry', 1, '9.77', '9-7X', 'Lap periton adhesiolysis', 1, 0,  false, true);
-insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Roofing (Asphalt)', 1, '7.53', 'S40', 'Tibia/fibul wedg osteot', 1, 1, true, false);
-insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Electrical and Fire Alarm', 2, '7.61', 'Focus', 'Remove impl dev-humerus', 2, 0, false, true);
-insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Epoxy Flooring', 5, '2.24', 'GT', 'Contr pulmon arteriogram', 1, 1, false, false);
-insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Overhead Doors', 3, '9.08', 'Vanquish S', 'Tympanosympathectomy', 3, 0, true, true);
-insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Waterproofing & Caulking', 2, '6.02', 'Odyssey', 'Bact smear-lower urinary', 1, 0, false, true);
-insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Casework', 4, '8.81', 'V70', 'Incise cerebral meninges', 3, 1, false, true);
-insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Curb & Gutter', 3, '6.22', 'Outlook', 'Mediastinal pneumogram', 1, 0, false, false);
-insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Construction Clean and Final Clean', 4, '1.55', 'Safari', 'Contrast pancreatogram', 1, 0, true, true);
-insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Masonry & Precast', 5, '7.27', 'Yukon', 'Micro exam-uppr urin NEC', 3, 1, false, false);
-insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Plumbing & Medical Gas', 3, '6.60', 'F-Series', 'Sm bowel dx proc NEC', 1, 0, true, true);
+insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Epoxy Flooring', 1, '5.32', 'a6.jpg', 'Excise conjunctiv lesion', 2, 1, false, true);
+insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Retaining Wall and Brick Pavers', 5, '9.47', 'a6.jpg' , 'Lid reconstr w graft NEC', 3, 1,  false, true);
+insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Masonry', 1, '9.77', 'a6.jpg', 'Lap periton adhesiolysis', 1, 0,  false, true);
+insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Roofing (Asphalt)', 1, '7.53', 'a6.jpg', 'Tibia/fibul wedg osteot', 1, 1, true, false);
+insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Electrical and Fire Alarm', 2, '7.61', 'a6.jpg', 'Remove impl dev-humerus', 2, 0, false, true);
+insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Epoxy Flooring', 5, '2.24', 'a6.jpg', 'Contr pulmon arteriogram', 1, 1, false, false);
+insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Overhead Doors', 3, '9.08', 'a6.jpg', 'Tympanosympathectomy', 3, 0, true, true);
+insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Waterproofing & Caulking', 2, '6.02', 'a6.jpg', 'Bact smear-lower urinary', 1, 0, false, true);
+insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Casework', 4, '8.81', 'a6.jpg', 'Incise cerebral meninges', 3, 1, false, true);
+insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Curb & Gutter', 3, '6.22', 'a6.jpg', 'Mediastinal pneumogram', 1, 0, false, false);
+insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Construction Clean and Final Clean', 4, '1.55', 'a6.jpg', 'Contrast pancreatogram', 1, 0, true, true);
+insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Masonry & Precast', 5, '7.27', 'a6.jpg', 'Micro exam-uppr urin NEC', 3, 1, false, false);
+insert into Product (Name , CateId, PriceMin , Image , Description , VendorId , Status , IsDelete , IsAccept ) values ('Plumbing & Medical Gas', 3, '6.60', 'a6.jpg', 'Sm bowel dx proc NEC', 1, 0, true, true);
 
 insert into FeedBack (Content , IsDel , ProId , AccountId ) values ('Closed thyroid gland bx', true, 3, 3);
 insert into FeedBack (Content , IsDel , ProId , AccountId ) values ('Stretching of foreskin', true, 2, 2);
