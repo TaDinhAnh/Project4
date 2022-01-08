@@ -13,7 +13,7 @@ public interface AccountReponsitory extends CrudRepository<Account, Integer> {
 	@Query("select new com.demo.Dtos.Output.AccountOutput(id, gmail, fullname, phone,  dob, image, role ) from Account")
 	public List<AccountOutput> getListAccount();
 
-	@Query("from Account where gmail= :gmail")
+	@Query("from Account where gmail= :gmail and isDelete = 0")
 	public Account find(@Param("gmail") String gmail);
 	
 }

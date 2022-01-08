@@ -30,18 +30,7 @@ public class AccountController {
 	@Autowired
 	private Validate validate;
 
-	@RequestMapping(value = { "" }, method = RequestMethod.POST, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Boolean> create(@RequestBody @Valid AccountInput accountInput, BindingResult bind) {
-		validate.validate(accountInput, bind);
-		if (bind.hasErrors() || accountInput.getPassword() == null) {
-			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
-		}
-		if (!accountService.createAccount(accountInput)) {
-			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-	}
-
+	
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AccountOutput>> findList() {
 		List<AccountOutput> accountOutputs = accountService.getListAccount();
@@ -81,19 +70,8 @@ public class AccountController {
 			return new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
 		}
 		UploadImg.DelFile(imgOld);
-		return new ResponseEntity<byte[]>(UploadImg.DisplayImg(filename), HttpStatus.OK);
+		return new ResponseEntity<byte[]>(UploadImg.DisplayImg(filename,"avatar"), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = { "getAvatar/{filename}" }, produces = {MimeTypeUtils.IMAGE_PNG_VALUE, MimeTypeUtils.IMAGE_JPEG_VALUE, MimeTypeUtils.IMAGE_GIF_VALUE})
-	public ResponseEntity<byte[]> getImg(@PathVariable("filename") String filename){
-		if (filename == null) {
-			return new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-		}
-		byte[] rs = UploadImg.DisplayImg(filename);
-		if(rs == null) {
-			return new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<byte[]>(rs, HttpStatus.OK);
-	}
 
 }

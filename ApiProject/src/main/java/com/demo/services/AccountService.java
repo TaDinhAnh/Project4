@@ -1,9 +1,13 @@
 package com.demo.services;
 import java.util.List;
+
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.demo.Dtos.Input.AccountInput;
+import com.demo.Dtos.Input.Login;
 import com.demo.Dtos.Output.AccountOutput;
+import com.demo.common.JwtTokenUtils;
 import com.demo.models.Account;
 import com.demo.reponsitories.AccountReponsitory;
 
@@ -21,14 +25,16 @@ public class AccountService implements IAccountService {
 		account.setFullname(accountInput.getFullname());
 		account.setGmail(accountInput.getGmail());
 		account.setPhone(accountInput.getPhone());
-		account.setPassword(accountInput.getPassword());
+		account.setPassword(BCrypt.hashpw(accountInput.getPassword(), BCrypt.gensalt(12)));
 		account.setRole(accountInput.getRole());
 		return accountResponsitory.save(account) != null;
 	}
 
 	@Override
-	public Account login(Account accoount) {
-		return null;
+	public String login(Login loginInfo) {
+		Account account = findByGmail(loginInfo.getEmail());
+		if(account == null || !BCrypt.checkpw(loginInfo.getPassword(), account.getPassword())) return null;
+		return JwtTokenUtils.generateToken(account) ;
 	}
 
 	@Override
