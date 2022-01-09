@@ -12,6 +12,7 @@ public class AuctionHistoryOutput {
 	private int id;
 	private String accountname;
 	private String productname;
+	private int productid;
 	private String category;
 	private Double priceMin;
 	private String image;
@@ -26,7 +27,14 @@ public class AuctionHistoryOutput {
 	private Date eventdate;
 	private Double price;
 	private Date time;
-	
+
+	public int getProductid() {
+		return productid;
+	}
+
+	public void setProductid(int productid) {
+		this.productid = productid;
+	}
 
 	public int getId() {
 		return id;
@@ -123,7 +131,6 @@ public class AuctionHistoryOutput {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 
 	public EProduct getStatus() {
 		return status;
@@ -136,7 +143,6 @@ public class AuctionHistoryOutput {
 	public AuctionHistoryOutput() {
 		super();
 	}
-
 
 	public AuctionHistoryOutput(int id, String accountname, String productname, Date hourStart, Date hourEnd,
 			Date eventdate, Double price, Date time) {
@@ -170,7 +176,24 @@ public class AuctionHistoryOutput {
 		this.time = time;
 	}
 
-	
-
+	public AuctionHistoryOutput(int id, String accountname, String productname, int productid, String category,
+			Double priceMin, String image, String description, EProduct status, Date hourStart, Date hourEnd,
+			Date eventdate, Double price, Date time) {
+		super();
+		this.id = id;
+		this.accountname = accountname;
+		this.productname = productname;
+		this.productid = productid;
+		this.category = category;
+		this.priceMin = priceMin;
+		this.image = image;
+		this.description = description;
+		this.status = status;
+		this.hourStart = hourStart;
+		this.hourEnd = hourEnd;
+		this.eventdate = eventdate;
+		this.price = price;
+		this.time = time;
+	}
 
 }

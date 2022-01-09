@@ -154,8 +154,8 @@
 				aria-label="Toggle navigation">
 				<span></span> <span></span> <span></span>
 			</button>
-			<a class="navbar-brand text-brand" href="index.html">Estate<span
-				class="color-b">Agency</span></a>
+			<a class="navbar-brand text-brand" href="${pageContext.request.contextPath }/customer/home">Hy<span
+				class="color-b">En</span></a>
 			<div class="navbar-collapse collapse justify-content-center"
 				id="navbarDefault">
 				<ul class="navbar-nav">
@@ -210,7 +210,7 @@
 								</a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction History
 								</a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/pageAgentsGrid"">Sign in
+								href="${pageContext.request.contextPath }/customer/account/signIn"">Sign in
 								</a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/pageAgentSingle"">Sign out
 								</a>
@@ -220,7 +220,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="nav-item;" style="color:#6c757d; font-size:16px; padding-right: 3px"><span id="day"> </span><span id="timeClock"></span></div>
+			<div class="nav-item;" style="color:#6c757d; font-size:16px; padding-right: 3px"><span id="day"> </span> <span id="timeClock"></span></div>
 			<button type="button"
 				class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
 				data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">

@@ -45,7 +45,7 @@
                     <div class="testimonials-content">              
                       <p class="testimonial-text">                    
                          ${auction.description }
-                      </p>              
+                      </p>                             
                     </div>
                       </a>
                     <div class="testimonial-author-box">
@@ -54,7 +54,7 @@
 																	pattern="dd/MM/yyy" />Open date: ${dated }  ${auction.hourStart }</h5>
                     </div>
                   </div>
-                
+   
                   </c:forEach>
                 </div>
               </div>

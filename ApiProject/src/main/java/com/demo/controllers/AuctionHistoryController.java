@@ -81,5 +81,20 @@ public class AuctionHistoryController {
 				auctionHistoryOutputs, HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(value = "/count/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Integer> countAuctionHistoryById(
+			@PathVariable("id") int id) {
+		if (id <= 0) {
+			return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
+		}
+		Integer count = auctionHistoryService.countAuctionHistoryById(id);
+		if (count <= 0 || count == null ) {
+			return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Integer>(
+				count, HttpStatus.OK);
+
+	}
 
 }

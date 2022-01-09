@@ -57,4 +57,9 @@ public class AuctionHistoryService implements IAuctionHistoryService {
 		return auctionHistoryResponsitory.getAuctionHistoryById(id);
 	}
 
+	@Override
+	public int countAuctionHistoryById(int id) {
+		return auctionHistoryResponsitory.countAuctionHistoryById(id);
+	}
+
 }

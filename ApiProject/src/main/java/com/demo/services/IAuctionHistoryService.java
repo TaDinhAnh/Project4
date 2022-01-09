@@ -14,4 +14,6 @@ public interface IAuctionHistoryService {
 	List<AuctionHistoryOutput> getAuctionHistoryByCustomer(int accountid);
 
 	List<AuctionHistoryOutput> getAuctionHistoryById(int id);
+	
+	int countAuctionHistoryById( int id);
 }

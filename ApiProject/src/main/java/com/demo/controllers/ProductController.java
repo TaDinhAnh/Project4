@@ -73,7 +73,7 @@ public class ProductController {
 		if (productOutputs == null || productOutputs.size() <= 0) {
 			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<ProductOutput>>(productService.getListProduct(name), HttpStatus.OK);
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 
 	}
 
