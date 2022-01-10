@@ -66,34 +66,25 @@
                 Auction hour End at : ${getAuction.hourEnd}
               </p>
             </div>
-            <div class="post-footer">
+
+          </div>
+            <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
               <div class="post-share">
-                <span>Share: </span>
-                <ul class="list-inline socials">
-                  <li class="list-inline-item">
-                    <a href="#">
-                      <i class="bi bi-facebook" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="#">
-                      <i class="bi bi-twitter" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="#">
-                      <i class="bi bi-instagram" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="#">
-                      <i class="bi bi-linkedin" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                </ul>
+                 <div class="title-box-d">
+                 <div class="row">
+                 <div class="col-lg-4">
+                  <h5> The highest price at the moment: </h5>
+                 </div>
+                 <div class="col-lg-8">
+                  <h1 class="title-single" style="color: red">${maxPriceATM } $</h1>
+                 </div>
+                 </div>
+                
+             
+            </div>
+               
               </div>
             </div>
-          </div>
           <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
                      
             <div class="title-box-d">
@@ -113,17 +104,12 @@
                     <h4 class="comment-author">${autionhistory.accountname }</h4>
                     <span>${autionhistory.time }</span>
                     <p class="comment-description">
-                      ${autionhistory.price }
+                      ${autionhistory.price } <strong>$</strong> 
                     </p>
                   
                   </div>
-                </li>
-               
-               
-              </ul>
-                         
-					
-              
+                </li>                          
+              </ul>                         			            
             </div>
             	</c:forEach>
             <div class="form-comments">
@@ -135,17 +121,17 @@
               </c:if>
               <c:if test="${auction.status == 'happening' }">  
               <div class="title-box-d">
-                <h3 class="title-d"> Leave a Reply</h3>
+                <h3 class="title-d"> Enter price:</h3>
               </div>
-               <s:form class="form-a" modelAttribute="aucHis" method="post" action="${pageContext.request.contextPath}/customer/auction/detailAuction/sendPrice?id=${auction.id}">
+               <s:form class="form-a" modelAttribute="aucHis"
+									method="post"
+									action="${pageContext.request.contextPath}/customer/auction/detailAuction/sendPrice?id=${auction.id}">
                 <div class="row">
                   <div class="col-md-12 mb-3">
                     <div class="form-group">
-                      <label for="textMessage">Enter price</label>              
-                     <input id="textMessage" type="text"
-													class="form-control" placeholder="Price *" name="price"
-													required></input>   
-													</div>
+                      <label for="textMessage">Ten Nguoi Dang Nhap </label>   
+                      <s:input path="price" class="form-control" />           
+                       												</div>
                   </div>
                   <div class="col-md-12">
                     <button type="submit" class="btn btn-a">Send</button>

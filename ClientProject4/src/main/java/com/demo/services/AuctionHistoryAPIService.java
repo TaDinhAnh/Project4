@@ -29,5 +29,9 @@ public interface AuctionHistoryAPIService {
 	
 	@GET("auctionhistory/count/{id}")
 	Call<Integer> countAuctionHistoryById(@Path("id") int id);
+	
+	
+	@GET("auctionhistory/maxprice/{id}")
+	Call<Double> maxPricetAuctionHistoryById(@Path("id") int id);
 
 }

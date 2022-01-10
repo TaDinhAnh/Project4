@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = {"customer/contact" })
+@RequestMapping(value = {"customer/view/contact" })
 public class ContactCustomerController {
 
 	@RequestMapping(value = {"", "index" }, method = RequestMethod.GET)

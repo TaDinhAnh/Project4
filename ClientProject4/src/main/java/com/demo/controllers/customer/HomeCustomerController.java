@@ -15,7 +15,7 @@ import com.demo.services.AuctionAPIService;
 import com.demo.services.ProductAPIService;
 
 @Controller
-@RequestMapping(value = { "customer/home" })
+@RequestMapping(value = { "customer/view/home" })
 public class HomeCustomerController {
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)

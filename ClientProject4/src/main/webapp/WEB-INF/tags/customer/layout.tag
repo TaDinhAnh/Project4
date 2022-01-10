@@ -154,13 +154,13 @@
 				aria-label="Toggle navigation">
 				<span></span> <span></span> <span></span>
 			</button>
-			<a class="navbar-brand text-brand" href="${pageContext.request.contextPath }/customer/home">Hy<span
+			<a class="navbar-brand text-brand" href="${pageContext.request.contextPath }/customer/view/home">Hy<span
 				class="color-b">En</span></a>
 			<div class="navbar-collapse collapse justify-content-center"
 				id="navbarDefault">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
-						href="${pageContext.request.contextPath }/customer/home">Home</a></li>
+						href="${pageContext.request.contextPath }/customer/view/home">Home</a></li>
 <!-- 					<li class="nav-item"><a class="nav-link " -->
 <%-- 						href="${pageContext.request.contextPath }/customer/about">About</a> --%>
 <!-- 					</li> -->
@@ -176,11 +176,11 @@
 						aria-expanded="false">Auction</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/auction/comingsoon">The
+								href="${pageContext.request.contextPath }/customer/view/auction/comingsoon">The
 								auction is about to begin </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/auction/happenning"">The
+								href="${pageContext.request.contextPath }/customer/view/auction/happenning"">The
 								auction is ongoing. </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/aution/happened"">The
+								href="${pageContext.request.contextPath }/customer/view/aution/happened"">The
 								auction is over.</a>
 						</div></li>
 
@@ -210,13 +210,13 @@
 								</a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction History
 								</a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/account/signIn"">Sign in
+								href="${pageContext.request.contextPath }/customer/view/account/signIn"">Sign in
 								</a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/pageAgentSingle"">Sign out
 								</a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link "
-						href="${pageContext.request.contextPath }/customer/contact"">Contact</a>
+						href="${pageContext.request.contextPath }/customer/view/contact"">Contact</a>
 					</li>
 				</ul>
 			</div>

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = {"customer/account/signIn" })
+@RequestMapping(value = {"customer/view/account/signIn" })
 public class SignInCustomerController {
 
 	@RequestMapping(value = {"", "index" }, method = RequestMethod.GET)

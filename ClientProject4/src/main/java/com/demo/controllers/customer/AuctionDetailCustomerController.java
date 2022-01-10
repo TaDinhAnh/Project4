@@ -1,8 +1,6 @@
 package com.demo.controllers.customer;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -34,15 +32,19 @@ public class AuctionDetailCustomerController {
 				.body();
 		var count = auctionHistoryAPIService.countAuctionHistoryById(id).execute().body();
 		modelMap.put("count", count);
+		var maxpriceATM = auctionHistoryAPIService.maxPricetAuctionHistoryById(id).execute().body();
+		modelMap.put("maxPriceATM",  maxpriceATM);
 		for(int i =0; i <auctionHistoryOutput.size(); i++) {
 			modelMap.put("getAuction", auctionHistoryOutput.get(1));
 				session.setAttribute("productId", auctionHistoryOutput.get(1).getProductid());
-		}		
+		}	
+		
 		modelMap.put("auctionhistorys", auctionHistoryOutput);		
 		AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
 		AuctionOutput auctionOutput = auctionAPIService.search(id).execute().body();
 		modelMap.put("auction", auctionOutput);
-		modelMap.put("aucHis", new AuctionInput());
+		
+		modelMap.put("aucHis", new AuctionHistoryInput());
 		return "customer/auction/detailAuction/index";
 	}
 	
@@ -52,7 +54,6 @@ public class AuctionDetailCustomerController {
 				.create(AuctionHistoryAPIService.class);
 		auctionHistoryInput.setAccountid(3);
 		auctionHistoryInput.setAuctionid(id);
-		auctionHistoryInput.setPrice(Double.parseDouble(price));
 		auctionHistoryInput.setProductid((int) session.getAttribute("productId"));
 		auctionHistoryInput.setTime(auctionHistoryInput.getTime());
 		boolean auctionHistoryOutput = auctionHistoryAPIService.create(auctionHistoryInput).execute().isSuccessful();

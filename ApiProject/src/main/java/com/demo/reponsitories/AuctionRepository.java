@@ -33,5 +33,7 @@ public interface AuctionRepository extends CrudRepository<Auction, Integer> {
 
 	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where status = 2  order by id desc")
 	public List<AuctionOutput> getlistAuctionComingsoon();
+	
+
 
 }

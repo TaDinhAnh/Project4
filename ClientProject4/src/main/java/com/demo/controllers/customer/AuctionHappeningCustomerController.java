@@ -13,7 +13,7 @@ import com.demo.services.APIClient;
 import com.demo.services.AuctionAPIService;
 
 @Controller
-@RequestMapping(value = {"customer/auction/happenning" })
+@RequestMapping(value = {"customer/view/auction/happenning" })
 public class AuctionHappeningCustomerController {
 
 	@RequestMapping(value = {"", "index" }, method = RequestMethod.GET)

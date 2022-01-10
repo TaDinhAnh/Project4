@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.demo.Dtos.Input.AuctionHistoryInput;
 import com.demo.Dtos.Output.AuctionHistoryOutput;
+import com.demo.models.Auctionhistory;
 import com.demo.services.IAuctionHistoryService;
 import com.demo.validators.Validate;
 
@@ -68,16 +69,16 @@ public class AuctionHistoryController {
 	}
 	
 	@RequestMapping(value = "/auction/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<AuctionHistoryOutput>> getAuctionHistoryById(
+	public ResponseEntity<List<Auctionhistory>> getAuctionHistoryById(
 			@PathVariable("id") int id) {
 		if (id <= 0) {
-			return new ResponseEntity<List<AuctionHistoryOutput>>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<List<Auctionhistory>>(HttpStatus.BAD_REQUEST);
 		}
-		List<AuctionHistoryOutput> auctionHistoryOutputs = auctionHistoryService.getAuctionHistoryById(id);
+		List<Auctionhistory> auctionHistoryOutputs = auctionHistoryService.getAuctionHistoryById(id);
 		if (auctionHistoryOutputs == null ) {
-			return new ResponseEntity<List<AuctionHistoryOutput>>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<List<Auctionhistory>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<AuctionHistoryOutput>>(
+		return new ResponseEntity<List<Auctionhistory>>(
 				auctionHistoryOutputs, HttpStatus.OK);
 
 	}
@@ -90,10 +91,25 @@ public class AuctionHistoryController {
 		}
 		Integer count = auctionHistoryService.countAuctionHistoryById(id);
 		if (count <= 0 || count == null ) {
-			return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Integer>(
 				count, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "/maxprice/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Double> maxPriceAuctionHistoryById(
+			@PathVariable("id") int id) {
+		if (id <= 0) {
+			return new ResponseEntity<Double>(HttpStatus.BAD_REQUEST);
+		}
+		Double auctionHistoryOutputs = auctionHistoryService.maxPriceAuctionHistoryById(id);
+		if (auctionHistoryOutputs <=0 ) {
+			return new ResponseEntity<Double>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Double>(
+				auctionHistoryOutputs, HttpStatus.OK);
 
 	}
 
