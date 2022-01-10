@@ -33,7 +33,9 @@ public class AccountService implements IAccountService {
 	@Override
 	public String login(Login loginInfo) {
 		Account account = findByGmail(loginInfo.getEmail());
-		if(account == null || !BCrypt.checkpw(loginInfo.getPassword(), account.getPassword())) return null;
+		if(account == null || !BCrypt.checkpw(loginInfo.getPassword(), account.getPassword())) 
+			return null;
+		
 		return JwtTokenUtils.generateToken(account) ;
 	}
 
