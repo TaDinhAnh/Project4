@@ -12,12 +12,14 @@ public class AuctionHistoryOutput {
 	private int id;
 	private String accountname;
 	private String productname;
-	private int productid;
-	private String category;
-	private Double priceMin;
-	private String image;
-	private String description;
-	private EProduct status;
+	private ProductOutput productOutput = new ProductOutput();
+	public ProductOutput getProductOutput() {
+		return productOutput;
+	}
+	public void setProductOutput(ProductOutput productOutput) {
+		this.productOutput = productOutput;
+	}
+
 	@JsonFormat(pattern = "HH:mm:ss")
 	@Temporal(TemporalType.TIME)
 	private Date hourStart;
@@ -28,13 +30,6 @@ public class AuctionHistoryOutput {
 	private Double price;
 	private Date time;
 
-	public int getProductid() {
-		return productid;
-	}
-
-	public void setProductid(int productid) {
-		this.productid = productid;
-	}
 
 	public int getId() {
 		return id;
@@ -100,46 +95,6 @@ public class AuctionHistoryOutput {
 		this.time = time;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public Double getPriceMin() {
-		return priceMin;
-	}
-
-	public void setPriceMin(Double priceMin) {
-		this.priceMin = priceMin;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public EProduct getStatus() {
-		return status;
-	}
-
-	public void setStatus(EProduct status) {
-		this.status = status;
-	}
-
 	public AuctionHistoryOutput() {
 		super();
 	}
@@ -155,6 +110,7 @@ public class AuctionHistoryOutput {
 		this.eventdate = eventdate;
 		this.price = price;
 		this.time = time;
+		
 	}
 
 	public AuctionHistoryOutput(int id, String accountname, String productname, String category, Double priceMin,
@@ -164,11 +120,6 @@ public class AuctionHistoryOutput {
 		this.id = id;
 		this.accountname = accountname;
 		this.productname = productname;
-		this.category = category;
-		this.priceMin = priceMin;
-		this.image = image;
-		this.description = description;
-		this.status = status;
 		this.hourStart = hourStart;
 		this.hourEnd = hourEnd;
 		this.eventdate = eventdate;
@@ -183,17 +134,18 @@ public class AuctionHistoryOutput {
 		this.id = id;
 		this.accountname = accountname;
 		this.productname = productname;
-		this.productid = productid;
-		this.category = category;
-		this.priceMin = priceMin;
-		this.image = image;
-		this.description = description;
-		this.status = status;
 		this.hourStart = hourStart;
 		this.hourEnd = hourEnd;
 		this.eventdate = eventdate;
 		this.price = price;
 		this.time = time;
+		this.productOutput.setId(id);
+		this.productOutput.setName(productname);
+		this.productOutput.setCategory(category);
+		this.productOutput.setDescription(description);
+		this.productOutput.setPriceMin(priceMin);
+		this.productOutput.setImage(image);
+		this.productOutput.setStatus(status);
 	}
 
 }
