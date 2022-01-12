@@ -56,6 +56,10 @@ public class AuctionHistoryService implements IAuctionHistoryService {
 	public List<AuctionHistoryOutput> getAuctionHistoryById(int id) {
 		return auctionHistoryResponsitory.getAuctionHistoryById(id);
 	}
+	@Override
+	public List<Auctionhistory> getAuctionHistoryById2(int id) {
+		return auctionHistoryResponsitory.getAuctionHistoryById2(id);
+	}
 
 	@Override
 	public int countAuctionHistoryById(int id) {
