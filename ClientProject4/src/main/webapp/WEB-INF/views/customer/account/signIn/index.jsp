@@ -1,39 +1,15 @@
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
-<script type="text/javascript">
-	$(window, document, undefined).ready(function() {
-
-		$('.input').blur(function() {
-			var $this = $(this);
-			if ($this.val())
-				$this.addClass('used');
-			else
-				$this.removeClass('used');
-		});
-
-	});
-
-	$('#tab1').on('click', function() {
-		$('#tab1').addClass('login-shadow');
-		$('#tab2').removeClass('signup-shadow');
-	});
-
-	$('#tab2').on('click', function() {
-		$('#tab2').addClass('signup-shadow');
-		$('#tab1').removeClass('login-shadow');
-
-	});
-</script>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
 
 <div class="container">
-	<button class="btn btn-primary btn-lg" "
+	<button class="btn btn-primary btn-lg"
 			data-toggle="modal"
 		data-target=".log-sign">Sign In/Register</button>
 </div>
@@ -225,24 +201,8 @@
 
 	</div>
 </div>
-<script
-	src="${pageContext.request.contextPath }/resources/assets/customer/js/core/popper.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/resources/assets/customer/js/core/bootstrap.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/resources/assets/customer/js/plugins/perfect-scrollbar.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/resources/assets/customer/js/plugins/smooth-scrollbar.min.js"></script>
-<script>
-	var win = navigator.platform.indexOf('Win') > -1;
-	if (win && document.querySelector('#sidenav-scrollbar')) {
-		var options = {
-			damping : '0.5'
-		}
-		Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-	}
-</script>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<script
-	src="${pageContext.request.contextPath }/resources/assets/customer/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
 
+
+
+</body>
+</html>
