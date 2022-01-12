@@ -53,7 +53,7 @@ public class AuctionHistoryService implements IAuctionHistoryService {
 	}
 
 	@Override
-	public List<Auctionhistory> getAuctionHistoryById(int id) {
+	public List<AuctionHistoryOutput> getAuctionHistoryById(int id) {
 		return auctionHistoryResponsitory.getAuctionHistoryById(id);
 	}
 
@@ -66,5 +66,5 @@ public class AuctionHistoryService implements IAuctionHistoryService {
 	public double maxPriceAuctionHistoryById(int id) {
 		return auctionHistoryResponsitory.maxPriceAuctionHistoryById(id);
 	}
-
+	
 }

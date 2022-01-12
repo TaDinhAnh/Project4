@@ -9,13 +9,14 @@ import com.demo.models.Auctionhistory;
 public interface IAuctionHistoryService {
 	List<AuctionHistoryOutput> getlistAuctionHistory();;
 
+
 	boolean createAuctionHistory(AuctionHistoryInput auctionHistoryInput);
 
 	List<AuctionHistoryOutput> getAuctionHistoryByCustomer(int accountid);
 
-	List<Auctionhistory> getAuctionHistoryById(int id);
-	
-	int countAuctionHistoryById( int id);
-	
+	List<AuctionHistoryOutput> getAuctionHistoryById(int id);
+
+	int countAuctionHistoryById(int id);
+
 	double maxPriceAuctionHistoryById(int id);
 }

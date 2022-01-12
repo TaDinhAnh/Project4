@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.demo.Dtos.Input.ProductInput;
 import com.demo.Dtos.Output.ProductOutput;
+import com.demo.models.Product;
 import com.demo.services.IProductService;
 import com.demo.validators.Validate;
 
@@ -63,7 +64,8 @@ public class ProductController {
 		}
 		return new ResponseEntity<List<ProductOutput>>(productService.getListProductByClient(), HttpStatus.OK);
 	}
-
+	
+	
 	@RequestMapping(value = "search/{name}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductOutput>> search(@PathVariable("name") String name) {
 		if (name == null) {
