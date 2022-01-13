@@ -84,4 +84,9 @@ public class ProductService implements IProductService {
 		return productReponsitory.save(product) != null;
 	}
 
+	@Override
+	public List<ProductOutput> getProductByIdCategory(int categoryId) {
+		return productReponsitory.getProductByIdCategory(categoryId);
+	}
+
 }

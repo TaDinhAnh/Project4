@@ -34,12 +34,12 @@ public class AuctionHistoryController {
 		if(bind.hasErrors()) {
 			return new ResponseEntity<Boolean>(false,HttpStatus.BAD_REQUEST);
 		}
-		if (auctionHistoryService.createAuctionHistory(auctionhistoryInput)) {
-			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-
-		} else {
+		if (!auctionHistoryService.createAuctionHistory(auctionhistoryInput)) {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
-		}
+
+		} 
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -48,7 +48,7 @@ public class AuctionHistoryController {
 		if (auctionHistoryOutputs == null || auctionHistoryOutputs.size() <= 0) {
 			return new ResponseEntity<List<AuctionHistoryOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<AuctionHistoryOutput>>(auctionHistoryService.getlistAuctionHistory(),
+		return new ResponseEntity<List<AuctionHistoryOutput>>(auctionHistoryOutputs,
 				HttpStatus.OK);
 	}
 	
@@ -111,5 +111,4 @@ public class AuctionHistoryController {
 				auctionHistoryOutputs, HttpStatus.OK);
 
 	}
-
-}
+	}

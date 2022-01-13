@@ -5,7 +5,6 @@
 		data-target=".log-sign">Sign In/Register</button>
 </div>
 
-<!-- Modal -->
 <div class="modal fade bs-modal-sm log-sign" id="myModal" tabindex="-1"
 	role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 	<div class="modal-dialog">

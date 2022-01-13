@@ -12,18 +12,16 @@ import com.demo.models.Auctionhistory;
 
 @Repository
 public interface IAuctionHistoryResponsitory extends CrudRepository<Auctionhistory, Integer> {
-	@Query("select new com.demo.Dtos.Output.AuctionHistoryOutput(id, account.fullname, product.name, auction.hourStart, auction.hourEnd, auction.eventdate,  price, time) from Auctionhistory order by id desc ")
+	@Query("select new com.demo.Dtos.Output.AuctionHistoryOutput(id, account.fullname, product.name, auction.hourStart, auction.hourEnd, auction.eventdate,  price, time) "
+			+ "from Auctionhistory order by id desc ")
 	public List<AuctionHistoryOutput> getlistAuctionHistory();
 
 	@Query("select new com.demo.Dtos.Output.AuctionHistoryOutput(id, account.fullname, product.name, auction.hourStart, auction.hourEnd, auction.eventdate,  price, time) from Auctionhistory where account.id = :accountid")
 	public List<AuctionHistoryOutput> getAuctionHistoryByCustomer(@Param("accountid") int accountid);
+	
+	@Query(value = "select * from auctionhistory where auctionid =:id order by price desc limit 5 ", nativeQuery = true)
+	public List<Auctionhistory> getAuctionHistoryById(@Param("id") int id);
 
-	@Query("select new com.demo.Dtos.Output.AuctionHistoryOutput(id, account.fullname, product.name, product.id, product.category.name,  product.priceMin, product.image, product.description, product.status, auction.hourStart, auction.hourEnd, auction.eventdate,  price, time) from Auctionhistory where auction.id = :id order by  price desc")
-	public List<AuctionHistoryOutput> getAuctionHistoryById(@Param("id") int id);
-	
-//	@Query(value = "select * from auctionhistory where id =:id", nativeQuery = true)
-//	public List<Auctionhistory> getAuctionHistoryById(@Param("id") int id);
-	
 	@Query("select count(*) from Auctionhistory where auction.id = :id")
 	public int countAuctionHistoryById(@Param("id") int id);
 	

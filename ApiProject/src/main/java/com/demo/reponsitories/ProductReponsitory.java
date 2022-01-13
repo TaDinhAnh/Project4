@@ -21,4 +21,9 @@ public interface ProductReponsitory extends CrudRepository<Product, Integer> {
 			+ "description, status, isAccept) from Product where name like %:name% and isDelete = 0 "
 			+ "and isAccept = 1 and status = 1 order by id desc")
 	public List<ProductOutput> getListProduct(@Param("name") String name);
+	
+	
+	@Query(value="select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
+			+ "description, status, isAccept) from Product where category.id =:categoryid order by id desc")
+	public List<ProductOutput> getProductByIdCategory(@Param("categoryid") int categoryId);
 }

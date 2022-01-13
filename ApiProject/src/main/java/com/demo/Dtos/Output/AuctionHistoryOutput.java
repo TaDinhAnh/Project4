@@ -116,7 +116,6 @@ public class AuctionHistoryOutput {
 	public AuctionHistoryOutput(int id, String accountname, String productname, String category, Double priceMin,
 			String image, String description, EProduct status, Date hourStart, Date hourEnd, Date eventdate,
 			Double price, Date time) {
-		super();
 		this.id = id;
 		this.accountname = accountname;
 		this.productname = productname;
