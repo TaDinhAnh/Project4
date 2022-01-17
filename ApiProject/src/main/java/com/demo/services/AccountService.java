@@ -51,10 +51,7 @@ public class AccountService implements IAccountService {
 			return accountResponsitory.getListAccount();
 	}
 
-	@Override
-	public Account findByGmail(String gmail) {
-			return accountResponsitory.find(gmail);	
-	}
+
 
 	@Override
 	public Account findById(int id) {
@@ -63,5 +60,15 @@ public class AccountService implements IAccountService {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	@Override
+	public Account findByGmail(String gmail) {
+		return accountResponsitory.find(gmail);
+	}
+
+	@Override
+	public boolean checkGmail(String gmail) {
+		return accountResponsitory.find(gmail) !=null;
 	}
 }

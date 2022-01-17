@@ -33,4 +33,11 @@ public interface AccountAPIService {
 	@GET("account/getAvatar/{filename}")
 	Call<byte[]> getImg(@Path("filename") String filename);
 	
+	@POST("account/login")
+	Call<AccountOutput> login(@Body AccountInput accountInput);
+	
+	@GET("account/checkGmail/{gmail}")
+	Call<Boolean> checkGmail(@Path("gmail") String gmail);
+	
+	
 }

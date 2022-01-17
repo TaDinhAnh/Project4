@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags/customer"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <mt:layout title="">
 	<jsp:attribute name="content">
   <section class="intro-single">
@@ -44,35 +45,14 @@
           <div class="col-sm-12 section-t8">
             <div class="row">
               <div class="col-md-7">
-                <form action="forms/contact.php" method="post"
-									role="form" class="php-email-form">
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <div class="form-group">
-                        <input type="text" name="name"
-													class="form-control form-control-lg form-control-a"
-													placeholder="Your Name" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <div class="form-group">
-                        <input name="email" type="email"
-													class="form-control form-control-lg form-control-a"
-													placeholder="Your Email" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12 mb-3">
-                      <div class="form-group">
-                        <input type="text" name="subject"
-													class="form-control form-control-lg form-control-a"
-													placeholder="Subject" required>
-                      </div>
-                    </div>
+                <s:form method="post" modelAttribute="feedback"
+									action="${pageContext.request.contextPath }/customer/view/contact/create"
+									>
+                  <div class="row">                                                               
                     <div class="col-md-12">
                       <div class="form-group">
-                        <textarea name="message" class="form-control"
-													name="message" cols="45" rows="8" placeholder="Message"
-													required></textarea>
+                        <s:textarea path="content" class="form-control"
+													cols="45" rows="8" placeholder="Message"></s:textarea>
                       </div>
                     </div>
                     <div class="col-md-12 my-3">
@@ -84,10 +64,10 @@
                     </div>
 
                     <div class="col-md-12 text-center">
-                      <button type="submit" class="btn btn-a">Send Message</button>
+                    <button type="submit" class="btn btn-a">Send Message </button>
                     </div>
                   </div>
-                </form>
+                </s:form>
               </div>
               <div class="col-md-5 section-md-t3">
                 <div class="icon-box section-b2">

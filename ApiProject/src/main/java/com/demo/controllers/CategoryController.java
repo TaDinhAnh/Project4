@@ -44,10 +44,10 @@ public class CategoryController {
 		if(bind.hasErrors()) {
 			return new ResponseEntity<Boolean>(false,HttpStatus.BAD_REQUEST);
 		}
-		if (categoryService.createCategory(categoryInput)) {
-			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+		if (!categoryService.createCategory(categoryInput)) {
+			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 
 	}
 	

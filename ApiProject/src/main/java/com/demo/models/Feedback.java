@@ -19,7 +19,7 @@ public class Feedback implements java.io.Serializable {
 	private Account account;
 	private Product product;
 	private String content;
-	private Boolean isDel;
+	private Boolean isDel = false;
 
 	public Feedback() {
 	}

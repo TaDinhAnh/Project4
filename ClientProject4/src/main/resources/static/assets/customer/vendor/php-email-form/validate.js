@@ -50,10 +50,12 @@
   });
 
   function php_email_form_submit(thisForm, action, formData) {
-    fetch(action, {
+  
+    fetch(action,{
       method: 'POST',
       body: formData,
-      headers: {'X-Requested-With': 'XMLHttpRequest'}
+      headers: {'X-Requested-With': 'XMLHttpRequest'}, 
+    
     })
     .then(response => {
       if( response.ok ) {
@@ -77,7 +79,7 @@
   }
 
   function displayError(thisForm, error) {
-    thisForm.querySelector('.loading').classList.remove('d-block');
+   thisForm.querySelector('.loading').classList.remove('d-block');
     thisForm.querySelector('.error-message').innerHTML = error;
     thisForm.querySelector('.error-message').classList.add('d-block');
   }

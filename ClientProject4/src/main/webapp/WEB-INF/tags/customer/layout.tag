@@ -184,7 +184,7 @@
 								auction is about to begin </a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/view/auction/happenning"">The
 								auction is ongoing. </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/aution/happened"">The
+								href="${pageContext.request.contextPath }/customer/view/auction/happened">The
 								auction is over.</a>
 						</div></li>
 

@@ -33,12 +33,12 @@
             <div class="post-information">
               <ul class="list-inline text-center color-a">
                 <li class="list-inline-item mr-2">
-                  <strong>Author: </strong>
+                  <strong>Vendor: </strong>
                   <span class="color-text-a">${getAuction.accountname }</span>
                 </li>
                 <li class="list-inline-item mr-2">
                   <strong>Category: </strong>
-                  <span class="color-text-a">${getAuction.category }</span>
+                  <span class="color-text-a">${getAuction.productOutput.category }</span>
                   
                 </li>
                 <li class="list-inline-item">
@@ -53,11 +53,11 @@
             </div>
             <div class="post-content color-text-a">
               <p class="post-intro">
-               ${getAuction.description}
+               ${getAuction.productOutput.description}
               </p>
              
               <blockquote class="blockquote">
-                <p class="mb-4">Starting price : ${getAuction.priceMin}</p>
+                <p class="mb-4">Starting price : ${getAuction.productOutput.priceMin}</p>
               </blockquote>
                <p>
                 Auction hour Start at : ${getAuction.hourEnd}

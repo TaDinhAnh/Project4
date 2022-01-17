@@ -64,8 +64,7 @@ public class ProductController {
 		}
 		return new ResponseEntity<List<ProductOutput>>(productService.getListProductByClient(), HttpStatus.OK);
 	}
-	
-	
+
 	@RequestMapping(value = "search/{name}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductOutput>> search(@PathVariable("name") String name) {
 		if (name == null) {
@@ -85,12 +84,19 @@ public class ProductController {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
 		}
 		if (productService.acceptProduct(id)) {
-			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-
-		} else {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
 		}
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 
+	}
+	
+	@RequestMapping(value = "limit", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductOutput>> getListLimit() {
+		List<ProductOutput> productOutputs = productService.getListLimit();
+		if (productOutputs == null || productOutputs.size() <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 	}
 
 }

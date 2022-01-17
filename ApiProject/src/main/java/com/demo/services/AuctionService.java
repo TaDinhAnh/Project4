@@ -1,5 +1,6 @@
 package com.demo.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,5 +100,23 @@ public class AuctionService implements IAuctionService {
 	@Override
 	public List<AuctionOutput> getlistAuctionComingsoon() {
 		return auctionRepositories.getlistAuctionComingsoon();
+	}
+
+	@Override
+	public List<AuctionOutput> getLimitAuctionHappening() {
+		List<Auction>auctions = auctionRepositories.getLimitAuctionHappening();
+		List<AuctionOutput> auctionOutputs = new ArrayList<AuctionOutput>();
+		for(Auction auction :auctions) {
+			AuctionOutput auctionOutput = new AuctionOutput();
+			auctionOutput.setId(auction.getId());
+			auctionOutput.setDescription(auction.getDescription());
+			auctionOutput.setEventdate(auction.getEventdate());
+			auctionOutput.setFullname(auction.getAccount().getFullname());
+			auctionOutput.setHourEnd(auction.getHourEnd());
+			auctionOutput.setHourStart(auction.getHourStart());
+			auctionOutputs.add(auctionOutput);
+
+		}
+		return auctionOutputs;
 	}
 }

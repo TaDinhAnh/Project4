@@ -12,7 +12,7 @@ public interface IAuctionHistoryService {
 
 	List<AuctionHistoryOutput> getAuctionHistoryByCustomer(int accountid);
 
-	List<AuctionHistoryOutput> getAuctionHistoryById(int id);
+	List<AuctionHistoryOutput> getAuctionHistoryById(int auctionId);
 
 	int countAuctionHistoryById(int id);
 

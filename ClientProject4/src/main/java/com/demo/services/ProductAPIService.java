@@ -35,4 +35,7 @@ public interface ProductAPIService {
 	@PATCH("accept/{id}")
 	Call<Void> delete(@Path("id") int id);
 	
+	@GET("product/limit")
+	Call<List<ProductOutput>> getListLimit();
+	
 }

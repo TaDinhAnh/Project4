@@ -1,4 +1,5 @@
 package com.demo.services;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,23 @@ public class ProductService implements IProductService {
 	@Override
 	public List<ProductOutput> getProductByIdCategory(int categoryId) {
 		return productReponsitory.getProductByIdCategory(categoryId);
+	}
+
+	@Override
+	public List<ProductOutput> getListLimit() {
+		List<Product> products = productReponsitory.getListLimit();
+		List<ProductOutput> outputs = new ArrayList<ProductOutput>();
+		for(Product product :products) {
+			ProductOutput productOutput = new ProductOutput();
+			productOutput.setCategory(product.getCategory().getName());
+			productOutput.setDescription(product.getDescription());
+			productOutput.setId(product.getId());
+			productOutput.setImage(product.getImage());
+			productOutput.setName(product.getName());
+			productOutput.setPriceMin(product.getPriceMin());
+			outputs.add(productOutput);
+		}
+		return outputs;
 	}
 
 }

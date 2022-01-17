@@ -22,16 +22,17 @@ public class FeedbackController {
 	private IFeedbackService feedbackService;
 	@Autowired
 	private Validate validate;
-	@RequestMapping( method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
+
+	@RequestMapping(method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> createFeedback(@RequestBody @Valid FeedBackInput feedbackInput, BindingResult bind) {
 		validate.validate(feedbackInput, bind);
-		if(bind.hasErrors()) {
+		if (bind.hasErrors()) {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
 		}
-		if(feedbackService.createFeedBack(feedbackInput)) {
-			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-		}else {		
+		if (!feedbackService.createFeedBack(feedbackInput)) {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
 		}
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+
 	}
 }

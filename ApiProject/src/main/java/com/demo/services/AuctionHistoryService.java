@@ -55,8 +55,8 @@ public class AuctionHistoryService implements IAuctionHistoryService {
 	}
 
 	@Override
-	public List<AuctionHistoryOutput> getAuctionHistoryById(int id) {
-		List<Auctionhistory> auctionhistories =  auctionHistoryResponsitory.getAuctionHistoryById(id);
+	public List<AuctionHistoryOutput> getAuctionHistoryById(int auctionId) {
+		List<Auctionhistory> auctionhistories =  auctionHistoryResponsitory.getAuctionHistoryById(auctionId);
 		List<AuctionHistoryOutput> auctionHistoryOutputs = new ArrayList<AuctionHistoryOutput>();
 		for(Auctionhistory auction : auctionhistories) {
 			AuctionHistoryOutput auctionHistoryOutput = new AuctionHistoryOutput();
@@ -65,13 +65,15 @@ public class AuctionHistoryService implements IAuctionHistoryService {
 			auctionHistoryOutput.setHourEnd(auction.getAuction().getHourEnd());
 			auctionHistoryOutput.setHourStart(auction.getAuction().getHourStart());
 			auctionHistoryOutput.setPrice(auction.getPrice());
-			auctionHistoryOutput.setProductname(auction.getProduct().getName());
+			auctionHistoryOutput.setProductname(auction.getProduct().getName());			
 			auctionHistoryOutput.setTime(auction.getTime());
+			auctionHistoryOutput.getProductOutput().setId(auction.getProduct().getId());
 			auctionHistoryOutput.getProductOutput().setCategory(auction.getProduct().getCategory().getName());
 			auctionHistoryOutput.getProductOutput().setPriceMin(auction.getProduct().getPriceMin());
 			auctionHistoryOutput.getProductOutput().setImage(auction.getProduct().getImage());
 			auctionHistoryOutput.getProductOutput().setDescription(auction.getProduct().getDescription());
 			auctionHistoryOutput.getProductOutput().setStatus(auction.getProduct().getStatus());
+			auctionHistoryOutput.getProductOutput().setName(auction.getProduct().getName());
 			auctionHistoryOutputs.add(auctionHistoryOutput);
 		}
 		return auctionHistoryOutputs;

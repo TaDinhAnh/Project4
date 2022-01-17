@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.demo.Dtos.Input.AccountInput;
 import com.demo.Dtos.Output.AccountOutput;
+import com.demo.models.Account;
 import com.demo.services.IAccountService;
 import com.demo.validators.Validate;
 
@@ -63,4 +64,18 @@ public class AccountController {
 		}
 		return new ResponseEntity<AccountOutput>(accountOutput, HttpStatus.OK);
 	}
+	
+
+	@RequestMapping(value = "/checkGmail/{gmail}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Boolean> checkGmail(@PathVariable("gmail") String gmail) {
+		Boolean result = accountService.checkGmail(gmail);
+		if(gmail == null) {
+			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
+		}
+		if (!result) {
+			return new ResponseEntity<>(false, HttpStatus.OK);
+		}
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+	}
+
 }

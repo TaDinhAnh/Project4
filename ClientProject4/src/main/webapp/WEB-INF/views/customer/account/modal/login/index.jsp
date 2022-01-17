@@ -1,3 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
 
 <div class="container">
 	<button class="btn btn-primary btn-lg"
@@ -5,6 +14,7 @@
 		data-target=".log-sign">Sign In/Register</button>
 </div>
 
+<!-- Modal -->
 <div class="modal fade bs-modal-sm log-sign" id="myModal" tabindex="-1"
 	role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -193,3 +203,6 @@
 </div>
 
 
+
+</body>
+</html>

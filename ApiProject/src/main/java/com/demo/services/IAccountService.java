@@ -1,6 +1,8 @@
 package com.demo.services;
 
 import java.util.List;
+
+
 import com.demo.Dtos.Input.AccountInput;
 import com.demo.Dtos.Output.AccountOutput;
 import com.demo.models.Account;
@@ -16,5 +18,7 @@ public interface IAccountService {
 	Account findByGmail(String gmail);
 
 	Account findById(int id);
+	
+	boolean checkGmail(String gmail);
 
 }

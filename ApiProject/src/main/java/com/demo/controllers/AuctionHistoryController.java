@@ -68,12 +68,12 @@ public class AuctionHistoryController {
 
 	}
 
-	@RequestMapping(value = "/auction/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<AuctionHistoryOutput>> getAuctionHistoryById(@PathVariable("id") int id) {
-		if (id <= 0) {
+	@RequestMapping(value = "/auction/{auctionId}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AuctionHistoryOutput>> getAuctionHistoryById(@PathVariable("auctionId") int auctionId) {
+		if (auctionId <= 0) {
 			return new ResponseEntity<List<AuctionHistoryOutput>>(HttpStatus.BAD_REQUEST);
 		}
-		List<AuctionHistoryOutput> auctionHistoryOutputs = auctionHistoryService.getAuctionHistoryById(id);
+		List<AuctionHistoryOutput> auctionHistoryOutputs = auctionHistoryService.getAuctionHistoryById(auctionId);
 		if (auctionHistoryOutputs == null) {
 			return new ResponseEntity<List<AuctionHistoryOutput>>(HttpStatus.NOT_FOUND);
 		}
@@ -88,7 +88,7 @@ public class AuctionHistoryController {
 		}
 		Integer count = auctionHistoryService.countAuctionHistoryById(id);
 		if (count <= 0 || count == null) {
-			return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Integer>(count, HttpStatus.OK);
 
@@ -101,7 +101,7 @@ public class AuctionHistoryController {
 		}
 		Double auctionHistoryOutputs = auctionHistoryService.maxPriceAuctionHistoryById(id);
 		if (auctionHistoryOutputs <= 0) {
-			return new ResponseEntity<Double>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Double>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Double>(auctionHistoryOutputs, HttpStatus.OK);
 

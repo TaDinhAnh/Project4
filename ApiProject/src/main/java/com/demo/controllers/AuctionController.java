@@ -48,11 +48,11 @@ public class AuctionController {
 			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
 		}
 
-		if (auctionService.createAuction(auctionInput)) {
-			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-		} else {
+		if (!auctionService.createAuction(auctionInput)) {
 			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
 		}
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -63,11 +63,12 @@ public class AuctionController {
 			return new ResponseEntity<AuctionOutput>(HttpStatus.BAD_REQUEST);
 		}
 		AuctionOutput auctionOutput = auctionService.updateAuction(auctionInput, id);
-		if (auctionInput != null) {
-			return new ResponseEntity<AuctionOutput>(auctionOutput, HttpStatus.OK);
-		} else {
+		if (auctionInput == null) {
 			return new ResponseEntity<AuctionOutput>(HttpStatus.BAD_REQUEST);
+
 		}
+		return new ResponseEntity<AuctionOutput>(auctionOutput, HttpStatus.OK);
+
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -76,7 +77,7 @@ public class AuctionController {
 		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
 			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<AuctionOutput>>(auctionService.getlistAuction(), HttpStatus.OK);
+		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -86,9 +87,9 @@ public class AuctionController {
 		}
 		AuctionOutput auctionOutput = auctionService.getDetailAuction(id);
 		if (auctionOutput == null) {
-			return new ResponseEntity<AuctionOutput>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<AuctionOutput>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<AuctionOutput>(auctionService.getDetailAuction(id), HttpStatus.OK);
+		return new ResponseEntity<AuctionOutput>(auctionOutput, HttpStatus.OK);
 
 	}
 
@@ -98,7 +99,7 @@ public class AuctionController {
 		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
 			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<AuctionOutput>>(auctionService.getlistAuction(), HttpStatus.OK);
+		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "over", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -107,7 +108,7 @@ public class AuctionController {
 		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
 			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<AuctionOutput>>(auctionService.getlistAuctionOver(), HttpStatus.OK);
+		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "happening", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -116,7 +117,7 @@ public class AuctionController {
 		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
 			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<AuctionOutput>>(auctionService.getlistAuctionHappening(), HttpStatus.OK);
+		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "comingsoon", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -125,7 +126,16 @@ public class AuctionController {
 		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
 			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<AuctionOutput>>(auctionService.getlistAuctionComingsoon(), HttpStatus.OK);
+		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "limit", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AuctionOutput>> getLimitAuctionHappening() {
+		List<AuctionOutput> auctionOutputs = auctionService.getLimitAuctionHappening();
+		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
+			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
 	}
 
 }

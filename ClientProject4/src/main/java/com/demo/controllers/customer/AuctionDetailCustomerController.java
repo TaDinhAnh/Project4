@@ -36,7 +36,8 @@ public class AuctionDetailCustomerController {
 		modelMap.put("maxPriceATM",  maxpriceATM);
 		for(int i =0; i <auctionHistoryOutput.size(); i++) {
 			modelMap.put("getAuction", auctionHistoryOutput.get(1));
-				session.setAttribute("productId", auctionHistoryOutput.get(1).getProductid());
+			modelMap.put("vendor", auctionHistoryOutput.get(1).getAccountname());
+				session.setAttribute("productId", auctionHistoryOutput.get(1).getProductOutput().getId());
 		}	
 		
 		modelMap.put("auctionhistorys", auctionHistoryOutput);		
@@ -49,18 +50,17 @@ public class AuctionDetailCustomerController {
 	}
 	
 	@RequestMapping(value = {"sendPrice" }, method = RequestMethod.POST)
-	public String sendPrice(@RequestParam("id") int id, @RequestParam(value= "price") String price, @ModelAttribute("aucHis") AuctionHistoryInput auctionHistoryInput, HttpSession session) throws IOException {
+	public String sendPrice(@RequestParam("id") int id,  @ModelAttribute("aucHis") AuctionHistoryInput auctionHistoryInput, HttpSession session) throws IOException {
 		AuctionHistoryAPIService auctionHistoryAPIService = APIClient.getClient()
 				.create(AuctionHistoryAPIService.class);
 		auctionHistoryInput.setAccountid(3);
 		auctionHistoryInput.setAuctionid(id);
 		auctionHistoryInput.setProductid((int) session.getAttribute("productId"));
-		auctionHistoryInput.setTime(auctionHistoryInput.getTime());
 		boolean auctionHistoryOutput = auctionHistoryAPIService.create(auctionHistoryInput).execute().isSuccessful();
 		if(auctionHistoryOutput) {
 			return "redirect:/customer/auction/detailAuction/index?id="+ id;
 		}
-		return "redirect:/customer/auction/detailAuction/index";
+		return "redirect:/customer/auction/detailAuction/index?id="+ id;
 	}
 	
 }

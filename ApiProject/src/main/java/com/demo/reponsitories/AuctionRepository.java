@@ -25,14 +25,18 @@ public interface AuctionRepository extends CrudRepository<Auction, Integer> {
 			+ "from Auction where account.id = :id")
 	public List<AuctionOutput> getAuctionByIdVendor(@Param("id") int id);
 
-	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where status = 0  order by id desc")
+	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where status = 0 and isDel = 0   order by id desc")
 	public List<AuctionOutput> getlistAuctionOver();
 
-	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where status = 1  order by id desc")
+	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where status = 1 and isDel = 0   order by id desc")
 	public List<AuctionOutput> getlistAuctionHappening();
 
-	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where status = 2  order by id desc")
+	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where status = 2 and isDel = 0  order by id desc")
 	public List<AuctionOutput> getlistAuctionComingsoon();
+	
+	
+	@Query(value="select * from auction where status = 1 and isDel = 0  order by id desc LIMIT 3", nativeQuery = true)
+	public List<Auction> getLimitAuctionHappening();
 	
 
 
