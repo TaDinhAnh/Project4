@@ -35,21 +35,6 @@
 	href="${pageContext.request.contextPath }/resources/assets/customer/css/style.css"
 	rel="stylesheet">
 
-<script>
-	var myVar = setInterval(myTimer, 1000);
-	var my = setInterval(myDate, 1000);
-	function myTimer() {		
-		var d = new Date();
-		var t = d.toLocaleTimeString();
-		$("#timeClock").html(t);
-	}
-	function myDate() {		
-		var date = new Date();
-		var day = date.toDateString();
-		$("#day").html(day);
-	}
-	
-</script>
 </head>
 
 <body>
@@ -154,21 +139,22 @@
 				aria-label="Toggle navigation">
 				<span></span> <span></span> <span></span>
 			</button>
-			<a class="navbar-brand text-brand" href="index.html">Estate<span
-				class="color-b">Agency</span></a>
+			<a class="navbar-brand text-brand"
+				href="${pageContext.request.contextPath }/customer/view/home">Hy<span
+				class="color-b">En</span></a>
 			<div class="navbar-collapse collapse justify-content-center"
 				id="navbarDefault">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
-						href="${pageContext.request.contextPath }/customer/home">Home</a></li>
-<!-- 					<li class="nav-item"><a class="nav-link " -->
-<%-- 						href="${pageContext.request.contextPath }/customer/about">About</a> --%>
-<!-- 					</li> -->
-<!-- 					<li class="nav-item"><a class="nav-link " -->
-<%-- 						href="${pageContext.request.contextPath }/customer/property">Property</a></li> --%>
+						href="${pageContext.request.contextPath }/customer/view/home">Home</a></li>
+					<!-- 					<li class="nav-item"><a class="nav-link " -->
+					<%-- 						href="${pageContext.request.contextPath }/customer/about">About</a> --%>
+					<!-- 					</li> -->
+					<!-- 					<li class="nav-item"><a class="nav-link " -->
+					<%-- 						href="${pageContext.request.contextPath }/customer/property">Property</a></li> --%>
 
-<!-- 					<li class="nav-item"><a class="nav-link " -->
-<%-- 						href="${pageContext.request.contextPath }/customer/blog">Blog</a></li> --%>
+					<!-- 					<li class="nav-item"><a class="nav-link " -->
+					<%-- 						href="${pageContext.request.contextPath }/customer/blog">Blog</a></li> --%>
 
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -176,11 +162,11 @@
 						aria-expanded="false">Auction</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/auction/comingsoon">The
+								href="${pageContext.request.contextPath }/customer/view/auction/comingsoon">The
 								auction is about to begin </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/auction/happenning"">The
+								href="${pageContext.request.contextPath }/customer/view/auction/happenning"">The
 								auction is ongoing. </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/aution/happened"">The
+								href="${pageContext.request.contextPath }/customer/view/aution/happened"">The
 								auction is over.</a>
 						</div></li>
 
@@ -206,21 +192,24 @@
 						aria-expanded="false">Account</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/account/changeInfor">Change Infor
-								</a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction History
-								</a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/pageAgentsGrid"">Sign in
-								</a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/pageAgentSingle"">Sign out
-								</a>
+								href="${pageContext.request.contextPath }/customer/account/changeInfor">Change
+								Infor </a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
+								History </a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/view/account/signIn"">Sign
+								in </a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/pageAgentSingle"">Sign
+								out </a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link "
-						href="${pageContext.request.contextPath }/customer/contact"">Contact</a>
+						href="${pageContext.request.contextPath }/customer/view/contact"">Contact</a>
 					</li>
 				</ul>
 			</div>
-			<div class="nav-item;" style="color:#6c757d; font-size:16px; padding-right: 3px"><span id="day"> </span><span id="timeClock"></span></div>
+			<div class="nav-item;"
+				style="color: #6c757d; font-size: 16px; padding-right: 3px">
+				<span id="day"> </span> <span id="timeClock"></span>
+			</div>
 			<button type="button"
 				class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
 				data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
@@ -369,6 +358,21 @@
 
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/jquery-3.6.0.min.js"></script>
+
+	<script>
+		var myVar = setInterval(myTimer, 1000);
+		var my = setInterval(myDate, 1000);
+		function myTimer() {
+			var d = new Date();
+			var t = d.toLocaleTimeString();
+			$("#timeClock").html(t);
+		}
+		function myDate() {
+			var date = new Date();
+			var day = date.toDateString();
+			$("#day").html(day);
+		}
+	</script>
 
 </body>
 

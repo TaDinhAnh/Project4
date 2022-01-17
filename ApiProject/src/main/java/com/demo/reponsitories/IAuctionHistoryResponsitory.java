@@ -18,6 +18,15 @@ public interface IAuctionHistoryResponsitory extends CrudRepository<Auctionhisto
 	@Query("select new com.demo.Dtos.Output.AuctionHistoryOutput(id, account.fullname, product.name, auction.hourStart, auction.hourEnd, auction.eventdate,  price, time) from Auctionhistory where account.id = :accountid")
 	public List<AuctionHistoryOutput> getAuctionHistoryByCustomer(@Param("accountid") int accountid);
 
-	@Query("select new com.demo.Dtos.Output.AuctionHistoryOutput(id, account.fullname, product.name, product.category.name, product.priceMin, product.image, product.description, product.status, auction.hourStart, auction.hourEnd, auction.eventdate,  price, time) from Auctionhistory where auction.id = :id order by  time desc")
+	@Query("select new com.demo.Dtos.Output.AuctionHistoryOutput(id, account.fullname, product.name, product.id, product.category.name,  product.priceMin, product.image, product.description, product.status, auction.hourStart, auction.hourEnd, auction.eventdate,  price, time) from Auctionhistory where auction.id = :id order by  price desc")
 	public List<AuctionHistoryOutput> getAuctionHistoryById(@Param("id") int id);
+	
+	@Query(value = "select * from auctionhistory where id =:id limit 1", nativeQuery = true)
+	public List<Auctionhistory> getAuctionHistoryById2(@Param("id") int id);
+	
+	@Query("select count(*) from Auctionhistory where auction.id = :id")
+	public int countAuctionHistoryById(@Param("id") int id);
+	
+	@Query("select max(price) from Auctionhistory where auction.id = :id ")
+	public double maxPriceAuctionHistoryById(@Param("id") int id);
 }

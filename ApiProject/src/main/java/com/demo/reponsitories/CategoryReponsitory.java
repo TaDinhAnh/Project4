@@ -10,6 +10,8 @@ import com.demo.models.Category;
 
 @Repository
 public interface CategoryReponsitory extends CrudRepository<Category, Integer>{
-	@Query("select new com.demo.Dtos.Output.CategoryOutput(category.name, name ) from Category")
+	@Query("select new com.demo.Dtos.Output.CategoryOutput(id,category.id, category.name, name, isDelete ) from Category")
 	public List<CategoryOutput> getListCategory();
+	@Query("select new com.demo.Dtos.Output.CategoryOutput(id, category.id, category.name, name, isDelete ) from Category")
+	public List<CategoryOutput> findAllCategory();
 }

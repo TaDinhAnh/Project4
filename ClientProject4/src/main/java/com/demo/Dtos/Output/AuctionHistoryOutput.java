@@ -9,14 +9,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class AuctionHistoryOutput {
 	@SerializedName("id")
-	private int id;
-	
+	private int id;	
 	@SerializedName("accountname")	
-	private String accountname;
-	
+	private String accountname;	
 	@SerializedName("productname")
 	private String productname;
-	
+	@SerializedName("productid")
+	private int productid;
 	@SerializedName("category")	
 	private String category;
 	@SerializedName("priceMin")
@@ -142,6 +141,15 @@ public class AuctionHistoryOutput {
 	public void setStatus(EProduct status) {
 		this.status = status;
 	}
+	
+
+	public int getProductid() {
+		return productid;
+	}
+
+	public void setProductid(int productid) {
+		this.productid = productid;
+	}
 
 	public AuctionHistoryOutput() {
 		super();
@@ -178,5 +186,27 @@ public class AuctionHistoryOutput {
 		this.price = price;
 		this.time = time;
 	}
+
+	public AuctionHistoryOutput(int id, String accountname, String productname, int productid, String category,
+			double priceMin, String image, String description, EProduct status, String hourStart, String hourEnd,
+			Date eventdate, Double price, Date time) {
+		super();
+		this.id = id;
+		this.accountname = accountname;
+		this.productname = productname;
+		this.productid = productid;
+		this.category = category;
+		this.priceMin = priceMin;
+		this.image = image;
+		this.description = description;
+		this.status = status;
+		this.hourStart = hourStart;
+		this.hourEnd = hourEnd;
+		this.eventdate = eventdate;
+		this.price = price;
+		this.time = time;
+	}
+	
+	
 
 }

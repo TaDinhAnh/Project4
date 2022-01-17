@@ -47,7 +47,7 @@ public class AccountController {
 		if (accountOutputs == null || accountOutputs.size() <= 0) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<AccountOutput>>(accountService.getListAccount(), HttpStatus.OK);
+		return new ResponseEntity<List<AccountOutput>>(accountOutputs, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = { "/{id}" }, method = RequestMethod.PUT, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -58,9 +58,21 @@ public class AccountController {
 			return new ResponseEntity<AccountOutput>(HttpStatus.BAD_REQUEST);
 		}
 		AccountOutput accountOutput = accountService.changeInfor(id, accountInput);
-		if(accountOutput == null) {
+		if (accountOutput == null) {
 			return new ResponseEntity<AccountOutput>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<AccountOutput>(accountService.changeInfor(id, accountInput), HttpStatus.OK);
+		return new ResponseEntity<AccountOutput>(accountOutput, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = { "/{id}" }, method = RequestMethod.DELETE)
+	public ResponseEntity<Boolean> Del(@PathVariable("id") int id) {
+		if (id <= 0) {
+			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
+		}
+
+		if (accountService.delAccount(id)) {
+			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 }

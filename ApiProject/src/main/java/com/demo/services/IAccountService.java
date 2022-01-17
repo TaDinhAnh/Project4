@@ -16,5 +16,7 @@ public interface IAccountService {
 	Account findByGmail(String gmail);
 
 	Account findById(int id);
+	
+	Boolean delAccount(int id);
 
 }

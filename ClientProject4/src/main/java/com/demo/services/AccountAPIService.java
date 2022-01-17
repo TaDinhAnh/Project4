@@ -11,6 +11,7 @@ import com.demo.Dtos.Output.AccountOutput;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -24,6 +25,9 @@ public interface AccountAPIService {
 	@PUT("account/{id}")
 	Call<AccountOutput> changeInfor(@Path("id") int id, @Body AccountInput accountInput);
 	
+	@DELETE("account/{id}")
+	Call<Boolean> delAccount(@Path("id") int id);
+
 	@POST("account")
 	Call<Boolean> create(@Body AccountInput accountInput);
 	

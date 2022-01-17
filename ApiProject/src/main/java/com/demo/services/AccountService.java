@@ -64,4 +64,14 @@ public class AccountService implements IAccountService {
 			return null;
 		}
 	}
+
+	@Override
+	public Boolean delAccount(int id) {
+		Account account = findById(id);
+		if(account == null)
+			return false;
+		account.setIsDelete(!account.getIsDelete());
+		return accountResponsitory.save(account) == null;
+	}
+	
 }

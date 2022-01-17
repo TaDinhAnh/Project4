@@ -37,9 +37,11 @@
                     <div class="testimonial-ico">
                     </div>
                     <div class="testimonials-content">
+                     <a	href="${pageContext.request.contextPath }/customer/auction/detailAuction?id=${auction.id}">
                       <p class="testimonial-text">
                          ${auction.description }
                       </p>
+                      </a>
                     </div>
                     <div class="testimonial-author-box">
                       <h5 class="testimonial-author" style="color: red;">

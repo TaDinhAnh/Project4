@@ -17,7 +17,7 @@ public class CategoryService implements ICategoryService {
 	@Override
 	public boolean createCategory(CategoryInput categoryInput) {
 		Category category = new Category();
-		if (categoryInput != null) {
+		if (categoryInput != null && categoryInput.getPresentid() > 0) {
 			Category categoryChild = findById(categoryInput.getPresentid());
 			if (categoryChild == null)
 				return false;
@@ -33,7 +33,7 @@ public class CategoryService implements ICategoryService {
 		if (category == null) {
 			return false;
 		}
-		if (categoryInput != null) {
+		if (categoryInput != null ) {
 			Category categoryChild = findById(categoryInput.getPresentid());
 			if (categoryChild == null)
 				return false;
@@ -55,6 +55,11 @@ public class CategoryService implements ICategoryService {
 	@Override
 	public List<CategoryOutput> getListCategory() {
 		return categoryReponsitory.getListCategory();
+	}
+
+	@Override
+	public List<CategoryOutput> findAllCategory() {
+		return categoryReponsitory.findAllCategory();
 	}
 
 }

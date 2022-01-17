@@ -18,6 +18,9 @@ public interface CategoryAPIService {
 	@GET("category")
 	Call<List<CategoryOutput>> find();
 	
+	@GET("category/findAll")
+	Call<List<CategoryOutput>> findAll();
+	
 	@PUT("category/{id}")
 	Call<Boolean> updateCategory(@Path("id") int id, @Body CategoryInput categoryInput);
 

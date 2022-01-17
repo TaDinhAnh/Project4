@@ -17,6 +17,8 @@ public interface ProductAPIService {
 
 	@GET("product")
 	Call<List<ProductOutput>> findList();
+	@GET("product/findAll")
+	Call<List<ProductOutput>> findAll();
 	
 	@GET("product/searchbyid/{id}")
 	Call<ProductOutput> findByid(@Path("id") int id);
@@ -32,7 +34,7 @@ public interface ProductAPIService {
 	@GET("product/search/{name}")
 	Call<List<ProductOutput>> search(@Path("name") String name);
 	
-	@PATCH("accept/{id}")
-	Call<Void> delete(@Path("id") int id);
+	@PATCH("product/accept/{id}")
+	Call<Boolean> accept(@Path("id") int id);
 	
 }

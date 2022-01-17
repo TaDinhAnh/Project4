@@ -28,7 +28,7 @@ public class ProductController {
 	private Validate validate;
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ProductOutput> ceateProduct(@RequestBody @Valid ProductInput productInput,
+	public ResponseEntity<ProductOutput> createProduct(@RequestBody @Valid ProductInput productInput,
 			BindingResult bind) {
 		validate.validate(productInput, bind);
 		if (bind.hasErrors()) {
@@ -61,7 +61,16 @@ public class ProductController {
 		if (productOutputs == null || productOutputs.size() <= 0) {
 			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<ProductOutput>>(productService.getListProductByClient(), HttpStatus.OK);
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "findAll", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductOutput>> findAll() {
+		List<ProductOutput> productOutputs = productService.findAllProduct();
+		if (productOutputs == null || productOutputs.size() <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "search/{name}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -73,11 +82,11 @@ public class ProductController {
 		if (productOutputs == null || productOutputs.size() <= 0) {
 			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<ProductOutput>>(productService.getListProduct(name), HttpStatus.OK);
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 
 	}
 
-	@RequestMapping(value = "accept/{id}", method = RequestMethod.PATCH, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "accept/{id}", method = RequestMethod.PATCH)
 	public ResponseEntity<Boolean> acceptProduct(@PathVariable("id") int id) {
 		if (id <= 0) {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);

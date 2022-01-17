@@ -37,7 +37,16 @@ public class CategoryController {
 		}
 		return new ResponseEntity<List<CategoryOutput>>(categoryService.getListCategory(), HttpStatus.OK);
 	}
-
+	
+	@RequestMapping(value = "findAll", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<CategoryOutput>> findAll() {
+		List<CategoryOutput> categoryOutputs = categoryService.findAllCategory();
+		if (categoryOutputs == null || categoryOutputs.size() <= 0) {
+			return new ResponseEntity<List<CategoryOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<CategoryOutput>>(categoryService.getListCategory(), HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> createCategory(@RequestBody @Valid CategoryInput categoryInput, BindingResult bind) {
 		validate.validate(categoryInput, bind);
