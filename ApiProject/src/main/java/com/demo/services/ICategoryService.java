@@ -15,5 +15,7 @@ public interface ICategoryService {
 	List<CategoryOutput> getListCategory();
 
 	List<CategoryOutput> findAllCategory();
+	
+	Iterable<Category> findAll();
 
 }

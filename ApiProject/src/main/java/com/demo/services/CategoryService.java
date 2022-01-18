@@ -62,4 +62,10 @@ public class CategoryService implements ICategoryService {
 		return categoryReponsitory.findAllCategory();
 	}
 
+	@Override
+	public Iterable<Category> findAll() {
+		
+		return categoryReponsitory.findAll();
+	}
+
 }

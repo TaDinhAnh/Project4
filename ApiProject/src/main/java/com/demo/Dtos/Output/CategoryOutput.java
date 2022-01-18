@@ -61,7 +61,7 @@ public class CategoryOutput {
 		this.name = name;
 	}
 	
-	public CategoryOutput(int id, int idPresent, String presentName, String name, Boolean isDelete) {
+	public CategoryOutput(int id,  int idPresent,  String presentName, String name, Boolean isDelete) {
 		super();
 		this.id = id;
 		this.presentName = presentName;
@@ -70,6 +70,14 @@ public class CategoryOutput {
 		this.categoryOutput = new CategoryOutput();
 		this.categoryOutput.setName(presentName);
 		this.categoryOutput.setId(id);
+	}
+	
+	public CategoryOutput(int id, String name, Boolean isDelete) {
+		super();
+		this.id = id;
+		this.presentName = categoryOutput.getName();
+		this.name = name;
+		this.isDelete = isDelete;
 	}
 	
 	

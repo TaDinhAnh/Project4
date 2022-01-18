@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.demo.Dtos.Input.CategoryInput;
 import com.demo.Dtos.Output.CategoryOutput;
+import com.demo.models.Category;
 import com.demo.services.ICategoryService;
 import com.demo.validators.Validate;
 
@@ -35,7 +36,7 @@ public class CategoryController {
 		if (categoryOutputs == null || categoryOutputs.size() <= 0) {
 			return new ResponseEntity<List<CategoryOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<CategoryOutput>>(categoryService.getListCategory(), HttpStatus.OK);
+		return new ResponseEntity<List<CategoryOutput>>(categoryOutputs, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "findAll", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -44,7 +45,15 @@ public class CategoryController {
 		if (categoryOutputs == null || categoryOutputs.size() <= 0) {
 			return new ResponseEntity<List<CategoryOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<CategoryOutput>>(categoryService.getListCategory(), HttpStatus.OK);
+		return new ResponseEntity<List<CategoryOutput>>(categoryOutputs, HttpStatus.OK);
+	}
+	@RequestMapping(value = "findAll2", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Iterable<Category>> findAll2() {
+		Iterable<Category> categoryOutputs = categoryService.findAll();
+		if (categoryOutputs == null) {
+			return new ResponseEntity<Iterable<Category>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Iterable<Category>>(categoryOutputs, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
