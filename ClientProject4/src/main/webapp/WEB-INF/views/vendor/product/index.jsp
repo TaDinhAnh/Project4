@@ -1,61 +1,65 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags/customer"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <mt:layout title="">
 	<jsp:attribute name="content">
-	<div class="intro intro-carousel swiper position-relative">
-
-		<div class="swiper-wrapper">
-			      	  <c:forEach items="${products }" var="product">
-		
-			<div class="swiper-slide carousel-item-a intro-item bg-image"
-						style="background-image: url(${product.image})">
-				<div class="overlay overlay-a"></div>
-				<div class="intro-content display-table">
-					<div class="table-cell">
-						<div class="container">
-							<div class="row">
-								<div class="col-lg-8">
-									<div class="intro-body">
-										<p class="intro-title-top">
-											${product.category} <br>
-										</p>
-										<h1 class="intro-title mb-4 ">
-											<span class="color-b">Name: </span>${product.name}
-										</h1>
-										<p class="intro-subtitle intro-price">
-											<a href="#"><span class="price-a">rent |  ${product.priceMin}</span></a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-					        </c:forEach>
-			
-		</div>
-		<div class="swiper-pagination"></div>
-		         
-		
-	</div>
+	
 	    <section class="section-property section-t8">
-      <div class="container">
+	    
+	     <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="title-wrap d-flex justify-content-between">
               <div class="title-box">
-                <h2 class="title-a">Latest Auctions</h2>
+                <h2 class="title-a">List of unsold products</h2>
               </div>
-              <div class="title-link">
-                <a
-									href="${pageContext.request.contextPath }/customer/view/auction/happenning">All Property
-                  <span class="bi bi-chevron-right"></span>
-                </a>
+              
+            </div>
+          </div>
+        </div>
+
+        <div id="news-carousel" class="swiper">
+          <div class="swiper-wrapper">
+		                <c:forEach var="productunSold" items="${productOutputunSold }">
+
+            <div class="carousel-item-c swiper-slide">
+              <div class="card-box-b card-shadow news-box">
+                <div class="img-box-b">
+                  <img src="${pageContext.request.contextPath }/resources/assets/customer/img/post-2.jpg" alt="" class="img-b img-fluid">
+                </div>
+                <div class="card-overlay">
+                  <div class="card-header-b">
+                    <div class="card-category-b">
+                      <a href="#" class="category-b">${productunSold.category}</a>
+                    </div>
+                    <div class="card-title-b">
+                      <h2 class="title-2">
+                        <a href="blog-single.html">${productunSold.name}</a>
+                      </h2>
+                    </div>
+                    <div class="card-date">
+                      <span class="date-b">${productunSold.priceMin}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+           </c:forEach>
+          </div>
+        </div>
+
+        <div class="news-carousel-pagination carousel-pagination"></div>
+      </div>
+	    
+	          <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between">
+              <div class="title-box">
+                <h2 class="title-a">List of products sold</h2>
+              </div>            
             </div>
           </div>
         </div>
@@ -64,7 +68,7 @@
                         
           <div class="swiper-wrapper">
         
-		                <c:forEach var="auction" items="${auctions }">
+		                <c:forEach var="productSold" items="${productOutputSold }">
                       		
             <div class="carousel-item-b swiper-slide">
               <div class="card-box-a card-shadow">          
@@ -81,15 +85,18 @@
                   <div class="card-overlay-a-content">
                     <div class="card-header-a">
                       <h2 class="card-title-a">
-                          <br /> ${auction.fullname }
+                          <br /> ${productSold.name }
                       </h2>
                     </div>
                     <div class="card-body-a">
                       <div class="price-box d-flex">
-                        <span class="price-a">hourStart |  ${auction.hourStart }</span>
+                        <span class="price-a">Min Price: |  ${productSold.priceMin}</span>
+                      </div>
+                       <div class="price-box d-flex">
+                        <span class="price-a">Category: |  ${productSold.category}</span>
                       </div>
                       <a
-													href="${pageContext.request.contextPath }/customer/auction/detailAuction?id=${auction.id}"
+													href="${pageContext.request.contextPath }/customer/auction/detailAuction?id=${productSold.id}"
 													class="link-a">Click here to view
                         <span class="bi bi-chevron-right"></span>
                       </a>
@@ -104,23 +111,23 @@
 
       
 			</div>
+	    
+	    
+	    
+	    
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="title-wrap d-flex justify-content-between">
               <div class="title-box">
-                <h2 class="title-a">List Product</h2>
+                <h2 class="title-a">Product list waiting for approval</h2>
               </div>
-              <div class="title-link">
-                <a href="agents-grid.html">All Agents
-                  <span class="bi bi-chevron-right"></span>
-                </a>
-              </div>
+              
             </div>
           </div>
         </div>
         <div class="row">
-        <c:forEach var="product" items="${productlist }">
+        <c:forEach var="product" items="${productlistAccept }">
           <div class="col-md-4">
             <div class="card-box-d">
               <div class="card-img-d">
@@ -170,7 +177,6 @@
         </c:forEach> 
         </div>
       </div>
-
-    </section>
-    </jsp:attribute>
+		</section>
+	</jsp:attribute>
 </mt:layout>

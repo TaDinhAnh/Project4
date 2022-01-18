@@ -18,43 +18,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script>
-	$(function() {
-		$("#datepicker").datepicker({
-			dateFormat : 'dd/mm/yy'
-		}).val();
-	});
-	$(document).ready(function() {
-		$("#register").submit(function(e) {
-			var fullname = $("#fullname").val();
-			var gmail = $("#gmail").val();
-			var pass = $("#pass").val();
-			var rePass = $("#rePass").val();
-			var birthday = $("#birthday").val();
-			var role = $("#role").val();
-			var phone = $("#phone").val();
-			if (pass != rePass) {
-				alert("Pass and Repeat your password not match");
-			}
-			 
-			$.ajax({
-				type : "POST",
-			     data: {
-		            	fullname: fullname,
-		            	gmail: gmail,
-		            	pass: pass,
-		            	rePass: rePass,
-		            	birthday: birthday,
-		            	role: role,
-		            	phone: phone,
-		            },
-				  url: '${pageContext.request.contextPath }/customer/account/register',
-		              
-			});
 
-		})
-	});
-</script>
 
 </head>
 <body>
@@ -99,11 +63,8 @@
 										<s:errors path="password" style="color:red"></s:errors>
 									</div>
 									<div class="col-md-6 mb-4">
-
-
 										<input type="password" class="form-control"
 											placeholder="Repeat your password" id="rePass" />
-
 									</div>
 								</div>
 								<div class="row">
@@ -143,11 +104,12 @@
 		src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/register.js"></script>
-
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			<script
+		src="${pageContext.request.contextPath }/resources/assets/customer/js/register.js"></script>
 
 </body>
 </html>

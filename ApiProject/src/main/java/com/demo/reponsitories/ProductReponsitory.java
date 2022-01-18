@@ -17,18 +17,33 @@ public interface ProductReponsitory extends CrudRepository<Product, Integer> {
 			+ "where  isDelete = 0 and isAccept = 1 and status = 1  order by id desc ")
 	public List<ProductOutput> getListProductByClient();
 
-	@Query(value="select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
 			+ "description, status, isAccept) from Product where name like %:name% and isDelete = 0 "
 			+ "and isAccept = 1 and status = 1 order by id desc")
 	public List<ProductOutput> getListProduct(@Param("name") String name);
-	
-	
-	@Query(value="select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
+
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
 			+ "description, status, isAccept) from Product where category.id =:categoryid order by id desc")
 	public List<ProductOutput> getProductByIdCategory(@Param("categoryid") int categoryId);
-	
+
 	@Query(value = "select * from Product "
 			+ "where  isDelete = 0 and isAccept = 1 and status = 1  order by id desc LIMIT 3", nativeQuery = true)
 	public List<Product> getListLimit();
+
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
+			+ "description, status, isAccept) from Product where vendorId = :vendorId and isDelete = 0 "
+			+ "and isAccept = 1 and status = 0 order by id desc")
+	public List<ProductOutput> getListProductSold(@Param("vendorId") int vendorId);
+
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
+			+ "description, status, isAccept) from Product where vendorId = :vendorId and isDelete = 0 "
+			+ "and isAccept = 1 and status = 1 order by id desc")
+	public List<ProductOutput> getListProductUnsold(@Param("vendorId") int vendorId);
+
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
+			+ "description, status, isAccept) from Product where vendorId = :vendorId and isDelete = 0 "
+			+ "and isAccept = 0 and status = 0 order by id desc")
+	public List<ProductOutput> getListProductAccept(@Param("vendorId") int vendorId);
+
 
 }

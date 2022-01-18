@@ -98,5 +98,42 @@ public class ProductController {
 		}
 		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "sold/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductOutput>> getListProductSold(@PathVariable("id") int vendorId) {
+		List<ProductOutput> productOutputs = productService.getListProductSold(vendorId);
+		if (vendorId <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		if (productOutputs == null || productOutputs.size() <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "unSold/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductOutput>> getListProductUnsold(@PathVariable("id") int vendorId) {
+		List<ProductOutput> productOutputs = productService.getListProductUnsold(vendorId);
+		if (vendorId <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		if (productOutputs == null || productOutputs.size() <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "listAccept/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductOutput>> getListProductAccept(@PathVariable("id") int vendorId) {
+		List<ProductOutput> productOutputs = productService.getListProductAccept(vendorId);
+		if (vendorId <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		if (productOutputs == null || productOutputs.size() <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
+	}
+
 
 }

@@ -37,7 +37,7 @@ public class AuctionController {
 		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
 			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<AuctionOutput>>(auctionService.getListAuctionById(idVendor), HttpStatus.OK);
+		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
