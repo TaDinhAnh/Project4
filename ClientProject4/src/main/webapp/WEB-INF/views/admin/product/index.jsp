@@ -26,6 +26,8 @@
                       <th
 											class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
                       <th
+											class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">IsDelete</th>
+                      <th
 											class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Accept</th>
                       <th></th>
                     </tr>
@@ -54,20 +56,23 @@
                       <td>
                         <span class="text-xs font-weight-bold">${item.status }</span>
                       </td>
+                      <td class="align-middle text-center">
+                        <span class="text-xs font-weight-bold">${item.isDelete }</span>
+                      </td>
                       <td>
-                        <c:if test="${!item.isAccept }">
-                        
-                        <a href="${pageContext.request.contextPath }/admin/product/accpet/${item.id}"
-														class="text-secondary font-weight-bold text-xs">
-                    	<span class="badge badge-sm bg-gradient-success">Accept</span>
-                         
-                        </a>
+                        <c:if test="${!item.isAccept && !item.isDelete}">
+                    	<span class="badge badge-sm bg-gradient-success">UnAccept</span>
                         </c:if>
                          </td>
                       <td class="align-middle">
+                      <a
+												href="${pageContext.request.contextPath }/admin/product/detail/${item.id}"
+												class="text-secondary font-weight-bold text-xs">
                         <button class="btn btn-link text-secondary mb-0">
                           <i class="fa fa-ellipsis-v text-xs"></i>
                         </button>
+                        
+                        </a>
                       </td>
                     </tr>
                     </c:forEach>

@@ -4,7 +4,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.demo.Dtos.Input.ProductInput;
+import com.demo.Dtos.Input.SendMailInput;
+import com.demo.Dtos.Output.AccountOutput;
+import com.demo.Dtos.Output.OrdersOutput;
 import com.demo.Dtos.Output.ProductOutput;
+import com.demo.common.MailHelper;
 import com.demo.models.Account;
 import com.demo.models.Category;
 import com.demo.models.Product;
@@ -18,6 +22,9 @@ public class ProductService implements IProductService {
 	
 	@Autowired
 	private IAccountService accountService;
+	
+	@Autowired
+	private IOrdersService ordersService;
 	
 	@Autowired
 	private ICategoryService categoryService;
@@ -87,6 +94,30 @@ public class ProductService implements IProductService {
 	@Override
 	public List<ProductOutput> findAllProduct() {	
 		return productReponsitory.findAllProduct();
+	}
+
+	@Override
+	public ProductOutput find(int id) {
+		ProductOutput productOutput = productReponsitory.find(id);
+		if(productOutput == null) {
+			return null;
+		}
+		AccountOutput account = accountService.find(productOutput.getVendorId());
+		OrdersOutput ordersOutput = ordersService.find(id);
+		productOutput.setOrders(ordersOutput);
+		productOutput.setVendor(account);
+		return productOutput;
+	}
+
+	@Override
+	public boolean cancelProduct(int id, SendMailInput sendMailInput) {
+		Product product = findById(id);
+		if(product == null)
+			return false;
+		if(!MailHelper.sendMail(sendMailInput.getToEmail(), sendMailInput.getContent(), sendMailInput.getSubject()))
+			return false;
+		product.setIsDelete(true);
+		return productReponsitory.save(product) == null;
 	}
 
 }

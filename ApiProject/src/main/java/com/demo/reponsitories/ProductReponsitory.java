@@ -16,12 +16,16 @@ public interface ProductReponsitory extends CrudRepository<Product, Integer> {
 			+ "priceMin, image, description, status, isAccept) from Product "
 			+ "where  isDelete = 0 and isAccept = 1 and status = 1  order by id desc ")
 	public List<ProductOutput> getListProductByClient();
-	
+
 	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name , "
-			+ "priceMin, image, description, status, isAccept) from Product  order by id desc ")
+			+ "priceMin, image, description, status, isAccept, vendorId) from Product " + "where  id = :id ")
+	public ProductOutput find(@Param("id") int id);
+
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name , "
+			+ "priceMin, image, description, status, isAccept, isDelete) from Product  order by id desc ")
 	public List<ProductOutput> findAllProduct();
 
-	@Query(value="select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
 			+ "description, status, isAccept) from Product where name like %:name% and isDelete = 0 "
 			+ "and isAccept = 1 and status = 1 order by id desc")
 	public List<ProductOutput> getListProduct(@Param("name") String name);

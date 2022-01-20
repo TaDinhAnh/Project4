@@ -1,16 +1,6 @@
 package com.demo.Dtos.Output;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
-
 import com.demo.common.ERole;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.gson.annotations.SerializedName;
 
 public class AccountOutput {
@@ -30,7 +20,7 @@ public class AccountOutput {
 	private ERole role;
 	@SerializedName("isDelete")
 	private Boolean isDelete;
-	
+
 	public AccountOutput(int id, String gmail, String fullname, String phone, Date dob, String image, ERole role,
 			Boolean isDelete) {
 		super();

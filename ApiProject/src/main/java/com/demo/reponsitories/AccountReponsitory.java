@@ -15,5 +15,7 @@ public interface AccountReponsitory extends CrudRepository<Account, Integer> {
 
 	@Query("from Account where gmail= :gmail")
 	public Account find(@Param("gmail") String gmail);
-	
+
+	@Query("select new com.demo.Dtos.Output.AccountOutput(id, gmail, fullname, phone,  dob, image, role, isDelete ) from Account where id = :id")
+	public AccountOutput find(@Param("id") int id);
 }
