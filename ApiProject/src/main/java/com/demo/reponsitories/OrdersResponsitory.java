@@ -1,5 +1,5 @@
 package com.demo.reponsitories;
-
+import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -13,5 +13,8 @@ public interface OrdersResponsitory extends CrudRepository<Orders, Integer> {
 			+ "status, account.id, account.gmail, account.fullname, account.image, account.phone) from Orders "
 			+ "where  proId = :id and status != 0")
 	public OrdersOutput find(@Param("id") int id);
-
+	
+	@Query(value = "select * from Orders "
+			+ "where  status != 0 order by id desc limit 0, :limit", nativeQuery = true)
+	public List<Orders> getListLimit(@Param("limit") int limit);
 }

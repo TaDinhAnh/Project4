@@ -1,5 +1,6 @@
 package com.demo.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,13 @@ public class FeedbackService implements IFeedbackService {
 	@Override
 	public List<FeedBackOutput> getAll() {
 		return feedbackReponsitory.getAll();
+	}
+
+	@Override
+	public List<FeedBackOutput> getlistLimit() {
+		List<FeedBackOutput> feedBackInputs = feedbackReponsitory.getListLimit();
+		List<FeedBackOutput> rs = new ArrayList<FeedBackOutput>(feedBackInputs.subList(0, 4));
+		return rs;
 	}
 
 }

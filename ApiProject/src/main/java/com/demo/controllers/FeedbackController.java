@@ -1,5 +1,7 @@
 package com.demo.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.demo.Dtos.Input.FeedBackInput;
+import com.demo.Dtos.Output.FeedBackOutput;
 import com.demo.services.IFeedbackService;
 import com.demo.validators.Validate;
 
@@ -22,16 +25,23 @@ public class FeedbackController {
 	private IFeedbackService feedbackService;
 	@Autowired
 	private Validate validate;
-	@RequestMapping( method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
+
+	@RequestMapping(method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> createFeedback(@RequestBody @Valid FeedBackInput feedbackInput, BindingResult bind) {
 		validate.validate(feedbackInput, bind);
-		if(bind.hasErrors()) {
+		if (bind.hasErrors()) {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
 		}
-		if(feedbackService.createFeedBack(feedbackInput)) {
+		if (feedbackService.createFeedBack(feedbackInput)) {
 			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-		}else {		
+		} else {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
 		}
+	}
+
+	@RequestMapping(method = RequestMethod.GET, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<FeedBackOutput>> getLimit() {
+		List<FeedBackOutput> rs = feedbackService.getlistLimit();
+		return new ResponseEntity<List<FeedBackOutput>>(rs, HttpStatus.OK);
 	}
 }

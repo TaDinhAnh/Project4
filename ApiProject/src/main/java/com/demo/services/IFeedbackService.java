@@ -1,4 +1,5 @@
 package com.demo.services;
+
 import org.springframework.stereotype.Service;
 import java.util.List;
 import com.demo.Dtos.Input.FeedBackInput;
@@ -10,7 +11,8 @@ public interface IFeedbackService {
 
 	List<FeedBackOutput> getlistFeedback();
 
-	List<FeedBackOutput> getAll();
-	
-}
+	List<FeedBackOutput> getlistLimit();
 
+	List<FeedBackOutput> getAll();
+
+}
