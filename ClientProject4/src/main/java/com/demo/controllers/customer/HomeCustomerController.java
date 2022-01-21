@@ -24,17 +24,11 @@ public class HomeCustomerController {
 			ProductAPIService productAPIService = APIClient.getClient().create(ProductAPIService.class);
 			List<ProductOutput> productOutputs = productAPIService.getListLimit().execute().body();
 			modelMap.put("products", productOutputs);
-			
-			
-
 			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
 			List<AuctionOutput> auctionOutputs = auctionAPIService.getLimitAuctionHappening().execute().body();
-			modelMap.put("auctions", auctionOutputs);
-			
+			modelMap.put("auctions", auctionOutputs);			
 			List<ProductOutput> outputs = productAPIService.findList().execute().body();
 			modelMap.put("productlist", outputs);
-
-
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

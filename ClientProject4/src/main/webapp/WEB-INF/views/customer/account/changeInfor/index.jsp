@@ -68,7 +68,6 @@
 											var newpass = $("#newpass").val();
 											var repeatpass = $("#repeatpass")
 													.val();
-											alert(id);
 											if (oldpass === "") {
 												alert("Please enter old password!");
 												return;

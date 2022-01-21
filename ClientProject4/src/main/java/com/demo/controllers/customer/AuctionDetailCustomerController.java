@@ -44,11 +44,9 @@ public class AuctionDetailCustomerController {
 			modelMap.put("auctionhistorys", auctionHistoryOutput);		
 			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
 			AuctionOutput auctionOutput = auctionAPIService.search(id).execute().body();
-			modelMap.put("auction", auctionOutput);
-			
+			modelMap.put("auction", auctionOutput);			
 			modelMap.put("aucHis", new AuctionHistoryInput());
-			return "customer/auction/detailAuction/index";
-			
+			return "customer/auction/detailAuction/index";			
 		} catch (Exception e) {
 			return "customer/error/404page";
 		}

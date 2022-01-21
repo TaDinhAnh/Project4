@@ -82,8 +82,7 @@ public class AccountCustomerController {
 	}
 
 	@RequestMapping(value = { "changeInfor" }, method = RequestMethod.GET)
-	public String changeAccount(ModelMap map) {
-			
+	public String changeAccount(ModelMap map) {			
 			try {
 				AccountAPIService accountAPIService = APIClient.getClient().create(AccountAPIService.class);
 				Response<AccountOutput> response = accountAPIService.getAccount(2).execute();

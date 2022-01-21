@@ -231,7 +231,7 @@
 			</div>
 			<div class="nav-item;" style="padding-right: 10px">
 				<a class=""
-					href="${pageContext.request.contextPath }/customer/account/register">Sign
+					href="${pageContext.request.contextPath }/customer/account/signIn">Sign
 					In/Register</a>
 			</div>
 			<div class="nav-item;"
@@ -373,8 +373,6 @@
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
-	<%-- 	<script --%>
-	<%-- 		src="${pageContext.request.contextPath }/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --%>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
 	<script
@@ -384,19 +382,10 @@
 
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/jquery-3.6.0.min.js"></script>
-
-	<%-- 	<script --%>
-	<%-- 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --%>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/core/popper.min.js"></script>
-	<%-- 	<script --%>
-	<%-- 		src="${pageContext.request.contextPath }/resources/assets/customer/js/core/bootstrap.min.js"></script> --%>
-	<%-- 	<script --%>
-	<%-- 		src="${pageContext.request.contextPath }/resources/assets/customer/js/plugins/perfect-scrollbar.min.js"></script> --%>
-	<%-- 	<script --%>
-	<%-- 		src="${pageContext.request.contextPath }/resources/assets/customer/js/plugins/smooth-scrollbar.min.js"></script> --%>
 	<script>
 		var win = navigator.platform.indexOf('Win') > -1;
 		if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -410,15 +399,7 @@
 
 	<!-- modal -->
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	<%-- 	<script async defer src="https://buttons.github.io/buttons.js"></script> --%>
-
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/bootstrap.min.js"></script>
-
-
-	<%-- 	<script --%>
-	<%-- 		src="${pageContext.request.contextPath }/resources/assets/customer/js/jquery.min.js"></script> --%>
-	<%-- 	<script --%>
-	<%-- 		src="${pageContext.request.contextPath }/resources/assets/customer/js/popper.js"></script> --%>
 </body>
 </html>
