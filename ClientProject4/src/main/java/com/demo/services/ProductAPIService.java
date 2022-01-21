@@ -18,7 +18,7 @@ public interface ProductAPIService {
 	@GET("product")
 	Call<List<ProductOutput>> findList();
 
-	@GET("product/searchbyid/{id}")
+	@GET("product/{id}")
 	Call<ProductOutput> findByid(@Path("id") int id);
 
 	@POST("product")
@@ -44,5 +44,8 @@ public interface ProductAPIService {
 
 	@GET("product/listAccept/{id}")
 	Call<List<ProductOutput>> getListProductAccept(@Path("id") int id);
+	
+	@GET("product/listNotAccept/{id}")
+	Call<List<ProductOutput>> getListProductNotAccept(@Path("id") int id);
 
 }

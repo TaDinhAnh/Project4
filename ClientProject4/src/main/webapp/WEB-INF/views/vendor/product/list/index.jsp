@@ -4,10 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <mt:layout title="">
-	<jsp:attribute name="content">
-	
-	    <section class="section-property section-t8">
-	    
+	<jsp:attribute name="content">	
+	    <section class="section-property section-t8">	    
 	     <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -19,20 +17,23 @@
             </div>
           </div>
         </div>
-
         <div id="news-carousel" class="swiper">
           <div class="swiper-wrapper">
-		                <c:forEach var="productunSold" items="${productOutputunSold }">
-
+		                <c:forEach var="productunSold"
+							items="${productOutputunSold }">
             <div class="carousel-item-c swiper-slide">
               <div class="card-box-b card-shadow news-box">
                 <div class="img-box-b">
-                  <img src="${pageContext.request.contextPath }/resources/assets/customer/img/post-2.jpg" alt="" class="img-b img-fluid">
+                  <img
+											src="${pageContext.request.contextPath }/resources/assets/customer/img/post-2.jpg"
+											alt="" class="img-b img-fluid">
                 </div>
                 <div class="card-overlay">
                   <div class="card-header-b">
                     <div class="card-category-b">
-                      <a href="#" class="category-b">${productunSold.category}</a>
+                      <a
+													href="${pageContext.request.contextPath }/vendor/product/detail?id=${productunSold.id}"
+													class="category-b">${productunSold.category}</a>
                     </div>
                     <div class="card-title-b">
                       <h2 class="title-2">
@@ -49,10 +50,51 @@
            </c:forEach>
           </div>
         </div>
-
         <div class="news-carousel-pagination carousel-pagination"></div>
-      </div>
-	    
+      </div>	
+      
+      <div class="container">
+       <div class="row">
+          <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between">
+              <div class="title-box">
+                <h2 class="title-a">List is agreed</h2>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="row">
+        <c:forEach var="productaccept" items="${productlistAccept }">     
+          <div class="col-md-4">
+            <div class="card-box-b card-shadow news-box">
+              <div class="img-box-b">
+                <img
+										src="${pageContext.request.contextPath }/resources/assets/customer/img/post-4.jpg"
+										alt="" class="img-b img-fluid">
+              </div>
+              <div class="card-overlay">
+                <div class="card-header-b">
+                  <div class="card-category-b">
+                    <a href="${pageContext.request.contextPath }/vendor/product/detail?id=${productaccept.id}" class="category-b">${productaccept.category }</a>
+                  </div>
+                  <div class="card-title-b">
+                    <h2 class="title-2">
+                      <a href="${pageContext.request.contextPath }/vendor/product/detail?id=${productaccept.id}">${productaccept.name }
+                        </a>
+                    </h2>
+                  </div>
+                  <div class="card-date">
+                    <span class="date-b">${productaccept.description }</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        </c:forEach>
+          </div>  
+                    
+      </div>    
 	          <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -62,13 +104,11 @@
               </div>            
             </div>
           </div>
-        </div>
-        
-        <div id="property-carousel" class="swiper">
-                        
-          <div class="swiper-wrapper">
-        
-		                <c:forEach var="productSold" items="${productOutputSold }">
+        </div>      
+        <div id="property-carousel" class="swiper">                      
+          <div class="swiper-wrapper">       
+		                <c:forEach var="productSold"
+							items="${productOutputSold }">
                       		
             <div class="carousel-item-b swiper-slide">
               <div class="card-box-a card-shadow">          
@@ -77,9 +117,7 @@
                   <img
 												src="${pageContext.request.contextPath }/resources/assets/customer/img/testimonial-1.jpg"
 												alt="" class="img-a img-fluid">
-												                </div>
-		
-												
+												                </div>			
 						</div>			
                 <div class="card-overlay">
                   <div class="card-overlay-a-content">
@@ -96,7 +134,7 @@
                         <span class="price-a">Category: |  ${productSold.category}</span>
                       </div>
                       <a
-													href="${pageContext.request.contextPath }/customer/auction/detailAuction?id=${productSold.id}"
+													href="${pageContext.request.contextPath }/vendor/product/detail?id=${productSold.id}"
 													class="link-a">Click here to view
                         <span class="bi bi-chevron-right"></span>
                       </a>
@@ -107,14 +145,8 @@
             </div>                                                                             </c:forEach>
              </div>           
         </div>
-        <div class="propery-carousel-pagination carousel-pagination"></div>
-
-      
-			</div>
-	    
-	    
-	    
-	    
+        <div class="propery-carousel-pagination carousel-pagination"></div>   
+			</div> 	    
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -127,7 +159,7 @@
           </div>
         </div>
         <div class="row">
-        <c:forEach var="product" items="${productlistAccept }">
+        <c:forEach var="product" items="${productOutputNotAccept }">
           <div class="col-md-4">
             <div class="card-box-d">
               <div class="card-img-d">
@@ -162,12 +194,11 @@
                     <ul class="list-inline">
                       <li class="list-inline-item">
                         <a
-													href="${pageContext.request.contextPath }/customer/view/contact?id=${product.id}"
+													href="${pageContext.request.contextPath }/vendor/product/detail?id=${product.id}"
 													class="link-one">
                           <i class="bi bi-facebook" aria-hidden="true"></i>
                         </a>
-                      </li>
-                  
+                      </li>                 
                     </ul>
                   </div>
                 </div>

@@ -14,6 +14,8 @@ public interface IProductService {
 	List<ProductOutput> getListProduct(String name);
 
 	Product findById(int id);
+	
+	ProductOutput find(int id);
 
 	boolean acceptProduct(int id);
 
@@ -30,4 +32,6 @@ public interface IProductService {
 	List<ProductOutput> getListProductUnsold(int vendorId);
 
 	List<ProductOutput> getListProductSold(int vendorId);
+	
+	List<ProductOutput> getListProductNotAccept(int vendorId);
 }

@@ -89,7 +89,7 @@ public class ProductController {
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 
 	}
-	
+
 	@RequestMapping(value = "limit", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductOutput>> getListLimit() {
 		List<ProductOutput> productOutputs = productService.getListLimit();
@@ -133,6 +133,31 @@ public class ProductController {
 			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(value = "listNotAccept/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductOutput>> getListProductNotAccept(@PathVariable("id") int vendorId) {
+		List<ProductOutput> productOutputs = productService.getListProductNotAccept(vendorId);
+		if (vendorId <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		if (productOutputs == null || productOutputs.size() <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET,produces = {MimeTypeUtils.APPLICATION_JSON_VALUE, MimeTypeUtils.IMAGE_JPEG_VALUE})
+	public ResponseEntity<ProductOutput> findById(@PathVariable int id) {
+		if (id <= 0) {
+			return new ResponseEntity<ProductOutput>(HttpStatus.BAD_REQUEST);
+		}
+		ProductOutput product = productService.find(id);
+		if (product == null) {
+			return new ResponseEntity<ProductOutput>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<ProductOutput>(product, HttpStatus.OK);
 	}
 
 

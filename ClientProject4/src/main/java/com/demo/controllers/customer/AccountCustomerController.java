@@ -1,5 +1,6 @@
 package com.demo.controllers.customer;
 
+import java.io.IOException;
 
 import javax.validation.Valid;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.Dtos.Input.AccountInput;
+import com.demo.Dtos.Output.AccountOutput;
 import com.demo.services.APIClient;
 import com.demo.services.AccountAPIService;
 import com.demo.validators.Validate;
@@ -50,7 +52,6 @@ public class AccountCustomerController {
 				map.put("gmailExists", checkGmail);
 				return "redirect:/customer/account/register";
 			}
-			accountInput.setImage(accountInput.getImage());
 			Response<Boolean> response = accountAPIService.create(accountInput).execute();
 			int statusCode = response.code();
 			switch (statusCode) {
@@ -81,7 +82,24 @@ public class AccountCustomerController {
 	}
 
 	@RequestMapping(value = { "changeInfor" }, method = RequestMethod.GET)
-	public String changeAccount() {
-		return "customer/account/changeInfor/index";
+	public String changeAccount(ModelMap map) {
+			
+			try {
+				AccountAPIService accountAPIService = APIClient.getClient().create(AccountAPIService.class);
+				Response<AccountOutput> response = accountAPIService.getAccount(2).execute();
+				int statusCode = response.code();
+				switch (statusCode) {
+				case 400:
+					return "error/400page";
+				default:
+					map.put("account", response.body());
+					return "customer/account/changeInfor/index";
+				}
+			} catch (IOException e) {
+				return "customer/account/signIn/index";
+			}
+		
+
+
 	}
 }

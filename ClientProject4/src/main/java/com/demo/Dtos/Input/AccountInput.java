@@ -3,6 +3,7 @@ package com.demo.Dtos.Input;
 import java.util.Date;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,13 +11,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.demo.common.ERole;
 
 public class AccountInput {
-	@Email(regexp="^[a-zA-Z][\\w-]+@([\\w]+\\.[\\w]+|[\\w]+\\.[\\w]{2,}\\.[\\w]{2,})$", message="Invalid email !")
+	@Email(regexp = "^[a-zA-Z][\\w-]+@([\\w]+\\.[\\w]+|[\\w]+\\.[\\w]{2,}\\.[\\w]{2,})$", message = "Invalid email !")
 	private String gmail;
-	@Pattern(regexp ="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})", message = "Your password must be 1 uppercase, 1 lowercase and 1 special character and and length from 6 characters ")
+	@NotEmpty(message = "Enter password!")
 	private String password;
 	@Pattern(regexp = "^[a-zA-Z\\s*]+{3,250}$", message = "Enter fullName!")
 	private String fullname;
-	@Pattern(regexp  = "^[0-9]{10}$", message = " Your phone must be phone number!")
+	@Pattern(regexp = "^[0-9]{10}$", message = " Your phone must be phone number!")
 	private String phone;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dob;

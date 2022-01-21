@@ -36,8 +36,8 @@ public class Auctionproduct implements java.io.Serializable {
 
 	@EmbeddedId
 
-	@AttributeOverrides({ @AttributeOverride(name = "proId", column = @Column(name = "ProId", nullable = false)),
-			@AttributeOverride(name = "auctionId", column = @Column(name = "AuctionId", nullable = false)) })
+	@AttributeOverrides({ @AttributeOverride(name = "proId", column = @Column(name = "proid", nullable = false)),
+			@AttributeOverride(name = "auctionId", column = @Column(name = "auctionid", nullable = false)) })
 	public AuctionproductId getId() {
 		return this.id;
 	}
@@ -47,7 +47,7 @@ public class Auctionproduct implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "AuctionId", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "auctionid", nullable = false, insertable = false, updatable = false)
 	public Auction getAuction() {
 		return this.auction;
 	}
@@ -57,7 +57,7 @@ public class Auctionproduct implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ProId", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "proid", nullable = false, insertable = false, updatable = false)
 	public Product getProduct() {
 		return this.product;
 	}

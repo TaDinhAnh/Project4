@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
-
 <mt:layout title="">
 	<jsp:attribute name="content">
 	  <section class="intro-single">
@@ -45,8 +44,7 @@
                   <strong>Date: </strong>
                   <span class="color-text-a">
                  <d:formatDate value="${getAuction.eventdate }"
-											var="dated" pattern="dd/MM/yyy" /> ${dated }            
-                 
+											var="dated" pattern="dd/MM/yyy" /> ${dated }                          
                   </span>
                 </li>
               </ul>
@@ -66,7 +64,6 @@
                 Auction hour End at : ${getAuction.hourEnd}
               </p>
             </div>
-
           </div>
             <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
               <div class="post-share">
@@ -78,11 +75,8 @@
                  <div class="col-lg-8">
                   <h1 class="title-single" style="color: red">${maxPriceATM } $</h1>
                  </div>
-                 </div>
-                
-             
-            </div>
-               
+                 </div>                     
+            </div>             
               </div>
             </div>
           <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
@@ -105,8 +99,7 @@
                     <span>${autionhistory.time }</span>
                     <p class="comment-description">
                       ${autionhistory.price } <strong>$</strong> 
-                    </p>
-                  
+                    </p>                
                   </div>
                 </li>                          
               </ul>                         			            

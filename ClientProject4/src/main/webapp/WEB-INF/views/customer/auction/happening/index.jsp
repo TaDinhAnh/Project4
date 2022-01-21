@@ -16,7 +16,6 @@
             </div>
           </div>
         </div>
-
          <div class="swiper">
           <div class="swiper-wrapper">
 
@@ -57,7 +56,6 @@
         <div class="testimonial-carousel-pagination carousel-pagination"></div>
       </div>
     </div>
-		</section>
-	
+		</section>	
 	</jsp:attribute>
 </mt:layout>

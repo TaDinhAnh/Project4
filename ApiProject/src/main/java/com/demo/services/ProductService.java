@@ -122,4 +122,14 @@ public class ProductService implements IProductService {
 		return productReponsitory.getListProductSold(vendorId);
 	}
 
+	@Override
+	public ProductOutput find(int id) {
+		return productReponsitory.find(id);
+	}
+
+	@Override
+	public List<ProductOutput> getListProductNotAccept(int vendorId) {
+		return productReponsitory.getListProductNotAccept(vendorId);
+	}
+
 }

@@ -45,13 +45,23 @@ public class AccountService implements IAccountService {
 		return new AccountOutput(account.getId(),account.getGmail(), account.getFullname(), account.getPhone(), account.getDob(),
 				account.getImage(), account.getRole());
 	}
-
+	
+	@Override
+	public AccountOutput changePassword(int id, AccountInput accountInput) {
+		Account account = findById(id);
+		if(account == null) {
+			return null;
+		}	
+		account.setPassword(accountInput.getPassword());
+		account = accountResponsitory.save(account);
+		return new AccountOutput(account.getId(),account.getGmail(), account.getFullname(), account.getPhone(), account.getDob(),
+				account.getImage(), account.getRole());
+	}
+	
 	@Override
 	public List<AccountOutput> getListAccount() {
 			return accountResponsitory.getListAccount();
 	}
-
-
 
 	@Override
 	public Account findById(int id) {
@@ -71,4 +81,11 @@ public class AccountService implements IAccountService {
 	public boolean checkGmail(String gmail) {
 		return accountResponsitory.find(gmail) !=null;
 	}
+
+	@Override
+	public AccountOutput getAccount(int accountId) {
+		return accountResponsitory.getAccount(accountId);
+	}
+
+	
 }

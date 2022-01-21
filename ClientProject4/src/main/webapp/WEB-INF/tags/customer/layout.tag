@@ -11,9 +11,12 @@
 <title>EstateAgency Bootstrap Template - Index</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath }/resources/assets/customer/img/favicon.png"
-	rel="icon">
+	href="${pageContext.request.contextPath }/resources/assets/vendor//bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath }/resources/assets/customer/img/apple-touch-icon.png"
 	rel="apple-touch-icon">
@@ -21,21 +24,26 @@
 	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath }/resources/assets/customer/vendor/animate.css/animate.min.css"
+	href="${pageContext.request.contextPath }/resources/assets/vendor/animate.css/animate.min.css"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath }/resources/assets/customer/vendor/bootstrap/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath }/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath }/resources/assets/customer/vendor/bootstrap-icons/bootstrap-icons.css"
+	href="${pageContext.request.contextPath }/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath }/resources/assets/customer/vendor/swiper/swiper-bundle.min.css"
+	href="${pageContext.request.contextPath }/resources/assets/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath }/resources/assets/customer/css/style.css"
 	rel="stylesheet">
-
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/assets/customer/css/modalChangeInfor.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/assets/customer/css/ionicons.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/assets/customer/css/flaticon.css">
 <script>
 	var myVar = setInterval(myTimer, 1000);
 	var my = setInterval(myDate, 1000);
@@ -49,12 +57,11 @@
 		var day = date.toDateString();
 		$("#day").html(day);
 	}
-	function datepicker() {
-		$("#datepicker").datepicker();
-	};
+	// 	function datepicker() {
+	// 		$("#datepicker").datepicker();
+	// 	};
 </script>
 </head>
-
 <body>
 	<div class="click-closed"></div>
 	<div class="box-collapse">
@@ -187,24 +194,21 @@
 								href="${pageContext.request.contextPath }/customer/view/auction/happened">The
 								auction is over.</a>
 						</div></li>
-
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Vendor</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/auction/vendor">List Auctions By Vendor
-								</a> 
-								<a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/pageBlogSingle"">Product
-								</a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/view/auction/vendor">List
+								Auctions By Vendor </a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/vendor/product/index">Product
+							</a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/pageAgentsGrid"">Agents
 								Grid</a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/pageAgentSingle"">Agent
 								Single</a>
 						</div></li>
-
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -223,13 +227,12 @@
 					<li class="nav-item"><a class="nav-link "
 						href="${pageContext.request.contextPath }/customer/view/contact"">Contact</a>
 					</li>
-
 				</ul>
 			</div>
 			<div class="nav-item;" style="padding-right: 10px">
-				<button data-toggle="modal"
-					style="border: none; background-color: #fff"
-					data-target=".log-sign">Sign In/Register</button>
+				<a class=""
+					href="${pageContext.request.contextPath }/customer/account/register">Sign
+					In/Register</a>
 			</div>
 			<div class="nav-item;"
 				style="color: #6c757d; font-size: 16px; padding-right: 3px">
@@ -335,8 +338,6 @@
 								href="${pageContext.request.contextPath }/customer/blog">Blog</a></li>
 							<li class="list-inline-item"><a
 								href="${pageContext.request.contextPath }/customer/contact">Contact</a></li>
-
-
 						</ul>
 					</nav>
 					<div class="socials-a">
@@ -372,32 +373,30 @@
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
+	<%-- 	<script --%>
+	<%-- 		src="${pageContext.request.contextPath }/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --%>
 	<script
-		src="${pageContext.request.contextPath }/resources/assets/customer/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		src="${pageContext.request.contextPath }/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath }/resources/assets/customer/vendor/swiper/swiper-bundle.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/assets/customer/vendor/php-email-form/validate.js"></script>
+		src="${pageContext.request.contextPath }/resources/assets/vendor/php-email-form/validate.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/main.js"></script>
 
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/jquery-3.6.0.min.js"></script>
 
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<%-- 	<script --%>
+	<%-- 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --%>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/core/popper.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/assets/customer/js/core/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/assets/customer/js/plugins/perfect-scrollbar.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/assets/customer/js/plugins/smooth-scrollbar.min.js"></script>
+	<%-- 	<script --%>
+	<%-- 		src="${pageContext.request.contextPath }/resources/assets/customer/js/core/bootstrap.min.js"></script> --%>
+	<%-- 	<script --%>
+	<%-- 		src="${pageContext.request.contextPath }/resources/assets/customer/js/plugins/perfect-scrollbar.min.js"></script> --%>
+	<%-- 	<script --%>
+	<%-- 		src="${pageContext.request.contextPath }/resources/assets/customer/js/plugins/smooth-scrollbar.min.js"></script> --%>
 	<script>
 		var win = navigator.platform.indexOf('Win') > -1;
 		if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -408,13 +407,18 @@
 					options);
 		}
 	</script>
-	<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+	<!-- modal -->
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<%-- 	<script async defer src="https://buttons.github.io/buttons.js"></script> --%>
+
 	<script
-		src="${pageContext.request.contextPath }/resources/assets/customer/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		src="${pageContext.request.contextPath }/resources/assets/customer/js/bootstrap.min.js"></script>
 
-	
+
+	<%-- 	<script --%>
+	<%-- 		src="${pageContext.request.contextPath }/resources/assets/customer/js/jquery.min.js"></script> --%>
+	<%-- 	<script --%>
+	<%-- 		src="${pageContext.request.contextPath }/resources/assets/customer/js/popper.js"></script> --%>
 </body>
-
 </html>

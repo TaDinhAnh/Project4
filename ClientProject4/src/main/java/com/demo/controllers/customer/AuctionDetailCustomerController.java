@@ -25,28 +25,33 @@ import com.demo.services.AuctionHistoryAPIService;
 public class AuctionDetailCustomerController {
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
-	public String index(@RequestParam("id") int id, ModelMap modelMap, HttpSession session) throws IOException {
-		AuctionHistoryAPIService auctionHistoryAPIService = APIClient.getClient()
-				.create(AuctionHistoryAPIService.class);
-		List<AuctionHistoryOutput> auctionHistoryOutput = auctionHistoryAPIService.getAuctionHistoryById(id).execute()
-				.body();
-		var count = auctionHistoryAPIService.countAuctionHistoryById(id).execute().body();
-		modelMap.put("count", count);
-		var maxpriceATM = auctionHistoryAPIService.maxPricetAuctionHistoryById(id).execute().body();
-		modelMap.put("maxPriceATM",  maxpriceATM);
-		for(int i =0; i <auctionHistoryOutput.size(); i++) {
-			modelMap.put("getAuction", auctionHistoryOutput.get(1));
-			modelMap.put("vendor", auctionHistoryOutput.get(1).getAccountname());
-				session.setAttribute("productId", auctionHistoryOutput.get(1).getProductOutput().getId());
-		}	
-		
-		modelMap.put("auctionhistorys", auctionHistoryOutput);		
-		AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
-		AuctionOutput auctionOutput = auctionAPIService.search(id).execute().body();
-		modelMap.put("auction", auctionOutput);
-		
-		modelMap.put("aucHis", new AuctionHistoryInput());
-		return "customer/auction/detailAuction/index";
+	public String index(@RequestParam("id") int id, ModelMap modelMap, HttpSession session)   {
+		try {
+			AuctionHistoryAPIService auctionHistoryAPIService = APIClient.getClient()
+					.create(AuctionHistoryAPIService.class);
+			List<AuctionHistoryOutput> auctionHistoryOutput = auctionHistoryAPIService.getAuctionHistoryById(id).execute()
+					.body();
+			var count = auctionHistoryAPIService.countAuctionHistoryById(id).execute().body();
+			modelMap.put("count", count);
+			var maxpriceATM = auctionHistoryAPIService.maxPricetAuctionHistoryById(id).execute().body();
+			modelMap.put("maxPriceATM",  maxpriceATM);
+			for(int i =0; i <auctionHistoryOutput.size(); i++) {
+				modelMap.put("getAuction", auctionHistoryOutput.get(1));
+				modelMap.put("vendor", auctionHistoryOutput.get(1).getAccountname());
+					session.setAttribute("productId", auctionHistoryOutput.get(1).getProductOutput().getId());
+			}	
+			
+			modelMap.put("auctionhistorys", auctionHistoryOutput);		
+			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
+			AuctionOutput auctionOutput = auctionAPIService.search(id).execute().body();
+			modelMap.put("auction", auctionOutput);
+			
+			modelMap.put("aucHis", new AuctionHistoryInput());
+			return "customer/auction/detailAuction/index";
+			
+		} catch (Exception e) {
+			return "customer/error/404page";
+		}
 	}
 	
 	@RequestMapping(value = {"sendPrice" }, method = RequestMethod.POST)

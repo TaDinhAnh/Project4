@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>Not Found</h3>
+<h3>ERROR</h3>
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags/customer"%>
@@ -6,7 +5,6 @@
 <mt:layout title="">
 	<jsp:attribute name="content">
 	<div class="intro intro-carousel swiper position-relative">
-
 		<div class="swiper-wrapper">
 			      	  <c:forEach items="${products }" var="product">
 		
@@ -35,12 +33,9 @@
 					</div>
 				</div>
 			</div>
-					        </c:forEach>
-			
+					        </c:forEach>			
 		</div>
-		<div class="swiper-pagination"></div>
-		         
-		
+		<div class="swiper-pagination"></div>		        	
 	</div>
 	    <section class="section-property section-t8">
       <div class="container">
@@ -51,31 +46,23 @@
                 <h2 class="title-a">Latest Auctions</h2>
               </div>
               <div class="title-link">
-                <a
-									href="${pageContext.request.contextPath }/customer/view/auction/happenning">All Property
+                <a									href="${pageContext.request.contextPath }/customer/view/auction/happenning">All Property
                   <span class="bi bi-chevron-right"></span>
                 </a>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div id="property-carousel" class="swiper">
-                        
-          <div class="swiper-wrapper">
-        
-		                <c:forEach var="auction" items="${auctions }">
-                      		
+        </div>       
+        <div id="property-carousel" class="swiper">                    
+          <div class="swiper-wrapper">       
+		                <c:forEach var="auction" items="${auctions }">                     		
             <div class="carousel-item-b swiper-slide">
               <div class="card-box-a card-shadow">          
                <div>
                 <div class="img-box-a">
-                  <img
-												src="${pageContext.request.contextPath }/resources/assets/customer/img/testimonial-1.jpg"
+                  <img												src="${pageContext.request.contextPath }/resources/assets/customer/img/testimonial-1.jpg"
 												alt="" class="img-a img-fluid">
 												                </div>
-		
-												
 						</div>			
                 <div class="card-overlay">
                   <div class="card-overlay-a-content">
@@ -100,9 +87,7 @@
             </div>                                                                             </c:forEach>
              </div>           
         </div>
-        <div class="propery-carousel-pagination carousel-pagination"></div>
-
-      
+        <div class="propery-carousel-pagination carousel-pagination"></div>  
 			</div>
       <div class="container">
         <div class="row">
@@ -170,7 +155,6 @@
         </c:forEach> 
         </div>
       </div>
-
     </section>
     </jsp:attribute>
 </mt:layout>
