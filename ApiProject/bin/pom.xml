@@ -6,6 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
+<<<<<<< HEAD
 		<version>2.6.1</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
@@ -13,6 +14,15 @@
 	<artifactId>ApiProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ApiProject</name>
+=======
+		<version>2.6.2</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.demo</groupId>
+	<artifactId>Apiproject</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Apiproject</name>
+>>>>>>> master
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
@@ -26,7 +36,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+<<<<<<< HEAD
 		</dependency>	
+=======
+		</dependency>
+>>>>>>> master
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -56,6 +70,20 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+<<<<<<< HEAD
+=======
+		<dependency>
+			<groupId>com.levigo</groupId>
+			<artifactId>gwt-awt</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mindrot</groupId>
+			<artifactId>jbcrypt</artifactId>
+			<version>0.4</version>
+		</dependency>
+
+>>>>>>> master
 	</dependencies>
 
 	<build>

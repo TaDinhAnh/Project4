@@ -22,7 +22,6 @@ public interface ProductReponsitory extends CrudRepository<Product, Integer> {
 			+ "and isAccept = 1 and status = 1 order by id desc")
 	public List<ProductOutput> getListProduct(@Param("name") String name);
 	
-	
 	@Query(value="select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
 			+ "description, status, isAccept) from Product where category.id =:categoryid order by id desc")
 	public List<ProductOutput> getProductByIdCategory(@Param("categoryid") int categoryId);
@@ -31,4 +30,8 @@ public interface ProductReponsitory extends CrudRepository<Product, Integer> {
 			+ "where  isDelete = 0 and isAccept = 1 and status = 1  order by id desc LIMIT 3", nativeQuery = true)
 	public List<Product> getListLimit();
 
+	@Query("select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
+			+ "description, status, isAccept) from Product where id = :id")
+	public ProductOutput find(@Param("id") int id);
+	
 }

@@ -37,7 +37,8 @@ public class AuctionService implements IAuctionService {
 		auction.setHourEnd(auctionInput.getHourEnd());
 		auction.setHourStart(auctionInput.getHourStart());
 		auction.setDescription(auctionInput.getDescription());
-		auction.setStatus(EAuction.comingsoon);		
+		auction.setStatus(EAuction.comingsoon);
+		auction.setIsDel(false);
 		return auctionRepositories.save(auction) != null;
 	}
 

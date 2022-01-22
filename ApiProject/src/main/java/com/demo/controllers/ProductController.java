@@ -56,6 +56,18 @@ public class ProductController {
 		return new ResponseEntity<ProductOutput>(product, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET,produces = {MimeTypeUtils.APPLICATION_JSON_VALUE, MimeTypeUtils.IMAGE_JPEG_VALUE})
+	public ResponseEntity<ProductOutput> findById(@PathVariable int id) {
+		if (id <= 0) {
+			return new ResponseEntity<ProductOutput>(HttpStatus.BAD_REQUEST);
+		}
+		ProductOutput product = productService.find(id);
+		if (product == null) {
+			return new ResponseEntity<ProductOutput>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<ProductOutput>(product, HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductOutput>> findList() {
 		List<ProductOutput> productOutputs = productService.getListProductByClient();

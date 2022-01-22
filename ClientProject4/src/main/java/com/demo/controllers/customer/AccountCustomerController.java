@@ -1,26 +1,18 @@
 package com.demo.controllers.customer;
 
-import java.io.IOException;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.demo.Dtos.Input.AccountInput;
 import com.demo.services.APIClient;
 import com.demo.services.AccountAPIService;
 import com.demo.validators.Validate;
-
 import retrofit2.Response;
 
 @Controller

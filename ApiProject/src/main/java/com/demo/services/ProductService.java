@@ -1,7 +1,7 @@
 package com.demo.services;
+
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.demo.Dtos.Input.ProductInput;
@@ -13,20 +13,21 @@ import com.demo.reponsitories.ProductReponsitory;
 
 @Service
 public class ProductService implements IProductService {
-	
+
 	@Autowired
 	private ProductReponsitory productReponsitory;
-	
+
 	@Autowired
 	private IAccountService accountService;
-	
+
 	@Autowired
 	private ICategoryService categoryService;
+
 	@Override
 	public Product findById(int id) {
 		try {
 			return productReponsitory.findById(id).get();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return null;
 		}
 	}
@@ -40,12 +41,13 @@ public class ProductService implements IProductService {
 	public List<ProductOutput> getListProduct(String name) {
 		return productReponsitory.getListProduct(name);
 	}
+
 	@Override
 	public ProductOutput createProduct(ProductInput productInput) {
 		Product product = new Product();
 		Account account = accountService.findById(productInput.getVendorId());
 		Category category = categoryService.findById(productInput.getCategoryId());
-		if(category == null || account == null)
+		if (category == null || account == null)
 			return null;
 		product.setCategory(category);
 		product.setDescription(productInput.getDescription());
@@ -54,16 +56,17 @@ public class ProductService implements IProductService {
 		product.setPriceMin(productInput.getPriceMin());
 		product.setVendorId(productInput.getVendorId());
 		product = productReponsitory.save(product);
-		return new ProductOutput(product.getId(), product.getCategory().getName(), 
-				product.getName(), product.getPriceMin(), product.getImage(), product.getDescription(),
-				product.getStatus(), product.getIsAccept());
+		return new ProductOutput(product.getId(), product.getCategory().getName(), product.getName(),
+				product.getPriceMin(), product.getImage(), product.getDescription(), product.getStatus(),
+				product.getIsAccept());
 	}
+
 	@Override
 	public ProductOutput updateProduct(ProductInput productInput, int id) {
 		Product product = findById(id);
 		Account account = accountService.findById(productInput.getVendorId());
 		Category category = categoryService.findById(productInput.getCategoryId());
-		if(category == null || account == null || product == null)
+		if (category == null || account == null || product == null)
 			return null;
 		product.setCategory(category);
 		product.setDescription(productInput.getDescription());
@@ -72,14 +75,15 @@ public class ProductService implements IProductService {
 		product.setPriceMin(productInput.getPriceMin());
 		product.setVendorId(productInput.getVendorId());
 		product = productReponsitory.save(product);
-		return new ProductOutput(product.getId(), product.getCategory().getName(), 
-				product.getName(), product.getPriceMin(), product.getImage(), product.getDescription(),
-				product.getStatus(), product.getIsAccept());
+		return new ProductOutput(product.getId(), product.getCategory().getName(), product.getName(),
+				product.getPriceMin(), product.getImage(), product.getDescription(), product.getStatus(),
+				product.getIsAccept());
 	}
+
 	@Override
 	public boolean acceptProduct(int id) {
 		Product product = findById(id);
-		if(product == null )
+		if (product == null)
 			return false;
 		product.setIsAccept(true);
 		return productReponsitory.save(product) != null;
@@ -94,7 +98,7 @@ public class ProductService implements IProductService {
 	public List<ProductOutput> getListLimit() {
 		List<Product> products = productReponsitory.getListLimit();
 		List<ProductOutput> outputs = new ArrayList<ProductOutput>();
-		for(Product product :products) {
+		for (Product product : products) {
 			ProductOutput productOutput = new ProductOutput();
 			productOutput.setCategory(product.getCategory().getName());
 			productOutput.setDescription(product.getDescription());
@@ -105,6 +109,13 @@ public class ProductService implements IProductService {
 			outputs.add(productOutput);
 		}
 		return outputs;
+	}
+
+	public ProductOutput find(int id) {
+		ProductOutput productOutput = productReponsitory.find(id);
+		if (productOutput == null)
+			return null;
+		return productOutput;
 	}
 
 }

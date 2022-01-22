@@ -19,6 +19,7 @@ public interface IProductService {
 	ProductOutput createProduct(ProductInput productInput);
 
 	ProductOutput updateProduct(ProductInput productInput, int id);
+	ProductOutput find(int id);
 
 	List<ProductOutput> getProductByIdCategory(int categoryId);
 
