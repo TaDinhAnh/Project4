@@ -7,12 +7,11 @@
 <title>Insert title here</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-<link rel="stylesheet" href="css/propeller.min.css">
+<!-- <link rel="stylesheet" href="css/propeller.min.css"> -->
 </head>
 <body>
 	<section class="vh-100" style="background-color: #9A616D;">
@@ -80,6 +79,6 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/propeller.min.js"></script>
+<%-- 	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/assets/customer/js/core/propeller.min.js"></script> --%>
 </body>
 </html>

@@ -1,12 +1,10 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags/customer"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <mt:layout title="">
 	<jsp:attribute name="content">
 	<div class="intro intro-carousel swiper position-relative">
-	      
-	
 		<div class="swiper-wrapper">
 			      	  <c:forEach items="${products }" var="product">
 		
@@ -26,7 +24,7 @@
 											<span class="color-b">Name: </span>${product.name}
 										</h1>
 										<p class="intro-subtitle intro-price">
-											<a href="#"><span class="price-a">rent | $ ${product.priceMin}</span></a>
+											<a href="#"><span class="price-a">rent |  ${product.priceMin}</span></a>
 										</p>
 									</div>
 								</div>
@@ -35,12 +33,9 @@
 					</div>
 				</div>
 			</div>
-					        </c:forEach>
-			
+					        </c:forEach>			
 		</div>
-		<div class="swiper-pagination"></div>
-		         
-		
+		<div class="swiper-pagination"></div>		        	
 	</div>
 	    <section class="section-property section-t8">
       <div class="container">
@@ -51,36 +46,24 @@
                 <h2 class="title-a">Latest Auctions</h2>
               </div>
               <div class="title-link">
-                <a
-									href="${pageContext.request.contextPath }/customer/view/auction/happenning">All Property
+                <a									href="${pageContext.request.contextPath }/customer/view/auction/happenning">All Property
                   <span class="bi bi-chevron-right"></span>
                 </a>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div id="property-carousel" class="swiper">
-                        
-          <div class="swiper-wrapper">
-        
-		                <c:forEach var="auction" items="${auctions }">
-                      		
+        </div>       
+        <div id="property-carousel" class="swiper">                    
+          <div class="swiper-wrapper">       
+		                <c:forEach var="auction" items="${auctions }">                     		
             <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-              
+              <div class="card-box-a card-shadow">          
                <div>
- 
                 <div class="img-box-a">
-                  <img
-												src="${pageContext.request.contextPath }/resources/assets/customer/img/testimonial-1.jpg"
+                  <img												src="${pageContext.request.contextPath }/resources/assets/customer/img/testimonial-1.jpg"
 												alt="" class="img-a img-fluid">
 												                </div>
-		
-												
-						</div>				
-
-                
+						</div>			
                 <div class="card-overlay">
                   <div class="card-overlay-a-content">
                     <div class="card-header-a">
@@ -101,16 +84,10 @@
                   </div>
                 </div>
               </div>
-            </div>
-                                                                              </c:forEach>
-        
-       
-             </div>
-             
+            </div>                                                                             </c:forEach>
+             </div>           
         </div>
-        <div class="propery-carousel-pagination carousel-pagination"></div>
-
-      
+        <div class="propery-carousel-pagination carousel-pagination"></div>  
 			</div>
       <div class="container">
         <div class="row">
@@ -162,7 +139,9 @@
 											class="socials-footer d-flex justify-content-center">
                     <ul class="list-inline">
                       <li class="list-inline-item">
-                        <a href="${pageContext.request.contextPath }/customer/view/contact?id=${product.id}" class="link-one">
+                        <a
+													href="${pageContext.request.contextPath }/customer/view/contact?id=${product.id}"
+													class="link-one">
                           <i class="bi bi-facebook" aria-hidden="true"></i>
                         </a>
                       </li>
@@ -176,7 +155,6 @@
         </c:forEach> 
         </div>
       </div>
-
     </section>
     </jsp:attribute>
 </mt:layout>

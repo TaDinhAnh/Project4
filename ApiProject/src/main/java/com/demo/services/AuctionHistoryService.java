@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.demo.Dtos.Input.AuctionHistoryInput;
 import com.demo.Dtos.Output.AuctionHistoryOutput;
-import com.demo.common.EProduct;
 import com.demo.models.Account;
 import com.demo.models.Auction;
 import com.demo.models.Auctionhistory;

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.demo.Dtos.Input.AuctionHistoryInput;
 import com.demo.Dtos.Output.AuctionHistoryOutput;
-import com.demo.models.Auctionhistory;
 import com.demo.services.IAuctionHistoryService;
 import com.demo.validators.Validate;
 

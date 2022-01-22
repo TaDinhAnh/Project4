@@ -39,5 +39,9 @@ public interface AccountAPIService {
 	@GET("account/checkGmail/{gmail}")
 	Call<Boolean> checkGmail(@Path("gmail") String gmail);
 	
+	@GET("account/{id}")
+	Call<AccountOutput> getAccount(@Path("id") int id);
 	
+	@PUT("account/changePass/{id}")
+	Call<AccountOutput> changePass(@Path("id") int id, @Body AccountInput accountInput);
 }

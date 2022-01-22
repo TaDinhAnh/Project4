@@ -3,59 +3,18 @@
 <%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>Insert title here</title>
 <link
-	href="${pageContext.request.contextPath }/resources/assets/customer/vendor/bootstrap/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath }/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<script>
-	$(function() {
-		$("#datepicker").datepicker({
-			dateFormat : 'dd/mm/yy'
-		}).val();
-	});
-	$(document).ready(function() {
-		$("#register").submit(function(e) {
-			var fullname = $("#fullname").val();
-			var gmail = $("#gmail").val();
-			var pass = $("#pass").val();
-			var rePass = $("#rePass").val();
-			var birthday = $("#birthday").val();
-			var role = $("#role").val();
-			var phone = $("#phone").val();
-			if (pass != rePass) {
-				alert("Pass and Repeat your password not match");
-			}
-			 
-			$.ajax({
-				type : "POST",
-			     data: {
-		            	fullname: fullname,
-		            	gmail: gmail,
-		            	pass: pass,
-		            	rePass: rePass,
-		            	birthday: birthday,
-		            	role: role,
-		            	phone: phone,
-		            },
-				  url: '${pageContext.request.contextPath }/customer/account/register',
-		              
-			});
-
-		})
-	});
-</script>
-
 </head>
 <body>
 	<section class="h-100 h-custom" style="background-color: #8fc4b7;">
@@ -85,10 +44,9 @@
 										<label style="color: red"> Gmail already exists</label>
 									</c:if>
 									<c:if test="${gmailExists  != true }">
-									<s:input path="gmail" class="form-control" placeholder="Gmail"
+										<s:input path="gmail" class="form-control" placeholder="Gmail"
 											id="gmail" />
 										<s:errors path="gmail" style="color:red"></s:errors>
-										
 									</c:if>
 								</div>
 								<div class="row">
@@ -99,11 +57,8 @@
 										<s:errors path="password" style="color:red"></s:errors>
 									</div>
 									<div class="col-md-6 mb-4">
-
-
 										<input type="password" class="form-control"
 											placeholder="Repeat your password" id="rePass" />
-
 									</div>
 								</div>
 								<div class="row">
@@ -112,7 +67,6 @@
 											<s:input path="dob" class="form-control"
 												placeholder="Birthday" id="datepicker" />
 											<span class="error" id="lblError"></span>
-
 										</div>
 									</div>
 									<div class="col-md-6 mb-4">
@@ -132,7 +86,6 @@
 								</div>
 								<button type="submit" class="btn btn-success btn-lg mb-1">Submit</button>
 							</s:form>
-
 						</div>
 					</div>
 				</div>
@@ -143,11 +96,9 @@
 		src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/register.js"></script>
-
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
 </body>
 </html>

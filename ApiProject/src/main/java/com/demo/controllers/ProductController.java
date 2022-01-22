@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.demo.Dtos.Input.ProductInput;
 import com.demo.Dtos.Output.ProductOutput;
-import com.demo.models.Product;
 import com.demo.services.IProductService;
 import com.demo.validators.Validate;
 
@@ -101,7 +100,7 @@ public class ProductController {
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 
 	}
-	
+
 	@RequestMapping(value = "limit", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductOutput>> getListLimit() {
 		List<ProductOutput> productOutputs = productService.getListLimit();
@@ -110,5 +109,55 @@ public class ProductController {
 		}
 		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "sold/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductOutput>> getListProductSold(@PathVariable("id") int vendorId) {
+		List<ProductOutput> productOutputs = productService.getListProductSold(vendorId);
+		if (vendorId <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		if (productOutputs == null || productOutputs.size() <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "unSold/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductOutput>> getListProductUnsold(@PathVariable("id") int vendorId) {
+		List<ProductOutput> productOutputs = productService.getListProductUnsold(vendorId);
+		if (vendorId <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		if (productOutputs == null || productOutputs.size() <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "listAccept/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductOutput>> getListProductAccept(@PathVariable("id") int vendorId) {
+		List<ProductOutput> productOutputs = productService.getListProductAccept(vendorId);
+		if (vendorId <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		if (productOutputs == null || productOutputs.size() <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(value = "listNotAccept/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductOutput>> getListProductNotAccept(@PathVariable("id") int vendorId) {
+		List<ProductOutput> productOutputs = productService.getListProductNotAccept(vendorId);
+		if (vendorId <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		if (productOutputs == null || productOutputs.size() <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
+	}
+	
 
 }

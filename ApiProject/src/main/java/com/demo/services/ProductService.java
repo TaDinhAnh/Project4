@@ -111,11 +111,29 @@ public class ProductService implements IProductService {
 		return outputs;
 	}
 
+	@Override
+	public List<ProductOutput> getListProductAccept(int vendorId) {
+		return productReponsitory.getListProductAccept(vendorId);
+	}
+
+	@Override
+	public List<ProductOutput> getListProductUnsold(int vendorId) {
+		return productReponsitory.getListProductUnsold(vendorId);
+	}
+
+	@Override
+	public List<ProductOutput> getListProductSold(int vendorId) {
+		return productReponsitory.getListProductSold(vendorId);
+	}
+
+	@Override
 	public ProductOutput find(int id) {
-		ProductOutput productOutput = productReponsitory.find(id);
-		if (productOutput == null)
-			return null;
-		return productOutput;
+		return productReponsitory.find(id);
+	}
+
+	@Override
+	public List<ProductOutput> getListProductNotAccept(int vendorId) {
+		return productReponsitory.getListProductNotAccept(vendorId);
 	}
 
 }

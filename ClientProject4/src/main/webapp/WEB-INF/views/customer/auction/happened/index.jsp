@@ -17,7 +17,6 @@
             </div>
           </div>
         </div>
-
          <div class="swiper">
           <div class="swiper-wrapper">
 
@@ -53,8 +52,7 @@
 														<d:formatDate value="${auction.eventdate }" var="dated"
 																	pattern="dd/MM/yyy" />Open date: ${dated }  ${auction.hourStart }</h5>
                     </div>
-                  </div>
-   
+                  </div>  
                   </c:forEach>
                 </div>
               </div>
@@ -66,7 +64,6 @@
       </div>	
       </div>
       </div>	
-		</section>
-		
+		</section>		
 	</jsp:attribute>
 </mt:layout>

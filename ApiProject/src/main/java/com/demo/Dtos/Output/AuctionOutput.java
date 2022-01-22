@@ -17,6 +17,8 @@ public class AuctionOutput {
 	@JsonFormat(pattern = "HH:mm:ss")
 	@Temporal(TemporalType.TIME)
 	private Date hourEnd;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
 	private Date eventdate;
 	private String description;
 	private EAuction status;
@@ -37,7 +39,6 @@ public class AuctionOutput {
 		this.status = status;
 		this.isDel = isDel;
 	}
-	
 
 	public AuctionOutput(int id, Date hourStart, Date hourEnd, Date eventdate, String description, EAuction status) {
 		super();

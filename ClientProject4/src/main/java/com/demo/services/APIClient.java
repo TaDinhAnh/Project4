@@ -1,5 +1,6 @@
 package com.demo.services;
 
+import com.demo.common.Constant;
 import com.google.gson.GsonBuilder;
 
 import okhttp3.OkHttpClient;
@@ -8,18 +9,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
-    private static Retrofit retrofit = null;
+	private static Retrofit retrofit = null;
 
-    public static Retrofit getClient() {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:9799/api/")
-                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder()
-                		.setDateFormat("dd/MM/yyyy").create()))
-                .client(client)
-                .build();
-        return retrofit;
-    }
+	public static Retrofit getClient() {
+		HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+		interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+		OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+		retrofit = new Retrofit.Builder().baseUrl(Constant.baseUrl)
+				.addConverterFactory(
+						GsonConverterFactory.create(new GsonBuilder().setDateFormat("dd/MM/yyyy").create()))
+				.client(client).build();
+		return retrofit;
+	}
+
 }

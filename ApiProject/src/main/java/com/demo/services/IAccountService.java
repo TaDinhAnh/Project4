@@ -24,4 +24,8 @@ public interface IAccountService {
 
 	boolean changeAvatar(String nameImg, int id);
 
+	AccountOutput getAccount(int accountId);
+
+	AccountOutput changePassword(int id, AccountInput accountInput);
+
 }

@@ -1,7 +1,6 @@
 package com.demo.controllers;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,7 @@ import com.demo.validators.Validate;
 @RequestMapping("api/feedback")
 public class FeedbackController {
 	@Autowired
-	private IFeedbackService feedbackService;
+	private IFeedBackService feedbackService;
 	@Autowired
 	private Validate validate;
 	@RequestMapping( method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)

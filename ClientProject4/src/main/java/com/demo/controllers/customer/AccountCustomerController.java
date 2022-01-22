@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.demo.Dtos.Input.AccountInput;
+import com.demo.Dtos.Output.AccountOutput;
 import com.demo.services.APIClient;
 import com.demo.services.AccountAPIService;
 import com.demo.validators.Validate;
@@ -18,6 +19,7 @@ import retrofit2.Response;
 @Controller
 @RequestMapping(value = { "/customer/account/" })
 public class AccountCustomerController {
+	private AccountAPIService accountAPIService = APIClient.getClient().create(AccountAPIService.class);
 	@Autowired
 	private Validate validate;
 
@@ -37,7 +39,6 @@ public class AccountCustomerController {
 			ModelMap map) {
 		try {
 			validate.validate(accountInput, bind);
-			AccountAPIService accountAPIService = APIClient.getClient().create(AccountAPIService.class);
 			Boolean checkGmail = accountAPIService.checkGmail(accountInput.getGmail()).execute().body();
 			if (bind.hasErrors()) {
 				return "customer/account/register/index";
@@ -46,7 +47,6 @@ public class AccountCustomerController {
 				map.put("gmailExists", checkGmail);
 				return "redirect:/customer/account/register";
 			}
-			accountInput.setImage(accountInput.getImage());
 			Response<Boolean> response = accountAPIService.create(accountInput).execute();
 			int statusCode = response.code();
 			switch (statusCode) {
@@ -77,7 +77,20 @@ public class AccountCustomerController {
 	}
 
 	@RequestMapping(value = { "changeInfor" }, method = RequestMethod.GET)
-	public String changeAccount() {
-		return "customer/account/changeInfor/index";
+	public String changeAccount(ModelMap map) {
+		try {
+			Response<AccountOutput> response = accountAPIService.getAccount(2).execute();
+			int statusCode = response.code();
+			switch (statusCode) {
+			case 400:
+				return "error/400page";
+			default:
+				map.put("account", response.body());
+				return "customer/account/changeInfor/index";
+			}
+		} catch (Exception e) {
+			return "customer/account/signIn/index";
+		}
+
 	}
 }
