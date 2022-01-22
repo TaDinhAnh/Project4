@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.Dtos.Input.FeedBackInput;
+import com.demo.Dtos.Input.SendMailInput;
 import com.demo.Dtos.Output.FeedBackOutput;
+import com.demo.common.MailHelper;
 import com.demo.models.Account;
 import com.demo.models.Feedback;
 import com.demo.models.Product;
@@ -53,4 +55,20 @@ public class FeedbackService implements IFeedbackService {
 		return rs;
 	}
 
+	@Override
+	public Boolean replyFeedback(int id, SendMailInput sendMailInput) {
+		Feedback feedback = find(id);
+		if(!MailHelper.sendMail(sendMailInput.getToEmail(), sendMailInput.getContent(), sendMailInput.getSubject()))
+			return false;
+		feedback.setIsDel(true);
+		return feedbackReponsitory.save(feedback) == null;
+	}
+
+	public Feedback find(int id) {
+		try {
+			return feedbackReponsitory.findById(id).get();
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

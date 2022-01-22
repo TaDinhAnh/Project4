@@ -1,11 +1,15 @@
 package com.demo.Dtos.Input;
 
+import javax.validation.constraints.NotEmpty;
+
 public class SendMailInput {
+	@NotEmpty
 	private String toEmail;
+	@NotEmpty
 	private String content;
+	@NotEmpty
 	private String subject;
 
-	
 	public String getSubject() {
 		return subject;
 	}

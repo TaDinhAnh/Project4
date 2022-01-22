@@ -8,7 +8,16 @@ public class FeedBackOutput {
 	private String gmail;
 	private String productName;
 	private String content;
+	private Boolean isDelete;
 	
+
+	public Boolean getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Boolean isDelete) {
+		this.isDelete = isDelete;
+	}
 
 	public int getId() {
 		return id;
@@ -71,7 +80,7 @@ public class FeedBackOutput {
 	}
 
 	public FeedBackOutput(int id, String accountName, String imageAccount, String gmail, String productName,
-			String content) {
+			String content, Boolean isDelete) {
 		super();
 		this.id = id;
 		this.accountName = accountName;
@@ -79,6 +88,7 @@ public class FeedBackOutput {
 		this.gmail = gmail;
 		this.productName = productName;
 		this.content = content;
+		this.isDelete = isDelete;
 	}
 	
 	

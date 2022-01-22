@@ -548,6 +548,8 @@
 		src="${pageContext.request.contextPath }/resources/assets/admin/js/layoutAm"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/admin/category.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/assets/admin/dashboard.js"></script>
 	<script src="https://kit.fontawesome.com/42d5adcbca.js"></script>
 	<script src="https://buttons.github.io/buttons.js"></script>
 	<script

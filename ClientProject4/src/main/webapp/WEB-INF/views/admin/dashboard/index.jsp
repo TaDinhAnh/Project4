@@ -123,13 +123,18 @@
                       </div>
                     </div>
                     <div class="card-body pt-0 p-3 text-center">
-                      <h6 class="text-center mb-0">${item.gmail }</h6>
+                      <h6 class="text-center mb-0" id="emailrl">${item.gmail }</h6>
                       <span class="text-xs">${item.content }</span>
                       <hr class="horizontal dark my-3">
                        <div class="col-5 text-end"
-										style="margin-left: 20%;">
-                 			<button class="btn btn-outline-primary btn-sm mb-0">Reply</button>
+											style="margin-left: 20%;">
+									<c:if test="${!item.isDelete}">
+                 			<button 
+													class="btn btn-outline-primary btn-sm mb-0 replyFeedback"
+													data-toggle="modal" data-target="#modalReply" value="${item.gmail},${item.id}">Reply</button>
+											</c:if>
                			</div>
+               			
                     </div>
                   </div>
                  </div>		
@@ -187,23 +192,25 @@
       <div class="modal-body">
 				  <div class="form-group">
 				    <label for="exampleFormControlInput1">Email</label>
-				    
+				    <input type="text" class="form-control" id="idFeedback" hidden>		
+					 <input type="text" class="form-control" id="toEmailReply" readonly="readonly" required>		    
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleFormControlInput1">Subject</label>
-				      
+				       <input type="text" class="form-control" id="subjectReply"
+								placeholder="subject" required>
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleFormControlInput1">Content</label>
-				    <textarea name="content" class="form-control" id="content"
-								rows="3" placeholder="content" required="required">
+				    <textarea name="content" class="form-control" id="contentReply"
+								rows="3" placeholder="content" required>
 									</textarea>
 				  </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Send</button>
+        <button type="button" class="btn btn-primary" id="btnReplyFeedback">Send</button>
       </div>
     </div>
   </div>

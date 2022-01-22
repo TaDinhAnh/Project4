@@ -19,7 +19,7 @@ public interface FeedbackReponsitory extends CrudRepository<Feedback, Integer>{
 			+ "content) from Feedback order by id desc")
 	public List<FeedBackOutput> getAll(); 
 	@Query("select new com.demo.Dtos.Output.FeedBackOutput(id, account.fullname, account.image, account.gmail, product.name,  "
-			+ "content) from Feedback where isDel = 0 order by id desc ")
+			+ "content, isDel) from Feedback  order by id desc ")
 	public List<FeedBackOutput> getListLimit(); 
 	
 }
