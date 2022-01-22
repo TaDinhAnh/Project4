@@ -16,7 +16,7 @@ import com.demo.validators.Validate;
 
 @RestController
 @RequestMapping("api/feedback")
-public class FeedbackController {
+public class FeedBackController {
 	@Autowired
 	private IFeedbackService feedbackService;
 	@Autowired
