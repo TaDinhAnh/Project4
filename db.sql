@@ -168,3 +168,7 @@ insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , Ve
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('8:30', '20:53', '2021-12-10', 'Intracranial 02 monitor', 1, 1, false);
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('18:41', '11:14', '2021-12-10', 'Excis cyst duct remnant', 2, 3, false);
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('23:19', '22:30', '2021-12-10', 'Salivary duct probing', 2, 3, false);
+
+
+
+INSERT INTO `orders` (`Id`, `AuctionId`, `ProId`, `AccountId`, `SuccessDate`, `Total`, `Piad`, `Address`, `Status`) VALUES (NULL, '4', '11', '2', '2022-01-05', '200', '20', 'HCM', '1'), (NULL, '5', '8', '7', '2022-01-11', '500', '400', 'HCM', 1);

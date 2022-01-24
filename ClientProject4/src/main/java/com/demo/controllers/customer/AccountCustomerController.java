@@ -1,5 +1,9 @@
 package com.demo.controllers.customer;
 
+import java.io.IOException;
+import java.lang.reflect.Field;
+
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.demo.Dtos.Input.AccountInput;
+import com.demo.Dtos.Input.Login;
 import com.demo.Dtos.Output.AccountOutput;
 import com.demo.services.APIClient;
 import com.demo.services.AccountAPIService;
@@ -24,7 +29,8 @@ public class AccountCustomerController {
 	private Validate validate;
 
 	@RequestMapping(value = { "signIn" }, method = RequestMethod.GET)
-	public String login() {
+	public String login(ModelMap modelMap) {
+		modelMap.put("login", new Login());
 		return "customer/account/signIn/index";
 	}
 
@@ -65,9 +71,30 @@ public class AccountCustomerController {
 
 	}
 
-	@RequestMapping(value = { "login" }, method = RequestMethod.POST)
-	public String login(@RequestParam("gmail") String gmail, @RequestParam("password") String password) {
-		return "customer/view/home";
+	@RequestMapping(value = { "signIn" }, method = RequestMethod.POST)
+	public String login(@ModelAttribute("login") Login login, ModelMap modelMap, HttpSession session) {
+
+		Response<AccountOutput> response;
+		try {
+			response = accountAPIService.login(login).execute();
+
+			int statusCode = response.code();
+			switch (statusCode) {
+			case 400:
+				return "error/400page";
+			case 404:
+				modelMap.put("msg", "Email or Password invalid!");
+				return "customer/account/signIn/index";
+			default:
+				AccountOutput accountOutput = response.body();
+				String jwtToken = response.headers().get("Authorization");
+				session.setAttribute("jwtToken", jwtToken);
+				session.setAttribute("account", accountOutput);
+				return "redirect:/customer/view/home/index";
+			}
+		} catch (IOException e) {
+			return "error/400page";
+		}
 
 	}
 

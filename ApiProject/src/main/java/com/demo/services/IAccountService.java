@@ -10,7 +10,7 @@ import com.demo.models.Account;
 public interface IAccountService {
 	boolean createAccount(AccountInput accountInput);
 
-	String login(Login Login);
+	AccountOutput login(Login Login);
 
 	AccountOutput changeInfor(int id, AccountInput accountInput);
 

@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.demo.Dtos.Input.AccountInput;
+import com.demo.Dtos.Input.Login;
 import com.demo.Dtos.Output.AccountOutput;
 
 
@@ -33,8 +34,8 @@ public interface AccountAPIService {
 	@GET("account/getAvatar/{filename}")
 	Call<byte[]> getImg(@Path("filename") String filename);
 	
-	@POST("account/login")
-	Call<AccountOutput> login(@Body AccountInput accountInput);
+	@POST("authentication/login")
+	Call<AccountOutput> login(@Body Login login);
 	
 	@GET("account/checkGmail/{gmail}")
 	Call<Boolean> checkGmail(@Path("gmail") String gmail);

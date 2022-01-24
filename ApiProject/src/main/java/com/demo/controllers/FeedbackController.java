@@ -19,7 +19,7 @@ import com.demo.validators.Validate;
 @RequestMapping("api/feedback")
 public class FeedbackController {
 	@Autowired
-	private IFeedBackService feedbackService;
+	private IFeedbackService feedbackService;
 	@Autowired
 	private Validate validate;
 	@RequestMapping( method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)

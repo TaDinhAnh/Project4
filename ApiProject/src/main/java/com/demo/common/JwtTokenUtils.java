@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-import com.demo.models.Account;
+import com.demo.Dtos.Output.AccountOutput;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
@@ -22,7 +22,6 @@ public class JwtTokenUtils implements Serializable {
 	public static String getGmailFromToken(String token) {
 		return getClaimFromToken(token, Claims::getSubject);
 	}
-
 	public static Date getExpirationDateFromToken(String token) {
 		return getClaimFromToken(token, Claims::getExpiration);
 	}
@@ -32,7 +31,7 @@ public class JwtTokenUtils implements Serializable {
 		return claimsResolver.apply(claims);
 	}
 
-	private static Claims getAllClaimsFromToken(String token) {
+	public static Claims getAllClaimsFromToken(String token) {
 		return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 	}
 
@@ -41,18 +40,19 @@ public class JwtTokenUtils implements Serializable {
 		return expiration.before(new Date());
 	}
 
-	public static String generateToken(Account account) {
+	public static String generateToken(AccountOutput account) {
 		Map<String, Object> claims = new HashMap<>();
 		return doGenerateToken(claims, account);
 	}
 
 	@SuppressWarnings("unchecked")
-	private static String doGenerateToken(Map<String, Object> claims, Account account) {
+	private static String doGenerateToken(Map<String, Object> claims, AccountOutput account) {
 		@SuppressWarnings("rawtypes")
 		Header header = Jwts.header();
 		header.setType("jwt");
 		return Jwts.builder().setHeader((Map<String, Object>) header)
 				.setClaims(claims).setSubject(account.getGmail())
+				.claim("id", account.getId())
 				.claim("fullname", account.getFullname())
 				.claim("gmail", account.getGmail())
 				.claim("role", account.getRole())

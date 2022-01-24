@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.demo.Dtos.Input.AccountInput;
 import com.demo.Dtos.Input.Login;
 import com.demo.Dtos.Output.AccountOutput;
-import com.demo.common.JwtTokenUtils;
 import com.demo.models.Account;
 import com.demo.reponsitories.AccountReponsitory;
 
@@ -33,11 +32,17 @@ public class AccountService implements IAccountService {
 	}
 
 	@Override
-	public String login(Login loginInfo) {
+	public AccountOutput login(Login loginInfo) {
 		Account account = findByGmail(loginInfo.getEmail());
 		if (account == null || !BCrypt.checkpw(loginInfo.getPassword(), account.getPassword()))
 			return null;
-		return JwtTokenUtils.generateToken(account);
+		AccountOutput accountOutput = new AccountOutput();
+		accountOutput.setFullname(account.getFullname());
+		accountOutput.setGmail(account.getGmail());
+		accountOutput.setId(account.getId());
+		accountOutput.setImage(account.getImage());
+		accountOutput.setRole(account.getRole());
+		return accountOutput;
 	}
 
 	@Override
