@@ -67,6 +67,7 @@ public class AccountController {
 
 	@RequestMapping(value = {
 			"/changePass/{id}" }, method = RequestMethod.PUT, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+
 	public ResponseEntity<AccountOutput> changePassword(@PathVariable("id") int id,
 			@RequestBody AccountInput accountInput) {
 		if (id <= 0) {
@@ -87,6 +88,18 @@ public class AccountController {
 		}
 		if (!result) {
 			return new ResponseEntity<>(false, HttpStatus.OK);
+		}
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = { "/{id}" }, method = RequestMethod.DELETE)
+	public ResponseEntity<Boolean> Del(@PathVariable("id") int id) {
+		if (id <= 0) {
+			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
+		}
+
+		if (accountService.delAccount(id)) {
+			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}

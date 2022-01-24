@@ -9,8 +9,30 @@ public class FeedBackOutput {
 	private String accountName;
 	@SerializedName("productName")
 	private String productName;
+	@SerializedName("imageAccount")
+	private String imageAccount;
+	@SerializedName("gmail")
+	private String gmail;
 	@SerializedName("content")
 	private String content;
+	@SerializedName("isDelete")
+	private Boolean isDelete;
+
+	public String getImageAccount() {
+		return imageAccount;
+	}
+
+	public void setImageAccount(String imageAccount) {
+		this.imageAccount = imageAccount;
+	}
+
+	public String getGmail() {
+		return gmail;
+	}
+
+	public void setGmail(String gmail) {
+		this.gmail = gmail;
+	}
 
 	public int getId() {
 		return id;
@@ -48,12 +70,25 @@ public class FeedBackOutput {
 		super();
 	}
 
-	public FeedBackOutput(int id, String accountName, String productName, String content) {
+	
+	public Boolean getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Boolean isDelete) {
+		this.isDelete = isDelete;
+	}
+
+	public FeedBackOutput(int id, String accountName, String imgAccount, String gmail, String productName,
+			String content, Boolean isDelete) {
 		super();
 		this.id = id;
 		this.accountName = accountName;
 		this.productName = productName;
 		this.content = content;
+		this.gmail = gmail;
+		this.imageAccount = imgAccount;
+		this.isDelete = isDelete;
 	}
 
 }

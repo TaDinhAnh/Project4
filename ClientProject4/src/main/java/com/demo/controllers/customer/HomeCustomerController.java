@@ -1,17 +1,13 @@
 package com.demo.controllers.customer;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import java.util.List;
-
 import com.demo.Dtos.Output.AuctionOutput;
 import com.demo.Dtos.Output.ProductOutput;
 import com.demo.services.APIClient;
 import com.demo.services.AuctionAPIService;
-
 import com.demo.services.ProductAPIService;
 
 @Controller
@@ -29,10 +25,9 @@ public class HomeCustomerController {
 			modelMap.put("auctions", auctionOutputs);			
 			List<ProductOutput> outputs = productAPIService.findList().execute().body();
 			modelMap.put("productlist", outputs);
+			return "customer/home/index";
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			return "errorpage/400page";
 		}
-		return "customer/home/index";
-
 	}
 }

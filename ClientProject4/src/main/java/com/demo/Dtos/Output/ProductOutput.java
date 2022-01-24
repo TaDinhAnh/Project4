@@ -20,9 +20,67 @@ public class ProductOutput {
 	private EProduct status;
 	@SerializedName("isAccept")
 	private Boolean isAccept;
+	@SerializedName("vendorId")
+	private int vendorId;
+	@SerializedName("orders")
+	private OrdersOutput orders;
+	@SerializedName("vendor")
+	private AccountOutput vendor;
+	@SerializedName("isDelete")
+	private Boolean isDelete;
+
+	public Boolean getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Boolean isDelete) {
+		this.isDelete = isDelete;
+	}
 
 	public int getId() {
 		return id;
+	}
+
+	public ProductOutput(int id, String category, String name, Double priceMin, String image, String description,
+			EProduct status, Boolean isAccept, int vendorId, OrdersOutput orders, AccountOutput vendor,
+			Boolean isDelete) {
+		super();
+		this.id = id;
+		this.category = category;
+		this.name = name;
+		this.priceMin = priceMin;
+		this.image = image;
+		this.description = description;
+		this.status = status;
+		this.isAccept = isAccept;
+		this.vendorId = vendorId;
+		this.orders = orders;
+		this.vendor = vendor;
+		this.isDelete = isDelete;
+	}
+
+	public int getVendorId() {
+		return vendorId;
+	}
+
+	public void setVendorId(int vendorId) {
+		this.vendorId = vendorId;
+	}
+
+	public OrdersOutput getOrders() {
+		return orders;
+	}
+
+	public void setOrders(OrdersOutput orders) {
+		this.orders = orders;
+	}
+
+	public AccountOutput getVendor() {
+		return vendor;
+	}
+
+	public void setVendor(AccountOutput vendor) {
+		this.vendor = vendor;
 	}
 
 	public void setId(int id) {
@@ -89,7 +147,6 @@ public class ProductOutput {
 		super();
 	}
 
-
 	public ProductOutput(int id, String category, String name, Double priceMin, String image, String description,
 			EProduct status, Boolean isAccept) {
 		super();
@@ -104,4 +161,3 @@ public class ProductOutput {
 	}
 
 }
-

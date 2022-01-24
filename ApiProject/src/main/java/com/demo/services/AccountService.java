@@ -59,22 +59,27 @@ public class AccountService implements IAccountService {
 		return new AccountOutput(account.getId(), account.getGmail(), account.getFullname(), account.getPhone(),
 				account.getDob(), account.getImage(), account.getRole());
 	}
-	
+
 	@Override
 	public AccountOutput changePassword(int id, AccountInput accountInput) {
 		Account account = findById(id);
-		if(account == null) {
+		if (account == null) {
 			return null;
-		}	
+		}
 		account.setPassword(accountInput.getPassword());
 		account = accountResponsitory.save(account);
-		return new AccountOutput(account.getId(),account.getGmail(), account.getFullname(), account.getPhone(), account.getDob(),
-				account.getImage(), account.getRole());
+		return new AccountOutput(account.getId(), account.getGmail(), account.getFullname(), account.getPhone(),
+				account.getDob(), account.getImage(), account.getRole());
 	}
-	
+
 	@Override
 	public List<AccountOutput> getListAccount() {
 		return accountResponsitory.getListAccount();
+	}
+
+	@Override
+	public Account findByGmail(String gmail) {
+		return accountResponsitory.find(gmail);
 	}
 
 	@Override
@@ -87,15 +92,24 @@ public class AccountService implements IAccountService {
 	}
 
 	@Override
-	public Account findByGmail(String gmail) {
-		return accountResponsitory.find(gmail);
-	}
-
-	@Override
 	public boolean checkGmail(String gmail) {
 		return accountResponsitory.find(gmail) != null;
 	}
 
+	public Boolean delAccount(int id) {
+		Account account = findById(id);
+		if (account == null)
+			return false;
+		account.setIsDelete(!account.getIsDelete());
+		return accountResponsitory.save(account) == null;
+	}
+
+	@Override
+	public AccountOutput find(int id) {
+		return accountResponsitory.find(id);
+	}
+
+	@Override
 	public boolean changeAvatar(String nameImg, int id) {
 		Account account = findById(id);
 		if (account == null)
@@ -109,5 +123,4 @@ public class AccountService implements IAccountService {
 		return accountResponsitory.getAccount(accountId);
 	}
 
-	
 }

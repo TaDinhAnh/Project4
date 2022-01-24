@@ -3,6 +3,7 @@ package com.demo.services;
 import java.util.List;
 
 import com.demo.Dtos.Input.ProductInput;
+import com.demo.Dtos.Input.SendMailInput;
 import com.demo.Dtos.Output.ProductOutput;
 
 import retrofit2.Call;
@@ -18,8 +19,20 @@ public interface ProductAPIService {
 	@GET("product")
 	Call<List<ProductOutput>> findList();
 
-	@GET("product/{id}")
+//	@GET("product/{id}")
+//	Call<ProductOutput> findByid(@Path("id") int id);
+
+	@GET("product/findAll")
+	Call<List<ProductOutput>> findAll();
+
+	@GET("product/searchbyid/{id}")
 	Call<ProductOutput> findByid(@Path("id") int id);
+
+	@GET("product/{id}")
+	Call<ProductOutput> find(@Path("id") int id);
+
+	@GET("product/find/{id}")
+	Call<ProductOutput> find2(@Path("id") int id);
 
 	@POST("product")
 	Call<ProductOutput> create(@Body ProductInput productInput);
@@ -47,5 +60,11 @@ public interface ProductAPIService {
 	
 	@GET("product/listNotAccept/{id}")
 	Call<List<ProductOutput>> getListProductNotAccept(@Path("id") int id);
+
+	@PATCH("product/accept/{id}")
+	Call<Boolean> accept(@Path("id") int id);
+
+	@POST("product/cancel/{id}")
+	Call<Boolean> cancel(@Path("id") int id, @Body SendMailInput sendMailInput);
 
 }

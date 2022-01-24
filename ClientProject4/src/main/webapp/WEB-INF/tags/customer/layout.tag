@@ -61,6 +61,7 @@
 	// 		$("#datepicker").datepicker();
 	// 	};
 </script>
+
 </head>
 <body>
 	<div class="click-closed"></div>
@@ -234,6 +235,7 @@
 					href="${pageContext.request.contextPath }/customer/account/signIn">Sign
 					In/Register</a>
 			</div>
+
 			<div class="nav-item;"
 				style="color: #6c757d; font-size: 16px; padding-right: 3px">
 				<span id="day"> </span> <span id="timeClock"></span>
@@ -401,5 +403,20 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/bootstrap.min.js"></script>
+	<script>
+		var myVar = setInterval(myTimer, 1000);
+		var my = setInterval(myDate, 1000);
+		function myTimer() {
+			var d = new Date();
+			var t = d.toLocaleTimeString();
+			$("#timeClock").html(t);
+		}
+		function myDate() {
+			var date = new Date();
+			var day = date.toDateString();
+			$("#day").html(day);
+		}
+	</script>
+
 </body>
 </html>

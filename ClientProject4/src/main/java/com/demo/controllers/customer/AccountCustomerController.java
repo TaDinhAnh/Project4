@@ -1,8 +1,6 @@
 package com.demo.controllers.customer;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import com.demo.Dtos.Input.AccountInput;
 import com.demo.Dtos.Input.Login;
 import com.demo.Dtos.Output.AccountOutput;

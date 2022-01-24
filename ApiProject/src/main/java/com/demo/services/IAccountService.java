@@ -28,4 +28,8 @@ public interface IAccountService {
 
 	AccountOutput changePassword(int id, AccountInput accountInput);
 
+	AccountOutput find(int id);
+
+	Boolean delAccount(int id);
+
 }

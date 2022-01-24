@@ -1,5 +1,4 @@
 package com.demo.Dtos.Output;
-
 import java.util.Date;
 import com.demo.common.ERole;
 import com.google.gson.annotations.SerializedName;
@@ -21,6 +20,29 @@ public class AccountOutput {
 	private String image;
 	@SerializedName("role")
 	private ERole role;
+	@SerializedName("isDelete")
+	private Boolean isDelete;
+
+	public AccountOutput(int id, String gmail, String fullname, String phone, Date dob, String image, ERole role,
+			Boolean isDelete) {
+		super();
+		this.id = id;
+		this.gmail = gmail;
+		this.fullname = fullname;
+		this.phone = phone;
+		this.dob = dob;
+		this.image = image;
+		this.role = role;
+		this.isDelete = isDelete;
+	}
+
+	public Boolean getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Boolean isDelete) {
+		this.isDelete = isDelete;
+	}
 
 	public String getPassword() {
 		return password;
