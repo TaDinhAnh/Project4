@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.demo.Dtos.Input.ProductInput;
+import com.demo.Dtos.Input.SendMailInput;
 import com.demo.Dtos.Output.ProductOutput;
 import com.demo.services.IProductService;
 import com.demo.validators.Validate;
@@ -28,7 +29,7 @@ public class ProductController {
 	private Validate validate;
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ProductOutput> ceateProduct(@RequestBody @Valid ProductInput productInput,
+	public ResponseEntity<ProductOutput> createProduct(@RequestBody @Valid ProductInput productInput,
 			BindingResult bind) {
 		validate.validate(productInput, bind);
 		if (bind.hasErrors()) {
@@ -73,7 +74,28 @@ public class ProductController {
 		if (productOutputs == null || productOutputs.size() <= 0) {
 			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<ProductOutput>>(productService.getListProductByClient(), HttpStatus.OK);
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "find/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ProductOutput> find(@PathVariable("id") int id) {
+		if (id <= 0) {
+			return new ResponseEntity<ProductOutput>(HttpStatus.BAD_REQUEST);
+		}
+		ProductOutput productOutput = productService.find2(id);
+		if (productOutput == null) {
+			return new ResponseEntity<ProductOutput>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<ProductOutput>(productOutput, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "findAll", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductOutput>> findAll() {
+		List<ProductOutput> productOutputs = productService.findAllProduct();
+		if (productOutputs == null || productOutputs.size() <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "search/{name}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -85,11 +107,9 @@ public class ProductController {
 		if (productOutputs == null || productOutputs.size() <= 0) {
 			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<ProductOutput>>(productService.getListProduct(name), HttpStatus.OK);
-
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 	}
-
-	@RequestMapping(value = "accept/{id}", method = RequestMethod.PATCH, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "accept/{id}", method = RequestMethod.PATCH)
 	public ResponseEntity<Boolean> acceptProduct(@PathVariable("id") int id) {
 		if (id <= 0) {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
@@ -100,7 +120,18 @@ public class ProductController {
 		} else {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
 		}
-
 	}
 
+	@RequestMapping(value = "cancel/{id}", method = RequestMethod.POST)
+	public ResponseEntity<Boolean> cancelProduct(@PathVariable("id") int id,
+			@RequestBody @Valid SendMailInput sendMailInput, BindingResult bind) {
+		validate.validate(sendMailInput, bind);
+		if (bind.hasErrors() || id <= 0) {
+			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
+		}
+		if (productService.cancelProduct(id, sendMailInput)) {
+			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+	}
 }

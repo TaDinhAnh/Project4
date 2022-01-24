@@ -36,6 +36,7 @@ public class AuctionService implements IAuctionService {
 		auction.setHourEnd(auctionInput.getHourEnd());
 		auction.setHourStart(auctionInput.getHourStart());
 		auction.setDescription(auctionInput.getDescription());
+		auction.setStatus(EAuction.comingsoon);		
 		auction.setStatus(EAuction.comingsoon);
 		auction.setIsDel(false);
 		return auctionRepositories.save(auction) != null;
@@ -85,5 +86,20 @@ public class AuctionService implements IAuctionService {
 	@Override
 	public List<AuctionOutput> getAll() {
 		return auctionRepositories.getAll();
+	}
+
+	@Override
+	public List<AuctionOutput> getlistAuctionOver() {
+		return auctionRepositories.getlistAuctionOver();
+	}
+
+	@Override
+	public List<AuctionOutput> getlistAuctionHappening() {
+		return auctionRepositories.getlistAuctionHappening();
+	}
+
+	@Override
+	public List<AuctionOutput> getlistAuctionComingsoon() {
+		return auctionRepositories.getlistAuctionComingsoon();
 	}
 }

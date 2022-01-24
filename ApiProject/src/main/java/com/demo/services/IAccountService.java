@@ -20,4 +20,8 @@ public interface IAccountService {
 	
 	boolean changeAvatar(String nameImg, int id);
 
+	AccountOutput find(int id);
+	
+	Boolean delAccount(int id);
+
 }

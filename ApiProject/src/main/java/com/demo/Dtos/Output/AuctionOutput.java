@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AuctionOutput {
 	private int id;
+	private String fullname;
 	@JsonFormat(pattern = "HH:mm:ss")
 	@Temporal(TemporalType.TIME)
 	private Date hourStart;
@@ -25,7 +26,8 @@ public class AuctionOutput {
 		super();
 	}
 
-	public AuctionOutput(int id, Date hourStart, Date hourEnd, Date eventdate, String description, EAuction status, boolean isDel) {
+	public AuctionOutput(int id, Date hourStart, Date hourEnd, Date eventdate, String description, EAuction status,
+			boolean isDel) {
 		super();
 		this.id = id;
 		this.hourStart = hourStart;
@@ -35,6 +37,8 @@ public class AuctionOutput {
 		this.status = status;
 		this.isDel = isDel;
 	}
+	
+
 	public AuctionOutput(int id, Date hourStart, Date hourEnd, Date eventdate, String description, EAuction status) {
 		super();
 		this.id = id;
@@ -44,6 +48,27 @@ public class AuctionOutput {
 		this.description = description;
 		this.status = status;
 	}
+
+	public AuctionOutput(int id, String fullname, Date hourStart, Date hourEnd, Date eventdate, String description,
+			EAuction status) {
+		super();
+		this.id = id;
+		this.fullname = fullname;
+		this.hourStart = hourStart;
+		this.hourEnd = hourEnd;
+		this.eventdate = eventdate;
+		this.description = description;
+		this.status = status;
+	}
+
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -7,10 +7,22 @@ import com.demo.models.Auction;
 
 public interface IAuctionService {
 	AuctionOutput getDetailAuction(int id);
+
 	List<AuctionOutput> getlistAuction();
+
 	Auction findById(int id);
+
 	List<AuctionOutput> getAll();
+
 	List<AuctionOutput> getListAuctionById(int idVendor);
+
 	boolean createAuction(AuctionInput auctionInput);
-	AuctionOutput updateAuction(AuctionInput auctionInput, int id);  
+
+	AuctionOutput updateAuction(AuctionInput auctionInput, int id);
+
+	List<AuctionOutput> getlistAuctionOver();
+
+	List<AuctionOutput> getlistAuctionHappening();
+
+	List<AuctionOutput> getlistAuctionComingsoon();
 }

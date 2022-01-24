@@ -12,12 +12,20 @@ import com.demo.models.Product;
 
 @Repository
 public interface ProductReponsitory extends CrudRepository<Product, Integer> {
-	@Query("select new com.demo.Dtos.Output.ProductOutput(id, category.name, name , "
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name , "
 			+ "priceMin, image, description, status, isAccept) from Product "
 			+ "where  isDelete = 0 and isAccept = 1 and status = 1  order by id desc ")
 	public List<ProductOutput> getListProductByClient();
 
-	@Query("select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name , "
+			+ "priceMin, image, description, status, isAccept, vendorId) from Product " + "where  id = :id ")
+	public ProductOutput find2(@Param("id") int id);
+
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name , "
+			+ "priceMin, image, description, status, isAccept, isDelete) from Product  order by id desc ")
+	public List<ProductOutput> findAllProduct();
+
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
 			+ "description, status, isAccept) from Product where name like %:name% and isDelete = 0 "
 			+ "and isAccept = 1 and status = 1 order by id desc")
 	public List<ProductOutput> getListProduct(@Param("name") String name);

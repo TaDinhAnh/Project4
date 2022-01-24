@@ -13,7 +13,7 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 	private Log1Interceptor log1Interceptor;
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(log1Interceptor).excludePathPatterns("/api/authentication/**");
+		//registry.addInterceptor(log1Interceptor).excludePathPatterns("/api/authentication/**");
 	}
 	
 }

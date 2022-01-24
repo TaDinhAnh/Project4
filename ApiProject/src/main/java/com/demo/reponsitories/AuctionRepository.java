@@ -11,8 +11,8 @@ import com.demo.models.Auction;
 
 @Repository
 public interface AuctionRepository extends CrudRepository<Auction, Integer> {
-	
-	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, hourStart, hourEnd, eventdate, description, status) from Auction where isDel = 0 order by id desc ")
+
+	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where isDel = 0 order by id desc ")
 	public List<AuctionOutput> getlistAuction();
 
 	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, hourStart, hourEnd, eventdate, description, status) from Auction where id=:id")
@@ -20,7 +20,20 @@ public interface AuctionRepository extends CrudRepository<Auction, Integer> {
 
 	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, hourStart, hourEnd, eventdate, description, status) from Auction order by id desc ")
 	public List<AuctionOutput> getAll();
+
 	@Query(value = "select new com.demo.Dtos.Output.AuctionOutput(id, hourStart, hourEnd, eventdate, description, status, isDel)"
 			+ "from Auction where account.id = :id")
 	public List<AuctionOutput> getAuctionByIdVendor(@Param("id") int id);
+
+	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where status = 0  order by id desc")
+	public List<AuctionOutput> getlistAuctionOver();
+
+	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where status = 1  order by id desc")
+	public List<AuctionOutput> getlistAuctionHappening();
+
+	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where status = 2  order by id desc")
+	public List<AuctionOutput> getlistAuctionComingsoon();
+	
+
+
 }

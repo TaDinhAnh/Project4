@@ -4,9 +4,20 @@ public class FeedBackOutput {
 
 	private int id;
 	private String accountName;
+	private String imageAccount;
+	private String gmail;
 	private String productName;
 	private String content;
+	private Boolean isDelete;
 	
+
+	public Boolean getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Boolean isDelete) {
+		this.isDelete = isDelete;
+	}
 
 	public int getId() {
 		return id;
@@ -18,6 +29,22 @@ public class FeedBackOutput {
 
 	public String getAccountName() {
 		return accountName;
+	}
+	
+	public String getImageAccount() {
+		return imageAccount;
+	}
+
+	public void setImageAccount(String imageAccount) {
+		this.imageAccount = imageAccount;
+	}
+
+	public String getGmail() {
+		return gmail;
+	}
+
+	public void setGmail(String gmail) {
+		this.gmail = gmail;
 	}
 
 	public void setAccountName(String accountName) {
@@ -51,6 +78,19 @@ public class FeedBackOutput {
 		this.productName = productName;
 		this.content = content;
 	}
+
+	public FeedBackOutput(int id, String accountName, String imageAccount, String gmail, String productName,
+			String content, Boolean isDelete) {
+		super();
+		this.id = id;
+		this.accountName = accountName;
+		this.imageAccount = imageAccount;
+		this.gmail = gmail;
+		this.productName = productName;
+		this.content = content;
+		this.isDelete = isDelete;
+	}
+	
 	
 	
 
