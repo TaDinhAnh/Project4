@@ -149,7 +149,9 @@
                   <h6 class="mb-0">Invoices</h6>
                 </div>
                 <div class="col-6 text-end">
+                <a href="${pageContext.request.contextPath }/admin/orders/index">
                   <button class="btn btn-outline-primary btn-sm mb-0">View All</button>
+                  </a>
                 </div>
               </div>
             </div>

@@ -38,5 +38,9 @@ public class OrderService implements IOrdersService {
 		}
 		return ordersOutputs;
 	}
+	@Override
+	public List<OrdersOutput> getAll() {
+		return ordersResponsitory.getAll();
+	}
 
 }

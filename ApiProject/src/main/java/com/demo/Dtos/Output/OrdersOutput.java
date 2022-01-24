@@ -108,4 +108,15 @@ public class OrdersOutput {
 		this.account.setPhone(phone);
 	}
 
+	public OrdersOutput(Integer id, Date successDate, Double total, Double piad, EOrder status, String fullname) {
+		super();
+		this.id = id;
+		this.successDate = successDate;
+		this.total = total;
+		this.piad = piad;
+		this.status = status;
+		this.account = new AccountOutput();
+		this.account.setFullname(fullname);
+	}
+
 }

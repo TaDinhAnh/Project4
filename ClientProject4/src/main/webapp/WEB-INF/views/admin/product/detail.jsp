@@ -52,7 +52,7 @@
                 </li>
                  <li
 									class="list-group-item border-0 d-flex align-items-center px-0 mb-2">
-                  	<c:if test="${!item.isAccept && !item.isDelete}">
+                  	<c:if test="${!product.isAccept && !product.isDelete}">
             
             <a
 											href="${pageContext.request.contextPath }/admin/product/accpet/${product.id}">

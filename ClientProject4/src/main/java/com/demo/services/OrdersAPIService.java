@@ -8,5 +8,7 @@ import retrofit2.http.GET;
 public interface OrdersAPIService {
 	@GET("orders/limit")
 	Call<List<OrdersOutput>> getListLimit();
+	@GET("orders/findAll")
+	Call<List<OrdersOutput>> findAll();
 	
 }

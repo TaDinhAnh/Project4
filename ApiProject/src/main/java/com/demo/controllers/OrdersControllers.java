@@ -19,8 +19,17 @@ public class OrdersControllers {
 	private IOrdersService ordersService;
 
 	@RequestMapping(value = { "limit" }, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<OrdersOutput>> getListAuctionByIdVendor() {
-		List<OrdersOutput> auctionOutputs = ordersService.getListLimit(5);
+	public ResponseEntity<List<OrdersOutput>> getLimit() {
+		List<OrdersOutput> ordersOutputs = ordersService.getListLimit(5);
+		if (ordersOutputs == null || ordersOutputs.size() <= 0) {
+			return new ResponseEntity<List<OrdersOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<OrdersOutput>>(ordersOutputs, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = { "findAll" }, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<OrdersOutput>> findAll() {
+		List<OrdersOutput> auctionOutputs = ordersService.getAll();
 		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
 			return new ResponseEntity<List<OrdersOutput>>(HttpStatus.NOT_FOUND);
 		}
