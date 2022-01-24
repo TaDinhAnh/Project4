@@ -17,12 +17,17 @@ public interface IProductService {
 	List<ProductOutput> getListProduct(String name);
 
 	Product findById(int id);
-	
+
 	ProductOutput find(int id);
+
 	boolean acceptProduct(int id);
+
 	boolean cancelProduct(int id, SendMailInput sendMailInput);
+
 	ProductOutput createProduct(ProductInput productInput);
 
 	ProductOutput updateProduct(ProductInput productInput, int id);
+
+	ProductOutput find2(int id);
 
 }

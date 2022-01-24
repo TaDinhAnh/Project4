@@ -8,19 +8,19 @@ $(document).ready(function() {
 		$("#contentReply").val("");
 		$("#idFeedback").val(id)
 	});
-	
+
 	$("#btnReplyFeedback").click(function() {
 		var id = $("#idFeedback").val();
 		var toEmail = $("#toEmailReply").val();
 		var subject = $("#subjectReply").val();
 		var content = $("#contentReply").val();
-		if (subject === "" || content ==="") {
+		if (subject === "" || content === "") {
 			alert("Please enter full field!");
 			return;
 		}
 		$.ajax({
 			type: "POST",
-			url: "http://localhost:9799/api/feedback/reply/"+id,
+			url: "http://localhost:9799/api/feedback/reply/" + id,
 			contentType: "application/json; charset=utf-8",
 			data: JSON.stringify({
 				"content": content,
@@ -34,6 +34,9 @@ $(document).ready(function() {
 			error: function(xhr) {
 				if (xhr.status === 401) {
 					window.location.href = "http://localhost:8088/account/login";
+				}
+				if (xhr.status === 200) {
+					window.location.href = "http://localhost:8088/admin/dashboard";
 				}
 				else {
 					window.location.href = "http://localhost:8088/requesterror/400page";

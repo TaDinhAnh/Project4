@@ -19,7 +19,7 @@ public interface ProductReponsitory extends CrudRepository<Product, Integer> {
 
 	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name , "
 			+ "priceMin, image, description, status, isAccept, vendorId) from Product " + "where  id = :id ")
-	public ProductOutput find(@Param("id") int id);
+	public ProductOutput find2(@Param("id") int id);
 
 	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name , "
 			+ "priceMin, image, description, status, isAccept, isDelete) from Product  order by id desc ")
@@ -29,4 +29,9 @@ public interface ProductReponsitory extends CrudRepository<Product, Integer> {
 			+ "description, status, isAccept) from Product where name like %:name% and isDelete = 0 "
 			+ "and isAccept = 1 and status = 1 order by id desc")
 	public List<ProductOutput> getListProduct(@Param("name") String name);
+	
+	@Query("select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
+			+ "description, status, isAccept) from Product where id = :id")
+	public ProductOutput find(@Param("id") int id);
+	
 }

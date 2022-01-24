@@ -28,6 +28,9 @@ public interface ProductAPIService {
 	@GET("product/{id}")
 	Call<ProductOutput> find(@Path("id") int id);
 
+	@GET("product/find/{id}")
+	Call<ProductOutput> find2(@Path("id") int id);
+
 	@POST("product")
 	Call<ProductOutput> create(@Body ProductInput productInput);
 

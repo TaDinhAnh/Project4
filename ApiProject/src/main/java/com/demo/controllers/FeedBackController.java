@@ -7,11 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.demo.Dtos.Input.FeedBackInput;
+import com.demo.Dtos.Input.SendMailInput;
 import com.demo.services.IFeedbackService;
 import com.demo.validators.Validate;
 
@@ -22,16 +24,29 @@ public class FeedbackController {
 	private IFeedbackService feedbackService;
 	@Autowired
 	private Validate validate;
-	@RequestMapping( method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
+
+	@RequestMapping(method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> createFeedback(@RequestBody @Valid FeedBackInput feedbackInput, BindingResult bind) {
 		validate.validate(feedbackInput, bind);
-		if(bind.hasErrors()) {
+		if (bind.hasErrors()) {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
 		}
-		if(feedbackService.createFeedBack(feedbackInput)) {
+		if (feedbackService.createFeedBack(feedbackInput)) {
 			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-		}else {		
+		} else {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
 		}
+	}
+
+	@RequestMapping(value = "reply/{id}", method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Boolean> replyFeedback(@RequestBody @Valid SendMailInput sendMailInput, BindingResult bind,
+			@PathVariable("id") int id) {
+		validate.validate(sendMailInput, bind);
+		if (bind.hasErrors()) {
+			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
+		}
+		if (feedbackService.replyFeedback(id, sendMailInput))
+			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Boolean>(HttpStatus.OK);
 	}
 }

@@ -2,12 +2,13 @@ package com.demo.services;
 
 import java.util.List;
 import com.demo.Dtos.Input.AccountInput;
+import com.demo.Dtos.Input.Login;
 import com.demo.Dtos.Output.AccountOutput;
 import com.demo.models.Account;
 public interface IAccountService {
 	boolean createAccount(AccountInput accountInput);
 
-	Account login(Account accoount);
+	String login(Login Login);
 
 	AccountOutput changeInfor(int id, AccountInput accountInput);
 
@@ -16,6 +17,8 @@ public interface IAccountService {
 	Account findByGmail(String gmail);
 
 	Account findById(int id);
+	
+	boolean changeAvatar(String nameImg, int id);
 
 	AccountOutput find(int id);
 	

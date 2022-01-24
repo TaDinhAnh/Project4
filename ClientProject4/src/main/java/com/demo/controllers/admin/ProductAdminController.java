@@ -42,7 +42,7 @@ public class ProductAdminController {
 	@RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
 	public String detail(ModelMap modelMap, @PathVariable("id") int id) {
 		try {
-			Response<ProductOutput> response = productAPIService.find(id).execute();
+			Response<ProductOutput> response = productAPIService.find2(id).execute();
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:

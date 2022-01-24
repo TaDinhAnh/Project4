@@ -1,10 +1,9 @@
 package com.demo.Dtos.Output;
 
 import java.util.Date;
-
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import com.demo.common.Constant;
 import com.demo.common.ERole;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -86,7 +85,7 @@ public class AccountOutput {
 	}
 
 	public void setImage(String image) {
-		this.image = image;
+		this.image = Constant.urlAvatar + image;
 	}
 
 	public ERole getRole() {
@@ -107,7 +106,7 @@ public class AccountOutput {
 		this.fullname = fullname;
 		this.phone = phone;
 		this.dob = dob;
-		this.image = image;
+		this.image = Constant.urlAvatar +  image;
 	}
 
 	public AccountOutput(int id, String gmail, String fullname, String phone, Date dob, String image, ERole role) {
@@ -116,7 +115,7 @@ public class AccountOutput {
 		this.fullname = fullname;
 		this.phone = phone;
 		this.dob = dob;
-		this.image = image;
+		this.image = Constant.urlAvatar + image;
 		this.role = role;
 	}
 

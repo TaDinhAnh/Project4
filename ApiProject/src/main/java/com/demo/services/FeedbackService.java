@@ -59,7 +59,7 @@ public class FeedbackService implements IFeedbackService {
 	public Boolean replyFeedback(int id, SendMailInput sendMailInput) {
 		Feedback feedback = find(id);
 		if(!MailHelper.sendMail(sendMailInput.getToEmail(), sendMailInput.getContent(), sendMailInput.getSubject()))
-			return false;
+			return true;
 		feedback.setIsDel(true);
 		return feedbackReponsitory.save(feedback) == null;
 	}

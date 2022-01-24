@@ -1,5 +1,6 @@
 package com.demo.Dtos.Output;
 
+import com.demo.common.Constant;
 import com.demo.common.EProduct;
 
 public class ProductOutput {
@@ -69,7 +70,7 @@ public class ProductOutput {
 	}
 
 	public void setImage(String image) {
-		this.image = image;
+		this.image = Constant.urlImgProduct + image;
 	}
 
 	public String getDescription() {
@@ -123,7 +124,7 @@ public class ProductOutput {
 		this.category = category;
 		this.name = name;
 		this.priceMin = priceMin;
-		this.image = image;
+		this.image = Constant.urlImgProduct +  image;
 		this.description = description;
 		this.status = status;
 		this.isAccept = isAccept;
