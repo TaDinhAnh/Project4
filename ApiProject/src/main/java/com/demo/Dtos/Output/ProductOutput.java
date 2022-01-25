@@ -136,7 +136,7 @@ public class ProductOutput {
 		this.category = category;
 		this.name = name;
 		this.priceMin = priceMin;
-		this.image = image;
+		this.image = Constant.urlImgProduct + image;
 		this.description = description;
 		this.status = status;
 		this.isAccept = isAccept;
@@ -149,7 +149,7 @@ public class ProductOutput {
 		this.category = category;
 		this.name = name;
 		this.priceMin = priceMin;
-		this.image = image;
+		this.image = Constant.urlImgProduct + image;
 		this.description = description;
 		this.status = status;
 		this.isAccept = isAccept;

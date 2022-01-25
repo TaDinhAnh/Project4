@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.demo.Dtos.Input.AccountInput;
+import com.demo.Dtos.Input.ChangePass;
 import com.demo.Dtos.Output.AccountOutput;
 import com.demo.common.UploadImg;
 import com.demo.services.IAccountService;
@@ -66,18 +67,22 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = {
-			"/changePass/{id}" }, method = RequestMethod.PUT, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-
-	public ResponseEntity<AccountOutput> changePassword(@PathVariable("id") int id,
-			@RequestBody AccountInput accountInput) {
-		if (id <= 0) {
-			return new ResponseEntity<AccountOutput>(HttpStatus.BAD_REQUEST);
+			"/changePass/{id}" }, method = RequestMethod.PUT, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Boolean> changePassword(@RequestBody @Valid ChangePass changePass, BindingResult bind,
+			@PathVariable("id") int id) {
+		validate.validate(changePass, bind);
+		if (bind.hasErrors() || id <= 0) {
+			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
 		}
-		AccountOutput accountOutput = accountService.changePassword(id, accountInput);
-		if (accountOutput == null) {
-			return new ResponseEntity<AccountOutput>(HttpStatus.BAD_REQUEST);
+		int rs = accountService.changePassword(id, changePass);
+		switch (rs) {
+		case -1:
+			return new ResponseEntity<Boolean>(false, HttpStatus.CONFLICT);
+		case 0:
+			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
+		default:
+			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 		}
-		return new ResponseEntity<AccountOutput>(accountOutput, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/checkGmail/{gmail}", method = RequestMethod.GET)

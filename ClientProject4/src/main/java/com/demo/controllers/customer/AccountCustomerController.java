@@ -86,7 +86,7 @@ public class AccountCustomerController {
 				AccountOutput accountOutput = response.body();
 				String jwtToken = response.headers().get("Authorization");
 				session.setAttribute("jwtToken", jwtToken);
-				session.setAttribute("account", accountOutput);
+				session.setAttribute("accountid", accountOutput.getId());
 				return "redirect:/customer/view/home/index";
 			}
 		} catch (IOException e) {
@@ -101,9 +101,10 @@ public class AccountCustomerController {
 	}
 
 	@RequestMapping(value = { "changeInfor" }, method = RequestMethod.GET)
-	public String changeAccount(ModelMap map) {
+	public String changeAccount(ModelMap map, HttpSession session) {
 		try {
-			Response<AccountOutput> response = accountAPIService.getAccount(2).execute();
+			int accountId = (int)session.getAttribute("accountid");
+			Response<AccountOutput> response = accountAPIService.getAccount(accountId).execute();
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:

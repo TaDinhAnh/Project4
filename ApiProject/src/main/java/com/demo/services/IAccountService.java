@@ -3,6 +3,7 @@ package com.demo.services;
 import java.util.List;
 
 import com.demo.Dtos.Input.AccountInput;
+import com.demo.Dtos.Input.ChangePass;
 import com.demo.Dtos.Input.Login;
 import com.demo.Dtos.Output.AccountOutput;
 import com.demo.models.Account;
@@ -26,7 +27,7 @@ public interface IAccountService {
 
 	AccountOutput getAccount(int accountId);
 
-	AccountOutput changePassword(int id, AccountInput accountInput);
+	int changePassword(int id, ChangePass changePass);
 
 	AccountOutput find(int id);
 

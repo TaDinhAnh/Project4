@@ -6,6 +6,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.demo.Dtos.Input.AccountInput;
+import com.demo.Dtos.Input.ChangePass;
 import com.demo.Dtos.Input.Login;
 import com.demo.Dtos.Output.AccountOutput;
 import com.demo.models.Account;
@@ -28,6 +29,7 @@ public class AccountService implements IAccountService {
 		account.setPhone(accountInput.getPhone());
 		account.setPassword(BCrypt.hashpw(accountInput.getPassword(), BCrypt.gensalt(12)));
 		account.setRole(accountInput.getRole());
+		account.setImage("default.png");
 		return accountResponsitory.save(account) != null;
 	}
 
@@ -61,15 +63,16 @@ public class AccountService implements IAccountService {
 	}
 
 	@Override
-	public AccountOutput changePassword(int id, AccountInput accountInput) {
+	public int changePassword(int id, ChangePass changePass) {
 		Account account = findById(id);
 		if (account == null) {
-			return null;
+			return 0;
 		}
-		account.setPassword(accountInput.getPassword());
-		account = accountResponsitory.save(account);
-		return new AccountOutput(account.getId(), account.getGmail(), account.getFullname(), account.getPhone(),
-				account.getDob(), account.getImage(), account.getRole());
+		if (!BCrypt.checkpw(changePass.getPassOld(), account.getPassword())) {
+			return -1;
+		}
+		account.setPassword(BCrypt.hashpw(changePass.getPassNew(), BCrypt.gensalt(12)));
+		return accountResponsitory.save(account) == null ? 0 : 1;
 	}
 
 	@Override

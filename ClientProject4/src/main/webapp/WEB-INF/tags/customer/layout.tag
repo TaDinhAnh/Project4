@@ -44,23 +44,6 @@
 	href="${pageContext.request.contextPath }/resources/assets/customer/css/ionicons.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/assets/customer/css/flaticon.css">
-<script>
-	var myVar = setInterval(myTimer, 1000);
-	var my = setInterval(myDate, 1000);
-	function myTimer() {
-		var d = new Date();
-		var t = d.toLocaleTimeString();
-		$("#timeClock").html(t);
-	}
-	function myDate() {
-		var date = new Date();
-		var day = date.toDateString();
-		$("#day").html(day);
-	}
-	// 	function datepicker() {
-	// 		$("#datepicker").datepicker();
-	// 	};
-</script>
 
 </head>
 <body>
@@ -381,9 +364,10 @@
 		src="${pageContext.request.contextPath }/resources/assets/vendor/php-email-form/validate.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/main.js"></script>
-
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/jquery-3.6.0.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/assets/customer/account.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script
@@ -403,6 +387,20 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/bootstrap.min.js"></script>
+	<script>
+		var myVar = setInterval(myTimer, 1000);
+		var my = setInterval(myDate, 1000);
+		function myTimer() {
+			var d = new Date();
+			var t = d.toLocaleTimeString();
+			$("#timeClock").html(t);
+		}
+		function myDate() {
+			var date = new Date();
+			var day = date.toDateString();
+			$("#day").html(day);
+		}
+	</script>
 	<script>
 		var myVar = setInterval(myTimer, 1000);
 		var my = setInterval(myDate, 1000);

@@ -1,5 +1,6 @@
 package com.demo.controllers.admin;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,9 @@ public class AccountAdminController {
 			default:
 				List<AccountOutput> rs = response.body();
 				modelMap.put("accounts", rs);
+				for (AccountOutput accountOutput : rs) {
+					System.out.println(accountOutput.getImage());
+				}
 				return "admin/account/index";
 			}
 		} catch (Exception e) {

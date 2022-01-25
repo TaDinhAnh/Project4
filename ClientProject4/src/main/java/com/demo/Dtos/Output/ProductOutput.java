@@ -41,24 +41,6 @@ public class ProductOutput {
 		return id;
 	}
 
-	public ProductOutput(int id, String category, String name, Double priceMin, String image, String description,
-			EProduct status, Boolean isAccept, int vendorId, OrdersOutput orders, AccountOutput vendor,
-			Boolean isDelete) {
-		super();
-		this.id = id;
-		this.category = category;
-		this.name = name;
-		this.priceMin = priceMin;
-		this.image = image;
-		this.description = description;
-		this.status = status;
-		this.isAccept = isAccept;
-		this.vendorId = vendorId;
-		this.orders = orders;
-		this.vendor = vendor;
-		this.isDelete = isDelete;
-	}
-
 	public int getVendorId() {
 		return vendorId;
 	}
@@ -148,7 +130,8 @@ public class ProductOutput {
 	}
 
 	public ProductOutput(int id, String category, String name, Double priceMin, String image, String description,
-			EProduct status, Boolean isAccept) {
+			EProduct status, Boolean isAccept, int vendorId, OrdersOutput orders, AccountOutput vendor,
+			Boolean isDelete) {
 		super();
 		this.id = id;
 		this.category = category;
@@ -158,6 +141,10 @@ public class ProductOutput {
 		this.description = description;
 		this.status = status;
 		this.isAccept = isAccept;
+		this.vendorId = vendorId;
+		this.orders = orders;
+		this.vendor = vendor;
+		this.isDelete = isDelete;
 	}
 
 }

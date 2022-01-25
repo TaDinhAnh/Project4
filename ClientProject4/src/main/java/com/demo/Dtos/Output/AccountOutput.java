@@ -23,18 +23,6 @@ public class AccountOutput {
 	@SerializedName("isDelete")
 	private Boolean isDelete;
 
-	public AccountOutput(int id, String gmail, String fullname, String phone, Date dob, String image, ERole role,
-			Boolean isDelete) {
-		super();
-		this.id = id;
-		this.gmail = gmail;
-		this.fullname = fullname;
-		this.phone = phone;
-		this.dob = dob;
-		this.image = image;
-		this.role = role;
-		this.isDelete = isDelete;
-	}
 
 	public Boolean getIsDelete() {
 		return isDelete;
@@ -112,27 +100,8 @@ public class AccountOutput {
 		super();
 	}
 
-	public AccountOutput(String gmail, String fullname, String phone, Date dob, String image) {
-		super();
-		this.gmail = gmail;
-		this.fullname = fullname;
-		this.phone = phone;
-		this.dob = dob;
-		this.image = image;
-	}
-
-	public AccountOutput(int id, String gmail, String fullname, String phone, Date dob, String image, ERole role) {
-		this.id = id;
-		this.gmail = gmail;
-		this.fullname = fullname;
-		this.phone = phone;
-		this.dob = dob;
-		this.image = image;
-		this.role = role;
-	}
-
 	public AccountOutput(int id, String gmail, String fullname, String phone, String password, Date dob, String image,
-			ERole role) {
+			ERole role, Boolean isDelete) {
 		super();
 		this.id = id;
 		this.gmail = gmail;
@@ -142,6 +111,9 @@ public class AccountOutput {
 		this.dob = dob;
 		this.image = image;
 		this.role = role;
+		this.isDelete = isDelete;
 	}
+
+
 
 }

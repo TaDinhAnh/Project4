@@ -4,116 +4,6 @@
 <%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-	$(document)
-			.ready(
-					function() {
-						$("#updateAccount")
-								.click(
-										function() {
-											var id = $("#id").val();
-											var gmail = $("#gmail").val();
-											var fullname = $("#name").val();
-											var phone = $("#phone").val();
-											var dob = $("#dob").val();
-											alert($("#dob"));
-											if (fullname === "") {
-												alert("Please enter fullname !");
-												return false;
-											} else if (gmail === "") {
-												alert("Please enter gmail !");
-												return false;
-											} else if (phone === "") {
-												alert("Please enter phone !");
-												return false;
-											} else if (dob === "") {
-												alert("Please enter dob !");
-												return false;
-											}
-											$
-													.ajax({
-														type : "PUT",
-														url : "http://localhost:9799/api/account/"
-																+ id,
-														contentType : "application/json; charset=utf-8",
-														data : JSON
-																.stringify({
-																	"id" : id,
-																	"gmail" : gmail,
-																	"fullname" : fullname,
-																	"phone" : phone,
-																	"dob" : dob,
-																}),
-																
-														dataType : "json",
-														error : function(xhr) {
-															if (xhr.status === 401) {
-																window.location.href = "http://localhost:8088/account/login";
-															} else {
-																window.location.href = "http://localhost:8088/error/400page";
-															}
-														},
-														success : function() {
-															window.location.href = "http://localhost:8088/customer/account/changeInfor";
-														},
-													});
-											alert(dob);
-										});
-
-						$("#updatePassword")
-								.click(
-										function() {
-											var id = $("#id").val();
-											var oldpass = $("#oldpass").val();
-											var newpass = $("#newpass").val();
-											var repeatpass = $("#repeatpass")
-													.val();
-											if (oldpass === "") {
-												alert("Please enter old password!");
-												return;
-											} else if (newpass === "") {
-												alert("Please enter new password !");
-												return;
-											} else if (repeatpass === "") {
-												alert("Please enter repeat password !");
-												return;
-											} else if(oldpass != ${account.password} ){
-												alert("The wrong old password!");
-												return;
-												}											
-											else if (newpass != repeatpass) {
-												alert("New password and Repeat Password not match!");
-												$("#repeatpass").val("");
-												return;
-											}
-											$
-													.ajax({
-
-														type : "PUT",
-														url : "http://localhost:9799/api/account/changePass/"
-																+ id,
-														contentType : "application/json; charset=utf-8",
-														data : JSON
-																.stringify({
-																	"id" : id,
-																	"password" : repeatpass,
-																}),
-														dataType : "json",
-														error : function(xhr) {
-															if (xhr.status === 401) {
-																window.location.href = "http://localhost:8088/account/login";
-															} else {
-																window.location.href = "http://localhost:8088/error/400page";
-															}
-														},
-														success : function() {
-															window.location.assign("http://localhost:8088/customer/account/changeInfor");
-														},
-													});
-										});
-
-					});
-</script>
 <mt:layout title="">
 	<jsp:attribute name="content">
  <section class="intro-single">
@@ -136,9 +26,8 @@
                 <div class="agent-avatar-box">
                   <div class="card-box-d">
               <div class="card-img-d">
-              <img
-												src="${pageContext.request.contextPath }/resources/assets/customer/img/agent-7.jpg"
-												alt="" class="agent-avatar img-fluid">
+              <img src="${account.image}" alt=""
+												class="agent-avatar img-fluid">
               
 										</div>
               <div class="card-overlay card-overlay-hover">           
@@ -196,7 +85,7 @@
 					<div class="col-md-6 text-center d-flex align-items-center">
 						<div class="wrap w-100">
 							<button type="button" class="btn btn-primary py-3 px-4"
-															data-toggle="modal" data-target="#exampleModalCenter">
+															data-toggle="modal" data-target="#modalUpdateInfo">
 										Change Information
 							</button>
 						</div>
@@ -212,15 +101,17 @@
           </div>		
 		</section>
 		
-		<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+		<div class="modal fade" id="modalUpdateInfo" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
-			aria-hidden="true">
+			aria-hidden="true" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button"
 							class="close d-flex align-items-center justify-content-center"
-							data-dismiss="modal" aria-label="Close">
+							data-dismiss="modal" aria-label="Close"
+							value="${account.fullname},${account.phone},${account.dob}"
+							id="closeModal">
 					<span aria-hidden="true" class="ion-ios-close"></span>
 				</button>
 			</div>
@@ -239,7 +130,7 @@
 								<div class="form-group mb-3">
 									<input type="text" class="form-control"
 												placeholder="Email address" value="${account.gmail }"
-												id="gmail">
+												id="gmail" readonly="readonly">
 								</div>
 								<div class="form-group">
 									<input type="text" class="form-control" placeholder="Phone"

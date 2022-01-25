@@ -20,19 +20,6 @@ public class AccountOutput {
 	private ERole role;
 	private Boolean isDelete;
 
-	public AccountOutput(int id, String gmail, String fullname, String phone, Date dob, String image, ERole role,
-			Boolean isDelete) {
-		super();
-		this.id = id;
-		this.gmail = gmail;
-		this.fullname = fullname;
-		this.phone = phone;
-		this.dob = dob;
-		this.image = image;
-		this.role = role;
-		this.isDelete = isDelete;
-	}
-
 	public Boolean getIsDelete() {
 		return isDelete;
 	}
@@ -137,8 +124,21 @@ public class AccountOutput {
 		this.phone = phone;
 		this.password = password;
 		this.dob = dob;
-		this.image = image;
+		this.image = Constant.urlAvatar + image;
 		this.role = role;
+	}
+
+	public AccountOutput(int id, String gmail, String fullname, String phone, Date dob, String image, ERole role,
+			Boolean isDelete) {
+		super();
+		this.id = id;
+		this.gmail = gmail;
+		this.fullname = fullname;
+		this.phone = phone;
+		this.dob = dob;
+		this.image = Constant.urlAvatar + image;
+		this.role = role;
+		this.isDelete = isDelete;
 	}
 
 }
