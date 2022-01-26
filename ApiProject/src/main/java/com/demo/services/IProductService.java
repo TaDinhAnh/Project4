@@ -41,6 +41,8 @@ public interface IProductService {
 	boolean cancelProduct(int id, SendMailInput sendMailInput);
 
 	ProductOutput find2(int id);
+	
+	ProductOutput findByVendorId(int productId , int vendorId);
 
 
 }

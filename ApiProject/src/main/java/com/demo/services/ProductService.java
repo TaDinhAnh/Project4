@@ -171,4 +171,9 @@ public class ProductService implements IProductService {
 		return productReponsitory.getListProductNotAccept(vendorId);
 	}
 
+	@Override
+	public ProductOutput findByVendorId(int productId, int vendorId) {
+		return productReponsitory.findByVendorId(productId, vendorId);
+	}
+
 }

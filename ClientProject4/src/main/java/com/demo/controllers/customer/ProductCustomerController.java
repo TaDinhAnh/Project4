@@ -2,6 +2,8 @@ package com.demo.controllers.customer;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +23,16 @@ import retrofit2.Response;
 public class ProductCustomerController {
 
 	@RequestMapping(value = { "index" }, method = RequestMethod.GET)
-	public String index(ModelMap modelMap) {
+	public String index(ModelMap modelMap, HttpSession session) {
 		try {
+			int accountid = (int) session.getAttribute("accountid");
 			ProductAPIService productAPIService = APIClient.getClient().create(ProductAPIService.class);
-			Response<List<ProductOutput>> response = productAPIService.getListProductAccept(1).execute();
-			List<ProductOutput> productOutputSold =productAPIService.getListProductSold(1).execute().body();
-			List<ProductOutput> productOutputunSold =productAPIService.getListProductUnsold(3).execute().body();
-			List<ProductOutput> productOutputNotAccept =productAPIService.getListProductNotAccept(1).execute().body();
+			Response<List<ProductOutput>> response = productAPIService.getListProductAccept(accountid).execute();
+			List<ProductOutput> productOutputSold = productAPIService.getListProductSold(accountid).execute().body();
+			List<ProductOutput> productOutputunSold = productAPIService.getListProductUnsold(accountid).execute()
+					.body();
+			List<ProductOutput> productOutputNotAccept = productAPIService.getListProductNotAccept(accountid).execute()
+					.body();
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
@@ -41,28 +46,28 @@ public class ProductCustomerController {
 				modelMap.put("productOutputNotAccept", productOutputNotAccept);
 				return "vendor/product/list/index";
 			}
-
 		} catch (Exception e) {
-			return "error/404page";
+			return "error/400page";
 		}
 	}
-	
-	
+
 	@RequestMapping(value = { "detail" }, method = RequestMethod.GET)
-	public String detail(ModelMap modelMap, @RequestParam("id") int productId) {
+	public String detail(ModelMap modelMap, @RequestParam("id") int productId, HttpSession session) {
 		try {
-			AuctionProductAPIService auctionProductAPIService = APIClient.getClient().create(AuctionProductAPIService.class);
-			Response<AuctionProductOutput> response = auctionProductAPIService.findListSold(2, productId).execute();
-			int statusCode = response.code();
-			switch (statusCode) {
-			case 400:
-				return "error/400page";			
-			default:
-				modelMap.put("productlist", response.body());
-				return "vendor/product/detail/index";
-			}
+			int accountid = (int) session.getAttribute("accountid");
+			AuctionProductAPIService auctionProductAPIService = APIClient.getClient()
+					.create(AuctionProductAPIService.class);
+			ProductAPIService productAPIService = APIClient.getClient().create(ProductAPIService.class);
+			AuctionProductOutput auctionproductOutput = auctionProductAPIService.findListSold(accountid, productId)
+					.execute().body();			
+			ProductOutput productOutput = productAPIService.findByid(productId, accountid).execute().body();
+			modelMap.put("productlist", auctionproductOutput);
+			System.out.println(productOutput.getStatus());
+			System.out.println(productOutput.getIsAccept());
+			modelMap.put("productOutput", productOutput);			
+			return "vendor/product/detail/index";
 		} catch (Exception e) {
-			return "error/404page";
+			return "error/400page";
 		}
 	}
 }

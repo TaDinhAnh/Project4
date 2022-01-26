@@ -57,7 +57,7 @@ public class AuctionProductOutput {
 
 	public AuctionProductOutput(int auctionid, int proId, String fullname, Date hourStart, Date hourEnd, Date eventdate,
 			String descriptionAuc, EAuction statusAuc, String productname, String category, Double priceMin,
-			String image, String descriptionPro, EProduct statusPro, boolean status) {
+			String image, String descriptionPro, EProduct statusPro, boolean isAccept, boolean status) {
 		this.proId = proId;
 		this.auctionid = auctionid;
 		this.auctionOutput.setId(auctionid);
@@ -74,6 +74,7 @@ public class AuctionProductOutput {
 		this.productOutput.setPriceMin(priceMin);
 		this.productOutput.setImage(image);
 		this.productOutput.setStatus(statusPro);
+		this.productOutput.setIsAccept(isAccept);
 		this.status = status;
 	}
 

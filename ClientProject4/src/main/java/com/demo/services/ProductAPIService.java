@@ -19,8 +19,8 @@ public interface ProductAPIService {
 	@GET("product")
 	Call<List<ProductOutput>> findList();
 
-//	@GET("product/{id}")
-//	Call<ProductOutput> findByid(@Path("id") int id);
+	@GET("product/find/{productId}/{vendorId}")
+	Call<ProductOutput> findByid(@Path("productId") int productId, @Path("vendorId") int vendorId);
 
 	@GET("product/findAll")
 	Call<List<ProductOutput>> findAll();
@@ -57,7 +57,7 @@ public interface ProductAPIService {
 
 	@GET("product/listAccept/{id}")
 	Call<List<ProductOutput>> getListProductAccept(@Path("id") int id);
-	
+
 	@GET("product/listNotAccept/{id}")
 	Call<List<ProductOutput>> getListProductNotAccept(@Path("id") int id);
 

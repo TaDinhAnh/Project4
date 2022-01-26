@@ -3,6 +3,7 @@
 	type="java.lang.String"%>
 <%@ attribute name="content" fragment="true"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +45,6 @@
 	href="${pageContext.request.contextPath }/resources/assets/customer/css/ionicons.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/assets/customer/css/flaticon.css">
-
 </head>
 <body>
 	<div class="click-closed"></div>
@@ -156,15 +156,6 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
 						href="${pageContext.request.contextPath }/customer/view/home">Home</a></li>
-					<!-- 					<li class="nav-item"><a class="nav-link " -->
-					<%-- 						href="${pageContext.request.contextPath }/customer/about">About</a> --%>
-					<!-- 					</li> -->
-					<!-- 					<li class="nav-item"><a class="nav-link " -->
-					<%-- 						href="${pageContext.request.contextPath }/customer/property">Property</a></li> --%>
-
-					<!-- 					<li class="nav-item"><a class="nav-link " -->
-					<%-- 						href="${pageContext.request.contextPath }/customer/blog">Blog</a></li> --%>
-
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -214,9 +205,19 @@
 				</ul>
 			</div>
 			<div class="nav-item;" style="padding-right: 10px">
-				<a class=""
-					href="${pageContext.request.contextPath }/customer/account/signIn">Sign
-					In/Register</a>
+
+				<c:if test="${empty sessionScope.account }">
+
+					<a class=""
+						href="${pageContext.request.contextPath }/customer/account/signIn">Sign
+						In/Register</a>
+				</c:if>
+				<c:if test="${not empty sessionScope.account }">
+					<span style="color: #6610f2"> Hello ${account.fullname }
+					</span>
+					<a class=""
+						href="${pageContext.request.contextPath }/customer/account/signIn">Logout</a>
+				</c:if>
 			</div>
 
 			<div class="nav-item;"

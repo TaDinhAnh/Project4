@@ -10,12 +10,12 @@ import com.demo.models.Account;
 import com.demo.models.Auction;
 import com.demo.models.Auctionhistory;
 import com.demo.models.Product;
-import com.demo.reponsitories.IAuctionHistoryResponsitory;
+import com.demo.reponsitories.AuctionHistoryResponsitory;
 
 @Service
 public class AuctionHistoryService implements IAuctionHistoryService {
 	@Autowired
-	private IAuctionHistoryResponsitory auctionHistoryResponsitory;
+	private AuctionHistoryResponsitory auctionHistoryResponsitory;
 
 	@Autowired
 	private IAccountService accountService;

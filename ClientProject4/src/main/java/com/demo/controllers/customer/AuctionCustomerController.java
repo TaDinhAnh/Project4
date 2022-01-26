@@ -19,27 +19,63 @@ import retrofit2.Response;
 public class AuctionCustomerController {
 
 	@RequestMapping(value = { "happenning" }, method = RequestMethod.GET)
-	public String happenning(ModelMap modelMap) throws IOException {
-		AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
-		List<AuctionOutput> auctionOutputs = auctionAPIService.getlistAuctionHapping().execute().body();
-		modelMap.put("auctions", auctionOutputs);
-		return "customer/auction/happening/index";
+	public String happenning(ModelMap modelMap) {
+		try {
+			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
+			Response<List<AuctionOutput>> response = auctionAPIService.getlistAuctionHapping().execute();
+			int statusCode = response.code();
+			switch (statusCode) {
+			case 400:
+				return "error/400page";
+			case 404:
+				return "error/404page";
+			default:
+				modelMap.put("auctions", response.body());
+				return "customer/auction/happening/index";
+			}
+		} catch (Exception e) {
+			return "error/400page";
+		}
 	}
 
 	@RequestMapping(value = { "happened" }, method = RequestMethod.GET)
-	public String happened(ModelMap modelMap) throws IOException {
-		AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
-		List<AuctionOutput> auctionOutputs = auctionAPIService.getlistAuctionOver().execute().body();
-		modelMap.put("auctions", auctionOutputs);
-		return "customer/auction/happened/index";
+	public String happened(ModelMap modelMap) {
+		try {
+			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
+			Response<List<AuctionOutput>> response = auctionAPIService.getlistAuctionOver().execute();
+			int statusCode = response.code();
+			switch (statusCode) {
+			case 400:
+				return "error/400page";
+			case 404:
+				return "error/404page";
+			default:
+				modelMap.put("auctions", response.body());
+				return "customer/auction/happened/index";
+			}
+		} catch (Exception e) {
+			return "error/400page";
+		}
 	}
 
 	@RequestMapping(value = { "comingsoon" }, method = RequestMethod.GET)
-	public String comingsoon(ModelMap modelMap) throws IOException {
-		AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
-		List<AuctionOutput> auctionOutputs = auctionAPIService.getlistAuctionComingsoon().execute().body();
-		modelMap.put("auctions", auctionOutputs);
-		return "customer/auction/comingsoon/index";
+	public String comingsoon(ModelMap modelMap) {
+		try {
+			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
+			Response<List<AuctionOutput>> response = auctionAPIService.getlistAuctionComingsoon().execute();
+			int statusCode = response.code();
+			switch (statusCode) {
+			case 400:
+				return "error/400page";
+			case 404:
+				return "error/404page";
+			default:
+				modelMap.put("auctions", response.body());
+				return "customer/auction/comingsoon/index";
+			}
+		} catch (Exception e) {
+			return "error/400page";
+		}
 	}
 
 	@RequestMapping(value = { "vendor" }, method = RequestMethod.GET)
@@ -61,7 +97,7 @@ public class AuctionCustomerController {
 			}
 
 		} catch (Exception e) {
-			return "error/404page";
+			return "error/400page";
 		}
 	}
 }

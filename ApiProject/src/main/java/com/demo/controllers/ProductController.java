@@ -89,6 +89,20 @@ public class ProductController {
 		}
 		return new ResponseEntity<ProductOutput>(productOutput, HttpStatus.OK);
 	}
+	
+	
+	@RequestMapping(value = "find/{productId}/{vendorId}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ProductOutput> findByVendor(@PathVariable("productId") int productId, @PathVariable("vendorId") int vendorId) {
+		if (vendorId <= 0 || productId <=0) {
+			return new ResponseEntity<ProductOutput>(HttpStatus.BAD_REQUEST);
+		}
+		ProductOutput productOutput = productService.findByVendorId(productId, vendorId);
+		if (productOutput == null) {
+			return new ResponseEntity<ProductOutput>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<ProductOutput>(productOutput, HttpStatus.OK);
+	}
+
 
 	@RequestMapping(value = "findAll", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductOutput>> findAll() {

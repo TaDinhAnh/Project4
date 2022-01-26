@@ -54,13 +54,9 @@ public class AccountCustomerController {
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
-				return "customer/account/register/index";
+				return "error/400page";
 			default:
-				if (!response.body()) {
-					return "customer/account/register/index";
-				}
 				return "redirect:/customer/account/signIn";
-
 			}
 		} catch (Exception e) {
 			return "customer/account/register/index";
@@ -74,7 +70,6 @@ public class AccountCustomerController {
 		Response<AccountOutput> response;
 		try {
 			response = accountAPIService.login(login).execute();
-
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
@@ -87,6 +82,7 @@ public class AccountCustomerController {
 				String jwtToken = response.headers().get("Authorization");
 				session.setAttribute("jwtToken", jwtToken);
 				session.setAttribute("accountid", accountOutput.getId());
+				session.setAttribute("account", accountOutput);
 				return "redirect:/customer/view/home/index";
 			}
 		} catch (IOException e) {
@@ -103,7 +99,7 @@ public class AccountCustomerController {
 	@RequestMapping(value = { "changeInfor" }, method = RequestMethod.GET)
 	public String changeAccount(ModelMap map, HttpSession session) {
 		try {
-			int accountId = (int)session.getAttribute("accountid");
+			int accountId = (int) session.getAttribute("accountid");
 			Response<AccountOutput> response = accountAPIService.getAccount(accountId).execute();
 			int statusCode = response.code();
 			switch (statusCode) {
@@ -114,7 +110,7 @@ public class AccountCustomerController {
 				return "customer/account/changeInfor/index";
 			}
 		} catch (Exception e) {
-			return "customer/account/signIn/index";
+			return "error/400page";
 		}
 
 	}

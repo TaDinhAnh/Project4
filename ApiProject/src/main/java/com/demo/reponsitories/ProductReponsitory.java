@@ -61,5 +61,9 @@ public interface ProductReponsitory extends CrudRepository<Product, Integer> {
 			+ "description, status, isAccept) from Product where vendorId = :vendorId and isDelete = 0 "
 			+ "and isAccept = 1 and status = 0 order by id desc")
 	public List<ProductOutput> getListProductAccept(@Param("vendorId") int vendorId);
+	
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name , "
+			+ "priceMin, image, description, status, isAccept) from Product " + "where  id = :productId and  vendorId= :vendorId")
+	public ProductOutput findByVendorId(@Param("productId") int productId, @Param("vendorId") int vendorId);
 
 }

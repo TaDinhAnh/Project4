@@ -17,15 +17,6 @@ import com.demo.services.IAuctionProductService;
 public class AuctionProductController {
 	@Autowired
 	private IAuctionProductService auctionProductService;
-
-//	@RequestMapping(value = "/{productId}/{auctionId}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<AuctionProductOutput> findList(@PathVariable("productId") int productId, @PathVariable("auctionId") int auctionId) {
-//		AuctionProductOutput auctionProductOutput = auctionProductService.getList(productId, auctionId);
-//		if (auctionProductOutput == null) {
-//			return new ResponseEntity<AuctionProductOutput>(HttpStatus.BAD_REQUEST);
-//		}
-//		return new ResponseEntity<AuctionProductOutput>(auctionProductOutput, HttpStatus.OK);
-//	}
 	
 	@RequestMapping(value = "findListSold/{accountId}/{productId}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AuctionProductOutput> findListSold(@PathVariable("accountId") int accountId, @PathVariable("productId") int productId) {
