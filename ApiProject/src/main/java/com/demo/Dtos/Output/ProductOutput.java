@@ -124,11 +124,12 @@ public class ProductOutput {
 		this.category = category;
 		this.name = name;
 		this.priceMin = priceMin;
-		this.image = Constant.urlImgProduct +  image;
+		this.image = Constant.urlImgProduct + image;
 		this.description = description;
 		this.status = status;
 		this.isAccept = isAccept;
 	}
+
 	public ProductOutput(int id, String category, String name, Double priceMin, String image, String description,
 			EProduct status, Boolean isAccept, Boolean isDelete) {
 		super();
@@ -142,6 +143,7 @@ public class ProductOutput {
 		this.isAccept = isAccept;
 		this.isDelete = isDelete;
 	}
+
 	public ProductOutput(int id, String category, String name, Double priceMin, String image, String description,
 			EProduct status, Boolean isAccept, int vendorId) {
 		super();
@@ -154,6 +156,19 @@ public class ProductOutput {
 		this.status = status;
 		this.isAccept = isAccept;
 		this.vendorId = vendorId;
+	}
+
+	public ProductOutput(int id, String nameVendor, String namePro, String cateString, Double priceMin, String image,
+			String description) {
+		super();
+		this.id = id;
+		this.category = cateString;
+		this.name = namePro;
+		this.priceMin = priceMin;
+		this.image = Constant.urlImgProduct + image;
+		this.description = description;
+		this.vendor = new AccountOutput();
+		this.vendor.setFullname(nameVendor);
 	}
 
 }

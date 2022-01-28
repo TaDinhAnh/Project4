@@ -18,22 +18,29 @@ public class AuctionProductController {
 	@Autowired
 	private IAuctionProductService auctionProductService;
 
-//	@RequestMapping(value = "/{productId}/{auctionId}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<AuctionProductOutput> findList(@PathVariable("productId") int productId, @PathVariable("auctionId") int auctionId) {
-//		AuctionProductOutput auctionProductOutput = auctionProductService.getList(productId, auctionId);
-//		if (auctionProductOutput == null) {
-//			return new ResponseEntity<AuctionProductOutput>(HttpStatus.BAD_REQUEST);
-//		}
-//		return new ResponseEntity<AuctionProductOutput>(auctionProductOutput, HttpStatus.OK);
-//	}
-	
 	@RequestMapping(value = "findListSold/{accountId}/{productId}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<AuctionProductOutput> findListSold(@PathVariable("accountId") int accountId, @PathVariable("productId") int productId) {
+	public ResponseEntity<AuctionProductOutput> findListSold(@PathVariable("accountId") int accountId,
+			@PathVariable("productId") int productId) {
+		if (accountId <= 0 || productId <= 0)
+			return new ResponseEntity<AuctionProductOutput>(HttpStatus.BAD_REQUEST);
 		AuctionProductOutput auctionProductOutput = auctionProductService.findListSold(accountId, productId);
 		if (auctionProductOutput == null) {
 			return new ResponseEntity<AuctionProductOutput>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<AuctionProductOutput>(auctionProductOutput, HttpStatus.OK);
 	}
-	
+
+	@RequestMapping(value = "getProduct/{auctionid}/{productid}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<AuctionProductOutput> getByIdProductAndAuction(@PathVariable("auctionid") int auctionid,
+			@PathVariable("productid") int productid) {
+		if (auctionid <= 0 || productid <= 0)
+			return new ResponseEntity<AuctionProductOutput>(HttpStatus.BAD_REQUEST);
+		AuctionProductOutput auctionProductOutput = auctionProductService.getByIdProductAndAuction(auctionid,
+				productid);
+		if (auctionProductOutput.getAuctionOutput() == null || auctionProductOutput.getProductOutput() == null) {
+			return new ResponseEntity<AuctionProductOutput>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<AuctionProductOutput>(auctionProductOutput, HttpStatus.OK);
+	}
+
 }

@@ -1,8 +1,6 @@
 package com.demo.controllers.admin;
 
-import java.util.Iterator;
 import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,9 +23,9 @@ public class AccountAdminController {
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
-				return "errorpage/400page";
+				return "error/400page";
 			case 401:
-				return "admin/account/index";
+				return "customer/account/signIn/index";
 			default:
 				List<AccountOutput> rs = response.body();
 				modelMap.put("accounts", rs);
@@ -37,7 +35,7 @@ public class AccountAdminController {
 				return "admin/account/index";
 			}
 		} catch (Exception e) {
-			return "errorpage/400page";
+			return "error/400page";
 		}
 	}
 	@RequestMapping(value = { "del/{id}" }, method = RequestMethod.GET)
@@ -47,14 +45,14 @@ public class AccountAdminController {
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
-				return "errorpage/400page";
+				return "error/400page";
 			case 401:
-				return "admin/account/index";
+				return "customer/account/signIn/index";
 			default:
 				return "redirect:/admin/account/index";
 			}
 		} catch (Exception e) {
-			return "errorpage/400page";
+			return "error/400page";
 		}
 	}
 }

@@ -103,12 +103,14 @@ public class AccountCustomerController {
 	@RequestMapping(value = { "changeInfor" }, method = RequestMethod.GET)
 	public String changeAccount(ModelMap map, HttpSession session) {
 		try {
-			int accountId = (int)session.getAttribute("accountid");
+			int accountId = (int) session.getAttribute("accountid");
 			Response<AccountOutput> response = accountAPIService.getAccount(accountId).execute();
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
 				return "error/400page";
+			case 401:
+				return "customer/account/signIn/index";
 			default:
 				map.put("account", response.body());
 				return "customer/account/changeInfor/index";

@@ -372,49 +372,15 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/core/popper.min.js"></script>
-	<script>
-		var win = navigator.platform.indexOf('Win') > -1;
-		if (win && document.querySelector('#sidenav-scrollbar')) {
-			var options = {
-				damping : '0.5'
-			}
-			Scrollbar.init(document.querySelector('#sidenav-scrollbar'),
-					options);
-		}
-	</script>
 
 	<!-- modal -->
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/bootstrap.min.js"></script>
-	<script>
-		var myVar = setInterval(myTimer, 1000);
-		var my = setInterval(myDate, 1000);
-		function myTimer() {
-			var d = new Date();
-			var t = d.toLocaleTimeString();
-			$("#timeClock").html(t);
-		}
-		function myDate() {
-			var date = new Date();
-			var day = date.toDateString();
-			$("#day").html(day);
-		}
-	</script>
-	<script>
-		var myVar = setInterval(myTimer, 1000);
-		var my = setInterval(myDate, 1000);
-		function myTimer() {
-			var d = new Date();
-			var t = d.toLocaleTimeString();
-			$("#timeClock").html(t);
-		}
-		function myDate() {
-			var date = new Date();
-			var day = date.toDateString();
-			$("#day").html(day);
-		}
-	</script>
+	<script
+		src="${pageContext.request.contextPath }/resources/assets/customer/layout.js"></script>
+
+
 
 </body>
 </html>

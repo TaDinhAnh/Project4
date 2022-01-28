@@ -21,16 +21,16 @@ public class OrderAdminController {
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
-				return "errorpage/400page";
+				return "error/400page";
 			case 401:
-				return "admin/account/index";
+				return "customer/account/signIn/index";
 			default:
 				List<OrdersOutput> rs = response.body();
 				modelMap.put("orders", rs);
 				return "admin/orders/index";
 			}
 		} catch (Exception e) {
-			return "errorpage/400page";
+			return "error/400page";
 		}
 	}
 	

@@ -1,3 +1,4 @@
+ 
 package com.demo.controllers;
 
 import java.util.List;
@@ -68,7 +69,6 @@ public class AuctionController {
 
 		}
 		return new ResponseEntity<AuctionOutput>(auctionOutput, HttpStatus.OK);
-
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -128,7 +128,7 @@ public class AuctionController {
 		}
 		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "limit", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AuctionOutput>> getLimitAuctionHappening() {
 		List<AuctionOutput> auctionOutputs = auctionService.getLimitAuctionHappening();
@@ -136,6 +136,18 @@ public class AuctionController {
 			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "getProduct/{auctionid}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<AuctionOutput> getProduct(@PathVariable("auctionid") int auctionId) {
+		if(auctionId <=0) {
+			return new ResponseEntity<AuctionOutput>(HttpStatus.BAD_REQUEST);
+		}
+		AuctionOutput auctionOutput = auctionService.getListProductAuction(auctionId);
+		if (auctionOutput == null) {
+			return new ResponseEntity<AuctionOutput>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<AuctionOutput>(auctionOutput, HttpStatus.OK);
 	}
 
 }

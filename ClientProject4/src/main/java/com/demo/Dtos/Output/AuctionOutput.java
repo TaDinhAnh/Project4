@@ -1,6 +1,7 @@
 package com.demo.Dtos.Output;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,33 +26,14 @@ public class AuctionOutput {
 	private EAuction status;
 	@SerializedName("isDel")
 	private Boolean isDel;
+	private List<ProductOutput> productOutputs;
 
-	public AuctionOutput() {
-		super();
+	public List<ProductOutput> getProductOutputs() {
+		return productOutputs;
 	}
 
-	public AuctionOutput(int id, String hourStart, String hourEnd, Date eventdate, String description, EAuction status,
-			boolean isDel) {
-		super();
-		this.id = id;
-		this.hourStart = hourStart;
-		this.hourEnd = hourEnd;
-		this.eventdate = eventdate;
-		this.description = description;
-		this.status = status;
-		this.isDel = isDel;
-	}
-
-	public AuctionOutput(int id, String fullname, String hourStart, String hourEnd, Date eventdate, String description,
-			EAuction status) {
-		super();
-		this.id = id;
-		this.fullname = fullname;
-		this.hourStart = hourStart;
-		this.hourEnd = hourEnd;
-		this.eventdate = eventdate;
-		this.description = description;
-		this.status = status;
+	public void setProductOutputs(List<ProductOutput> productOutputs) {
+		this.productOutputs = productOutputs;
 	}
 
 	public String getFullname() {
@@ -116,6 +98,24 @@ public class AuctionOutput {
 
 	public void setIsDel(Boolean isDel) {
 		this.isDel = isDel;
+	}
+
+	public AuctionOutput() {
+		super();
+	}
+
+	public AuctionOutput(int id, String fullname, String hourStart, String hourEnd, Date eventdate, String description,
+			EAuction status, Boolean isDel, List<ProductOutput> productOutputs) {
+		super();
+		this.id = id;
+		this.fullname = fullname;
+		this.hourStart = hourStart;
+		this.hourEnd = hourEnd;
+		this.eventdate = eventdate;
+		this.description = description;
+		this.status = status;
+		this.isDel = isDel;
+		this.productOutputs = productOutputs;
 	}
 
 }

@@ -25,15 +25,17 @@ public class ProductCustomerController {
 		try {
 			ProductAPIService productAPIService = APIClient.getClient().create(ProductAPIService.class);
 			Response<List<ProductOutput>> response = productAPIService.getListProductAccept(1).execute();
-			List<ProductOutput> productOutputSold =productAPIService.getListProductSold(1).execute().body();
-			List<ProductOutput> productOutputunSold =productAPIService.getListProductUnsold(3).execute().body();
-			List<ProductOutput> productOutputNotAccept =productAPIService.getListProductNotAccept(1).execute().body();
+			List<ProductOutput> productOutputSold = productAPIService.getListProductSold(1).execute().body();
+			List<ProductOutput> productOutputunSold = productAPIService.getListProductUnsold(3).execute().body();
+			List<ProductOutput> productOutputNotAccept = productAPIService.getListProductNotAccept(1).execute().body();
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
 				return "error/400page";
 			case 404:
 				return "error/404page";
+			case 401:
+				return "customer/account/signIn/index";
 			default:
 				modelMap.put("productlistAccept", response.body());
 				modelMap.put("productOutputSold", productOutputSold);
@@ -46,17 +48,17 @@ public class ProductCustomerController {
 			return "error/404page";
 		}
 	}
-	
-	
+
 	@RequestMapping(value = { "detail" }, method = RequestMethod.GET)
 	public String detail(ModelMap modelMap, @RequestParam("id") int productId) {
 		try {
-			AuctionProductAPIService auctionProductAPIService = APIClient.getClient().create(AuctionProductAPIService.class);
+			AuctionProductAPIService auctionProductAPIService = APIClient.getClient()
+					.create(AuctionProductAPIService.class);
 			Response<AuctionProductOutput> response = auctionProductAPIService.findListSold(2, productId).execute();
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
-				return "error/400page";			
+				return "error/400page";
 			default:
 				modelMap.put("productlist", response.body());
 				return "vendor/product/detail/index";

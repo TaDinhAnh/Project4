@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
-              <h1 class="title-single">${getAuction.productname }</h1>
+              <h1 class="title-single">${product.name }</h1>
               <span class="color-text-a">News Single.</span>
             </div>
           </div>
@@ -24,7 +24,7 @@
           <div class="col-sm-12">
             <div class="news-img-box">
               <img
-								src="${pageContext.request.contextPath }/resources/assets/customer/img/slide-3.jpg"
+								src="${product.image }"
 								alt="" class="img-fluid">
             </div>
           </div>
@@ -33,17 +33,17 @@
               <ul class="list-inline text-center color-a">
                 <li class="list-inline-item mr-2">
                   <strong>Vendor: </strong>
-                  <span class="color-text-a">${getAuction.accountname }</span>
+                  <span class="color-text-a">${auction.fullname }</span>
                 </li>
                 <li class="list-inline-item mr-2">
                   <strong>Category: </strong>
-                  <span class="color-text-a">${getAuction.productOutput.category }</span>
+                  <span class="color-text-a">${product.category }</span>
                   
                 </li>
                 <li class="list-inline-item">
                   <strong>Date: </strong>
                   <span class="color-text-a">
-                 <d:formatDate value="${getAuction.eventdate }"
+                 <d:formatDate value="${auction.eventdate }"
 											var="dated" pattern="dd/MM/yyy" /> ${dated }                          
                   </span>
                 </li>
@@ -51,17 +51,17 @@
             </div>
             <div class="post-content color-text-a">
               <p class="post-intro">
-               ${getAuction.productOutput.description}
+               ${product.description}
               </p>
              
               <blockquote class="blockquote">
-                <p class="mb-4">Starting price : ${getAuction.productOutput.priceMin}</p>
+                <p class="mb-4">Starting price : ${product.priceMin}</p>
               </blockquote>
                <p>
-                Auction hour Start at : ${getAuction.hourEnd}
+                Auction hour Start at : ${auction.hourStart}
               </p>
               <p>
-                Auction hour End at : ${getAuction.hourEnd}
+                Auction hour End at : ${auction.hourEnd}
               </p>
             </div>
           </div>
@@ -73,15 +73,15 @@
                   <h5> The highest price at the moment: </h5>
                  </div>
                  <div class="col-lg-8">
-                  <h1 class="title-single" style="color: red">${maxPriceATM } $</h1>
+                  <h1 class="title-single" style="color: red">${product.priceMin } $</h1>
                  </div>
                  </div>                     
             </div>             
               </div>
             </div>
-          <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
-                     
-            <div class="title-box-d">
+         <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+                   
+<%--             <div class="title-box-d">
               <h3 class="title-d">Comments (${count })</h3>
             </div>
              <c:forEach var="autionhistory" items="${auctionhistorys }">
@@ -104,7 +104,7 @@
                 </li>                          
               </ul>                         			            
             </div>
-            	</c:forEach>
+            	</c:forEach> --%>
             <div class="form-comments">
               
               <c:if test="${auction.status == 'happened' }">
@@ -116,7 +116,7 @@
               <div class="title-box-d">
                 <h3 class="title-d"> Enter price:</h3>
               </div>
-               <s:form class="form-a" modelAttribute="aucHis"
+               <s:form class="form-a" modelAttribute="auctionHistoryInput"
 									method="post"
 									action="${pageContext.request.contextPath}/customer/auction/detailAuction/sendPrice?id=${auction.id}">
                 <div class="row">
@@ -126,7 +126,7 @@
                       <s:input path="price" class="form-control" />           
                        												</div>
                   </div>
-                  <div class="col-md-12">
+                   <div class="col-md-12">
                     <button type="submit" class="btn btn-a">Send</button>
                   </div>
                 </div>   

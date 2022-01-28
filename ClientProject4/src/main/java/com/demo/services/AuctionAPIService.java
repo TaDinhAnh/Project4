@@ -40,8 +40,11 @@ public interface AuctionAPIService {
 
 	@GET("auction/comingsoon")
 	Call<List<AuctionOutput>> getlistAuctionComingsoon();
-	
+
 	@GET("auction/limit")
 	Call<List<AuctionOutput>> getLimitAuctionHappening();
+
+	@GET("auction/getProduct/{id}")
+	Call<AuctionOutput> getProduct(@Path("id") int auctionid);
 
 }

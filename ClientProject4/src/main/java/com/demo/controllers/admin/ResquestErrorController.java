@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ResquestErrorController {
 	@RequestMapping(value = { "400page" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
-			return "errorpage/400page";
+		return "error/400page";
 	}
 }

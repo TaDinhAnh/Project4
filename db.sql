@@ -1,6 +1,7 @@
 DROP DATABASE IF EXISTS AuctionProject;
 CREATE DATABASE AuctionProject;
 USE AuctionProject;
+SET GLOBAL event_scheduler = ON;
 CREATE TABLE Account(
     Id int PRIMARY KEY AUTO_INCREMENT,
     Gmail varchar(250),
@@ -159,9 +160,9 @@ insert into FeedBack (Content , IsDel , ProId , AccountId ) values ('Leg artery 
 insert into FeedBack (Content , IsDel , ProId , AccountId ) values ('Closed testicular biopsy', false, 2, 1);
 insert into FeedBack (Content , IsDel , ProId , AccountId ) values ('Blepharoptos repair NEC', false, 2, 3);
 
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('13:08', '9:43', '2021-12-10', 'Collaterl lig repair NEC', 1, 2, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('13:08', '9:43', '2022-01-30', 'Collaterl lig repair NEC', 2, 2, false);
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('16:26', '2:14', '2021-12-10', 'Body measurement', 2, 1, false);
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('3:40', '3:10', '2021-12-10', 'Open testicular biopsy', 2, 1, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('3:40', '6:00', '2022-01-26', 'Open testicular biopsy', 2, 1, false);
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('22:11', '5:44', '2021-12-10', 'Bilat extend simp mastec', 0, 2, false);
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('1:06', '1:52', '2021-12-10', 'C & s NOS', 1, 1, false);
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('22:04', '10:27', '2021-12-10', 'Reimplan aberr renal ves', 0, 2, false);
@@ -169,9 +170,21 @@ insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , Ve
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('18:41', '11:14', '2021-12-10', 'Excis cyst duct remnant', 2, 3, false);
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('23:19', '22:30', '2021-12-10', 'Salivary duct probing', 2, 3, false);
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> master
 INSERT INTO `orders` (`Id`, `AuctionId`, `ProId`, `AccountId`, `SuccessDate`, `Total`, `Piad`, `Address`, `Status`) VALUES (NULL, '4', '11', '2', '2022-01-05', '200', '20', 'HCM', '1'), (NULL, '5', '8', '7', '2022-01-11', '500', '400', 'HCM', 1);
+INSERT INTO `auctionproduct` (`AuctionId`, `ProId`, `Status`) VALUES ('1', '9', '0'), ('1', '5', '0'), ('1', '12', '0');
+
+CREATE EVENT eventUpdateAuctionOver
+ON SCHEDULE EVERY 1 HOUR
+STARTS CURRENT_TIMESTAMP
+ENDS CURRENT_TIMESTAMP + INTERVAL 10 YEAR
+DO  UPDATE auction
+	SET STATUS = 0
+	WHERE auction.Eventdate < CURRENT_DATE or (auction.Eventdate = CURRENT_DATE AND auction.HourEnd < HOUR(CURRENT_TIME()));
+ 
+CREATE EVENT eventUpdateAuctionCommingsoon
+ON SCHEDULE EVERY 1 HOUR
+STARTS CURRENT_TIMESTAMP
+ENDS CURRENT_TIMESTAMP + INTERVAL 10 YEAR  
+DO  UPDATE auction
+	SET STATUS = 1
+	WHERE auction.Eventdate = CURRENT_DATE AND auction.HourStart >= HOUR(CURRENT_TIME() - 1)

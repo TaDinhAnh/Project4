@@ -1,5 +1,7 @@
 package com.demo.controllers.customer;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,22 +25,25 @@ public class ContactCustomerController {
 	}
 
 	@RequestMapping(value = { "create" }, method = RequestMethod.POST)
-	public String create(@ModelAttribute("feedback") FeedBackInput backInput, ModelMap modelMap) {
+	public String create(@ModelAttribute("feedback") FeedBackInput backInput, ModelMap modelMap, HttpSession session) {
 		try {
-			backInput.setAccountId(3);
+			int accountid = (int) session.getAttribute("accountid");
+			backInput.setAccountId(accountid);
 			Response<Boolean> response = feedBackAPIService.create(backInput).execute();
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
-				return "redirect:/customer/view/contact";
+				return "error/400page";
+			case 401:
+				return "customer/account/signIn/index";
 			default:
 				if (!response.body()) {
-					return "redirect:/customer/view/contact";
+					return "error/400page";
 				}
 				return "redirect:/customer/view/contact";
 			}
 		} catch (Exception e) {
-			return "redirect:/customer/view/contact";
+			return "error/400page";
 		}
 
 	}

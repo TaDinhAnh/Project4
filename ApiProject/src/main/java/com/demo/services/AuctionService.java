@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.demo.Dtos.Input.AuctionInput;
 import com.demo.Dtos.Output.AuctionOutput;
+import com.demo.Dtos.Output.ProductOutput;
 import com.demo.common.EAuction;
 import com.demo.models.Account;
 import com.demo.models.Auction;
@@ -20,7 +21,11 @@ public class AuctionService implements IAuctionService {
 	@Autowired
 	private AuctionRepository auctionRepositories;
 	
-	@Autowired IAccountService accountService;
+	@Autowired 
+	private IAccountService accountService;
+	
+	@Autowired
+	private IAuctionProductService auctionProductService;
 
 	@Override
 	public List<AuctionOutput> getListAuctionById(int idVendor) {
@@ -120,4 +125,21 @@ public class AuctionService implements IAuctionService {
 		}
 		return auctionOutputs;
 	}
+
+	@Override
+	public AuctionOutput getListProductAuction(int id) {
+		Auction auction = findById(id);
+		if(auction == null)
+			return null;
+		AuctionOutput  auctionOutput = new AuctionOutput();
+		auctionOutput.setId(auction.getId());
+		auctionOutput.setHourStart(auction.getHourStart());
+		auctionOutput.setHourEnd(auction.getHourEnd());
+		auctionOutput.setEventdate(auction.getEventdate());
+		List<ProductOutput> list = auctionProductService.getListProByAution(id);
+		auctionOutput.setProductOutputs(list);
+		return auctionOutput;
+	}
+
+	
 }

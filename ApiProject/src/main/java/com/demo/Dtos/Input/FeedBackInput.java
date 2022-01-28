@@ -7,7 +7,7 @@ public class FeedBackInput {
 
 	@Min(value = 1)
 	private int accountId;
-	@Min(value = 1)
+	
 	private int productId;
 	@NotEmpty
 	private String content;

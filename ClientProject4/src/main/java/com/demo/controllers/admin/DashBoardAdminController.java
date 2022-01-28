@@ -21,9 +21,9 @@ public class DashBoardAdminController {
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
-				return "errorpage/400page";
+				return "error/400page";
 			case 401:
-				return "admin/account/index";
+				return "customer/account/signIn/index";
 			default:
 				DataDashboard rs = response.body();
 				modelMap.put("rs", rs);
@@ -31,7 +31,7 @@ public class DashBoardAdminController {
 				return "admin/dashboard/index";
 			}
 		} catch (Exception e) {
-			return "errorpage/400page";
+			return "error/400page";
 		}
 	}
 }

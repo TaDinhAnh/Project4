@@ -23,7 +23,7 @@ public class AccountOutput {
 	public Boolean getIsDelete() {
 		return isDelete;
 	}
-
+	
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
 	}

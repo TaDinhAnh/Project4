@@ -11,9 +11,8 @@ public interface AuctionProductAPIService {
 	@GET("auctionProduct/findListSold/{accountId}/{productId}")
 	Call<AuctionProductOutput> findListSold(@Path("accountId") int accountId, @Path("productId") int productId);
 
-
-
-
-
+	@GET("auctionProduct/getProduct/{auctionId}/{productId}")
+	Call<AuctionProductOutput> getByIdProductAndAuction(@Path("auctionId") int auctionId,
+			@Path("productId") int productId);
 
 }

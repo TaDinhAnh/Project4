@@ -11,44 +11,44 @@
           <div class="col-md-12">
             <div class="title-wrap d-flex justify-content-between">
               <div class="title-box">
-                <h2 class="title-a">List of ongoing auctions</h2>
+                <h2 class="title-a">List product auction</h2>
               </div>
             </div>
           </div>
         </div>
-         <div class="swiper">
+        <div class="swiper">
+        <div class="swiper">
           <div class="swiper-wrapper">
             <div class="carousel-item-a swiper-slide">
               <div class="testimonials-box">
                 <div class="row">
-                  <c:forEach var="auction" items="${auctions }">
+                <c:forEach var="item" items="${products	 }">
                   <div class="col-sm-12 col-md-3"
-											style="padding-bottom: 2%;">
+												style="padding-bottom: 2%;">
                     <div class="testimonial-img; card-box-a card-shadow">
-                      <img
-													src="${pageContext.request.contextPath }/resources/assets/customer/img/testimonial-1.jpg"
-													alt="" class="img-a img-fluid">
+                      <img src="${item.image }" alt=""
+														class="img-a img-fluid">
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-9"
-											style="margin-bottom: 2%; background-color: #e9ecef;">
+												style="margin-bottom: 2%; background-color: #e9ecef;">
                     <div class="testimonial-ico">
                     </div>
                     <div class="testimonials-content">
-                     <a
-													href="${pageContext.request.contextPath }/customer/view/auction/start/${auction.id}">
+                    <a href="${pageContext.request.contextPath }/customer/view/auction/getproduct/${idauction}/${item.id}">
                       <p class="testimonial-text">
-                         ${auction.description }
+                      ${item.name } : ${item.description }
                       </p>
                       </a>
                     </div>
                     <div class="testimonial-author-box">
                       <h5 class="testimonial-author" style="color: red;">
-														<d:formatDate value="${auction.eventdate }" var="dated"
-														pattern="dd/MM/yyy" />Open date: ${dated }  ${auction.hourStart }</h5>
+														<d:formatDate value="${eventDate }" var="dated"
+															pattern="dd/MM/yyy" />Open date: ${dated }  ${hourStart }</h5>
                     </div>
                   </div>
                   </c:forEach>
+                </div>
               </div>
             </div>
           </div>
@@ -56,6 +56,6 @@
         <div class="testimonial-carousel-pagination carousel-pagination"></div>
       </div>
     </div>
-		</section>	
+		</section>
 	</jsp:attribute>
 </mt:layout>

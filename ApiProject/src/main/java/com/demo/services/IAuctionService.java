@@ -25,6 +25,8 @@ public interface IAuctionService {
 	List<AuctionOutput> getlistAuctionHappening();
 
 	List<AuctionOutput> getlistAuctionComingsoon();
-	
+
 	List<AuctionOutput> getLimitAuctionHappening();
+
+	AuctionOutput getListProductAuction(int id);
 }

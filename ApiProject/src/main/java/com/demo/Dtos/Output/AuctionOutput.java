@@ -1,6 +1,7 @@
 package com.demo.Dtos.Output;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,6 +24,14 @@ public class AuctionOutput {
 	private String description;
 	private EAuction status;
 	private Boolean isDel;
+	private List<ProductOutput> productOutputs;
+	public List<ProductOutput> getProductOutputs() {
+		return productOutputs;
+	}
+
+	public void setProductOutputs(List<ProductOutput> productOutputs) {
+		this.productOutputs = productOutputs;
+	}
 
 	public AuctionOutput() {
 		super();

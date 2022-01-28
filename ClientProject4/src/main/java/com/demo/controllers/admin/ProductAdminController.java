@@ -26,16 +26,16 @@ public class ProductAdminController {
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
-				return "errorpage/400page";
+				return "error/400page";
 			case 401:
-				return "admin/account/index";
+				return "customer/account/signIn/index";
 			default:
 				List<ProductOutput> rs = response.body();
 				modelMap.put("products", rs);
 				return "admin/product/index";
 			}
 		} catch (Exception e) {
-			return "errorpage/400page";
+			return "error/400page";
 		}
 	}
 
@@ -50,7 +50,7 @@ public class ProductAdminController {
 			case 404:
 				return "errorpage/404page";
 			case 401:
-				return "admin/account/index";
+				return "customer/account/signIn/index";
 			default:
 				ProductOutput rs = response.body();
 				modelMap.put("product", rs);
@@ -73,7 +73,7 @@ public class ProductAdminController {
 			case 400:
 				return "errorpage/400page";
 			case 401:
-				return "admin/account/index";
+				return "customer/account/signIn/index";
 			default:
 				return "redirect:/admin/product";
 			}
@@ -92,7 +92,7 @@ public class ProductAdminController {
 			case 400:
 				return "errorpage/400page";
 			case 401:
-				return "admin/account/index";
+				return "customer/account/signIn/index";
 			default:
 				return "redirect:/admin/product";
 			}

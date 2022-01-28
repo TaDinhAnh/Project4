@@ -55,14 +55,6 @@
 													cols="45" rows="8" placeholder="Message"></s:textarea>
                       </div>
                     </div>
-                    <div class="col-md-12 my-3">
-                      <div class="mb-3">
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your message has been sent. Thank you!</div>
-                      </div>
-                    </div>
-
                     <div class="col-md-12 text-center">
                     <button type="submit" class="btn btn-a">Send Message </button>
                     </div>

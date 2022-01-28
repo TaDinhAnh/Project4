@@ -77,6 +77,23 @@ public class AuctionProductOutput {
 		this.status = status;
 	}
 
+	public AuctionProductOutput(int auctionid, int proId, Date hourStart, Date hourEnd, Date eventdate,
+			String productname, String category, Double priceMin, String image, String descriptionPro,
+			String fullName, EAuction statusAuction) {
+		this.auctionOutput.setId(auctionid);
+		this.auctionOutput.setHourStart(hourStart);
+		this.auctionOutput.setHourEnd(hourEnd);
+		this.auctionOutput.setEventdate(eventdate);
+		this.auctionOutput.setFullname(fullName);
+		this.auctionOutput.setStatus(statusAuction);
+		this.productOutput.setId(proId);
+		this.productOutput.setName(productname);
+		this.productOutput.setCategory(category);
+		this.productOutput.setDescription(descriptionPro);
+		this.productOutput.setPriceMin(priceMin);
+		this.productOutput.setImage(image);
+	}
+
 	public AuctionProductOutput(int proId, int auctionid, boolean status) {
 		super();
 		this.proId = proId;
