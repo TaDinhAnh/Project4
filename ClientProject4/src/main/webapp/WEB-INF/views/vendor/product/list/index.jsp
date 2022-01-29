@@ -23,8 +23,7 @@
 										data-toggle="modal" data-target="#createProduct">
 										Create  Product
 							</button>           
-                </li>
-               
+                </li>              
               </ol>
             </nav>
           </div>
