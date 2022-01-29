@@ -172,6 +172,11 @@ insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , Ve
 
 INSERT INTO `orders` (`Id`, `AuctionId`, `ProId`, `AccountId`, `SuccessDate`, `Total`, `Piad`, `Address`, `Status`) VALUES (NULL, '4', '11', '2', '2022-01-05', '200', '20', 'HCM', '1'), (NULL, '5', '8', '7', '2022-01-11', '500', '400', 'HCM', 1);
 INSERT INTO `auctionproduct` (`AuctionId`, `ProId`, `Status`) VALUES ('1', '9', '0'), ('1', '5', '0'), ('1', '12', '0');
+INSERT INTO `auctionproduct` (`AuctionId`, `ProId`, `Status`) VALUES ('9', '1', '0'), ('9', '2', '0');
+INSERT INTO `auctionproduct` (`AuctionId`, `ProId`, `Status`) VALUES ('4', '4', '0')
+
+INSERT INTO `auctionhistory` (`Id`, `AuctionId`, `ProId`, `AccountId`, `Price`, `Time`) VALUES (NULL, '9', '1', '2', '3000', '2022-01-28 15:22:49.000000'), (NULL, '9', '1', '2', '4000', '2022-01-28 15:22:49.000000'), (NULL, '9', '2', '2', '123', '2022-01-28 15:22:49.000000'), (NULL, '9', '2', '2', '456', '2022-01-28 15:22:49.000000')
+INSERT INTO `orders` (`Id`, `AuctionId`, `ProId`, `AccountId`, `SuccessDate`, `Total`, `Piad`, `Address`, `Status`) VALUES (NULL, '9', '1', '2', '2022-01-10', '4000', NULL, 'hcm', '3'), (NULL, '9', '2', '2', '2022-01-10', '456', '123', 'hcm', '2');
 
 CREATE EVENT eventUpdateAuctionOver
 ON SCHEDULE EVERY 1 HOUR

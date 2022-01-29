@@ -17,7 +17,7 @@
           </div>
         </div>
 
-        <div  class="swiper">
+        <div class="swiper">
         <div class="swiper">
           <div class="swiper-wrapper">
 
@@ -37,11 +37,14 @@
 												style="margin-bottom: 2%; background-color: #e9ecef;">
                     <div class="testimonial-ico">
                     </div>
-                    <div class="testimonials-content">
-                      <p class="testimonial-text">
+                    <a
+													href="${pageContext.request.contextPath }/customer/view/auction/start/${auction.id}">
+                    <div class="testimonials-content">              
+                      <p class="testimonial-text">                    
                          ${auction.description }
-                      </p>
+                      </p>                             
                     </div>
+                      </a>
                     <div class="testimonial-author-box">
                       <h5 class="testimonial-author" style="color: red;">
 														<d:formatDate value="${auction.eventdate }" var="dated"

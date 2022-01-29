@@ -60,7 +60,7 @@
               <div class="card-box-a card-shadow">          
                <div>
                 <div class="img-box-a">
-                  <img												src="${pageContext.request.contextPath }/resources/assets/customer/img/testimonial-1.jpg"
+                  <img												src="${auction.productOutputs[0].image}"
 												alt="" class="img-a img-fluid">
 												                </div>
 						</div>			
@@ -76,7 +76,7 @@
                         <span class="price-a">hourStart |  ${auction.hourStart }</span>
                       </div>
                       <a
-													href="${pageContext.request.contextPath }/customer/auction/detailAuction?id=${auction.id}"
+													href="${pageContext.request.contextPath }/customer/view/auction/start/${auction.id}"
 													class="link-a">Click here to view
                         <span class="bi bi-chevron-right"></span>
                       </a>
@@ -96,11 +96,7 @@
               <div class="title-box">
                 <h2 class="title-a">List Product</h2>
               </div>
-              <div class="title-link">
-                <a href="agents-grid.html">All Agents
-                  <span class="bi bi-chevron-right"></span>
-                </a>
-              </div>
+             
             </div>
           </div>
         </div>
@@ -134,21 +130,7 @@
                     </p>
                   </div>
                 </div>
-                <div class="card-footer-d">
-                  <div
-											class="socials-footer d-flex justify-content-center">
-                    <ul class="list-inline">
-                      <li class="list-inline-item">
-                        <a
-													href="${pageContext.request.contextPath }/customer/view/contact?id=${product.id}"
-													class="link-one">
-                          <i class="bi bi-facebook" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                  
-                    </ul>
-                  </div>
-                </div>
+               
               </div>    
             </div>
           </div>

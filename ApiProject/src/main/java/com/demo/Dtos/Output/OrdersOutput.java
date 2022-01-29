@@ -18,6 +18,7 @@ public class OrdersOutput {
 	private Double piad;
 	private String address;
 	private EOrder status;
+	private ProductOutput productOutput;
 
 	public Integer getId() {
 		return id;
@@ -33,6 +34,14 @@ public class OrdersOutput {
 
 	public void setAccount(AccountOutput account) {
 		this.account = account;
+	}
+	
+	public ProductOutput getProductOutput() {
+		return productOutput;
+	}
+
+	public void setProductOutput(ProductOutput productOutput) {
+		this.productOutput = productOutput;
 	}
 
 	public Date getSuccessDate() {
@@ -117,6 +126,18 @@ public class OrdersOutput {
 		this.status = status;
 		this.account = new AccountOutput();
 		this.account.setFullname(fullname);
+	}
+	public OrdersOutput(Integer id, Date successDate, Double total, Double piad, EOrder status, int idProduct, String namePro, String address) {
+		super();
+		this.id = id;
+		this.successDate = successDate;
+		this.total = total;
+		this.piad = piad;
+		this.status = status;
+		this.address =address;
+		this.productOutput = new ProductOutput();
+		this.productOutput.setId(idProduct);
+		this.productOutput.setName(namePro);
 	}
 
 }

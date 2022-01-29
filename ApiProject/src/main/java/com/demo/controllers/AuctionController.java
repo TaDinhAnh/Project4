@@ -1,4 +1,4 @@
- 
+
 package com.demo.controllers;
 
 import java.util.List;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.demo.Dtos.Input.AuctionInput;
 import com.demo.Dtos.Output.AuctionOutput;
+import com.demo.services.IAuctionHistoryService;
 import com.demo.services.IAuctionService;
 import com.demo.validators.Validate;
 
@@ -24,6 +25,9 @@ public class AuctionController {
 
 	@Autowired
 	private IAuctionService auctionService;
+
+	@Autowired
+	private IAuctionHistoryService auctionHistoryService;
 
 	@Autowired
 	private Validate validate;
@@ -140,7 +144,7 @@ public class AuctionController {
 
 	@RequestMapping(value = "getProduct/{auctionid}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AuctionOutput> getProduct(@PathVariable("auctionid") int auctionId) {
-		if(auctionId <=0) {
+		if (auctionId <= 0) {
 			return new ResponseEntity<AuctionOutput>(HttpStatus.BAD_REQUEST);
 		}
 		AuctionOutput auctionOutput = auctionService.getListProductAuction(auctionId);
@@ -148,6 +152,15 @@ public class AuctionController {
 			return new ResponseEntity<AuctionOutput>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<AuctionOutput>(auctionOutput, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "getAuctionHistory/{accountid}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AuctionOutput>> getAuctionByIdCus(@PathVariable("accountid") int accountid) {
+		if (accountid <= 0) {
+			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		List<AuctionOutput> auctionOutput = auctionHistoryService.getAuctionByIdCustomer(accountid);
+		return new ResponseEntity<List<AuctionOutput>>(auctionOutput, HttpStatus.OK);
 	}
 
 }

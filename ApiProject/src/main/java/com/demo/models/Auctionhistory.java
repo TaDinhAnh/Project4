@@ -36,7 +36,6 @@ public class Auctionhistory implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "Id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;

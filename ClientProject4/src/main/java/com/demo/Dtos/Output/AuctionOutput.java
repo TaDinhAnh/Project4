@@ -26,6 +26,9 @@ public class AuctionOutput {
 	private EAuction status;
 	@SerializedName("isDel")
 	private Boolean isDel;
+	@SerializedName("auctionHistoryOutputs")
+	private List<AuctionHistoryOutput> auctionHistoryOutputs;
+	@SerializedName("productOutputs")
 	private List<ProductOutput> productOutputs;
 
 	public List<ProductOutput> getProductOutputs() {
@@ -100,12 +103,21 @@ public class AuctionOutput {
 		this.isDel = isDel;
 	}
 
+	public List<AuctionHistoryOutput> getAuctionHistoryOutputs() {
+		return auctionHistoryOutputs;
+	}
+
+	public void setAuctionHistoryOutputs(List<AuctionHistoryOutput> auctionHistoryOutputs) {
+		this.auctionHistoryOutputs = auctionHistoryOutputs;
+	}
+
 	public AuctionOutput() {
 		super();
 	}
 
 	public AuctionOutput(int id, String fullname, String hourStart, String hourEnd, Date eventdate, String description,
-			EAuction status, Boolean isDel, List<ProductOutput> productOutputs) {
+			EAuction status, Boolean isDel, List<AuctionHistoryOutput> auctionHistoryOutputs,
+			List<ProductOutput> productOutputs) {
 		super();
 		this.id = id;
 		this.fullname = fullname;
@@ -115,6 +127,7 @@ public class AuctionOutput {
 		this.description = description;
 		this.status = status;
 		this.isDel = isDel;
+		this.auctionHistoryOutputs = auctionHistoryOutputs;
 		this.productOutputs = productOutputs;
 	}
 

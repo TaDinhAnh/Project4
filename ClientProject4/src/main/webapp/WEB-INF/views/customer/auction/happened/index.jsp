@@ -40,7 +40,7 @@
 														style="margin-bottom: 2%; background-color: #e9ecef;">
                     <div class="testimonial-ico">
                     </div>
-                     <a	href="${pageContext.request.contextPath }/customer/auction/detailAuction?id=${auction.id}">
+                     <a	href="${pageContext.request.contextPath }/customer/view/auction/start/${auction.id}">
                     <div class="testimonials-content">              
                       <p class="testimonial-text">                    
                          ${auction.description }

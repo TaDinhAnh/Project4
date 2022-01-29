@@ -13,13 +13,6 @@ public class AuctionHistoryOutput {
 	private String accountname;
 	private String productname;
 	private ProductOutput productOutput = new ProductOutput();
-	public ProductOutput getProductOutput() {
-		return productOutput;
-	}
-	public void setProductOutput(ProductOutput productOutput) {
-		this.productOutput = productOutput;
-	}
-
 	@JsonFormat(pattern = "HH:mm:ss")
 	@Temporal(TemporalType.TIME)
 	private Date hourStart;
@@ -28,8 +21,17 @@ public class AuctionHistoryOutput {
 	private Date hourEnd;
 	private Date eventdate;
 	private Double price;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date time;
 
+	public ProductOutput getProductOutput() {
+		return productOutput;
+	}
+
+	public void setProductOutput(ProductOutput productOutput) {
+		this.productOutput = productOutput;
+	}
 
 	public int getId() {
 		return id;
@@ -110,7 +112,7 @@ public class AuctionHistoryOutput {
 		this.eventdate = eventdate;
 		this.price = price;
 		this.time = time;
-		
+
 	}
 
 	public AuctionHistoryOutput(int id, String accountname, String productname, String category, Double priceMin,
@@ -145,6 +147,14 @@ public class AuctionHistoryOutput {
 		this.productOutput.setPriceMin(priceMin);
 		this.productOutput.setImage(image);
 		this.productOutput.setStatus(status);
+	}
+
+	public AuctionHistoryOutput(int id, String productname, Double price, Date time) {
+		super();
+		this.id = id;
+		this.productname = productname;
+		this.price = price;
+		this.time = time;
 	}
 
 }

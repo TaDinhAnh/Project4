@@ -8,22 +8,25 @@ import org.springframework.stereotype.Service;
 
 import com.demo.Dtos.Output.AccountOutput;
 import com.demo.Dtos.Output.OrdersOutput;
+import com.demo.common.EOrder;
 import com.demo.models.Orders;
 import com.demo.reponsitories.OrdersResponsitory;
 
 @Service
 public class OrderService implements IOrdersService {
-	
+
 	@Autowired
 	private OrdersResponsitory ordersResponsitory;
+
 	@Override
 	public OrdersOutput find(int id) {
-		return  ordersResponsitory.find(id);
+		return ordersResponsitory.find(id);
 	}
+
 	@Override
 	public List<OrdersOutput> getListLimit(int quantity) {
 		List<Orders> orders = ordersResponsitory.getListLimit(quantity);
-		if(orders == null)
+		if (orders == null)
 			return null;
 		List<OrdersOutput> ordersOutputs = new ArrayList<OrdersOutput>();
 		for (Orders item : orders) {
@@ -38,9 +41,25 @@ public class OrderService implements IOrdersService {
 		}
 		return ordersOutputs;
 	}
+
 	@Override
 	public List<OrdersOutput> getAll() {
 		return ordersResponsitory.getAll();
+	}
+
+	@Override
+	public List<OrdersOutput> getOrderByIdCus(int idCus) {
+
+		return ordersResponsitory.getOrderByIdCustomer(idCus);
+	}
+
+	@Override
+	public Boolean payment(int idOrder, String address) {
+		Orders orders = ordersResponsitory.findById(idOrder).get();
+		orders.setStatus(EOrder.unpaid);
+		orders.setPiad(orders.getTotal() / 100 * 80);
+		orders.setAddress(address);
+		return ordersResponsitory.save(orders) != null;
 	}
 
 }

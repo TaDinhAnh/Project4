@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.demo.Dtos.Input.AuctionHistoryInput;
 import com.demo.Dtos.Output.AuctionHistoryOutput;
+import com.demo.Dtos.Output.AuctionOutput;
 
 public interface IAuctionHistoryService {
 	List<AuctionHistoryOutput> getlistAuctionHistory();;
@@ -17,5 +18,7 @@ public interface IAuctionHistoryService {
 	int countAuctionHistoryById(int id);
 
 	double maxPriceAuctionHistoryById(int id);
+	
+	List<AuctionOutput> getAuctionByIdCustomer(int idCus);
 	
 }

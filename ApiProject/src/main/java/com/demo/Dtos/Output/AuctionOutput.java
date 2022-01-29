@@ -24,7 +24,9 @@ public class AuctionOutput {
 	private String description;
 	private EAuction status;
 	private Boolean isDel;
+	private List<AuctionHistoryOutput> auctionHistoryOutputs;
 	private List<ProductOutput> productOutputs;
+
 	public List<ProductOutput> getProductOutputs() {
 		return productOutputs;
 	}
@@ -69,6 +71,20 @@ public class AuctionOutput {
 		this.eventdate = eventdate;
 		this.description = description;
 		this.status = status;
+	}
+
+	public AuctionOutput(int id, Date eventdate) {
+		super();
+		this.id = id;
+		this.eventdate = eventdate;
+	}
+
+	public List<AuctionHistoryOutput> getAuctionHistoryOutputs() {
+		return auctionHistoryOutputs;
+	}
+
+	public void setAuctionHistoryOutputs(List<AuctionHistoryOutput> auctionHistoryOutputs) {
+		this.auctionHistoryOutputs = auctionHistoryOutputs;
 	}
 
 	public String getFullname() {

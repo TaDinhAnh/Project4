@@ -12,10 +12,10 @@
 <meta content="" name="description">
 <meta content="" name="keywords">
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
 <link
-	href="${pageContext.request.contextPath }/resources/assets/vendor//bootstrap/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath }/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath }/resources/assets/customer/img/apple-touch-icon.png"
@@ -26,9 +26,7 @@
 <link
 	href="${pageContext.request.contextPath }/resources/assets/vendor/animate.css/animate.min.css"
 	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath }/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+
 <link
 	href="${pageContext.request.contextPath }/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
@@ -156,14 +154,6 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
 						href="${pageContext.request.contextPath }/customer/view/home">Home</a></li>
-					<!-- 					<li class="nav-item"><a class="nav-link " -->
-					<%-- 						href="${pageContext.request.contextPath }/customer/about">About</a> --%>
-					<!-- 					</li> -->
-					<!-- 					<li class="nav-item"><a class="nav-link " -->
-					<%-- 						href="${pageContext.request.contextPath }/customer/property">Property</a></li> --%>
-
-					<!-- 					<li class="nav-item"><a class="nav-link " -->
-					<%-- 						href="${pageContext.request.contextPath }/customer/blog">Blog</a></li> --%>
 
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -173,7 +163,7 @@
 							<a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/view/auction/comingsoon">The
 								auction is about to begin </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/auction/happenning"">The
+								href="${pageContext.request.contextPath }/customer/view/auction/happenning">The
 								auction is ongoing. </a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/view/auction/happened">The
 								auction is over.</a>
@@ -201,15 +191,17 @@
 							<a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/account/changeInfor">Change
 								Infor </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
+								href="${pageContext.request.contextPath }/customer/account/auctionhistory">Auction
 								History </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/account/signIn"">Sign
+								href="${pageContext.request.contextPath }/customer/orders/getByCus"> Orders
+								 </a> <a class="dropdown-item "
+								href="${pageContext.request.contextPath }/customer/account/signIn"">Sign
 								in </a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/pageAgentSingle"">Sign
 								out </a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link "
-						href="${pageContext.request.contextPath }/customer/view/contact"">Contact</a>
+						href="${pageContext.request.contextPath }/customer/view/contact">Contact</a>
 					</li>
 				</ul>
 			</div>
@@ -223,11 +215,7 @@
 				style="color: #6c757d; font-size: 16px; padding-right: 3px">
 				<span id="day"> </span> <span id="timeClock"></span>
 			</div>
-			<button type="button"
-				class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
-				data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
-				<i class="bi bi-search"></i>
-			</button>
+			
 		</div>
 	</nav>
 	<main id="main">
@@ -341,15 +329,6 @@
 							</a></li>
 						</ul>
 					</div>
-					<div class="copyright-footer">
-						<p class="copyright color-text-a">
-							&copy; Copyright <span class="color-a">EstateAgency</span> All
-							Rights Reserved.
-						</p>
-					</div>
-					<div class="credits">
-						Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -372,7 +351,8 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/core/popper.min.js"></script>
-
+<script
+		src="${pageContext.request.contextPath }/resources/assets/customer/orders.js"></script>
 	<!-- modal -->
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script

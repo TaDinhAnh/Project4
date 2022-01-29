@@ -23,9 +23,7 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="news-img-box">
-              <img
-								src="${product.image }"
-								alt="" class="img-fluid">
+              <img src="${product.image }" alt="" class="img-fluid">
             </div>
           </div>
           <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
@@ -43,8 +41,8 @@
                 <li class="list-inline-item">
                   <strong>Date: </strong>
                   <span class="color-text-a">
-                 <d:formatDate value="${auction.eventdate }"
-											var="dated" pattern="dd/MM/yyy" /> ${dated }                          
+                 <d:formatDate value="${auction.eventdate }" var="dated"
+											pattern="dd/MM/yyy" /> ${dated }                          
                   </span>
                 </li>
               </ul>
@@ -65,6 +63,7 @@
               </p>
             </div>
           </div>
+           <c:if test="${auction.status == 'happening' }">  
             <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
               <div class="post-share">
                  <div class="title-box-d">
@@ -106,18 +105,11 @@
             </div>
             	</c:forEach> --%>
             <div class="form-comments">
-              
-              <c:if test="${auction.status == 'happened' }">
-                      <input id="textMessage" type="hidden"
-									class="form-control" placeholder="Comment *" name="message"
-									required></input>                 
-              </c:if>
-              <c:if test="${auction.status == 'happening' }">  
               <div class="title-box-d">
                 <h3 class="title-d"> Enter price:</h3>
               </div>
-               <s:form class="form-a" modelAttribute="auctionHistoryInput"
-									method="post"
+               <s:form class="form-a"
+									modelAttribute="auctionHistoryInput" method="post"
 									action="${pageContext.request.contextPath}/customer/auction/detailAuction/sendPrice?id=${auction.id}">
                 <div class="row">
                   <div class="col-md-12 mb-3">
@@ -130,10 +122,10 @@
                     <button type="submit" class="btn btn-a">Send</button>
                   </div>
                 </div>   
-                  </s:form>                 
-              </c:if>                    
+                  </s:form>                                     
             </div>
           </div>
+          </c:if>
         </div>
       </div>
     </section>

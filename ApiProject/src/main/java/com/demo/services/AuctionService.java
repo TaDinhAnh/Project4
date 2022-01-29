@@ -26,7 +26,7 @@ public class AuctionService implements IAuctionService {
 	
 	@Autowired
 	private IAuctionProductService auctionProductService;
-
+	
 	@Override
 	public List<AuctionOutput> getListAuctionById(int idVendor) {
 		return auctionRepositories.getAuctionByIdVendor(idVendor);
@@ -117,11 +117,12 @@ public class AuctionService implements IAuctionService {
 			auctionOutput.setId(auction.getId());
 			auctionOutput.setDescription(auction.getDescription());
 			auctionOutput.setEventdate(auction.getEventdate());
+			List<ProductOutput> productOutputs = auctionProductService.getListProByAution(auction.getId());
+			auctionOutput.setProductOutputs(productOutputs);
 			auctionOutput.setFullname(auction.getAccount().getFullname());
 			auctionOutput.setHourEnd(auction.getHourEnd());
 			auctionOutput.setHourStart(auction.getHourStart());
 			auctionOutputs.add(auctionOutput);
-
 		}
 		return auctionOutputs;
 	}

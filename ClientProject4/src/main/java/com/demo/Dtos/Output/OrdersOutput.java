@@ -1,4 +1,5 @@
 package com.demo.Dtos.Output;
+
 import java.util.Date;
 import com.demo.common.EOrder;
 import com.google.gson.annotations.SerializedName;
@@ -18,6 +19,8 @@ public class OrdersOutput {
 	private String address;
 	@SerializedName("status")
 	private EOrder status;
+	@SerializedName("productOutput")
+	private ProductOutput productOutput;
 
 	public Integer getId() {
 		return id;
@@ -75,12 +78,20 @@ public class OrdersOutput {
 		this.status = status;
 	}
 
+	public ProductOutput getProductOutput() {
+		return productOutput;
+	}
+
+	public void setProductOutput(ProductOutput productOutput) {
+		this.productOutput = productOutput;
+	}
+
 	public OrdersOutput() {
 		super();
 	}
 
-	public OrdersOutput(Integer id, AccountOutput account, Date successDate, Double total, Double piad,
-			String address, EOrder status) {
+	public OrdersOutput(Integer id, AccountOutput account, Date successDate, Double total, Double piad, String address,
+			EOrder status, ProductOutput productOutput) {
 		super();
 		this.id = id;
 		this.account = account;
@@ -89,5 +100,8 @@ public class OrdersOutput {
 		this.piad = piad;
 		this.address = address;
 		this.status = status;
+		this.productOutput = productOutput;
 	}
+	
+
 }

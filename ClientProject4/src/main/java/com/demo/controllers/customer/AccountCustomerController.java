@@ -1,6 +1,8 @@
 package com.demo.controllers.customer;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.demo.Dtos.Input.AccountInput;
 import com.demo.Dtos.Input.Login;
 import com.demo.Dtos.Output.AccountOutput;
+import com.demo.Dtos.Output.AuctionOutput;
 import com.demo.services.APIClient;
 import com.demo.services.AccountAPIService;
+import com.demo.services.AuctionAPIService;
 import com.demo.validators.Validate;
 import retrofit2.Response;
 
@@ -87,6 +91,7 @@ public class AccountCustomerController {
 				String jwtToken = response.headers().get("Authorization");
 				session.setAttribute("jwtToken", jwtToken);
 				session.setAttribute("accountid", accountOutput.getId());
+				session.setAttribute("fullname", accountOutput.getFullname());
 				return "redirect:/customer/view/home/index";
 			}
 		} catch (IOException e) {
@@ -96,9 +101,27 @@ public class AccountCustomerController {
 	}
 
 	@RequestMapping(value = { "auctionhistory" }, method = RequestMethod.GET)
-	public String auctionhistory() {
-		return "customer/account/auctionhistory/index";
+	public String auctionhistory(ModelMap modelMap, HttpSession session) {
+		try {
+			int idAccount = (int) session.getAttribute("accountid");
+			AuctionAPIService apiService = APIClient.getClient().create(AuctionAPIService.class);
+			Response<List<AuctionOutput>> response = apiService.getAuctionHistoryInfo(idAccount).execute();
+			int statusCode = response.code();
+			switch (statusCode) {
+			case 400:
+				return "error/400page";
+			case 401:
+				return "customer/account/signIn/index";
+			default:
+				modelMap.put("auctions", response.body());
+				return "customer/account/auctionhistory/index";
+			}
+		} catch (Exception e) {
+			return "customer/account/signIn/index";
+		}
+
 	}
+
 
 	@RequestMapping(value = { "changeInfor" }, method = RequestMethod.GET)
 	public String changeAccount(ModelMap map, HttpSession session) {

@@ -22,7 +22,8 @@ public class HomeCustomerController {
 			modelMap.put("products", productOutputs);
 			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
 			List<AuctionOutput> auctionOutputs = auctionAPIService.getLimitAuctionHappening().execute().body();
-			modelMap.put("auctions", auctionOutputs);			
+			modelMap.put("auctions", auctionOutputs);	
+			System.out.println(auctionOutputs.size());
 			List<ProductOutput> outputs = productAPIService.findList().execute().body();
 			modelMap.put("productlist", outputs);
 			return "customer/home/index";

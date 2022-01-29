@@ -46,5 +46,9 @@ public interface AuctionAPIService {
 
 	@GET("auction/getProduct/{id}")
 	Call<AuctionOutput> getProduct(@Path("id") int auctionid);
+	
+	@GET("auction/getAuctionHistory/{accountid}")
+	Call<List<AuctionOutput>> getAuctionHistoryInfo(@Path("accountid") int accountid);
+
 
 }
