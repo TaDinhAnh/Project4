@@ -21,22 +21,27 @@
               <ol class="breadcrumb">
           <c:if
 									test="${productOutput.status == 'unsold' and productOutput.isAccept == true}">
-                <c:if test="${ not empty productlist}">
                 <li class="breadcrumb-item">
                   <a
-											href="${pageContext.request.contextPath }/customer/view/home">Home</a>
+										href="${pageContext.request.contextPath }/customer/view/home">Home</a>
                 </li>
-                
+                 <li class="breadcrumb-item">
+                							<button type="button" class="btn btn-light"
+											style="border: none; outline: 0 !important; color: #afa939;"
+											data-toggle="modal" data-target="#modalUpdateInfo">
+										Update Product
+							</button>              	
+                </li>
                 </c:if>
-                 <c:if test="${empty productlist}">
+                 <c:if test="${productOutput.status == 'sold' and productOutput.isAccept == true}">
                 <li class="breadcrumb-item">
                   <a
-											href="${pageContext.request.contextPath }/customer/view/home">Home</a>
+										href="${pageContext.request.contextPath }/customer/view/home">Home</a>
                 </li>
                 <li class="breadcrumb-item">                								
                 </li>
                 </c:if>
-                </c:if>
+                
                  <c:if
 									test="${productOutput.status == 'unsold' and productOutput.isAccept == false}">
                 <li class="breadcrumb-item">

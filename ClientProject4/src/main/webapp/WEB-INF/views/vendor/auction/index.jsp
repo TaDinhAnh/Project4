@@ -19,6 +19,7 @@
 			$("#updateDescription").val(des);
 			$("#updateHstart").val(hs);
 			$("#updateHend").val(he);
+			
 		});
 		
 		$("#updateAuction").click(function() {
@@ -66,6 +67,32 @@
 				},
 			});
 		});
+		$("#createAuctionProduct").click(function() {
+			var id = $("#id").val();
+			var productid = $('#presentPro').find(":selected").val();
+			$.ajax({
+				type: "POST",
+				url: "http://localhost:9799/api/auctionproduct",
+				contentType: "application/json; charset=utf-8",
+				data: JSON
+					.stringify({
+						"auctionid": id,
+						"proId": productid,
+					}),
+				dataType: "json",
+				error: function(xhr) {
+					if (xhr.status === 401) {
+						window.location.href = "http://localhost:8088/account/login";
+					} else {
+						window.location.href = "http://localhost:8088/error/400page";
+					}
+				},
+				success: function() {
+					window.location.href = "http://localhost:8088/customer/view/auction/vendor";
+				},
+			});
+		});
+		
 	});
 </script>
 <mt:layout title="">
@@ -154,7 +181,7 @@
                         <button
 															class="btn btn-link text-secondary mb-0 upAuction"
 															data-toggle="modal" data-target="#createAuctionProduct">
-                         Update
+                         Create AuctionProduct
                         </button>									
                       </td>
                        <td class="align-middle">
@@ -301,32 +328,23 @@
 					<div
 								class="modal-body p-4 p-md-5 d-flex align-items-center color-1">
 						<div class="text w-100 py-3">
-							<h3 class="mb-4 heading">Update Auction</h3>
+							<h3 class="mb-4 heading">Create Auction Product</h3>
 							<form class="contact-form">
 								<div class="form-group mb-3">
-								<p> Hour Start</p>
-									<input type="time" class="form-control" id="updateHstart">
+								<p>Product Name</p>
+									<select class="form-control" id="presentPro">
+				      <option value="0">Option</option>
+				      <c:forEach items="${productOutputs }" var="product">
+				      <option value="${product.id}">${product.name}</option>
+				      </c:forEach>
+				    </select>
 												
 								</div>							
-								<div class="form-group mb-3">
-								<p> Hour End</p>
-									<input type="time" class="form-control" id="updateHend">
-												
-								</div>
-								<div class="form-group">
-									<p> Event date</p>
-									<input type="text" class="form-control"
-												placeholder="dd/MM/yyyy" id="updateDate">
-								</div>
-								<div class="form-group">
-									<p>Description</p>
-								  <input type="text" class="form-control" id="updateDescription">
-									
-								</div>
+								
 								<div class="form-group">
 									<button type="button"
 												class="form-control btn btn-secondary rounded submit px-3"
-												id="updateAuction">Save Information</button>
+												id="createAuctionProduct">Create AuctionProduct</button>
 								</div>
 								
 							</form>

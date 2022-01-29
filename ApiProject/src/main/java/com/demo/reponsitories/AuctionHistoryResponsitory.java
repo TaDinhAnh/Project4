@@ -18,7 +18,6 @@ public interface AuctionHistoryResponsitory extends CrudRepository<Auctionhistor
 
 	@Query("select new com.demo.Dtos.Output.AuctionHistoryOutput(id, account.fullname, product.name, auction.hourStart, auction.hourEnd, auction.eventdate,  price, time) from Auctionhistory where account.id = :accountid order by id desc")
 	public List<AuctionHistoryOutput> getAuctionHistoryByCustomer(@Param("accountid") int accountid);
-
 	
 	@Query(value = "select * from auctionhistory where auctionid = :auctionid order by price desc limit 5 ", nativeQuery = true)
 	public List<Auctionhistory> getAuctionHistoryById(@Param("auctionid") int auctionId);

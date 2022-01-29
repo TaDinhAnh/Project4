@@ -2,33 +2,33 @@ package com.demo.Dtos.Input;
 
 public class AuctionproductInput {
 
-	private int auctionid;
-	private int productid;
+	private int proId;
+	private int auctionId;
 
-	public int getAuctionid() {
-		return auctionid;
+	public int getProId() {
+		return proId;
 	}
 
-	public void setAuctionid(int auctionid) {
-		this.auctionid = auctionid;
+	public void setProId(int proId) {
+		this.proId = proId;
 	}
 
-	public int getProductid() {
-		return productid;
+	public int getAuctionId() {
+		return auctionId;
 	}
 
-	public void setProductid(int productid) {
-		this.productid = productid;
-	}
-
-	public AuctionproductInput(int auctionid, int productid) {
-		super();
-		this.auctionid = auctionid;
-		this.productid = productid;
+	public void setAuctionId(int auctionId) {
+		this.auctionId = auctionId;
 	}
 
 	public AuctionproductInput() {
 		super();
+	}
+
+	public AuctionproductInput(int proId, int auctionId) {
+		super();
+		this.proId = proId;
+		this.auctionId = auctionId;
 	}
 
 }

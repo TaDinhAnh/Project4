@@ -116,7 +116,6 @@ public class AuctionService implements IAuctionService {
 			auctionOutput.setHourEnd(auction.getHourEnd());
 			auctionOutput.setHourStart(auction.getHourStart());
 			auctionOutputs.add(auctionOutput);
-
 		}
 		return auctionOutputs;
 	}

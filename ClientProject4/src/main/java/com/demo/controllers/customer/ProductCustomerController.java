@@ -66,6 +66,7 @@ public class ProductCustomerController {
 					.execute().body();			
 			ProductOutput productOutput = productAPIService.findByid(productId, accountid).execute().body();
 			OrdersOutput ordersOutput = ordersAPIService.find(productId).execute().body();
+		
 			modelMap.put("orders", ordersOutput);
 			modelMap.put("productlist", auctionproductOutput);
 			modelMap.put("productOutput", productOutput);			

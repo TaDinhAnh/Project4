@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.Dtos.Output.AuctionOutput;
+import com.demo.Dtos.Output.ProductOutput;
 import com.demo.services.APIClient;
 import com.demo.services.AuctionAPIService;
+import com.demo.services.ProductAPIService;
 
 import retrofit2.Response;
 
@@ -84,29 +86,33 @@ public class AuctionCustomerController {
 	public String vendor(ModelMap modelMap, HttpSession session) {
 		try {
 			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
+			ProductAPIService productAPIService = APIClient.getClient().create(ProductAPIService.class);
 			int accountid = (int) session.getAttribute("accountid");
 			List<AuctionOutput> auctionOutputs = auctionAPIService.getAuction(accountid).execute().body();
-//			AuctionOutput auctionOutput = auctionAPIService.search(id).execute().body();
-//			modelMap.put("auction", auctionOutput);
-//			System.out.println(auctionOutput.getHourStart());
-			modelMap.put("auctions", auctionOutputs);	
+			List<ProductOutput> productOutputs = productAPIService.getListProductUnsold(accountid).execute().body();
+			modelMap.put("productOutputs", productOutputs);
+			for (ProductOutput a : productOutputs) {
+				System.out.println(a.getId());
+			}
+			modelMap.put("auctions", auctionOutputs);
 			return "vendor/auction/index";
 		} catch (Exception e) {
 			return "error/400page";
 		}
 	}
-	
+
 	@RequestMapping(value = { "delete" }, method = RequestMethod.GET)
 	public String delete(@RequestParam("id") int id, ModelMap model, HttpSession session) {
 		try {
 			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
 			boolean result = auctionAPIService.delAuction(id).execute().isSuccessful();
 			int accountid = (int) session.getAttribute("accountid");
-			List<AuctionOutput> auctionOutputs = auctionAPIService.getAuction(accountid).execute().body();	
-			model.put("auctions", auctionOutputs);	
+			List<AuctionOutput> auctionOutputs = auctionAPIService.getAuction(accountid).execute().body();
+			model.put("auctions", auctionOutputs);
 			return "redirect:/customer/view/auction/vendor";
 		} catch (Exception e) {
-			return "error/400page";		}
-		
+			return "error/400page";
+		}
+
 	}
 }
