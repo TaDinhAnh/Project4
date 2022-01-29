@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MimeTypeUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,18 @@ public class OrdersControllers {
 			return new ResponseEntity<List<OrdersOutput>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<OrdersOutput>>(auctionOutputs, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = { "find/{id}" }, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<OrdersOutput> find(@PathVariable("id") int id) {
+		OrdersOutput ordersOutputs = ordersService.find(id);
+		if(id <=0) {
+			return new ResponseEntity<OrdersOutput>(HttpStatus.NOT_FOUND);
+		}
+		if (ordersOutputs == null) {
+			return new ResponseEntity<OrdersOutput>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<OrdersOutput>(ordersOutputs, HttpStatus.OK);
 	}
 
 }

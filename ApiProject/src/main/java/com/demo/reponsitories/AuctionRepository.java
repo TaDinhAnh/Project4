@@ -33,11 +33,12 @@ public interface AuctionRepository extends CrudRepository<Auction, Integer> {
 
 	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where status = 2 and isDel = 0 order by id desc")
 	public List<AuctionOutput> getlistAuctionComingsoon();
-	
-	
+		
 	@Query(value="select * from auction where status = 1 and isDel = 0  order by id desc LIMIT 3", nativeQuery = true)
 	public List<Auction> getLimitAuctionHappening();
-	
+
+	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where isDel = 0 and status = 2 and account.id = :id order by id desc ")
+	public List<AuctionOutput> getAuction(@Param("id") int accountid);
 
 
 }

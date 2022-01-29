@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.Dtos.Output.AuctionProductOutput;
+import com.demo.Dtos.Output.OrdersOutput;
 import com.demo.Dtos.Output.ProductOutput;
 import com.demo.services.APIClient;
 import com.demo.services.AuctionProductAPIService;
+import com.demo.services.OrdersAPIService;
 import com.demo.services.ProductAPIService;
 
 import retrofit2.Response;
@@ -57,13 +59,15 @@ public class ProductCustomerController {
 			int accountid = (int) session.getAttribute("accountid");
 			AuctionProductAPIService auctionProductAPIService = APIClient.getClient()
 					.create(AuctionProductAPIService.class);
+			OrdersAPIService ordersAPIService = APIClient.getClient()
+					.create(OrdersAPIService.class);
 			ProductAPIService productAPIService = APIClient.getClient().create(ProductAPIService.class);
 			AuctionProductOutput auctionproductOutput = auctionProductAPIService.findListSold(accountid, productId)
 					.execute().body();			
 			ProductOutput productOutput = productAPIService.findByid(productId, accountid).execute().body();
+			OrdersOutput ordersOutput = ordersAPIService.find(productId).execute().body();
+			modelMap.put("orders", ordersOutput);
 			modelMap.put("productlist", auctionproductOutput);
-			System.out.println(productOutput.getStatus());
-			System.out.println(productOutput.getIsAccept());
 			modelMap.put("productOutput", productOutput);			
 			return "vendor/product/detail/index";
 		} catch (Exception e) {

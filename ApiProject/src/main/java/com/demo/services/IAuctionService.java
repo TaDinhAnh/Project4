@@ -1,6 +1,7 @@
 package com.demo.services;
 
 import java.util.List;
+
 import com.demo.Dtos.Input.AuctionInput;
 import com.demo.Dtos.Output.AuctionOutput;
 import com.demo.models.Auction;
@@ -25,6 +26,11 @@ public interface IAuctionService {
 	List<AuctionOutput> getlistAuctionHappening();
 
 	List<AuctionOutput> getlistAuctionComingsoon();
-	
+
 	List<AuctionOutput> getLimitAuctionHappening();
+
+	List<AuctionOutput> getAuction(int accountid);
+	
+	boolean delAuction(int id);
+	
 }

@@ -120,4 +120,16 @@ public class AuctionService implements IAuctionService {
 		}
 		return auctionOutputs;
 	}
+
+	@Override
+	public List<AuctionOutput> getAuction(int accountid) {
+		return auctionRepositories.getAuction(accountid);
+	}
+
+	@Override
+	public boolean delAuction(int id) {
+		Auction auction = auctionRepositories.findById(id).get();
+		auction.setIsDel(true);		
+		return auctionRepositories.save(auction) != null;
+	}
 }

@@ -3,6 +3,60 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags/customer"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!-- <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> --> 
+<!-- <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --> 
+<!-- <!-- <script> --> -->
+<!-- // 	$(document).ready(function() { -->
+<!-- // 		$("#createAuction").click(function() { -->
+<%-- // 			var id = ${accountid}; --%>
+<!-- // 			alert(id); -->
+<!-- // 			var start = $("#start").val(); -->
+<!-- // 			var end = $("#end").val(); -->
+<!-- // 			var date = $("#date").val(); -->
+<!-- // 			var description = $("#description").val(); -->
+<!-- // 			alert(date); -->
+<!-- // 			if (start === "") { -->
+<!-- // 				alert("Please enter start time!"); -->
+<!-- // 				return; -->
+<!-- // 			} else if (end === "") { -->
+<!-- // 				alert("Please enter end time !"); -->
+<!-- // 				return; -->
+<!-- // 			} else if (date === "") { -->
+<!-- // 				alert("Please enter date !"); -->
+<!-- // 				return; -->
+<!-- // 			} else if (description === "") { -->
+<!-- // 				alert("Please enter description !"); -->
+<!-- // 				return; -->
+<!-- // 			}else if(end < start){ -->
+<!-- // 				alert() -->
+<!-- // 				} -->
+<!-- // 			$.ajax({ -->
+<!-- // 				type: "POST", -->
+<!-- // 				url: "http://localhost:9799/api/auction", -->
+<!-- // 				contentType: "application/json; charset=utf-8", -->
+<!-- // 				data: JSON -->
+<!-- // 					.stringify({ -->
+<!-- // 						"vendorId": id, -->
+<!-- // 						"hourStart": start, -->
+<!-- // 						"hourEnd": end, -->
+<!-- // 						"eventdate": date, -->
+<!-- // 						"description":description, -->
+<!-- // 					}), -->
+<!-- // 				dataType: "json", -->
+<!-- // 				error: function(xhr) {		 -->
+<!-- // 					if (xhr.status === 401) { -->
+<!-- // 						window.location.href = "http://localhost:8088/account/login"; -->
+<!-- // 					} else { -->
+<!-- // 						window.location.href = "http://localhost:8088/error/400page"; -->
+<!-- // 					} -->
+<!-- // 				}, -->
+<!-- // 				success: function() { -->
+<!-- // 					window.location.href = "http://localhost:8088/customer/view/auction/vendor"; -->
+<!-- // 				}, -->
+<!-- // 			}); -->
+<!-- // 		}); -->
+<!-- // 	}); -->
+<!-- <!-- </script> --> -->
 <mt:layout title="">
 	<jsp:attribute name="content">	
 		 <section class="intro-single">
@@ -41,24 +95,19 @@
                 <li class="breadcrumb-item">
                 							<button type="button" class="btn btn-light"
 												style="border: none; outline: 0 !important; color: #afa939;"
-												data-toggle="modal" data-target="#modalUpdateInfo">
+												data-toggle="modal" data-target="#modalCreateInfo">
 										Create Auction
 							</button>              	
                 </li>
                 </c:if>
                 </c:if>
-                 <c:if test="${productOutput.status == 'sold' and productOutput.isAccept == true}">
+                 <c:if
+									test="${productOutput.status == 'sold' and productOutput.isAccept == true}">
                 <li class="breadcrumb-item">
                   <a
 										href="${pageContext.request.contextPath }/customer/view/home">Home</a>
                 </li>
-                <li class="breadcrumb-item">
-                							<button type="button" class="btn btn-light"
-											style="border: none; outline: 0 !important; color: #afa939;"
-											data-toggle="modal" data-target="#modalUpdateInfo">
-										Update Auction
-							</button>              	
-                </li>
+               
                 </c:if>
               </ol>
             </nav>
@@ -139,94 +188,41 @@
               </div>
               <div class="col-md-6 col-lg-8">
                 <div class="property-agent">
-                  <h4 class="title-agent">${productlist.auctionOutput.fullname }</h4>
-                  <p class="color-text-a">
-                   ${productlist.auctionOutput.description }
-                  </p>
+                  <h4 class="title-agent" style="color: #20c997">  ${orders.account.fullname }</h4>
+           
                   <ul class="list-unstyled">
                     <li class="d-flex justify-content-between">
-                      <strong>HourStart:</strong>
-                      <span class="color-text-a"> ${productlist.auctionOutput.hourStart }</span>
+                      <strong>Address:</strong>
+                      <span class="color-text-a"> ${orders.address }</span>
                     </li>
                     <li class="d-flex justify-content-between">
-                      <strong>HourEnd:</strong>
-                      <span class="color-text-a"> ${productlist.auctionOutput.hourEnd }</span>
+                      <strong>The amount paid:</strong>
+                      <span class="color-text-a"> ${orders.piad } $</span>
                     </li>
                     <li class="d-flex justify-content-between">
-                      <strong>The day it takes place:</strong>
-                      <span class="color-text-a">
-                      <d:formatDate
-															value="${productlist.auctionOutput.eventdate }"
+                    <strong> Successful auction day:</strong>
+                      <span class="color-text-a"> 
+                      <d:formatDate value="${orders.successDate }"
 															var="date" pattern="dd/MM/yyyyy" />${date } 
                       </span>
-                      ${productlist.productOutput.isAccept}
-                    </li>                 
+                    </li>  
+                     <li class="d-flex justify-content-between">
+                      <strong>Gmail:</strong>
+                      <span class="color-text-a"> ${orders.account.gmail }</span>
+                    </li>               
                   </ul>                
                 </div>
               </div>  
               </c:if>
               </c:if>  
                <c:if test="${empty productlist}"> 
-               
                </c:if>                 
             </div>
           </div>
         </div>
       </div>
     </section>
-    		<div class="modal fade" id="modalUpdateInfo" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalCenterTitle"
-			aria-hidden="true" data-backdrop="static" data-keyboard="false">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content" style="width: 65%">
-			<div class="modal-header">
-				<button type="button"
-							class="close d-flex align-items-center justify-content-center"
-							data-dismiss="modal" aria-label="Close"
-							value="${account.fullname},${account.phone},${account.dob}"
-							id="closeModal">
-					<span aria-hidden="true" class="ion-ios-close"></span>
-				</button>
-			</div>
-			<div class="row ">
-				<div class="d-flex">
-					<div
-								class="modal-body p-4 p-md-5 d-flex align-items-center color-1">
-						<div class="text w-100 py-3">
-							<h3 class="mb-4 heading">Create Auction</h3>
-							<form class="contact-form">
-								<div class="form-group mb-3">
-								<p> Hour Start</p>
-									<input value="00:00:00" type="time" step="1"
-												class="form-control">
-								</div>							
-								<div class="form-group mb-3">
-								<p> Hour End</p>
-									<input value="00:00:00" type="time" step="1"
-												class="form-control">
-								</div>
-								<div class="form-group">
-									<p> Event date</p>
-									<input value="dd/MM/yyyy" type="date" class="form-control">
-								</div>
-								<div class="form-group">
-									<p>Description</p>
-								  <input type="text" class="form-control">
-									
-								</div>
-								<div class="form-group">
-									<button type="button"
-												class="form-control btn btn-secondary rounded submit px-3"
-												id="updateAccount">Save Information</button>
-								</div>
-								
-							</form>
-						</div>
-					</div>
-				</div>				
-			</div>
-		</div>
-	</div>
-</div>
+    	
+<input type="hidden" value="${productOutput.id }">
 	</jsp:attribute>
 </mt:layout>

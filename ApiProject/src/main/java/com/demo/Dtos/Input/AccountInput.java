@@ -12,8 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AccountInput {
 	@NotEmpty
-	private String gmail;
-	
+	private String gmail;	
 	private String password;
 	@NotEmpty
 	private String fullname;

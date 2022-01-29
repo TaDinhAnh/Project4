@@ -40,9 +40,9 @@ public class AuctionController {
 		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	@RequestMapping(
+		value="",	method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> createAuction(@RequestBody @Valid AuctionInput auctionInput, BindingResult bind) {
-
 		validate.validate(auctionInput, bind);
 		if (bind.hasErrors()) {
 			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
@@ -136,6 +136,31 @@ public class AuctionController {
 			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "getAuction/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AuctionOutput>> getAuction(@PathVariable("id") int accountid) {
+		if (accountid <= 0) {
+			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		List<AuctionOutput> auctionOutput = auctionService.getAuction(accountid);
+		if (auctionOutput == null || auctionOutput.size() <= 0) {
+			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AuctionOutput>>(auctionOutput, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = { "/{id}" }, method = RequestMethod.DELETE)
+	public ResponseEntity<Boolean> Del(@PathVariable("id") int id) {
+		if (id <= 0) {
+			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
+		}
+
+		if (auctionService.delAuction(id)) {
+			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 
 }

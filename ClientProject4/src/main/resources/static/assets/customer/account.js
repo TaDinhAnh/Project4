@@ -5,11 +5,6 @@ $(document).ready(function() {
 		$("#name").val(rs[0]);
 		$("#phone").val(rs[1]);
 	})
-	$(function() {
-		$("#datepicker").datepicker({
-			dateFormat: 'dd/mm/yy'
-		}).val();
-	});
 	$("#register").submit(function(e) {
 		var fullname = $("#fullname").val();
 		var gmail = $("#gmail").val();

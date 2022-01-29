@@ -5,15 +5,38 @@
 <%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <mt:layout title="">
 	<jsp:attribute name="content">	
-	    <section class="section-property section-t8">	    
-	     <div class="container">
+<section class="section-property section-t8">
+ <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single" style="text-align: center">Products</h1>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <nav aria-label="breadcrumb"
+							class="breadcrumb-box d-flex justify-content-lg-end">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                 <button type="button" class="btn btn-light"
+										style="border: none; outline: 0 !important; color: #afa939;"
+										data-toggle="modal" data-target="#createProduct">
+										Create  Product
+							</button>           
+                </li>
+               
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div> 
+	  <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="title-wrap d-flex justify-content-between">
               <div class="title-box">
                 <h2 class="title-a">List of unsold products</h2>
-              </div>
-              
+              </div>           
             </div>
           </div>
         </div>
@@ -50,51 +73,8 @@
            </c:forEach>
           </div>
         </div>
-        <div class="news-carousel-pagination carousel-pagination"></div>
+        <div class="news-carousel-pagination carousel-pagination"></div>     
       </div>	
-      
-      <div class="container">
-       <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a">List is agreed</h2>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-        <div class="row">
-        <c:forEach var="productaccept" items="${productlistAccept }">     
-          <div class="col-md-4">
-            <div class="card-box-b card-shadow news-box">
-              <div class="img-box-b">
-                <img
-										src="${pageContext.request.contextPath }/resources/assets/customer/img/post-4.jpg"
-										alt="" class="img-b img-fluid">
-              </div>
-              <div class="card-overlay">
-                <div class="card-header-b">
-                  <div class="card-category-b">
-                    <a href="${pageContext.request.contextPath }/vendor/product/detail?id=${productaccept.id}" class="category-b">${productaccept.category }</a>
-                  </div>
-                  <div class="card-title-b">
-                    <h2 class="title-2">
-                      <a href="${pageContext.request.contextPath }/vendor/product/detail?id=${productaccept.id}">${productaccept.name }
-                        </a>
-                    </h2>
-                  </div>
-                  <div class="card-date">
-                    <span class="date-b">${productaccept.description }</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        </c:forEach>
-          </div>  
-                    
-      </div>    
 	          <div class="container">
         <div class="row">
           <div class="col-md-12">

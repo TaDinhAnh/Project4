@@ -16,7 +16,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath }/resources/assets/vendor//bootstrap/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath }/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath }/resources/assets/customer/img/apple-touch-icon.png"
@@ -26,9 +26,6 @@
 	rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath }/resources/assets/vendor/animate.css/animate.min.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath }/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath }/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
@@ -372,7 +369,6 @@
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath }/resources/assets/customer/js/core/popper.min.js"></script>
 	<script>
 		var win = navigator.platform.indexOf('Win') > -1;
 		if (win && document.querySelector('#sidenav-scrollbar')) {

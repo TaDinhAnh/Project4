@@ -21,4 +21,5 @@ public interface OrdersResponsitory extends CrudRepository<Orders, Integer> {
 	@Query(value = "select new com.demo.Dtos.Output.OrdersOutput(id, successDate, total,piad,"
 			+ "status, account.fullname) from Orders ")
 	public List<OrdersOutput> getAll();
+
 }
