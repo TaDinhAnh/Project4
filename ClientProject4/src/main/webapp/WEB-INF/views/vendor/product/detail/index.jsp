@@ -3,60 +3,7 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags/customer"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!-- <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> --> 
-<!-- <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --> 
-<!-- <!-- <script> --> -->
-<!-- // 	$(document).ready(function() { -->
-<!-- // 		$("#createAuction").click(function() { -->
-<%-- // 			var id = ${accountid}; --%>
-<!-- // 			alert(id); -->
-<!-- // 			var start = $("#start").val(); -->
-<!-- // 			var end = $("#end").val(); -->
-<!-- // 			var date = $("#date").val(); -->
-<!-- // 			var description = $("#description").val(); -->
-<!-- // 			alert(date); -->
-<!-- // 			if (start === "") { -->
-<!-- // 				alert("Please enter start time!"); -->
-<!-- // 				return; -->
-<!-- // 			} else if (end === "") { -->
-<!-- // 				alert("Please enter end time !"); -->
-<!-- // 				return; -->
-<!-- // 			} else if (date === "") { -->
-<!-- // 				alert("Please enter date !"); -->
-<!-- // 				return; -->
-<!-- // 			} else if (description === "") { -->
-<!-- // 				alert("Please enter description !"); -->
-<!-- // 				return; -->
-<!-- // 			}else if(end < start){ -->
-<!-- // 				alert() -->
-<!-- // 				} -->
-<!-- // 			$.ajax({ -->
-<!-- // 				type: "POST", -->
-<!-- // 				url: "http://localhost:9799/api/auction", -->
-<!-- // 				contentType: "application/json; charset=utf-8", -->
-<!-- // 				data: JSON -->
-<!-- // 					.stringify({ -->
-<!-- // 						"vendorId": id, -->
-<!-- // 						"hourStart": start, -->
-<!-- // 						"hourEnd": end, -->
-<!-- // 						"eventdate": date, -->
-<!-- // 						"description":description, -->
-<!-- // 					}), -->
-<!-- // 				dataType: "json", -->
-<!-- // 				error: function(xhr) {		 -->
-<!-- // 					if (xhr.status === 401) { -->
-<!-- // 						window.location.href = "http://localhost:8088/account/login"; -->
-<!-- // 					} else { -->
-<!-- // 						window.location.href = "http://localhost:8088/error/400page"; -->
-<!-- // 					} -->
-<!-- // 				}, -->
-<!-- // 				success: function() { -->
-<!-- // 					window.location.href = "http://localhost:8088/customer/view/auction/vendor"; -->
-<!-- // 				}, -->
-<!-- // 			}); -->
-<!-- // 		}); -->
-<!-- // 	}); -->
-<!-- <!-- </script> --> -->
+
 <mt:layout title="">
 	<jsp:attribute name="content">	
 		 <section class="intro-single">
@@ -79,35 +26,30 @@
                   <a
 											href="${pageContext.request.contextPath }/customer/view/home">Home</a>
                 </li>
-                <li class="breadcrumb-item">
-                							<button type="button" class="btn btn-light"
-												style="border: none; outline: 0 !important; color: #afa939;"
-												data-toggle="modal" data-target="#modalUpdateInfo">
-										Update Auction
-							</button>              	
-                </li>
+                
                 </c:if>
                  <c:if test="${empty productlist}">
                 <li class="breadcrumb-item">
                   <a
 											href="${pageContext.request.contextPath }/customer/view/home">Home</a>
                 </li>
-                <li class="breadcrumb-item">
-                							<button type="button" class="btn btn-light"
-												style="border: none; outline: 0 !important; color: #afa939;"
-												data-toggle="modal" data-target="#modalCreateInfo">
-										Create Auction
-							</button>              	
+                <li class="breadcrumb-item">                								
                 </li>
                 </c:if>
                 </c:if>
                  <c:if
-									test="${productOutput.status == 'sold' and productOutput.isAccept == true}">
+									test="${productOutput.status == 'unsold' and productOutput.isAccept == false}">
                 <li class="breadcrumb-item">
                   <a
 										href="${pageContext.request.contextPath }/customer/view/home">Home</a>
                 </li>
-               
+               <li class="breadcrumb-item">
+                							<button type="button" class="btn btn-light"
+											style="border: none; outline: 0 !important; color: #afa939;"
+											data-toggle="modal" data-target="#modalUpdateInfo">
+										Update Auction
+							</button>              	
+                </li>
                 </c:if>
               </ol>
             </nav>

@@ -176,8 +176,7 @@
 													href="${pageContext.request.contextPath }/vendor/product/detail?id=${product.id}"
 													class="link-one">
                           <i class="bi bi-facebook" aria-hidden="true"></i>
-                        </a>
-                      </li>                 
+                        </a>                       
                     </ul>
                   </div>
                 </div>

@@ -84,12 +84,8 @@
 									style="border: none; outline: 0 !important; color: #afa939;"
 									data-toggle="modal" data-target="#modalCreateInfo">
 										Create Auction
-							</button>
-							
-				                
-            </div>
-     	
-               
+							</button>										                
+            </div>    
               </div>
           </div>
         </div>
