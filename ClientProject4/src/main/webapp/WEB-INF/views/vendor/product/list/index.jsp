@@ -177,7 +177,10 @@
 													class="link-one">
                           <i class="bi bi-facebook" aria-hidden="true"></i>
                         </a>                       
-                    </ul>
+                    
+											
+											
+											</ul>
                   </div>
                 </div>
               </div>    
@@ -187,5 +190,68 @@
         </div>
       </div>
 		</section>
+		
+		<!-- modal create Product -->
+      	<div class="modal fade" id="createProduct" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content" style="width: 65%">
+			<div class="modal-header">
+				<button type="button"
+							class="close d-flex align-items-center justify-content-center"
+							data-dismiss="modal" aria-label="Close" value="" id="closeModal">
+					<span aria-hidden="true" class="ion-ios-close"></span>
+				</button>
+			</div>
+			<div class="row ">
+				<div class="d-flex">
+					<div
+								class="modal-body p-4 p-md-5 d-flex align-items-center color-1">
+						<div class="text w-100 py-3">
+							<h3 class="mb-4 heading">Create Product</h3>
+							<form class="contact-form">
+							<div class="form-group mb-3">
+								<p>Category</p>
+													<select class="form-control">
+							    <c:forEach items="${categories }" var="item">
+											      <option value="${item.id}">${item.name}</option>
+											      </c:forEach>
+							</select>
+							</div>		
+								<div class="form-group mb-3">
+								<p> Name</p>
+									 <input type="text" class="form-control" id="exampleInputPassword1" required="required">
+												
+								</div>							
+								<div class="form-group mb-3">
+								<p> Price</p>
+									 <input type="text" class="form-control allownumericwithdecimal" id="exampleInputPassword1" pattern="\d{1,5}"  required="required">
+												
+								</div>
+								<div class="form-group">
+									<p> Event date</p>
+									<input type="text" class="form-control"
+												placeholder="dd/MM/yyyy" id="updateDate">
+								</div>
+								<div class="form-group">
+									<p>Description</p>
+								  <input type="text" class="form-control" id="updateDescription">
+									
+								</div>
+								<div class="form-group">
+									<button type="button"
+												class="form-control btn btn-secondary rounded submit px-3"
+												id="updateAuction">Save Information</button>
+								</div>
+								
+							</form>
+						</div>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>	
+</div>	
 	</jsp:attribute>
 </mt:layout>

@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.demo.Dtos.Input.ProductInput;
 import com.demo.Dtos.Input.SendMailInput;
 import com.demo.Dtos.Output.ProductOutput;
@@ -30,7 +33,7 @@ public class ProductController {
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ProductOutput> createProduct(@RequestBody @Valid ProductInput productInput,
-			BindingResult bind) {
+			BindingResult bind, @RequestParam("file") MultipartFile file) {
 		validate.validate(productInput, bind);
 		if (bind.hasErrors()) {
 			return new ResponseEntity<ProductOutput>(HttpStatus.BAD_REQUEST);

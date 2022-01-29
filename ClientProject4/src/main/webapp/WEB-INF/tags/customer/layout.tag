@@ -191,7 +191,7 @@
 								Infor </a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
 								History </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/account/signIn"">Sign
+								href="${pageContext.request.contextPath }/customer/account/signIn"">Sign
 								in </a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/pageAgentSingle"">Sign
 								out </a>
@@ -366,6 +366,8 @@
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/jquery-3.6.0.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/account.js"></script>
+			<script
+		src="${pageContext.request.contextPath }/resources/assets/vendor/js/product.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script

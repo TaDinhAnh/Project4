@@ -83,4 +83,9 @@ public class CategoryService implements ICategoryService {
 		}
 		return categoryOutputs;
 	}
+
+	@Override
+	public List<CategoryOutput> getCateNotDel() {
+		return categoryReponsitory.getCateNotDel();
+	}
 }
