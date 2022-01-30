@@ -9,7 +9,6 @@ public class ProductInput {
 	private String name;
 	@Min(value = 1)
 	private Double priceMin;
-	@NotEmpty
 	private String image;
 	@NotEmpty
 	private String description;

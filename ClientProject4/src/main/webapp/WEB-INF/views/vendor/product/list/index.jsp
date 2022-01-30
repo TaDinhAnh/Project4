@@ -143,7 +143,7 @@
             <div class="card-box-d">
               <div class="card-img-d">
                 <img
-										src="${pageContext.request.contextPath }/resources/assets/customer/img/testimonial-1.jpg"
+										src="${product.image}"
 										alt="" class="img-d img-fluid">
               </div>
               <div class="card-overlay card-overlay-hover">
@@ -180,6 +180,9 @@
                     
 											
 											
+											
+											
+											
 											</ul>
                   </div>
                 </div>
@@ -210,10 +213,11 @@
 								class="modal-body p-4 p-md-5 d-flex align-items-center color-1">
 						<div class="text w-100 py-3">
 							<h3 class="mb-4 heading">Create Product</h3>
-							<form class="contact-form">
+							<form class="contact-form" id="createProduct"
+										enctype="multipart/form-data">
 							<div class="form-group mb-3">
 								<p>Category</p>
-													<select class="form-control">
+													<select class="form-control" id="idCategory">
 							    <c:forEach items="${categories }" var="item">
 											      <option value="${item.id}">${item.name}</option>
 											      </c:forEach>
@@ -221,28 +225,31 @@
 							</div>		
 								<div class="form-group mb-3">
 								<p> Name</p>
-									 <input type="text" class="form-control" id="exampleInputPassword1" required="required">
+									 <input type="text" class="form-control" id="namePro"
+												required="required">
 												
 								</div>							
 								<div class="form-group mb-3">
 								<p> Price</p>
-									 <input type="text" class="form-control allownumericwithdecimal" id="exampleInputPassword1" pattern="\d{1,5}"  required="required">
+									 <input type="text"
+												class="form-control allownumericwithdecimal" id="pricePro"
+												pattern="\d{1,5}" required="required">
 												
 								</div>
 								<div class="form-group">
-									<p> Event date</p>
-									<input type="text" class="form-control"
-												placeholder="dd/MM/yyyy" id="updateDate">
+									<p>Image</p>
+									<input type="file" class="form-control" id="filePro"
+												required="required">
 								</div>
 								<div class="form-group">
 									<p>Description</p>
-								  <input type="text" class="form-control" id="updateDescription">
-									
+								  <input type="text" class="form-control" id="proDesc">
+									<input type="text" class="form-control" id="idVendor"
+												value="${sessionScope.accountid }" hidden> 
 								</div>
 								<div class="form-group">
-									<button type="button"
-												class="form-control btn btn-secondary rounded submit px-3"
-												id="updateAuction">Save Information</button>
+									<button type="submit"
+												class="form-control btn btn-secondary rounded submit px-3">Save</button>
 								</div>
 								
 							</form>

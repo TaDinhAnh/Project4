@@ -31,11 +31,11 @@ public class UploadImg {
 		return uuid + ext;
 	}
 
-	public static void DelFile(String fileName) {
+	public static void DelFile(String fileName, String url) {
 		if (fileName.equals("default.png")) {
 			return;
 		}
-		File file = new File("src\\main\\resources\\img\\avatar\\" + fileName);
+		File file = new File("src\\main\\resources\\img\\" + url + "\\" + fileName);
 		file.delete();
 	}
 

@@ -50,7 +50,7 @@ public interface ProductReponsitory extends CrudRepository<Product, Integer> {
 
 	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
 			+ "description, status, isAccept) from Product where vendorId = :vendorId and isDelete = 0 "
-			+ "and isAccept = 0 and status = 0 order by id desc")
+			+ "and isAccept = 0 and status = 1 order by id desc")
 	public List<ProductOutput> getListProductNotAccept(@Param("vendorId") int vendorId);
 
 	@Query("select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "

@@ -6,10 +6,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.demo.Dtos.Input.ProductInput;
 import com.demo.Dtos.Output.AuctionProductOutput;
 import com.demo.Dtos.Output.CategoryOutput;
 import com.demo.Dtos.Output.OrdersOutput;
@@ -68,15 +70,19 @@ public class ProductCustomerController {
 					.create(OrdersAPIService.class);
 			ProductAPIService productAPIService = APIClient.getClient().create(ProductAPIService.class);
 			AuctionProductOutput auctionproductOutput = auctionProductAPIService.findListSold(accountid, productId)
-					.execute().body();			
+					.execute().body();	
+			CategoryAPIService categoryAPIService = APIClient.getClient().create(CategoryAPIService.class);
+			List<CategoryOutput> categoryOutputs = categoryAPIService.getCateNotDel().execute().body();
 			ProductOutput productOutput = productAPIService.findByid(productId, accountid).execute().body();
 			OrdersOutput ordersOutput = ordersAPIService.find(productId).execute().body();
 			modelMap.put("orders", ordersOutput);
 			modelMap.put("productlist", auctionproductOutput);
-			modelMap.put("productOutput", productOutput);			
+			modelMap.put("productOutput", productOutput);	
+			modelMap.put("categories", categoryOutputs);
 			return "vendor/product/detail/index";
 		} catch (Exception e) {
 			return "error/400page";
 		}
 	}
+	
 }

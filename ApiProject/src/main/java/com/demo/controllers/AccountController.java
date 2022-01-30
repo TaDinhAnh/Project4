@@ -111,21 +111,21 @@ public class AccountController {
 
 	@RequestMapping(value = { "changeAvatar/{id}/{imgOld}" }, method = RequestMethod.POST, produces = {
 			MimeTypeUtils.IMAGE_PNG_VALUE, MimeTypeUtils.IMAGE_JPEG_VALUE, MimeTypeUtils.IMAGE_GIF_VALUE })
-	public ResponseEntity<byte[]> changeAvatar(@RequestParam("file") MultipartFile file, @PathVariable("id") int id,
+	public ResponseEntity<Void> changeAvatar(@RequestParam("fileImg") MultipartFile file, @PathVariable("id") int id,
 			@PathVariable("imgOld") String imgOld) {
 		if (file == null || id <= 0) {
-			return new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
 		}
 		String filename = UploadImg.Upload(file, "avatar");
 		if (filename == null) {
-			return new ResponseEntity<byte[]>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		if (accountService.changeAvatar(filename, id)) {
-			UploadImg.DelFile(filename);
-			return new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+			UploadImg.DelFile(filename, "avatar");
+			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
 		}
-		UploadImg.DelFile(imgOld);
-		return new ResponseEntity<byte[]>(UploadImg.DisplayImg(filename, "avatar"), HttpStatus.OK);
+		UploadImg.DelFile(imgOld,"avatar");
+		return new ResponseEntity<Void>( HttpStatus.OK);
 	}
 
 	@RequestMapping(value = { "/{id}" }, method = RequestMethod.GET)
