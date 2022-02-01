@@ -176,10 +176,8 @@
 								Auctions By Vendor </a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/vendor/product/index">Product
 							</a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/pageAgentsGrid"">Agents
-								Grid</a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/pageAgentSingle"">Agent
-								Single</a>
+								href="${pageContext.request.contextPath }/auctionproduct/index"">AuctionProduct</a> 
+
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"

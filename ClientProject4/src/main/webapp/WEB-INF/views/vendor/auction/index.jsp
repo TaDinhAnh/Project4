@@ -72,7 +72,7 @@
 			var productid = $('#presentPro').find(":selected").val();
 			$.ajax({
 				type: "POST",
-				url: "http://localhost:9799/api/auctionproduct",
+				url: "http://localhost:9799/api/auctionProduct",
 				contentType: "application/json; charset=utf-8",
 				data: JSON
 					.stringify({
@@ -126,9 +126,6 @@
 										id="tableAuction">
                   <thead>
                     <tr>
-
-                      <th
-													class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Image</th>
                       <th
 													class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Auction Description</th>
 					  <th
@@ -145,17 +142,6 @@
 
                   <input type="hidden" value="${auction.id }" id="id">
                     <tr>
-                      <td class="align-middle text-center">
-                                              
-                    <div class="testimonial-img; card-box-a card-shadow">
-                       <p class="text-xs font-weight-bold mb-0">
-                      <img
-																	src="${pageContext.request.contextPath }/resources/assets/customer/img/testimonial-1.jpg"
-																	alt="" class="img-a img-fluid">
-																	 </p>
-                    </div>
-                        
-                      </td>
                       <td class="align-middle text-center">
                         <p class="text-xs font-weight-bold mb-0  "> ${auction.description } </p>
                       </td>
