@@ -22,7 +22,7 @@ public interface IProductService {
 
 	ProductOutput createProduct(ProductInput productInput);
 
-	ProductOutput updateProduct(ProductInput productInput, int id);
+	Boolean updateProduct(ProductInput productInput, int id);
 
 	ProductOutput find(int id);
 
@@ -43,6 +43,8 @@ public interface IProductService {
 	ProductOutput find2(int id);
 	
 	ProductOutput findByVendorId(int productId , int vendorId);
+	
+	Boolean updateImg(int id, String img);
 
 
 }

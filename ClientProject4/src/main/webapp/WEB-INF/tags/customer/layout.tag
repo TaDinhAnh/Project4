@@ -176,8 +176,8 @@
 								Auctions By Vendor </a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/vendor/product/index">Product
 							</a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/auctionproduct/index"">AuctionProduct</a> 
-
+								href="${pageContext.request.contextPath }/auctionproduct/index">List
+								Auction Product</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -189,7 +189,7 @@
 								Infor </a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
 								History </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/account/signIn"">Sign
+								href="${pageContext.request.contextPath }/customer/account/signIn"">Sign
 								in </a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/pageAgentSingle"">Sign
 								out </a>
@@ -208,8 +208,7 @@
 						In/Register</a>
 				</c:if>
 				<c:if test="${not empty sessionScope.account }">
-					<span style="color: #6610f2"> Hello ${account.fullname }
-					</span>
+					<span style="color: #6610f2"> Hello ${account.fullname } </span>
 					<a class=""
 						href="${pageContext.request.contextPath }/customer/account/signIn">Logout</a>
 				</c:if>
@@ -365,9 +364,11 @@
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/account.js"></script>
 	<script
+		src="${pageContext.request.contextPath }/resources/assets/vendor/js/product.js"></script>
+	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script
-	<script>
+		<script>
 		var win = navigator.platform.indexOf('Win') > -1;
 		if (win && document.querySelector('#sidenav-scrollbar')) {
 			var options = {
@@ -376,9 +377,7 @@
 			Scrollbar.init(document.querySelector('#sidenav-scrollbar'),
 					options);
 		}
-	</script>
-
-	<!-- modal -->
+	</script><!-- modal -->
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/bootstrap.min.js"></script>

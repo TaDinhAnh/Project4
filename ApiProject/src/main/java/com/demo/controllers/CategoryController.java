@@ -60,6 +60,17 @@ public class CategoryController {
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 
 	}
+
+	@RequestMapping(value = "getCateNotDel", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<CategoryOutput>> getCateNotDel() {
+		List<CategoryOutput> rs = categoryService.getCateNotDel();
+		if (rs == null) {
+			return new ResponseEntity<List<CategoryOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<List<CategoryOutput>>(rs, HttpStatus.OK);
+
+	}
+
 	@CrossOrigin(origins = "http://localhost:8088")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> updateCategory(@PathVariable("id") int id,

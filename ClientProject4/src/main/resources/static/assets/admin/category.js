@@ -20,10 +20,10 @@ $(document).ready(function() {
 			},
 			error: function(xhr) {
 				if (xhr.status === 401) {
-					window.location.href = "http://localhost:8088/account/login";
+					window.location.href = "http://localhost:8088/customer/account/signIn";
 				}
 				else {
-					window.location.href = "http://localhost:8088/requesterror/400page";
+					window.location.href = "http://localhost:8088/error/400page";
 				}
 			}
 		});
@@ -66,7 +66,7 @@ $(document).ready(function() {
 					window.location.href = "http://localhost:8088/account/login";
 				}
 				else {
-					window.location.href = "http://localhost:8088/requesterror/400page";
+					window.location.href = "http://localhost:8088/error/400page";
 				}
 			}
 		});

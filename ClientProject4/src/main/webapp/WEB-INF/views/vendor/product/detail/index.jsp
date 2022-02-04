@@ -11,8 +11,8 @@
         <div class="row">
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
-              <h1 class="title-single">${productOutput.name }</h1>
-              <span class="color-text-a">${productOutput.category }</span>
+              <h1 class="title-single" id="proname">${productOutput.name }</h1>
+              <span class="color-text-a" id="catepro">${productOutput.category }</span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -49,9 +49,9 @@
 										href="${pageContext.request.contextPath }/customer/view/home">Home</a>
                 </li>
                <li class="breadcrumb-item">
-                							<button type="button" class="btn btn-light"
+                							<button type="button" class="btn btn-light" id="updatePro"
 											style="border: none; outline: 0 !important; color: #afa939;"
-											data-toggle="modal" data-target="#modalUpdateInfo">
+											data-toggle="modal" data-target="#modalUpdatePro" >
 										Update Auction
 							</button>              	
                 </li>
@@ -70,8 +70,8 @@
               <div class="swiper-wrapper">
                 <div class="carousel-item-b swiper-slide">
                   <img
-										src="${pageContext.request.contextPath }/resources/assets/customer/img/slide-1.jpg"
-										alt="">
+										src="${productOutput.image }"
+										alt="" id="imagePro">
                 </div>             
               </div>
             </div>
@@ -90,7 +90,7 @@
                       <span class="bi bi-cash">$</span>
                     </div>
                     <div class="card-title-c align-self-center">
-                      <h5 class="title-c">${productOutput.priceMin }</h5>
+                      <h5 class="title-c" id="pricePro">${productOutput.priceMin }</h5>
                     </div>
                   </div>
                 </div>
@@ -105,7 +105,7 @@
                   </div>
                 </div>
                 <div class="property-description">
-                  <p class="description color-text-a">
+                  <p class="description color-text-a" id="descPro">
                     ${productOutput.description }
                   </p>
                
@@ -169,7 +169,90 @@
         </div>
       </div>
     </section>
-    	
+    
+    <!-- modal update product -->
+  	<div class="modal fade" id="modalUpdatePro" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button"
+							class="close d-flex align-items-center justify-content-center"
+							data-dismiss="modal" aria-label="Close"
+							id="closeModal">
+					<span aria-hidden="true" class="ion-ios-close"></span>
+				</button>
+			</div>
+			<div class="row no-gutters">
+				<div class="col-md-6 d-flex">
+					<div
+								class="modal-body p-4 p-md-5 d-flex align-items-center color-1">
+						<div class="text w-100 py-3">
+							<span class="subheading">${account.fullname }</span>
+							<h3 class="mb-4 heading">Update Product</h3>
+							<form class="contact-form">
+								<div class="form-group mb-3">
+									<input type="text" class="form-control" placeholder="name product"
+												 id="updateNamePro">
+												 <input type="text" class="form-control" value="${productOutput.id}"
+												 id="updateidpro" hidden>
+								</div>	
+								<div class="form-group mb-3">
+													<select class="form-control" id="updateCatePro">
+							    <c:forEach items="${categories }" var="item">
+											      <option value="${item.id}">${item.name}</option>
+											      </c:forEach>
+							</select>	
+							</div>						
+								<div class="form-group mb-3">
+									<input type="text" class="form-control allownumericwithdecimal" id="updatePircePro"
+												placeholder="price"
+												>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="description"
+												 id="updateProDesc">
+								</div>
+								
+								<div class="form-group">
+									<button type="button"
+												class="form-control btn btn-secondary rounded submit px-3"
+												id="updateProduct">Save</button>
+								</div>
+								
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 d-flex">
+					<div class="modal-body p-4 p-md-5 d-flex align-items-center"
+								style="background: #6c757d">
+						<div class="text w-100 py-3">
+							<span class="subheading">${account.fullname }</span>
+							<h3 class="mb-4 heading">Update Image</h3>
+							<form class="contact-form" enctype="multipart/form-data" id="updateImagePro">
+								<div class="form-group mb-3">
+									<img src="" alt="..." class="img-thumbnail" id="imageUpdatePro">
+								</div>		
+								<div class="form-group mb-3">					
+								<input type="file" class="form-control" id="updateImg"
+												required="required">
+												</div>		
+								<div class="form-group">
+									<button type="submit"
+												class="form-control btn btn-secondary rounded submit px-3"
+												>Save</button>
+								</div>
+								
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>  	
 <input type="hidden" value="${productOutput.id }">
 	</jsp:attribute>
 </mt:layout>

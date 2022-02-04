@@ -45,9 +45,12 @@
                   </thead>
                   <tbody>
                   <c:forEach var="ap" items="${auctionproducts }">
-
                   <input type="hidden" value="${ap.auctionOutput.id }" id="auid">
                    <input type="hidden" value="${ap.productOutput.id }" id="pid">
+                  <input type="hidden" value="${ap.auctionOutput.id }"
+													id="auid">
+                   <input type="hidden" value="${ap.productOutput.id }"
+													id="pid">
                     <tr>
                       <td class="align-middle text-center">
                         <p class="text-xs font-weight-bold mb-0  "> ${ap.productOutput.name } </p>
@@ -69,6 +72,8 @@
                        <p class="text-xs font-weight-bold mb-0">
 															<d:formatDate value="${ap.auctionOutput.eventdate }" var="dated"
 																pattern="dd/MM/yyy" /> ${dated } </p> 
+															<d:formatDate value="${ap.auctionOutput.eventdate }"
+																var="dated" pattern="dd/MM/yyy" /> ${dated } </p> 
                       </td>
                         <td class="align-middle text-center">
                         <p class="text-xs font-weight-bold mb-0"> ${ap.productOutput.status } </p>

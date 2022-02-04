@@ -26,5 +26,7 @@ public interface CategoryAPIService {
 
 	@POST("category")
 	Call<Boolean> createCategory(@Body CategoryInput categoryInput);
+	@GET("category/getCateNotDel")
+	Call<List<CategoryOutput>> getCateNotDel();
 	
 }

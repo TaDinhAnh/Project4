@@ -27,7 +27,7 @@
                   <div class="card-box-d">
               <div class="card-img-d">
               <img src="${account.image}" alt=""
-												class="agent-avatar img-fluid">
+												class="agent-avatar img-fluid" id="avatarOld">
               
 										</div>
               <div class="card-overlay card-overlay-hover">           
@@ -35,11 +35,21 @@
                   <div
 													class="socials-footer d-flex justify-content-center">
                     <ul class="list-inline">
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one">
-                          <i class="bi bi-instagram" aria-hidden="true"><input
-																	type="file" name="file"></i>
-                        </a>
+                      <li class="list-inline-item">         
+                          <form class="contact-form"
+																enctype="multipart/form-data" id="updateAvatar">
+																		   <i class="bi bi-instagram" aria-hidden="true">
+																		<input type="file" name="file" id="inputupdateAvatar"
+																	required="required">
+																		<input type="text" name="file"
+																	value="${sessionScope.accountid }" id="idAccount"
+																	hidden="">
+																			</i>
+																<button type="submit"
+																	class="form-control btn btn-secondary rounded submit px-3">Save</button>
+														</form>
+														
+																	
                       </li>
                     </ul>
                   </div>

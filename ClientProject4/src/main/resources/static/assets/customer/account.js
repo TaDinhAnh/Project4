@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	var images = $('#avatarOld').attr("src");
 	$("#closeModal").click(function() {
 		var data = $(this).val();
 		var rs = data.split(",");
@@ -123,4 +124,41 @@ $(document).ready(function() {
 				},
 			});
 		});
+
+	$("#inputupdateAvatar").change(function() {
+		const file = this.files[0];
+		if (file) {
+			let reader = new FileReader();
+			reader.onload = function(event) {
+				$("#avatarOld")
+					.attr("src", event.target.result);
+			};
+			reader.readAsDataURL(file);
+		}
+	});
+	$("#updateAvatar").on('submit', (function(e) {
+		e.preventDefault();
+		var formData = new FormData();
+		var id = $("#idAccount").val()
+		avatarOld = images.slice(57, images.lenght)
+		formData.append("fileImg", $('#inputupdateAvatar')[0].files[0]);
+		$.ajax({
+			type: 'POST',
+			url: "http://localhost:9799/api/account/changeAvatar/" + id + "/" + avatarOld,
+			data: formData,
+			processData: false,
+			contentType: false,
+			success: function() {
+				window.location.href = "http://localhost:8088/customer/account/changeInfor";
+			},
+			error: function(xhr) {
+				if (xhr.status === 401) {
+					window.location.href = "http:/localhost:8088/customer/account/signIn";
+				}
+				else {
+					window.location.href = "http://localhost:8088/error/400page";
+				}
+			}
+		});
+	}));
 });
