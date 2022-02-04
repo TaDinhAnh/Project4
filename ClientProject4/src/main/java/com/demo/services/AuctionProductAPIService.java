@@ -1,8 +1,7 @@
 package com.demo.services;
 
 import java.util.List;
-import com.demo.Dtos.Input.AuctionInput;
-
+import com.demo.Dtos.Input.AuctionproductInput;
 import com.demo.Dtos.Output.AuctionProductOutput;
 
 import retrofit2.Call;
@@ -19,8 +18,7 @@ public interface AuctionProductAPIService {
 	@GET("auctionProduct/{accountId}")
 	Call<List<AuctionProductOutput>> findById(@Path("accountId") int accountId);
 
-
 	@POST("auctionProduct")
-	Call<Boolean> create(@Body AuctionInput auctionInput);
+	Call<Boolean> create(@Body AuctionproductInput auctionproductInput);
 
 }

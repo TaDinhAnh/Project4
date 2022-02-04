@@ -72,8 +72,7 @@
                        <p class="text-xs font-weight-bold mb-0">
 															<d:formatDate value="${ap.auctionOutput.eventdate }" var="dated"
 																pattern="dd/MM/yyy" /> ${dated } </p> 
-															<d:formatDate value="${ap.auctionOutput.eventdate }"
-																var="dated" pattern="dd/MM/yyy" /> ${dated } </p> 
+															 </p> 
                       </td>
                         <td class="align-middle text-center">
                         <p class="text-xs font-weight-bold mb-0"> ${ap.productOutput.status } </p>

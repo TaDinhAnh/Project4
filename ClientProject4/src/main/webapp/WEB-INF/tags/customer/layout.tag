@@ -188,11 +188,7 @@
 								href="${pageContext.request.contextPath }/customer/account/changeInfor">Change
 								Infor </a> <a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
-								History </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/account/signIn"">Sign
-								in </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/pageAgentSingle"">Sign
-								out </a>
+								History </a> 
 						</div></li>
 					<li class="nav-item"><a class="nav-link "
 						href="${pageContext.request.contextPath }/customer/view/contact"">Contact</a>

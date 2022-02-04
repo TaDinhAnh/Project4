@@ -52,7 +52,7 @@
                 							<button type="button" class="btn btn-light" id="updatePro"
 											style="border: none; outline: 0 !important; color: #afa939;"
 											data-toggle="modal" data-target="#modalUpdatePro" >
-										Update Auction
+										Update Product
 							</button>              	
                 </li>
                 </c:if>

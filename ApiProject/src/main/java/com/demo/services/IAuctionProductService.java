@@ -11,13 +11,9 @@ import com.demo.Dtos.Output.AuctionProductOutput;
 public interface IAuctionProductService {
 
 	AuctionProductOutput findListSold(int accountId, int productid);
+
 	Boolean create(AuctionproductInput auctionproductInput);
-	
+
 	List<AuctionProductOutput> findById(int accountId);
-<<<<<<< HEAD
-	
-	Boolean create(AuctionproductInput auctionproductInput);
-	
-=======
->>>>>>> vendorCUProduct
+
 }

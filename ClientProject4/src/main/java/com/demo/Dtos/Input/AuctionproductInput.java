@@ -4,7 +4,6 @@ public class AuctionproductInput {
 
 	private int proId;
 	private int auctionId;
-	
 
 	public int getProId() {
 		return proId;

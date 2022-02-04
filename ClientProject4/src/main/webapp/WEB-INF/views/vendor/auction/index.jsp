@@ -8,77 +8,20 @@
 <script
 	src="${pageContext.request.contextPath }/resources/assets/vendor/js/auction.js"></script>
 <script>
-	$(document).ready(function() {
-		$("#tableAuction").on('click', '.upAuction', function() {
-			var currentRow = $(this).closest("tr");
-			var des = currentRow.find("td:eq(1)").text().trim();
-			var evdate = currentRow.find("td:eq(2)").text().trim();
-			var hs = currentRow.find("td:eq(3)").text().trim();
-			var he = currentRow.find("td:eq(4)").text().trim();
-			$("#updateDate").val(evdate);
-			$("#updateDescription").val(des);
-			$("#updateHstart").val(hs);
-			$("#updateHend").val(he);
-			
-		});
-		
-		$("#updateAuction").click(function() {
-			var id = $("#id").val();
-			var accountid = $("#accountid").val();
-			var start = $("#updateHstart").val();
-			var end = $("#updateHend").val();
-			var date = $("#updateDate").val();
-			var description = $("#updateDescription").val();
-			if (start === "") {
-				alert("Please enter start time!");
-				return;
-			} else if (end === "") {
-				alert("Please enter end time !");
-				return;
-			} else if (date === "") {
-				alert("Please enter date !");
-				return;
-			} else if (description === "") {
-				alert("Please enter description !");
-				return;
-			}
-			$.ajax({
-				type: "PUT",
-				url: "http://localhost:9799/api/auction/" +id,
-				contentType: "application/json; charset=utf-8",
-				data: JSON
-					.stringify({
-						"vendorId": accountid,
-						"hourStart": start,
-						"hourEnd": end,
-						"eventdate": date,
-						"description": description,
-					}),
-				dataType: "json",
-				error: function(xhr) {
-					if (xhr.status === 401) {
-						window.location.href = "http://localhost:8088/account/login";
-					} else {
-						window.location.href = "http://localhost:8088/error/400page";
-					}
-				},
-				success: function() {
-					window.location.href = "http://localhost:8088/customer/view/auction/vendor";
-				},
-			});
-		});
-		$("#createAuctionProduct").click(function() {
-			var id = $("#id").val();
-			var productid = $('#presentPro').find(":selected").val();
+	$(document).ready(function() {		
+		$("#createAuctionProduct").on('submit', (function(e) {
+		e.preventDefault(); 
+			var id = $("#updateId").val();
+			var productid = $('#currentPro').find(":selected").val();	
 			$.ajax({
 				type: "POST",
 				url: "http://localhost:9799/api/auctionProduct",
 				contentType: "application/json; charset=utf-8",
 				data: JSON
-					.stringify({
-						"auctionid": id,
-						"proId": productid,
-					}),
+				.stringify({
+					"auctionId": id,
+					"proId": productid,
+				}),
 				dataType: "json",
 				error: function(xhr) {
 					if (xhr.status === 401) {
@@ -90,9 +33,10 @@
 				success: function() {
 					window.location.href = "http://localhost:8088/customer/view/auction/vendor";
 				},
-			});
-		});
-		
+				
+			});	
+		}));
+
 	});
 </script>
 <mt:layout title="">
@@ -123,7 +67,7 @@
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0"
-										id="tableAuction">
+										id="tableNAuction">
                   <thead>
                     <tr>
                       <th
@@ -135,12 +79,11 @@
                         <th
 													class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hour End</th>
                       <th class="text-secondary opacity-7"></th>
+                       
                     </tr>
                   </thead>
                   <tbody>
-                  <c:forEach var="auction" items="${auctions }">
-
-                  <input type="hidden" value="${auction.id }" id="id">
+                  <c:forEach var="auction" items="${auctions }">        
                     <tr>
                       <td class="align-middle text-center">
                         <p class="text-xs font-weight-bold mb-0  "> ${auction.description } </p>
@@ -157,10 +100,10 @@
                         <p class="text-xs font-weight-bold mb-0"> ${auction.hourEnd } </p>
                       </td>
                       <td class="align-middle text-center text-sm">
+     
                         <a onclick="return confirm('Are you sure?');"
 														href="${pageContext.request.contextPath }/customer/view/auction/delete?id=${auction.id}">Delete</a>    
-								<button
-															class="btn btn-link text-secondary mb-0 upAuction"
+								<button class="btn btn-link text-secondary mb-0 upAuction"
 															data-toggle="modal" data-target="#updateNewAuction">
                          Update
                         </button>	
@@ -170,9 +113,10 @@
                          Create AuctionProduct
                         </button>									
                       </td>
-                       <td class="align-middle">
-                        
+                       <td>
+                       <span hidden>${auction.id }</span>                      
                       </td>
+                      
                     </tr>
                     </c:forEach>
                     
@@ -280,7 +224,7 @@
 								<div class="form-group">
 									<p>Description</p>
 								  <input type="text" class="form-control" id="updateDescription">
-									
+									<input id="updateId" hidden>
 								</div>
 								<div class="form-group">
 									<button type="button"
@@ -315,10 +259,10 @@
 								class="modal-body p-4 p-md-5 d-flex align-items-center color-1">
 						<div class="text w-100 py-3">
 							<h3 class="mb-4 heading">Create Auction Product</h3>
-							<form class="contact-form">
+							<form class="contact-form" id="createAuctionProduct">
 								<div class="form-group mb-3">
 								<p>Product Name</p>
-									<select class="form-control" id="presentPro">
+									<select class="form-control" id="currentPro">
 				      <option value="0">Option</option>
 				      <c:forEach items="${productOutputs }" var="product">
 				      <option value="${product.id}">${product.name}</option>
@@ -328,9 +272,8 @@
 								</div>							
 								
 								<div class="form-group">
-									<button type="button"
-												class="form-control btn btn-secondary rounded submit px-3"
-												id="createAuctionProduct">Create AuctionProduct</button>
+									<button type="submit"
+												class="form-control btn btn-secondary rounded submit px-3">Create AuctionProduct</button>
 								</div>
 								
 							</form>

@@ -54,16 +54,6 @@ public class AuctionProductController {
 		}
 		return new ResponseEntity<List<AuctionProductOutput>>(auctionProductOutput, HttpStatus.OK);
 	}
-<<<<<<< HEAD
-	
-	@RequestMapping(value = "", method = RequestMethod.POST, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Boolean> create(@RequestBody AuctionproductInput auctionproductInput) {
-		if (!auctionProductService.create(auctionproductInput)) {
-			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-	}
-	
-=======
->>>>>>> vendorCUProduct
+
+
 }
