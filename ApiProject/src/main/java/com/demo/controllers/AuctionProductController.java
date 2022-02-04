@@ -1,5 +1,7 @@
 package com.demo.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,5 +38,17 @@ public class AuctionProductController {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "{accountId}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AuctionProductOutput>> findById(@PathVariable("accountId") int accountId) {
+		List<AuctionProductOutput> auctionProductOutput = auctionProductService.findById(accountId);
+		if(accountId <=0) {
+			return new ResponseEntity<List<AuctionProductOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		if (auctionProductOutput == null || auctionProductOutput.size() <=0) {
+			return new ResponseEntity<List<AuctionProductOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AuctionProductOutput>>(auctionProductOutput, HttpStatus.OK);
 	}
 }
