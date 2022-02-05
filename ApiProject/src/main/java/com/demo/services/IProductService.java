@@ -45,6 +45,8 @@ public interface IProductService {
 	ProductOutput findByVendorId(int productId , int vendorId);
 	
 	Boolean updateImg(int id, String img);
+	
+	List<ProductOutput> getListMinPrice(Double priceMin);
 
 
 }

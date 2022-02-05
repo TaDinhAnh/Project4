@@ -183,4 +183,9 @@ public class ProductService implements IProductService {
 		return productReponsitory.save(product) != null;
 	}
 
+	@Override
+	public List<ProductOutput> getListMinPrice(Double priceMin) {
+		return productReponsitory.getListMinPrice(priceMin);
+	}
+
 }

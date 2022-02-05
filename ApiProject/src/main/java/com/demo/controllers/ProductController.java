@@ -138,6 +138,18 @@ public class ProductController {
 		}
 		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "searchbyPrice/{priceMin}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductOutput>> searchByPrice(@PathVariable("priceMin") Double priceMin) {
+		if (priceMin <=0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		List<ProductOutput> productOutputs = productService.getListMinPrice(priceMin);
+		if (productOutputs == null || productOutputs.size() <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "accept/{id}", method = RequestMethod.PATCH)
 	public ResponseEntity<Boolean> acceptProduct(@PathVariable("id") int id) {

@@ -1,5 +1,6 @@
 package com.demo.reponsitories;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -39,6 +40,10 @@ public interface AuctionRepository extends CrudRepository<Auction, Integer> {
 
 	@Query("select new com.demo.Dtos.Output.AuctionOutput(id, account.fullname, hourStart, hourEnd, eventdate, description, status) from Auction where isDel = 0 and status = 2 and account.id = :id order by id desc ")
 	public List<AuctionOutput> getAuction(@Param("id") int accountid);
+	
+	@Query(value = "select new com.demo.Dtos.Output.AuctionOutput(id, hourStart, hourEnd, eventdate, description, status, isDel)"
+			+ "from Auction where isDel = 0 and eventdate = :eventdate")
+	public List<AuctionOutput> getAuctionByEventDate(@Param("eventdate") Date eventdate);
 
 
 }

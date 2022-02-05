@@ -30,7 +30,9 @@ public interface IAuctionService {
 	List<AuctionOutput> getLimitAuctionHappening();
 
 	List<AuctionOutput> getAuction(int accountid);
-	
+
 	boolean delAuction(int id);
-	
+
+	List<AuctionOutput> getAuctionByEventDate(String eventdate);
+
 }

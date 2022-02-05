@@ -1,5 +1,7 @@
 package com.demo.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +42,7 @@ public class AuctionController {
 		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
 	}
 
-	@RequestMapping(
-		value="",	method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "", method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> createAuction(@RequestBody @Valid AuctionInput auctionInput, BindingResult bind) {
 		validate.validate(auctionInput, bind);
 		if (bind.hasErrors()) {
@@ -128,7 +129,7 @@ public class AuctionController {
 		}
 		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "limit", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AuctionOutput>> getLimitAuctionHappening() {
 		List<AuctionOutput> auctionOutputs = auctionService.getLimitAuctionHappening();
@@ -137,7 +138,7 @@ public class AuctionController {
 		}
 		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "getAuction/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AuctionOutput>> getAuction(@PathVariable("id") int accountid) {
 		if (accountid <= 0) {
@@ -150,7 +151,7 @@ public class AuctionController {
 		return new ResponseEntity<List<AuctionOutput>>(auctionOutput, HttpStatus.OK);
 
 	}
-	
+
 	@RequestMapping(value = { "/{id}" }, method = RequestMethod.DELETE)
 	public ResponseEntity<Boolean> Del(@PathVariable("id") int id) {
 		if (id <= 0) {
@@ -161,6 +162,18 @@ public class AuctionController {
 			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = {"searchbyDate/{eventdate}" }, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AuctionOutput>> getListAuctionByIdVendor(@PathVariable("eventdate") String eventdate) {
+		if (eventdate == null) {
+			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		List<AuctionOutput> auctionOutputs = auctionService.getAuctionByEventDate(eventdate);
+		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
+			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
 	}
 
 }
