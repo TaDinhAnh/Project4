@@ -4,6 +4,7 @@
 <%@ attribute name="content" fragment="true"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="t" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +43,9 @@
 	href="${pageContext.request.contextPath }/resources/assets/customer/css/ionicons.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/assets/customer/css/flaticon.css">
+
+
+
 </head>
 <body>
 	<div class="click-closed"></div>
@@ -52,81 +56,35 @@
 		<span class="close-box-collapse right-boxed bi bi-x"></span>
 		<div class="box-collapse-wrap form">
 			<form class="form-a">
-				<div class="row">
-					<div class="col-md-12 mb-2">
-						<div class="form-group">
-							<label class="pb-2" for="Type">Keyword</label> <input type="text"
+				<div class="row">					
+					<div class="col-md-6 mb-2">
+						<div class="form-group mt-3">
+							<label class="pb-2" for="Type">Auctions</label> <input
+								type="text" class="form-control form-control-lg form-control-a"
+								placeholder="Auction" id="auction">
+						</div>
+					</div>
+					<div class="col-md-6 mb-2">
+						<div class="form-group mt-3">
+							<label class="pb-2" for="city">Product</label> <input
+								type="text" class="form-control form-control-lg form-control-a"
+								placeholder="Product" id="product">
+						</div>
+					</div>
+
+					<div class="col-md-6 mb-2">
+						<div class="form-group mt-3">
+							<label class="pb-2" for="bathrooms">Date</label> 
+							<input type="date"
 								class="form-control form-control-lg form-control-a"
-								placeholder="Keyword">
+								placeholder="Product"  id="date">
 						</div>
 					</div>
 					<div class="col-md-6 mb-2">
 						<div class="form-group mt-3">
-							<label class="pb-2" for="Type">Type</label> <select
-								class="form-control form-select form-control-a" id="Type">
-								<option>All Type</option>
-								<option>For Rent</option>
-								<option>For Sale</option>
-								<option>Open House</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-6 mb-2">
-						<div class="form-group mt-3">
-							<label class="pb-2" for="city">City</label> <select
-								class="form-control form-select form-control-a" id="city">
-								<option>All City</option>
-								<option>Alabama</option>
-								<option>Arizona</option>
-								<option>California</option>
-								<option>Colorado</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-6 mb-2">
-						<div class="form-group mt-3">
-							<label class="pb-2" for="bedrooms">Bedrooms</label> <select
-								class="form-control form-select form-control-a" id="bedrooms">
-								<option>Any</option>
-								<option>01</option>
-								<option>02</option>
-								<option>03</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-6 mb-2">
-						<div class="form-group mt-3">
-							<label class="pb-2" for="garages">Garages</label> <select
-								class="form-control form-select form-control-a" id="garages">
-								<option>Any</option>
-								<option>01</option>
-								<option>02</option>
-								<option>03</option>
-								<option>04</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-6 mb-2">
-						<div class="form-group mt-3">
-							<label class="pb-2" for="bathrooms">Bathrooms</label> <select
-								class="form-control form-select form-control-a" id="bathrooms">
-								<option>Any</option>
-								<option>01</option>
-								<option>02</option>
-								<option>03</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-6 mb-2">
-						<div class="form-group mt-3">
-							<label class="pb-2" for="price">Min Price</label> <select
-								class="form-control form-select form-control-a" id="price">
-								<option>Unlimite</option>
-								<option>$50,000</option>
-								<option>$100,000</option>
-								<option>$150,000</option>
-								<option>$200,000</option>
-							</select>
+							<label class="pb-2" for="price">Min Price</label> <input
+								type="text" class="form-control form-control-lg form-control-a"
+								placeholder="Min Price" id="minprice">
 						</div>
 					</div>
 					<div class="col-md-12">
@@ -153,6 +111,7 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
 						href="${pageContext.request.contextPath }/customer/view/home">Home</a></li>
+					<%-- 					<t:authorize access="hasRole('customer')"> --%>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -166,6 +125,8 @@
 								href="${pageContext.request.contextPath }/customer/view/auction/happened">The
 								auction is over.</a>
 						</div></li>
+					<%-- 					</t:authorize> --%>
+					<%-- 					<t:authorize access="hasRole('2')"> --%>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -179,17 +140,24 @@
 								href="${pageContext.request.contextPath }/auctionproduct/index">List
 								Auction Product</a>
 						</div></li>
+					<%-- 					</t:authorize> --%>
+					<%-- 					<t:authorize access="hasRole('customer') or hasRole('vendor')"> --%>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Account</a>
+
 						<div class="dropdown-menu">
 							<a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/account/changeInfor">Change
-								Infor </a> <a class="dropdown-item "
+								Infor </a>
+							<%-- 								<t:authorize access="hasRole('2')"> --%>
+							<a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
-								History </a> 
+								History </a>
+							<%-- 								</t:authorize> --%>
 						</div></li>
+					<%-- 					</t:authorize> --%>
 					<li class="nav-item"><a class="nav-link "
 						href="${pageContext.request.contextPath }/customer/view/contact"">Contact</a>
 					</li>

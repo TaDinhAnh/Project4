@@ -4,7 +4,7 @@
 <%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<mt:layout title="">
+<mt:layout title="Change information">
 	<jsp:attribute name="content">
  <section class="intro-single">
       <div class="container">

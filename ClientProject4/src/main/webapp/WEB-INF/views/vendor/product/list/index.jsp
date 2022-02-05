@@ -3,7 +3,7 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags/customer"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<mt:layout title="">
+<mt:layout title="List Product Vendor">
 	<jsp:attribute name="content">	
 <section class="section-property section-t8">
  <div class="container">
@@ -142,9 +142,8 @@
           <div class="col-md-4">
             <div class="card-box-d">
               <div class="card-img-d">
-                <img
-										src="${product.image}"
-										alt="" class="img-d img-fluid">
+                <img src="${product.image}" alt=""
+										class="img-d img-fluid">
               </div>
               <div class="card-overlay card-overlay-hover">
                 <div class="card-header-d">
@@ -175,13 +174,8 @@
                         <a
 													href="${pageContext.request.contextPath }/vendor/product/detail?id=${product.id}"
 													class="link-one">
-                          <i class="bi bi-facebook" aria-hidden="true"></i>
-                        </a>                       
-                    
-											
-											
-											
-											
+                          <i class="bi bi-heart" aria-hidden="true"></i>
+                        </a>                       					
 											
 											</ul>
                   </div>

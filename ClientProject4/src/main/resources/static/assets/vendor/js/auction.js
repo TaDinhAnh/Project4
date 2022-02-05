@@ -3,7 +3,7 @@ $(document).ready(function() {
 		var id = $("#accountid").val();
 		var start = $("#hstart").val();
 		var end = $("#hend").val();
-		var date = $("#date").val();
+		var date = $("#createdate").val();
 		var description = $("#description").val();
 		if (start === "") {
 			alert("Please enter start time!");
@@ -104,4 +104,32 @@ $(document).ready(function() {
 				},
 			});
 		});
+		
+		$("#createAuctionProduct").on('submit', (function(e) {
+		e.preventDefault(); 
+			var id = $("#updateId").val();
+			var productid = $('#currentPro').find(":selected").val();	
+			$.ajax({
+				type: "POST",
+				url: "http://localhost:9799/api/auctionProduct",
+				contentType: "application/json; charset=utf-8",
+				data: JSON
+				.stringify({
+					"auctionId": id,
+					"proId": productid,
+				}),
+				dataType: "json",
+				error: function(xhr) {
+					if (xhr.status === 401) {
+						window.location.href = "http://localhost:8088/account/login";
+					} else {
+						window.location.href = "http://localhost:8088/error/400page";
+					}
+				},
+				success: function() {
+					window.location.href = "http://localhost:8088/customer/view/auction/vendor";
+				},
+				
+			});	
+		}));
 });

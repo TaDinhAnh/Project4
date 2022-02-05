@@ -7,39 +7,8 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script
 	src="${pageContext.request.contextPath }/resources/assets/vendor/js/auction.js"></script>
-<script>
-	$(document).ready(function() {		
-		$("#createAuctionProduct").on('submit', (function(e) {
-		e.preventDefault(); 
-			var id = $("#updateId").val();
-			var productid = $('#currentPro').find(":selected").val();	
-			$.ajax({
-				type: "POST",
-				url: "http://localhost:9799/api/auctionProduct",
-				contentType: "application/json; charset=utf-8",
-				data: JSON
-				.stringify({
-					"auctionId": id,
-					"proId": productid,
-				}),
-				dataType: "json",
-				error: function(xhr) {
-					if (xhr.status === 401) {
-						window.location.href = "http://localhost:8088/account/login";
-					} else {
-						window.location.href = "http://localhost:8088/error/400page";
-					}
-				},
-				success: function() {
-					window.location.href = "http://localhost:8088/customer/view/auction/vendor";
-				},
-				
-			});	
-		}));
 
-	});
-</script>
-<mt:layout title="">
+<mt:layout title="Auction Vendor">
 	<jsp:attribute name="content">
 	 <section class="section-testimonials section-t8 nav-arrow-a">
 			
@@ -164,7 +133,7 @@
 								<div class="form-group">
 									<p> Event date</p>
 									<input type="text" class="form-control"
-												placeholder="dd/MM/yyyy" id="date">
+												placeholder="dd/MM/yyyy" id="createdate">
 								</div>
 								<div class="form-group">
 									<p>Description</p>

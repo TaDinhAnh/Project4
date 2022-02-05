@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags/customer"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<mt:layout title="">
+<mt:layout title="Home">
 	<jsp:attribute name="content">
 	<div class="intro intro-carousel swiper position-relative">
 		<div class="swiper-wrapper">
@@ -95,18 +95,13 @@
             <div class="title-wrap d-flex justify-content-between">
               <div class="title-box">
                 <h2 class="title-a">List Product</h2>
-              </div>
-              <div class="title-link">
-                <a href="agents-grid.html">All Agents
-                  <span class="bi bi-chevron-right"></span>
-                </a>
-              </div>
+              </div>             
             </div>
           </div>
         </div>
         <div class="row">
         <c:forEach var="product" items="${productlist }">
-          <div class="col-md-4">
+          <div class="col-md-4" style="padding-bottom :5px">
             <div class="card-box-d">
               <div class="card-img-d">
                 <img
@@ -134,21 +129,7 @@
                     </p>
                   </div>
                 </div>
-                <div class="card-footer-d">
-                  <div
-											class="socials-footer d-flex justify-content-center">
-                    <ul class="list-inline">
-                      <li class="list-inline-item">
-                        <a
-													href="${pageContext.request.contextPath }/customer/view/contact?id=${product.id}"
-													class="link-one">
-                          <i class="bi bi-facebook" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                  
-                    </ul>
-                  </div>
-                </div>
+
               </div>    
             </div>
           </div>

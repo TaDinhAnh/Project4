@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags/customer"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
-<mt:layout title="">
+<mt:layout title="Feedback">
 	<jsp:attribute name="content">
   <section class="intro-single">
       <div class="container">
