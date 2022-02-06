@@ -56,7 +56,7 @@
 		<span class="close-box-collapse right-boxed bi bi-x"></span>
 		<div class="box-collapse-wrap form">
 			<form class="form-a">
-				<div class="row">					
+				<div class="row">
 					<div class="col-md-6 mb-2">
 						<div class="form-group mt-3">
 							<label class="pb-2" for="Type">Auctions</label> <input
@@ -66,18 +66,17 @@
 					</div>
 					<div class="col-md-6 mb-2">
 						<div class="form-group mt-3">
-							<label class="pb-2" for="city">Product</label> <input
-								type="text" class="form-control form-control-lg form-control-a"
+							<label class="pb-2" for="city">Product</label> <input type="text"
+								class="form-control form-control-lg form-control-a"
 								placeholder="Product" id="product">
 						</div>
 					</div>
 
 					<div class="col-md-6 mb-2">
 						<div class="form-group mt-3">
-							<label class="pb-2" for="bathrooms">Date</label> 
-							<input type="date"
-								class="form-control form-control-lg form-control-a"
-								placeholder="Product"  id="date">
+							<label class="pb-2" for="bathrooms">Date</label> <input
+								type="date" class="form-control form-control-lg form-control-a"
+								placeholder="Product" id="date">
 						</div>
 					</div>
 					<div class="col-md-6 mb-2">
@@ -111,37 +110,39 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
 						href="${pageContext.request.contextPath }/customer/view/home">Home</a></li>
-					<%-- 					<t:authorize access="hasRole('customer')"> --%>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">Auction</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/auction/comingsoon">The
-								auction is about to begin </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/auction/happenning"">The
-								auction is ongoing. </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/auction/happened">The
-								auction is over.</a>
-						</div></li>
-					<%-- 					</t:authorize> --%>
-					<%-- 					<t:authorize access="hasRole('2')"> --%>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">Vendor</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/auction/vendor">List
-								Auctions By Vendor </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/vendor/product/index">Product
-							</a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/auctionproduct/index">List
-								Auction Product</a>
-						</div></li>
-					<%-- 					</t:authorize> --%>
-					<%-- 					<t:authorize access="hasRole('customer') or hasRole('vendor')"> --%>
+
+					<c:if test="${sessionScope.role == 'customer' }">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">Auction</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item "
+									href="${pageContext.request.contextPath }/customer/view/auction/comingsoon">The
+									auction is about to begin </a> <a class="dropdown-item "
+									href="${pageContext.request.contextPath }/customer/view/auction/happenning"">The
+									auction is ongoing. </a> <a class="dropdown-item "
+									href="${pageContext.request.contextPath }/customer/view/auction/happened">The
+									auction is over.</a>
+							</div></li>
+					</c:if>
+
+					<c:if test="${sessionScope.role == 'customer' }">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">Vendor</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item "
+									href="${pageContext.request.contextPath }/customer/view/auction/vendor">List
+									Auctions By Vendor </a> <a class="dropdown-item "
+									href="${pageContext.request.contextPath }/vendor/product/index">Product
+								</a> <a class="dropdown-item "
+									href="${pageContext.request.contextPath }/auctionproduct/index">List
+									Auction Product</a>
+							</div></li>
+					</c:if>
+
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -151,13 +152,15 @@
 							<a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/account/changeInfor">Change
 								Infor </a>
-							<%-- 								<t:authorize access="hasRole('2')"> --%>
-							<a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
-								History </a>
-							<%-- 								</t:authorize> --%>
+							<c:if test="${sessionScope.role == 'customer' }">
+
+								<a class="dropdown-item "
+									href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
+									History </a>
+
+							</c:if>
 						</div></li>
-					<%-- 					</t:authorize> --%>
+
 					<li class="nav-item"><a class="nav-link "
 						href="${pageContext.request.contextPath }/customer/view/contact"">Contact</a>
 					</li>

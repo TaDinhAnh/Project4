@@ -83,6 +83,7 @@ public class AccountCustomerController {
 				session.setAttribute("jwtToken", jwtToken);
 				session.setAttribute("accountid", accountOutput.getId());
 				session.setAttribute("account", accountOutput);
+				session.setAttribute("role", accountOutput.getRole());
 				return "redirect:/customer/view/home/index";
 			}
 		} catch (IOException e) {
