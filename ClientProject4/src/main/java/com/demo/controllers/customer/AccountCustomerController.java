@@ -16,6 +16,7 @@ import com.demo.Dtos.Input.AccountInput;
 import com.demo.Dtos.Input.Login;
 import com.demo.Dtos.Output.AccountOutput;
 import com.demo.Dtos.Output.AuctionOutput;
+import com.demo.common.ERole;
 import com.demo.services.APIClient;
 import com.demo.services.AccountAPIService;
 import com.demo.services.AuctionAPIService;
@@ -58,13 +59,9 @@ public class AccountCustomerController {
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
-				return "customer/account/register/index";
+				return "error/400page";
 			default:
-				if (!response.body()) {
-					return "customer/account/register/index";
-				}
 				return "redirect:/customer/account/signIn";
-
 			}
 		} catch (Exception e) {
 			return "customer/account/register/index";
@@ -78,7 +75,6 @@ public class AccountCustomerController {
 		Response<AccountOutput> response;
 		try {
 			response = accountAPIService.login(login).execute();
-
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
@@ -92,6 +88,11 @@ public class AccountCustomerController {
 				session.setAttribute("jwtToken", jwtToken);
 				session.setAttribute("accountid", accountOutput.getId());
 				session.setAttribute("fullname", accountOutput.getFullname());
+				session.setAttribute("account", accountOutput);
+				session.setAttribute("role", accountOutput.getRole());
+				if (accountOutput.getRole() == ERole.admin) {
+					return "redirect:/admin/dashboard";
+				}
 				return "redirect:/customer/view/home/index";
 			}
 		} catch (IOException e) {
@@ -122,7 +123,6 @@ public class AccountCustomerController {
 
 	}
 
-
 	@RequestMapping(value = { "changeInfor" }, method = RequestMethod.GET)
 	public String changeAccount(ModelMap map, HttpSession session) {
 		try {
@@ -139,8 +139,18 @@ public class AccountCustomerController {
 				return "customer/account/changeInfor/index";
 			}
 		} catch (Exception e) {
-			return "customer/account/signIn/index";
+			return "error/400page";
 		}
 
+	}
+
+	@RequestMapping(value = { "logout" }, method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.removeAttribute("jwtToken");
+		session.removeAttribute("accountid");
+		session.removeAttribute("fullname");
+		session.removeAttribute("account");
+		session.removeAttribute("role");
+		return "redirect:/customer/view/home/index";
 	}
 }

@@ -1,6 +1,9 @@
 package com.demo.controllers.admin;
 
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +19,7 @@ import retrofit2.Response;
 @RequestMapping(value = { "admin/account" })
 public class AccountAdminController {
 	private AccountAPIService accountAPIService = APIClient.getClient().create(AccountAPIService.class);
+
 	@RequestMapping(value = { "index" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
 		try {
@@ -38,6 +42,7 @@ public class AccountAdminController {
 			return "error/400page";
 		}
 	}
+
 	@RequestMapping(value = { "del/{id}" }, method = RequestMethod.GET)
 	public String Del(@PathVariable("id") int id) {
 		try {
@@ -54,5 +59,15 @@ public class AccountAdminController {
 		} catch (Exception e) {
 			return "error/400page";
 		}
+	}
+
+	@RequestMapping(value = { "logout" }, method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.removeAttribute("jwtToken");
+		session.removeAttribute("accountid");
+		session.removeAttribute("fullname");
+		session.removeAttribute("account");
+		session.removeAttribute("role");
+		return "redirect:/customer/account/signIn";
 	}
 }

@@ -36,6 +36,18 @@ public class OrdersControllers {
 		}
 		return new ResponseEntity<List<OrdersOutput>>(auctionOutputs, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = { "find/{id}" }, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<OrdersOutput> find(@PathVariable("id") int id) {
+		OrdersOutput ordersOutputs = ordersService.find(id);
+		if(id <=0) {
+			return new ResponseEntity<OrdersOutput>(HttpStatus.NOT_FOUND);
+		}
+		if (ordersOutputs == null) {
+			return new ResponseEntity<OrdersOutput>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<OrdersOutput>(ordersOutputs, HttpStatus.OK);
+	}
 
 	@RequestMapping(value = {
 			"getbycus/{idCus}" }, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)

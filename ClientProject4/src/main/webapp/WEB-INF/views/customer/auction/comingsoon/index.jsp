@@ -3,7 +3,7 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags/customer"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<mt:layout title="">
+<mt:layout title="Comming soon">
 	<jsp:attribute name="content">
 	 <section class="section-testimonials section-t8 nav-arrow-a">
       <div class="container">

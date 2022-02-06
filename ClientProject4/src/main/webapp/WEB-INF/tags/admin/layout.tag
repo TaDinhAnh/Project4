@@ -31,6 +31,8 @@
 	href="${pageContext.request.contextPath }/resources/assets/admin/css/soft-ui-dashboard.css?v=1.0.3"
 	rel="stylesheet" />
 
+
+
 </head>
 <body class="g-sidenav-show  bg-gray-100">
 	<aside
@@ -186,8 +188,10 @@
 						<li class="nav-item d-flex align-items-center"><a
 							href="javascript:;"
 							class="nav-link text-body font-weight-bold px-0"> <i
-								class="fa fa-user me-sm-1"></i> <span class="d-sm-inline d-none">Sign
-									In</span>
+								class="fa fa-user me-sm-1"></i> <span class="d-sm-inline d-none">
+									<a class=""
+									href="${pageContext.request.contextPath }/admin/account/logout">Logout</a>
+							</span>
 						</a></li>
 						<li class="nav-item d-xl-none ps-3 d-flex align-items-center">
 							<a href="javascript:;" class="nav-link text-body p-0"

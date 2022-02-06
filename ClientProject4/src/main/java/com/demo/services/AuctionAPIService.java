@@ -7,6 +7,7 @@ import com.demo.Dtos.Output.AuctionOutput;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -46,9 +47,14 @@ public interface AuctionAPIService {
 
 	@GET("auction/getProduct/{id}")
 	Call<AuctionOutput> getProduct(@Path("id") int auctionid);
-	
+
 	@GET("auction/getAuctionHistory/{accountid}")
 	Call<List<AuctionOutput>> getAuctionHistoryInfo(@Path("accountid") int accountid);
 
+	@GET("auction/getAuction/{id}")
+	Call<List<AuctionOutput>> getAuction(@Path("id") int accountid);
+
+	@DELETE("auction/{id}")
+	Call<Boolean> delAuction(@Path("id") int id);
 
 }

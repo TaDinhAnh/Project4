@@ -9,7 +9,7 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<title>Insert title here</title>
+<title>Register</title>
 <link
 	href="${pageContext.request.contextPath }/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">

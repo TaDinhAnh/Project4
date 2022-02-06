@@ -6,18 +6,6 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-		<version>2.6.1</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.demo</groupId>
-	<artifactId>ApiProject</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>ApiProject</name>
-=======
->>>>>>> master
 		<version>2.6.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
@@ -25,15 +13,12 @@
 	<artifactId>Apiproject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Apiproject</name>
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
+			
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
@@ -73,11 +58,10 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-<<<<<<< HEAD
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
-=======
+		<dependency>
 			<groupId>com.levigo</groupId>
 			<artifactId>gwt-awt</artifactId>
 			<version>0.0.1</version>
@@ -91,11 +75,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 		</dependency>
-
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
 	</dependencies>
 
 	<build>

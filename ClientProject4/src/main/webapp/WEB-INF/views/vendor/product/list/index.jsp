@@ -3,17 +3,39 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags/customer"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<mt:layout title="">
+<mt:layout title="List Product Vendor">
 	<jsp:attribute name="content">	
-	    <section class="section-property section-t8">	    
-	     <div class="container">
+<section class="section-property section-t8">
+ <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single" style="text-align: center">Products</h1>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <nav aria-label="breadcrumb"
+							class="breadcrumb-box d-flex justify-content-lg-end">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                 <button type="button" class="btn btn-light"
+										style="border: none; outline: 0 !important; color: #afa939;"
+										data-toggle="modal" data-target="#createProduct">
+										Create  Product
+							</button>           
+                </li>              
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div> 
+	  <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="title-wrap d-flex justify-content-between">
               <div class="title-box">
                 <h2 class="title-a">List of unsold products</h2>
-              </div>
-              
+              </div>           
             </div>
           </div>
         </div>
@@ -50,51 +72,8 @@
            </c:forEach>
           </div>
         </div>
-        <div class="news-carousel-pagination carousel-pagination"></div>
+        <div class="news-carousel-pagination carousel-pagination"></div>     
       </div>	
-      
-      <div class="container">
-       <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a">List is agreed</h2>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-        <div class="row">
-        <c:forEach var="productaccept" items="${productlistAccept }">     
-          <div class="col-md-4">
-            <div class="card-box-b card-shadow news-box">
-              <div class="img-box-b">
-                <img
-										src="${pageContext.request.contextPath }/resources/assets/customer/img/post-4.jpg"
-										alt="" class="img-b img-fluid">
-              </div>
-              <div class="card-overlay">
-                <div class="card-header-b">
-                  <div class="card-category-b">
-                    <a href="${pageContext.request.contextPath }/vendor/product/detail?id=${productaccept.id}" class="category-b">${productaccept.category }</a>
-                  </div>
-                  <div class="card-title-b">
-                    <h2 class="title-2">
-                      <a href="${pageContext.request.contextPath }/vendor/product/detail?id=${productaccept.id}">${productaccept.name }
-                        </a>
-                    </h2>
-                  </div>
-                  <div class="card-date">
-                    <span class="date-b">${productaccept.description }</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        </c:forEach>
-          </div>  
-                    
-      </div>    
 	          <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -163,9 +142,8 @@
           <div class="col-md-4">
             <div class="card-box-d">
               <div class="card-img-d">
-                <img
-										src="${pageContext.request.contextPath }/resources/assets/customer/img/testimonial-1.jpg"
-										alt="" class="img-d img-fluid">
+                <img src="${product.image}" alt=""
+										class="img-d img-fluid">
               </div>
               <div class="card-overlay card-overlay-hover">
                 <div class="card-header-d">
@@ -196,10 +174,10 @@
                         <a
 													href="${pageContext.request.contextPath }/vendor/product/detail?id=${product.id}"
 													class="link-one">
-                          <i class="bi bi-facebook" aria-hidden="true"></i>
-                        </a>
-                      </li>                 
-                    </ul>
+                          <i class="bi bi-heart" aria-hidden="true"></i>
+                        </a>                       					
+											
+											</ul>
                   </div>
                 </div>
               </div>    
@@ -209,5 +187,72 @@
         </div>
       </div>
 		</section>
+		
+		<!-- modal create Product -->
+      	<div class="modal fade" id="createProduct" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content" style="width: 65%">
+			<div class="modal-header">
+				<button type="button"
+							class="close d-flex align-items-center justify-content-center"
+							data-dismiss="modal" aria-label="Close" value="" id="closeModal">
+					<span aria-hidden="true" class="ion-ios-close"></span>
+				</button>
+			</div>
+			<div class="row ">
+				<div class="d-flex">
+					<div
+								class="modal-body p-4 p-md-5 d-flex align-items-center color-1">
+						<div class="text w-100 py-3">
+							<h3 class="mb-4 heading">Create Product</h3>
+							<form class="contact-form" id="createProduct"
+										enctype="multipart/form-data">
+							<div class="form-group mb-3">
+								<p>Category</p>
+													<select class="form-control" id="idCategory">
+							    <c:forEach items="${categories }" var="item">
+											      <option value="${item.id}">${item.name}</option>
+											      </c:forEach>
+							</select>
+							</div>		
+								<div class="form-group mb-3">
+								<p> Name</p>
+									 <input type="text" class="form-control" id="namePro"
+												required="required">
+												
+								</div>							
+								<div class="form-group mb-3">
+								<p> Price</p>
+									 <input type="text"
+												class="form-control allownumericwithdecimal" id="pricePro"
+												pattern="\d{1,5}" required="required">
+												
+								</div>
+								<div class="form-group">
+									<p>Image</p>
+									<input type="file" class="form-control" id="filePro"
+												required="required">
+								</div>
+								<div class="form-group">
+									<p>Description</p>
+								  <input type="text" class="form-control" id="proDesc">
+									<input type="text" class="form-control" id="idVendor"
+												value="${sessionScope.accountid }" hidden> 
+								</div>
+								<div class="form-group">
+									<button type="submit"
+												class="form-control btn btn-secondary rounded submit px-3">Save</button>
+								</div>
+								
+							</form>
+						</div>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>	
+</div>	
 	</jsp:attribute>
 </mt:layout>

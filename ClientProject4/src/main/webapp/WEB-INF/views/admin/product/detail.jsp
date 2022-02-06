@@ -15,8 +15,7 @@
 			<div class="card card-blog card-plain">
                     <div class="position-relative" style="padding: 2%;">
                       <a class="d-block shadow-xl border-radius-xl">
-                        <img
-								src="${pageContext.request.contextPath }/resources/assets/admin/img/home-decor-1.jpg"
+                        <img src="${product.image}"
 								alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
                       </a>
                     </div>
@@ -52,7 +51,8 @@
                 </li>
                  <li
 									class="list-group-item border-0 d-flex align-items-center px-0 mb-2">
-                  	<c:if test="${!product.isAccept && !product.isDelete}">
+                  	<c:if
+										test="${!product.isAccept && !product.isDelete}">
             
             <a
 											href="${pageContext.request.contextPath }/admin/product/accpet/${product.id}">
@@ -90,8 +90,7 @@
             </div>
                <div class="position-relative" style="padding: 2%;">
                       <a class="d-block shadow-xl border-radius-xl">
-                        <img
-							src="${pageContext.request.contextPath }/resources/assets/admin/img/home-decor-1.jpg"
+                        <img src="${product.vendor.image}"
 							alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
                       </a>
                     </div>
@@ -143,7 +142,8 @@
                <div class="position-relative" style="padding: 2%;">
                       <a class="d-block shadow-xl border-radius-xl">
                         <img
-								src="${pageContext.request.contextPath }/resources/assets/admin/img/home-decor-1.jpg"
+								src="
+								${product.orders.account.image }"
 								alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
                       </a>
                     </div>
@@ -205,12 +205,12 @@
 				  <div class="form-group">
 				    <label for="exampleFormControlInput1">Subject</label>
 				      <s:input path="subject" class="form-control"
-									laceholder="subject" required="required"/>
+									laceholder="subject" required="required" />
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleFormControlInput1">Content</label>
-				    <textarea  name="content" class="form-control"
-									id="content" rows="3" placeholder="content" required="required">
+				    <textarea name="content" class="form-control" id="content"
+									rows="3" placeholder="content" required="required">
 									</textarea>
 				  </div>
       </div>

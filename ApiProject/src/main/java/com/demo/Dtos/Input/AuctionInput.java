@@ -12,10 +12,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class AuctionInput {
 	@Min(value = 1)
 	private int vendorId;
-	@JsonFormat(pattern = "HH:mm:ss")
+	@JsonFormat(pattern = "HH:mm")
 	@Temporal(TemporalType.TIME)
 	private Date hourStart;
-	@JsonFormat(pattern = "HH:mm:ss")
+	@JsonFormat(pattern = "HH:mm")
 	@Temporal(TemporalType.TIME)
 	private Date hourEnd;
 	@JsonFormat(pattern = "dd/MM/yyyy")

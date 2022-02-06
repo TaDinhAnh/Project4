@@ -1,13 +1,15 @@
 package com.demo.controllers.customer;
 
-import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.Dtos.Input.AuctionHistoryInput;
 import com.demo.Dtos.Output.AuctionOutput;
@@ -15,6 +17,10 @@ import com.demo.Dtos.Output.AuctionProductOutput;
 import com.demo.services.APIClient;
 import com.demo.services.AuctionAPIService;
 import com.demo.services.AuctionProductAPIService;
+import com.demo.Dtos.Output.ProductOutput;
+import com.demo.services.APIClient;
+import com.demo.services.AuctionAPIService;
+import com.demo.services.ProductAPIService;
 
 import retrofit2.Response;
 
@@ -24,32 +30,11 @@ public class AuctionCustomerController {
 	AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
 
 	@RequestMapping(value = { "happenning" }, method = RequestMethod.GET)
-	public String happenning(ModelMap modelMap) throws IOException {
-		List<AuctionOutput> auctionOutputs = auctionAPIService.getlistAuctionHapping().execute().body();
-		modelMap.put("auctions", auctionOutputs);
-		return "customer/auction/happening/index";
-	}
-
-	@RequestMapping(value = { "happened" }, method = RequestMethod.GET)
-	public String happened(ModelMap modelMap) throws IOException {
-		List<AuctionOutput> auctionOutputs = auctionAPIService.getlistAuctionOver().execute().body();
-		modelMap.put("auctions", auctionOutputs);
-		return "customer/auction/happened/index";
-	}
-
-	@RequestMapping(value = { "comingsoon" }, method = RequestMethod.GET)
-	public String comingsoon(ModelMap modelMap) throws IOException {
-		List<AuctionOutput> auctionOutputs = auctionAPIService.getlistAuctionComingsoon().execute().body();
-		modelMap.put("auctions", auctionOutputs);
-		return "customer/auction/comingsoon/index";
-	}
-
-	@RequestMapping(value = { "vendor" }, method = RequestMethod.GET)
-	public String vendor(ModelMap modelMap) {
+	public String happenning(ModelMap modelMap) {
 		try {
-			List<AuctionOutput> auctionOutputs = auctionAPIService.getlistAuctionComingsoon().execute().body();
-			modelMap.put("auctions", auctionOutputs);
-			Response<List<AuctionOutput>> response = auctionAPIService.getListAuctionByIdVendor(2).execute();
+			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
+			Response<List<AuctionOutput>> response = auctionAPIService.getlistAuctionHapping().execute();
+
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
@@ -60,12 +45,45 @@ public class AuctionCustomerController {
 				return "customer/account/signIn/index";
 			default:
 				modelMap.put("auctions", response.body());
-				return "vendor/auction/index";
+				return "customer/auction/happening/index";
 			}
-
 		} catch (Exception e) {
-			return "error/404page";
+			return "error/400page";
 		}
+	}
+
+	@RequestMapping(value = { "vendor" }, method = RequestMethod.GET)
+	public String vendor(ModelMap modelMap, HttpSession session) {
+		try {
+			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
+			ProductAPIService productAPIService = APIClient.getClient().create(ProductAPIService.class);
+			int accountid = (int) session.getAttribute("accountid");
+			List<AuctionOutput> auctionOutputs = auctionAPIService.getAuction(accountid).execute().body();
+			List<ProductOutput> productOutputs = productAPIService.getListProductUnsold(accountid).execute().body();
+			modelMap.put("productOutputs", productOutputs);
+			for (ProductOutput a : productOutputs) {
+				System.out.println(a.getId());
+			}
+			modelMap.put("auctions", auctionOutputs);
+			return "vendor/auction/index";
+		} catch (Exception e) {
+			return "error/400page";
+		}
+	}
+
+	@RequestMapping(value = { "delete" }, method = RequestMethod.GET)
+	public String delete(@RequestParam("id") int id, ModelMap model, HttpSession session) {
+		try {
+			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
+			auctionAPIService.delAuction(id).execute().isSuccessful();
+			int accountid = (int) session.getAttribute("accountid");
+			List<AuctionOutput> auctionOutputs = auctionAPIService.getAuction(accountid).execute().body();
+			model.put("auctions", auctionOutputs);
+			return "redirect:/customer/view/auction/vendor";
+		} catch (Exception e) {
+			return "error/400page";
+		}
+
 	}
 
 	@RequestMapping(value = { "start/{auctionid}" }, method = RequestMethod.GET)
@@ -91,6 +109,26 @@ public class AuctionCustomerController {
 
 			}
 
+		} catch (Exception e) {
+			return "error/400page";
+		}
+	}
+
+	@RequestMapping(value = { "happened" }, method = RequestMethod.GET)
+	public String happened(ModelMap modelMap) {
+		try {
+			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
+			Response<List<AuctionOutput>> response = auctionAPIService.getlistAuctionOver().execute();
+			int statusCode = response.code();
+			switch (statusCode) {
+			case 400:
+				return "error/400page";
+			case 404:
+				return "error/404page";
+			default:
+				modelMap.put("auctions", response.body());
+				return "customer/auction/happened/index";
+			}
 		} catch (Exception e) {
 			return "error/400page";
 		}
@@ -123,4 +161,25 @@ public class AuctionCustomerController {
 			return "error/400page";
 		}
 	}
+
+	@RequestMapping(value = { "comingsoon" }, method = RequestMethod.GET)
+	public String comingsoon(ModelMap modelMap) {
+		try {
+			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
+			Response<List<AuctionOutput>> response = auctionAPIService.getlistAuctionComingsoon().execute();
+			int statusCode = response.code();
+			switch (statusCode) {
+			case 400:
+				return "error/400page";
+			case 404:
+				return "error/404page";
+			default:
+				modelMap.put("auctions", response.body());
+				return "customer/auction/comingsoon/index";
+			}
+		} catch (Exception e) {
+			return "error/400page";
+		}
+	}
+
 }

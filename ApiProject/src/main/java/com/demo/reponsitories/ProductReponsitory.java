@@ -50,7 +50,7 @@ public interface ProductReponsitory extends CrudRepository<Product, Integer> {
 
 	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
 			+ "description, status, isAccept) from Product where vendorId = :vendorId and isDelete = 0 "
-			+ "and isAccept = 0 and status = 0 order by id desc")
+			+ "and isAccept = 0 and status = 1 order by id desc")
 	public List<ProductOutput> getListProductNotAccept(@Param("vendorId") int vendorId);
 
 	@Query("select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
@@ -61,5 +61,15 @@ public interface ProductReponsitory extends CrudRepository<Product, Integer> {
 			+ "description, status, isAccept) from Product where vendorId = :vendorId and isDelete = 0 "
 			+ "and isAccept = 1 and status = 0 order by id desc")
 	public List<ProductOutput> getListProductAccept(@Param("vendorId") int vendorId);
+	
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name , "
+			+ "priceMin, image, description, status, isAccept) from Product " + "where  id = :productId and  vendorId= :vendorId")
+	public ProductOutput findByVendorId(@Param("productId") int productId, @Param("vendorId") int vendorId);
+	
+	
+	@Query(value = "select new com.demo.Dtos.Output.ProductOutput(id, category.name, name ,priceMin,  image, "
+			+ "description, status, isAccept) from Product where priceMin like %:priceMin% and isDelete = 0 "
+			+ "and isAccept = 1 and status = 1 order by id desc")
+	public List<ProductOutput> getListMinPrice(@Param("priceMin") Double priceMin);
 
 }

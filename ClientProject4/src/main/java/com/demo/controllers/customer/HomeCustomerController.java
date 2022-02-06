@@ -4,6 +4,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import com.demo.Dtos.Output.AuctionOutput;
 import com.demo.Dtos.Output.ProductOutput;
 import com.demo.services.APIClient;
@@ -15,7 +18,7 @@ import com.demo.services.ProductAPIService;
 public class HomeCustomerController {
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
-	public String index(ModelMap modelMap) {
+	public String index(ModelMap modelMap, HttpSession session) {
 		try {
 			ProductAPIService productAPIService = APIClient.getClient().create(ProductAPIService.class);
 			List<ProductOutput> productOutputs = productAPIService.getListLimit().execute().body();
@@ -26,6 +29,7 @@ public class HomeCustomerController {
 			System.out.println(auctionOutputs.size());
 			List<ProductOutput> outputs = productAPIService.findList().execute().body();
 			modelMap.put("productlist", outputs);
+			session.getAttribute("account");
 			return "customer/home/index";
 		} catch (Exception e) {
 			return "errorpage/400page";

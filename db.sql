@@ -160,23 +160,33 @@ insert into FeedBack (Content , IsDel , ProId , AccountId ) values ('Leg artery 
 insert into FeedBack (Content , IsDel , ProId , AccountId ) values ('Closed testicular biopsy', false, 2, 1);
 insert into FeedBack (Content , IsDel , ProId , AccountId ) values ('Blepharoptos repair NEC', false, 2, 3);
 
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('13:08', '9:43', '2022-01-30', 'Collaterl lig repair NEC', 2, 2, false);
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('16:26', '2:14', '2021-12-10', 'Body measurement', 2, 1, false);
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('3:40', '6:00', '2022-01-26', 'Open testicular biopsy', 2, 1, false);
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('22:11', '5:44', '2021-12-10', 'Bilat extend simp mastec', 0, 2, false);
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('1:06', '1:52', '2021-12-10', 'C & s NOS', 1, 1, false);
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('22:04', '10:27', '2021-12-10', 'Reimplan aberr renal ves', 0, 2, false);
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('8:30', '20:53', '2021-12-10', 'Intracranial 02 monitor', 1, 1, false);
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('18:41', '11:14', '2021-12-10', 'Excis cyst duct remnant', 2, 3, false);
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('23:19', '22:30', '2021-12-10', 'Salivary duct probing', 2, 3, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('13:00:00', '15:00:00', '2022-02-10', 'Collaterl lig repair NEC', 2, 1, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('16:30:00', '19:30:00', '2022-02-06', 'Body measurement', 2, 1, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('11:30:00', '12:30:00', '2022-02-02', 'Open testicular biopsy', 0, 1, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('12:30:00', '14:00:00', '2022-02-15', 'Bilat extend simp mastec', 0, 1, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('06:30:00', '09:30:00', '2022-02-07', 'C & s NOS', 1, 1, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('12:30:00', '15:45:00', '2022-02-01', 'Reimplan aberr renal ves', 0, 3, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('10:30:00', '16:00:00', '2022-02-10', 'Intracranial 02 monitor', 1, 3, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('14:40:00', '17:40:00', '2022-02-07', 'Excis cyst duct remnant', 1, 3, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('09:00:00', '15:30:00', '2022-02-13', 'Salivary duct probing', 1, 3, false);
 
-INSERT INTO `orders` (`Id`, `AuctionId`, `ProId`, `AccountId`, `SuccessDate`, `Total`, `Piad`, `Address`, `Status`) VALUES (NULL, '4', '11', '2', '2022-01-05', '200', '20', 'HCM', '1'), (NULL, '5', '8', '7', '2022-01-11', '500', '400', 'HCM', 1);
-INSERT INTO `auctionproduct` (`AuctionId`, `ProId`, `Status`) VALUES ('1', '9', '0'), ('1', '5', '0'), ('1', '12', '0');
-INSERT INTO `auctionproduct` (`AuctionId`, `ProId`, `Status`) VALUES ('9', '1', '0'), ('9', '2', '0');
-INSERT INTO `auctionproduct` (`AuctionId`, `ProId`, `Status`) VALUES ('4', '4', '0')
+insert into AuctionHistory (Id , AuctionId , ProId , AccountId , Price , Time ) values (1, 2, 5, 4, 23.64, '2022-02-06 19:28:00');
+insert into AuctionHistory (Id , AuctionId , ProId , AccountId , Price , Time ) values (2, 5, 7, 6,34.85, '2022-02-01 15:44:00');
+insert into AuctionHistory (Id , AuctionId  , ProId , AccountId , Price , Time ) values (3, 3, 8, 4, 15.00, '2022-02-02 12:20:00');
+insert into AuctionHistory (Id , AuctionId , ProId , AccountId , Price , Time ) values (4, 4, 10, 6, 97.78, '2022-02-06 19:25:00');
 
-INSERT INTO `auctionhistory` (`Id`, `AuctionId`, `ProId`, `AccountId`, `Price`, `Time`) VALUES (NULL, '9', '1', '2', '3000', '2022-01-28 15:22:49.000000'), (NULL, '9', '1', '2', '4000', '2022-01-28 15:22:49.000000'), (NULL, '9', '2', '2', '123', '2022-01-28 15:22:49.000000'), (NULL, '9', '2', '2', '456', '2022-01-28 15:22:49.000000')
-INSERT INTO `orders` (`Id`, `AuctionId`, `ProId`, `AccountId`, `SuccessDate`, `Total`, `Piad`, `Address`, `Status`) VALUES (NULL, '9', '1', '2', '2022-01-10', '4000', NULL, 'hcm', '3'), (NULL, '9', '2', '2', '2022-01-10', '456', '123', 'hcm', '2');
+insert into AuctionProduct(AuctionId , ProId , Status ) values (1, 3, false);
+insert into AuctionProduct(AuctionId , ProId , Status ) values (2, 5, false);
+insert into AuctionProduct(AuctionId , ProId , Status ) values (3, 8, false);
+insert into AuctionProduct(AuctionId , ProId , Status ) values (4, 10, false);
+insert into AuctionProduct(AuctionId , ProId , Status ) values (5, 7, false);
+
+
+insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (1, 2, 5, 6, '2022-02-01', 34.85, 12, '83 Jackson Park', 1);
+insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (2, 3, 8, 4, '2022-02-06', 15.00, 8, '7 Butterfield Street', 2);
+insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (3, 4, 10, 4, '2022-02-02', 97.78, 49.0, '9785 Pepper Wood Street', 2);
+insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (4, 1, 3, 6, '2022-02-06', 23.64, 9, '4 Waywood Trail', 2);
+
 
 CREATE EVENT eventUpdateAuctionOver
 ON SCHEDULE EVERY 1 HOUR

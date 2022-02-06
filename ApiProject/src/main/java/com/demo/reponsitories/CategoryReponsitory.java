@@ -21,4 +21,7 @@ public interface CategoryReponsitory extends CrudRepository<Category, Integer> {
 
 	@Query("select new com.demo.Dtos.Output.CategoryOutput(category.name, name ) from Category where id= :id")
 	public CategoryOutput getCategory(@Param("id") int id);
+	
+	@Query("select new com.demo.Dtos.Output.CategoryOutput(id, name ) from Category where isDelete = 0")
+	public List<CategoryOutput> getCateNotDel();
 }

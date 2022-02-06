@@ -1,6 +1,5 @@
 package com.demo.controllers.customer;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +16,8 @@ import com.demo.Dtos.Output.AuctionOutput;
 import com.demo.services.APIClient;
 import com.demo.services.AuctionAPIService;
 import com.demo.services.AuctionHistoryAPIService;
+
+import retrofit2.Response;
 
 @Controller
 @RequestMapping(value = { "customer/auction/detailAuction" })
@@ -46,21 +47,29 @@ public class AuctionDetailCustomerController {
 			modelMap.put("aucHis", new AuctionHistoryInput());
 			return "customer/auction/detailAuction/index";
 		} catch (Exception e) {
-			return "customer/error/404page";
+			return "error/400page";
 		}
 	}
 
 	@RequestMapping(value = { "sendPrice" }, method = RequestMethod.POST)
 	public String sendPrice(@RequestParam("id") int id,
-			@ModelAttribute("aucHis") AuctionHistoryInput auctionHistoryInput, HttpSession session) throws IOException {
-		auctionHistoryInput.setAccountid(3);
-		auctionHistoryInput.setAuctionid(id);
-		auctionHistoryInput.setProductid((int) session.getAttribute("productId"));
-		boolean auctionHistoryOutput = auctionHistoryAPIService.create(auctionHistoryInput).execute().isSuccessful();
-		if (auctionHistoryOutput) {
-			return "redirect:/customer/auction/detailAuction/index?id=" + id;
+			@ModelAttribute("aucHis") AuctionHistoryInput auctionHistoryInput, HttpSession session) {
+		try {
+			int accountid = (int) session.getAttribute("accountid");
+			auctionHistoryInput.setAccountid(accountid);
+			auctionHistoryInput.setAuctionid(id);
+			auctionHistoryInput.setProductid((int) session.getAttribute("productId"));
+			Response<Boolean> response = auctionHistoryAPIService.create(auctionHistoryInput).execute();
+			int statusCode = response.code();
+			switch (statusCode) {
+			case 400:
+				return "error/400page";
+			default:
+				return "redirect:/customer/auction/detailAuction/index?id=" + id;
+			}
+		} catch (Exception e) {
+			return "error/400page";
 		}
-		return "redirect:/customer/auction/detailAuction/index?id=" + id;
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.demo.Dtos.Input;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 public class ChangePass {

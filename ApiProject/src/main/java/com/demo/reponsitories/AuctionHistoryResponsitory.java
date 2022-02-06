@@ -12,7 +12,7 @@ import com.demo.Dtos.Output.AuctionOutput;
 import com.demo.models.Auctionhistory;
 
 @Repository
-public interface IAuctionHistoryResponsitory extends CrudRepository<Auctionhistory, Integer> {
+public interface AuctionHistoryResponsitory extends CrudRepository<Auctionhistory, Integer> {
 	@Query("select new com.demo.Dtos.Output.AuctionHistoryOutput(id, account.fullname, product.name, auction.hourStart, auction.hourEnd, auction.eventdate,  price, time) "
 			+ "from Auctionhistory order by id desc ")
 	public List<AuctionHistoryOutput> getlistAuctionHistory();
