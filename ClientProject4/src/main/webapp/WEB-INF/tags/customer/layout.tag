@@ -111,7 +111,7 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
 						href="${pageContext.request.contextPath }/customer/view/home">Home</a></li>
-					<%-- 					<t:authorize access="hasRole('customer')"> --%>
+				
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -125,9 +125,7 @@
 								href="${pageContext.request.contextPath }/customer/view/auction/happened">The
 								auction is over.</a>
 						</div></li>
-					<%-- 					</t:authorize> --%>
-					<%-- 					<t:authorize access="hasRole('2')"> --%>
-					<li class="nav-item dropdown"><a
+				
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Vendor</a>
@@ -140,8 +138,7 @@
 								href="${pageContext.request.contextPath }/auctionproduct/index">List
 								Auction Product</a>
 						</div></li>
-					<%-- 					</t:authorize> --%>
-					<%-- 					<t:authorize access="hasRole('customer') or hasRole('vendor')"> --%>
+			
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -151,13 +148,13 @@
 							<a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/account/changeInfor">Change
 								Infor </a>
-							<%-- 								<t:authorize access="hasRole('2')"> --%>
+						
 							<a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
 								History </a>
-							<%-- 								</t:authorize> --%>
+						
 						</div></li>
-					<%-- 					</t:authorize> --%>
+				
 					<li class="nav-item"><a class="nav-link "
 						href="${pageContext.request.contextPath }/customer/view/contact"">Contact</a>
 					</li>
