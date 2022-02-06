@@ -140,7 +140,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "searchbyPrice/{priceMin}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductOutput>> searchByPrice(@PathVariable("priceMin") Double priceMin) {
+	public ResponseEntity<List<ProductOutput>> searchByPrice(@PathVariable("priceMin") int priceMin) {
 		if (priceMin <=0) {
 			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
 		}

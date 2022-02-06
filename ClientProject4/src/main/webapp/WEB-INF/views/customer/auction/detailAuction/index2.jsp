@@ -4,60 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
-<script>
-var stompClient=null
-
-
-
-function sendMessage(){
-
-
- let jsonOb={
-     name:localStorage.getItem("name"),
-     content:$("#message-value").val()
- }
-
- stompClient.send("/app/message",{},JSON.stringify(jsonOb));
-
-
-
-}
-
-
-
-function connect()
-{
-
-     let socket=new SockJS("/server1")
-
-     stompClient=Stomp.over(socket)
-
-     stompClient.connect({},function(frame){
-
-         console.log("Connected : "+frame)
-             //subscribe
-             stompClient.subscribe("/topic/return-to",function(response){
-
-                     showMessage(JSON.parse(response.body))
-
-             })
-     })
-
-}
-function showMessage(message)
-{
-
- $("#pricePro").prepend(`<tr><td><b>${message.name} :</b> ${message.content}</td></tr>`)
-}
-
-$(document).ready((e)=>{
-
-$("#send-btn").click(()=>{
- sendMessage()
-})
-})
-</script>
 <mt:layout title="Detail auction">
 	<jsp:attribute name="content">
 	  <section class="intro-single">
@@ -151,7 +97,7 @@ $("#send-btn").click(()=>{
                   <div class="comment-details">
                     <h4 class="comment-author">${autionhistory.accountname }</h4>
                     <span>${autionhistory.time }</span>
-                    <p class="comment-description" id="pricePro">
+                    <p class="comment-description">
                       ${autionhistory.price } <strong>$</strong> 
                     </p>                
                   </div>
@@ -176,12 +122,12 @@ $("#send-btn").click(()=>{
                 <div class="row">
                   <div class="col-md-12 mb-3">
                     <div class="form-group">
-                      <label for="textMessage">${sessionScope.account.fullname }</label>   
-                      <input type="text" class="form-control" id ="price" />           
+                      <label for="textMessage">Ten Nguoi Dang Nhap </label>   
+                      <s:input path="price" class="form-control" />           
                        												</div>
                   </div>
                   <div class="col-md-12">
-                    <button  class="btn btn-a">Send</button>
+                    <button type="submit" class="btn btn-a">Send</button>
                   </div>
                 </div>   
                   </s:form>                 

@@ -161,22 +161,27 @@ insert into FeedBack (Content , IsDel , ProId , AccountId ) values ('Blepharopto
 
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('13:00:00', '15:00:00', '2022-02-10', 'Collaterl lig repair NEC', 2, 1, false);
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('16:30:00', '19:30:00', '2022-02-06', 'Body measurement', 2, 1, false);
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('11:30:00', '12:30:00', '2022-02-5', 'Open testicular biopsy', 0, 1, false);
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('12:30:00', '14:00:00', '2022-02-3', 'Bilat extend simp mastec', 0, 2, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('11:30:00', '12:30:00', '2022-02-02', 'Open testicular biopsy', 0, 1, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('12:30:00', '14:00:00', '2022-02-15', 'Bilat extend simp mastec', 0, 1, false);
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('06:30:00', '09:30:00', '2022-02-07', 'C & s NOS', 1, 1, false);
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('12:30:00', '15:45:00', '2022-02-01', 'Reimplan aberr renal ves', 0, 2, false);
-insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('10:30:00', '16:00:00', '2022-02-10', 'Intracranial 02 monitor', 1, 1, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('12:30:00', '15:45:00', '2022-02-01', 'Reimplan aberr renal ves', 0, 3, false);
+insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('10:30:00', '16:00:00', '2022-02-10', 'Intracranial 02 monitor', 1, 3, false);
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('14:40:00', '17:40:00', '2022-02-07', 'Excis cyst duct remnant', 1, 3, false);
 insert into Auction (HourStart , HourEnd , Eventdate , Description , Status , VendorId , IsDel ) values ('09:00:00', '15:30:00', '2022-02-13', 'Salivary duct probing', 1, 3, false);
 
-INSERT INTO `orders` (`Id`, `AuctionId`, `ProId`, `AccountId`, `SuccessDate`, `Total`, `Piad`, `Address`, `Status`) VALUES (NULL, '4', '11', '2', '2022-01-05', '200', '20', 'HCM', '1'),
-															   (NULL, '5', '8', '7', '2022-01-11', '500', '400', 'HCM', 1);
+insert into AuctionHistory (Id , AuctionId , ProId , AccountId , Price , Time ) values (1, 2, 5, 4, 23.64, '2022-02-06 19:28:00');
+insert into AuctionHistory (Id , AuctionId , ProId , AccountId , Price , Time ) values (2, 5, 7, 6,34.85, '2022-02-01 15:44:00');
+insert into AuctionHistory (Id , AuctionId  , ProId , AccountId , Price , Time ) values (3, 3, 8, 4, 15.00, '2022-02-02 12:20:00');
+insert into AuctionHistory (Id , AuctionId , ProId , AccountId , Price , Time ) values (4, 4, 10, 6, 97.78, '2022-02-06 19:25:00');
 
-insert into AuctionProduct(AuctionId , ProId , Status ) values (1, 1, false);
 insert into AuctionProduct(AuctionId , ProId , Status ) values (1, 3, false);
-insert into AuctionProduct(AuctionId , ProId , Status ) values (4, 2, false);
-insert into AuctionProduct(AuctionId , ProId , Status ) values (2, 9, true);
-insert into AuctionProduct(AuctionId , ProId , Status ) values (3, 3, false);
-insert into AuctionProduct(AuctionId , ProId , Status ) values (3, 1, false);
-insert into AuctionProduct(AuctionId , ProId , Status ) values (2, 8, true);
-insert into AuctionProduct(AuctionId , ProId , Status ) values (6, 1, true);
+insert into AuctionProduct(AuctionId , ProId , Status ) values (2, 5, false);
+insert into AuctionProduct(AuctionId , ProId , Status ) values (3, 8, false);
+insert into AuctionProduct(AuctionId , ProId , Status ) values (4, 10, false);
+insert into AuctionProduct(AuctionId , ProId , Status ) values (5, 7, false);
+
+
+insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (1, 2, 5, 6, '2022-02-01', 34.85, 12, '83 Jackson Park', 1);
+insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (2, 3, 8, 4, '2022-02-06', 15.00, 8, '7 Butterfield Street', 2);
+insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (3, 4, 10, 4, '2022-02-02', 97.78, 49.0, '9785 Pepper Wood Street', 2);
+insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (4, 1, 3, 6, '2022-02-06', 23.64, 9, '4 Waywood Trail', 2);

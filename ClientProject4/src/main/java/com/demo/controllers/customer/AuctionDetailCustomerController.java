@@ -3,10 +3,8 @@ package com.demo.controllers.customer;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +15,6 @@ import com.demo.services.APIClient;
 import com.demo.services.AuctionAPIService;
 import com.demo.services.AuctionHistoryAPIService;
 
-import retrofit2.Response;
 
 @Controller
 @RequestMapping(value = { "customer/auction/detailAuction" })
@@ -51,25 +48,27 @@ public class AuctionDetailCustomerController {
 		}
 	}
 
-	@RequestMapping(value = { "sendPrice" }, method = RequestMethod.POST)
-	public String sendPrice(@RequestParam("id") int id,
-			@ModelAttribute("aucHis") AuctionHistoryInput auctionHistoryInput, HttpSession session) {
-		try {
-			int accountid = (int) session.getAttribute("accountid");
-			auctionHistoryInput.setAccountid(accountid);
-			auctionHistoryInput.setAuctionid(id);
-			auctionHistoryInput.setProductid((int) session.getAttribute("productId"));
-			Response<Boolean> response = auctionHistoryAPIService.create(auctionHistoryInput).execute();
-			int statusCode = response.code();
-			switch (statusCode) {
-			case 400:
-				return "error/400page";
-			default:
-				return "redirect:/customer/auction/detailAuction/index?id=" + id;
-			}
-		} catch (Exception e) {
-			return "error/400page";
-		}
-	}
+//	@RequestMapping(value = { "sendPrice" }, method = RequestMethod.POST)
+//	public String sendPrice(@RequestParam("id") int id,
+//			@ModelAttribute("aucHis") AuctionHistoryInput auctionHistoryInput, HttpSession session) {
+//		try {
+//			int accountid = (int) session.getAttribute("accountid");
+//			auctionHistoryInput.setAccountid(accountid);
+//			auctionHistoryInput.setAuctionid(id);
+//			auctionHistoryInput.setProductid((int) session.getAttribute("productId"));
+//			Response<Boolean> response = auctionHistoryAPIService.create(auctionHistoryInput).execute();
+//			int statusCode = response.code();
+//			switch (statusCode) {
+//			case 400:
+//				return "error/400page";
+//			default:
+//				return "redirect:/customer/auction/detailAuction/index?id=" + id;
+//			}
+//		} catch (Exception e) {
+//			return "error/400page";
+//		}
+//	}
+	
+
 
 }

@@ -1,6 +1,9 @@
 package com.demo.services;
 
 import java.util.List;
+
+import org.springframework.data.repository.query.Param;
+
 import com.demo.Dtos.Input.AuctionInput;
 import com.demo.Dtos.Output.AccountOutput;
 import com.demo.Dtos.Output.AuctionOutput;
@@ -50,5 +53,8 @@ public interface AuctionAPIService {
 	
 	@DELETE("auction/{id}")
 	Call<Boolean> delAuction(@Path("id") int id);
+	
+	@GET("auction/searchbyDate/{eventdate}")
+	Call<List<AuctionOutput>> getListbyDate(@Param("eventdate") String eventdate );
 
 }

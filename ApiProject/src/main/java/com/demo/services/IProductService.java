@@ -46,7 +46,7 @@ public interface IProductService {
 	
 	Boolean updateImg(int id, String img);
 	
-	List<ProductOutput> getListMinPrice(Double priceMin);
+	List<ProductOutput> getListMinPrice(int priceMin);
 
 
 }

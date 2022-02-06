@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>EstateAgency Bootstrap Template - Index</title>
+<title>Auction Project</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -44,8 +44,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/assets/customer/css/flaticon.css">
 
-
-
 </head>
 <body>
 	<div class="click-closed"></div>
@@ -56,39 +54,52 @@
 		<span class="close-box-collapse right-boxed bi bi-x"></span>
 		<div class="box-collapse-wrap form">
 			<form class="form-a">
-				<div class="row">					
-					<div class="col-md-6 mb-2">
+				<div class="row">
+					<div class="col-md-8 mb-2">
 						<div class="form-group mt-3">
 							<label class="pb-2" for="Type">Auctions</label> <input
 								type="text" class="form-control form-control-lg form-control-a"
-								placeholder="Auction" id="auction">
+								placeholder="Auction Name" id="txtauction">
 						</div>
 					</div>
-					<div class="col-md-6 mb-2">
+					<div class="col-md-4 mb-2">
+						<div class="form-group mt-4">
+							<label class="pb-2" for="Type"></label> <input type="button"
+								class="form-control form-control-lg form-control-a btn btn-b"
+								"
+								placeholder="Auction Name" id="btnsearchAuction"
+								value="Search Auction Name">
+						</div>
+					</div>
+					<div class="col-md-8 mb-2">
 						<div class="form-group mt-3">
-							<label class="pb-2" for="city">Product</label> <input
-								type="text" class="form-control form-control-lg form-control-a"
-								placeholder="Product" id="product">
+							<label class="pb-2" for="city">Product</label> <input type="text"
+								class="form-control form-control-lg form-control-a"
+								placeholder="Product Name" id="txtproduct">
+						</div>
+					</div>
+					<div class="col-md-4 mb-2">
+						<div class="form-group mt-4">
+							<label class="pb-2" for="Type"></label> <input type="button"
+								class="form-control form-control-lg form-control-a btn btn-b"
+								placeholder="Auction Name" id="btnsearchProduct"
+								value="Search Product Name">
 						</div>
 					</div>
 
-					<div class="col-md-6 mb-2">
+					<div class="col-md-8 mb-2">
 						<div class="form-group mt-3">
-							<label class="pb-2" for="bathrooms">Date</label> 
-							<input type="date"
-								class="form-control form-control-lg form-control-a"
-								placeholder="Product"  id="date">
+							<label class="pb-2" for="bathrooms">Date</label> <input
+								type="date" class="form-control form-control-lg form-control-a"
+								id="txtdate">
 						</div>
 					</div>
-					<div class="col-md-6 mb-2">
-						<div class="form-group mt-3">
-							<label class="pb-2" for="price">Min Price</label> <input
-								type="text" class="form-control form-control-lg form-control-a"
-								placeholder="Min Price" id="minprice">
+					<div class="col-md-4 mb-2">
+						<div class="form-group mt-4">
+							<label class="pb-2" for="Type"></label> <input type="button"
+								class="form-control form-control-lg form-control-a btn btn-b"
+								id="btnsearchDate" value="Search Date">
 						</div>
-					</div>
-					<div class="col-md-12">
-						<button type="submit" class="btn btn-b">Search Property</button>
 					</div>
 				</div>
 			</form>
@@ -125,8 +136,6 @@
 								href="${pageContext.request.contextPath }/customer/view/auction/happened">The
 								auction is over.</a>
 						</div></li>
-					<%-- 					</t:authorize> --%>
-					<%-- 					<t:authorize access="hasRole('2')"> --%>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -140,8 +149,6 @@
 								href="${pageContext.request.contextPath }/auctionproduct/index">List
 								Auction Product</a>
 						</div></li>
-					<%-- 					</t:authorize> --%>
-					<%-- 					<t:authorize access="hasRole('customer') or hasRole('vendor')"> --%>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -151,13 +158,10 @@
 							<a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/account/changeInfor">Change
 								Infor </a>
-							<%-- 								<t:authorize access="hasRole('2')"> --%>
 							<a class="dropdown-item "
 								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
 								History </a>
-							<%-- 								</t:authorize> --%>
 						</div></li>
-					<%-- 					</t:authorize> --%>
 					<li class="nav-item"><a class="nav-link "
 						href="${pageContext.request.contextPath }/customer/view/contact"">Contact</a>
 					</li>
@@ -345,6 +349,38 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/assets/customer/js/bootstrap.min.js"></script>
+		
+		<script>
+		$(document).ready(function() {
+			$("#btnsearchProduct").click(function(e) {
+				alert("hd");
+				var txtproduct = $('#txtproduct').val();
+				if (txtproduct == null) {
+					alert("Enter Product Name");
+				}
+				$.ajax({
+					type: "GET",
+					url: "http://localhost:9799/api/product/search/" + txtproduct,
+					contentType: "application/json; charset=utf-8",
+					data: JSON
+						.stringify({
+							"name": txtauction,					
+						}),
+					dataType: "json",
+					error: function(xhr) {
+						if (xhr.status === 401) {
+							window.location.href = "http://localhost:8088/account/login";
+						} else {
+							window.location.href = "http://localhost:8088/error/400page";
+						}
+					},
+					success: function() {
+						window.location.href = "http://localhost:8088/vendor/product/index";
+					},
+				});
+			})
+			});
+		</script>
 	<script>
 		var myVar = setInterval(myTimer, 1000);
 		var my = setInterval(myDate, 1000);
@@ -358,21 +394,9 @@
 			var day = date.toDateString();
 			$("#day").html(day);
 		}
-	</script>
-	<script>
-		var myVar = setInterval(myTimer, 1000);
-		var my = setInterval(myDate, 1000);
-		function myTimer() {
-			var d = new Date();
-			var t = d.toLocaleTimeString();
-			$("#timeClock").html(t);
-		}
-		function myDate() {
-			var date = new Date();
-			var day = date.toDateString();
-			$("#day").html(day);
-		}
+		
 	</script>
 
+	
 </body>
 </html>
