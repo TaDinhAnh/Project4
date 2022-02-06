@@ -142,25 +142,25 @@
 									Auction Product</a>
 							</div></li>
 					</c:if>
+					<c:if test="${sessionScope.role == 'customer' || sessionScope.role == 'vendor' }">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">Account</a>
 
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">Account</a>
-
-						<div class="dropdown-menu">
-							<a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/account/changeInfor">Change
-								Infor </a>
-							<c:if test="${sessionScope.role == 'customer' }">
-
+							<div class="dropdown-menu">
 								<a class="dropdown-item "
-									href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
-									History </a>
+									href="${pageContext.request.contextPath }/customer/account/changeInfor">Change
+									Infor </a>
+								<c:if test="${sessionScope.role == 'customer' }">
 
-							</c:if>
-						</div></li>
+									<a class="dropdown-item "
+										href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
+										History </a>
 
+								</c:if>
+							</div></li>
+					</c:if>
 					<li class="nav-item"><a class="nav-link "
 						href="${pageContext.request.contextPath }/customer/view/contact"">Contact</a>
 					</li>
