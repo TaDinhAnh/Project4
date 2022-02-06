@@ -49,51 +49,7 @@
 </head>
 <body>
 	<div class="click-closed"></div>
-	<div class="box-collapse">
-		<div class="title-box-d">
-			<h3 class="title-d">Search Property</h3>
-		</div>
-		<span class="close-box-collapse right-boxed bi bi-x"></span>
-		<div class="box-collapse-wrap form">
-			<form class="form-a">
-				<div class="row">					
-					<div class="col-md-6 mb-2">
-						<div class="form-group mt-3">
-							<label class="pb-2" for="Type">Auctions</label> <input
-								type="text" class="form-control form-control-lg form-control-a"
-								placeholder="Auction" id="auction">
-						</div>
-					</div>
-					<div class="col-md-6 mb-2">
-						<div class="form-group mt-3">
-							<label class="pb-2" for="city">Product</label> <input
-								type="text" class="form-control form-control-lg form-control-a"
-								placeholder="Product" id="product">
-						</div>
-					</div>
 
-					<div class="col-md-6 mb-2">
-						<div class="form-group mt-3">
-							<label class="pb-2" for="bathrooms">Date</label> 
-							<input type="date"
-								class="form-control form-control-lg form-control-a"
-								placeholder="Product"  id="date">
-						</div>
-					</div>
-					<div class="col-md-6 mb-2">
-						<div class="form-group mt-3">
-							<label class="pb-2" for="price">Min Price</label> <input
-								type="text" class="form-control form-control-lg form-control-a"
-								placeholder="Min Price" id="minprice">
-						</div>
-					</div>
-					<div class="col-md-12">
-						<button type="submit" class="btn btn-b">Search Property</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
 	<nav
 		class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
 		<div class="container">
@@ -111,7 +67,8 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
 						href="${pageContext.request.contextPath }/customer/view/home">Home</a></li>
-				
+
+
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -125,36 +82,43 @@
 								href="${pageContext.request.contextPath }/customer/view/auction/happened">The
 								auction is over.</a>
 						</div></li>
-				
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">Vendor</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/auction/vendor">List
-								Auctions By Vendor </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/vendor/product/index">Product
-							</a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/auctionproduct/index">List
-								Auction Product</a>
-						</div></li>
-			
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">Account</a>
 
-						<div class="dropdown-menu">
-							<a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/account/changeInfor">Change
-								Infor </a>
-						
-							<a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
-								History </a>
-						
-						</div></li>
-				
+
+					<c:if test="${sessionScope.role == 'vendor' }">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">Vendor</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item "
+									href="${pageContext.request.contextPath }/customer/view/auction/vendor">List
+									Auctions By Vendor </a> <a class="dropdown-item "
+									href="${pageContext.request.contextPath }/vendor/product/index">Product
+								</a> <a class="dropdown-item "
+									href="${pageContext.request.contextPath }/auctionproduct/index">List
+									Auction Product</a>
+							</div></li>
+					</c:if>
+					<c:if
+						test="${sessionScope.role == 'customer' || sessionScope.role == 'vendor' }">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">Account</a>
+
+							<div class="dropdown-menu">
+								<a class="dropdown-item "
+									href="${pageContext.request.contextPath }/customer/account/changeInfor">Change
+									Infor </a>
+								<c:if test="${sessionScope.role == 'customer' }">
+
+									<a class="dropdown-item "
+										href="${pageContext.request.contextPath }/customer/account/auctionhistory"">Auction
+										History </a>
+
+								</c:if>
+							</div></li>
+					</c:if>
 					<li class="nav-item"><a class="nav-link "
 						href="${pageContext.request.contextPath }/customer/view/contact"">Contact</a>
 					</li>
@@ -169,7 +133,7 @@
 						In/Register</a>
 				</c:if>
 				<c:if test="${not empty sessionScope.account }">
-					<span style="color: #6610f2"> Hello ${account.fullname } </span>
+					<span style="color: #6610f2"> Hello ${sessionScope.account.fullname } </span>
 					<a class=""
 						href="${pageContext.request.contextPath }/customer/account/signIn">Logout</a>
 				</c:if>
@@ -179,11 +143,7 @@
 				style="color: #6c757d; font-size: 16px; padding-right: 3px">
 				<span id="day"> </span> <span id="timeClock"></span>
 			</div>
-			<button type="button"
-				class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
-				data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
-				<i class="bi bi-search"></i>
-			</button>
+			
 		</div>
 	</nav>
 	<main id="main">
@@ -356,20 +316,6 @@
 			$("#day").html(day);
 		}
 	</script>
-	<script>
-		var myVar = setInterval(myTimer, 1000);
-		var my = setInterval(myDate, 1000);
-		function myTimer() {
-			var d = new Date();
-			var t = d.toLocaleTimeString();
-			$("#timeClock").html(t);
-		}
-		function myDate() {
-			var date = new Date();
-			var day = date.toDateString();
-			$("#day").html(day);
-		}
-	</script>
-
+	
 </body>
 </html>
