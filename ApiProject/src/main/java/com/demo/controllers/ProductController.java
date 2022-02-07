@@ -156,7 +156,7 @@ public class ProductController {
 		if (id <= 0) {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
 		}
-		if (productService.acceptProduct(id)) {
+		if (!productService.acceptProduct(id)) {
 			return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
@@ -189,9 +189,6 @@ public class ProductController {
 		List<ProductOutput> productOutputs = productService.getListProductUnsold(vendorId);
 		if (vendorId <= 0) {
 			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
-		}
-		if (productOutputs == null || productOutputs.size() <= 0) {
-			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 	}

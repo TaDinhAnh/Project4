@@ -61,9 +61,6 @@ public class AuctionCustomerController {
 			List<AuctionOutput> auctionOutputs = auctionAPIService.getAuction(accountid).execute().body();
 			List<ProductOutput> productOutputs = productAPIService.getListProductUnsold(accountid).execute().body();
 			modelMap.put("productOutputs", productOutputs);
-			for (ProductOutput a : productOutputs) {
-				System.out.println(a.getId());
-			}
 			modelMap.put("auctions", auctionOutputs);
 			return "vendor/auction/index";
 		} catch (Exception e) {

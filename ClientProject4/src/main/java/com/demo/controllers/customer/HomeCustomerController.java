@@ -32,7 +32,7 @@ public class HomeCustomerController {
 			session.getAttribute("account");
 			return "customer/home/index";
 		} catch (Exception e) {
-			return "errorpage/400page";
+			return "error/400page";
 		}
 	}
 }

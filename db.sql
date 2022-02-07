@@ -183,13 +183,13 @@ insert into AuctionProduct(AuctionId , ProId , Status ) values (5, 7, false);
 
 
 insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (1, 2, 5, 6, '2022-02-01', 34.85, 12, '83 Jackson Park', 1);
-insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (2, 3, 8, 4, '2022-02-06', 15.00, 8, '7 Butterfield Street', 2);
-insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (3, 4, 10, 4, '2022-02-02', 97.78, 49.0, '9785 Pepper Wood Street', 2);
-insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (4, 1, 3, 6, '2022-02-06', 23.64, 9, '4 Waywood Trail', 2);
+insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (2, 3, 8, 4, '2022-02-06', 15.00, 8, '7 Butterfield Street', 1);
+insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (3, 4, 10, 4, '2022-02-02', 97.78, 97.78, '9785 Pepper Wood Street', 2);
+insert into Orders (Id, AuctionId , ProId , AccountId , SuccessDate , Total , Piad , Address , Status ) values (4, 1, 3, 6, '2022-02-06', 23.64, 23.64, '4 Waywood Trail', 2);
 
 
 CREATE EVENT eventUpdateAuctionOver
-ON SCHEDULE EVERY 1 HOUR
+ON SCHEDULE EVERY 1 MINUTE
 STARTS CURRENT_TIMESTAMP
 ENDS CURRENT_TIMESTAMP + INTERVAL 10 YEAR
 DO  UPDATE auction
@@ -197,7 +197,7 @@ DO  UPDATE auction
 	WHERE auction.Eventdate < CURRENT_DATE or (auction.Eventdate = CURRENT_DATE AND auction.HourEnd < HOUR(CURRENT_TIME()));
  
 CREATE EVENT eventUpdateAuctionCommingsoon
-ON SCHEDULE EVERY 1 HOUR
+ON SCHEDULE EVERY 1 MINUTE
 STARTS CURRENT_TIMESTAMP
 ENDS CURRENT_TIMESTAMP + INTERVAL 10 YEAR  
 DO  UPDATE auction

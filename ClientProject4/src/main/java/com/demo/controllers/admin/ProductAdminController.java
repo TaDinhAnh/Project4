@@ -71,14 +71,14 @@ public class ProductAdminController {
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
-				return "errorpage/400page";
+				return "error/400page";
 			case 401:
 				return "customer/account/signIn/index";
 			default:
 				return "redirect:/admin/product";
 			}
 		} catch (Exception e) {
-			return "errorpage/400page";
+			return "error/400page";
 		}
 	}
 

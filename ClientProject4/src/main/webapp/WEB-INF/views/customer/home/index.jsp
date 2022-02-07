@@ -102,11 +102,11 @@
         </div>
         <div class="row">
         <c:forEach var="product" items="${productlist }">
-          <div class="col-md-4">
+          <div class="col-md-4" style="margin-top: 15px">
             <div class="card-box-d">
               <div class="card-img-d">
                 <img
-										src="${pageContext.request.contextPath }/resources/assets/customer/img/testimonial-1.jpg"
+										src="${product.image}"
 										alt="" class="img-d img-fluid">
               </div>
               <div class="card-overlay card-overlay-hover">
