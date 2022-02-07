@@ -3,6 +3,12 @@ $(document).ready(function() {
 		var id = $("#accountid").val();
 		var start = $("#hstart").val();
 		var end = $("#hend").val();
+		var arrayStart = start.split(":");
+		var arrayEnd = end.split(":");
+		if(arrayStart[0] - arrayEnd[0] >= 0){
+			alert("Start time must be less than end time")
+			return;
+		}
 		var date = $("#createdate").val();
 		var description = $("#description").val();
 		if (start === "") {

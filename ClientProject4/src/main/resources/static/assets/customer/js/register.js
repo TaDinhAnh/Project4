@@ -5,6 +5,15 @@ $(function() {
 });
 $(document).ready(function() {
 	$("#register").submit(function(e) {
+		var currentTime = new Date();
+		var year = currentTime.getFullYear();
+		var from = $("#datepicker").val().split("/")
+		var dateRegister = new Date(from[2], from[1] - 1, from[0])
+		var yearRegister = dateRegister.getFullYear();
+		if(year - yearRegister < 18){
+			alert("Please enter dob again!!");
+			return;
+		}
 		var fullname = $("#fullname").val();
 		var gmail = $("#gmail").val();
 		var pass = $("#pass").val();

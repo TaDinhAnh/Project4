@@ -47,7 +47,7 @@
               <div class="card-box-b card-shadow news-box">
                 <div class="img-box-b">
                   <img
-											src="${pageContext.request.contextPath }/resources/assets/customer/img/post-2.jpg"
+											src="${productunSold.image}"
 											alt="" class="img-b img-fluid">
                 </div>
                 <div class="card-overlay">
@@ -59,7 +59,7 @@
                     </div>
                     <div class="card-title-b">
                       <h2 class="title-2">
-                        <a href="blog-single.html">${productunSold.name}</a>
+                        <a href="#">${productunSold.name}</a>
                       </h2>
                     </div>
                     <div class="card-date">

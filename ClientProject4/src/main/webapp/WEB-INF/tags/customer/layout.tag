@@ -68,21 +68,21 @@
 					<li class="nav-item"><a class="nav-link active"
 						href="${pageContext.request.contextPath }/customer/view/home">Home</a></li>
 
-
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">Auction</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/auction/comingsoon">The
-								auction is about to begin </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/auction/happenning"">The
-								auction is ongoing. </a> <a class="dropdown-item "
-								href="${pageContext.request.contextPath }/customer/view/auction/happened">The
-								auction is over.</a>
-						</div></li>
-
+					<c:if test="${sessionScope.role != 'vendor' }">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">Auction</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item "
+									href="${pageContext.request.contextPath }/customer/view/auction/comingsoon">The
+									auction is about to begin </a> <a class="dropdown-item "
+									href="${pageContext.request.contextPath }/customer/view/auction/happenning"">The
+									auction is ongoing. </a> <a class="dropdown-item "
+									href="${pageContext.request.contextPath }/customer/view/auction/happened">The
+									auction is over.</a>
+							</div></li>
+					</c:if>
 
 					<c:if test="${sessionScope.role == 'vendor' }">
 						<li class="nav-item dropdown"><a

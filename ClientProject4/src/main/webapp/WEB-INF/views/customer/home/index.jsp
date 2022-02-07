@@ -39,56 +39,6 @@
 	</div>
 	    <section class="section-property section-t8">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a">Latest Auctions</h2>
-              </div>
-              <div class="title-link">
-                <a
-									href="${pageContext.request.contextPath }/customer/view/auction/happenning">All Property
-                  <span class="bi bi-chevron-right"></span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>       
-        <div id="property-carousel" class="swiper">                    
-          <div class="swiper-wrapper">       
-		                <c:forEach var="auction" items="${auctions }">                     		
-            <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">          
-               <div>
-                <div class="img-box-a">
-                  <img src="${auction.productOutputs[0].image}" alt=""
-												class="img-a img-fluid">
-												                </div>
-						</div>			
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                          <br /> ${auction.fullname }
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">hourStart |  ${auction.hourStart }</span>
-                      </div>
-                      <a
-													href="${pageContext.request.contextPath }/customer/view/auction/start/${auction.id}"
-													class="link-a">Click here to view
-                        <span class="bi bi-chevron-right"></span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>                                                                             </c:forEach>
-             </div>           
-        </div>
-        <div class="propery-carousel-pagination carousel-pagination"></div>  
 			</div>
       <div class="container">
         <div class="row">
@@ -107,7 +57,7 @@
             <div class="card-box-d">
               <div class="card-img-d">
                 <img
-										style="width: 200px; height: 300px; object-fit: scale-down;"
+										
 										src="${product.image}" alt="" class="img-d img-fluid">
               </div>
               <div class="card-overlay card-overlay-hover">
