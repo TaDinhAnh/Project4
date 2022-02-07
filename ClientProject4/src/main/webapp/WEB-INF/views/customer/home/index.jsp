@@ -46,7 +46,8 @@
                 <h2 class="title-a">Latest Auctions</h2>
               </div>
               <div class="title-link">
-                <a									href="${pageContext.request.contextPath }/customer/view/auction/happenning">All Property
+                <a
+									href="${pageContext.request.contextPath }/customer/view/auction/happenning">All Property
                   <span class="bi bi-chevron-right"></span>
                 </a>
               </div>
@@ -60,8 +61,8 @@
               <div class="card-box-a card-shadow">          
                <div>
                 <div class="img-box-a">
-                  <img												src="${auction.productOutputs[0].image}"
-												alt="" class="img-a img-fluid">
+                  <img src="${auction.productOutputs[0].image}" alt=""
+												class="img-a img-fluid">
 												                </div>
 						</div>			
                 <div class="card-overlay">
@@ -106,8 +107,8 @@
             <div class="card-box-d">
               <div class="card-img-d">
                 <img
-										src="${product.image}"
-										alt="" class="img-d img-fluid">
+										style="width: 200px; height: 300px; object-fit: scale-down;"
+										src="${product.image}" alt="" class="img-d img-fluid">
               </div>
               <div class="card-overlay card-overlay-hover">
                 <div class="card-header-d">

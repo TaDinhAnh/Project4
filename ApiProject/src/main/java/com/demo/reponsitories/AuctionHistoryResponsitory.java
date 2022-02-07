@@ -29,8 +29,8 @@ public interface AuctionHistoryResponsitory extends CrudRepository<Auctionhistor
 	@Query("select max(price) from Auctionhistory where auction.id = :id ")
 	public double maxPriceAuctionHistoryById(@Param("id") int id);
 
-	@Query("select new com.demo.Dtos.Output.AuctionOutput(auction.id, auction.eventdate) from Auctionhistory where account.id = id")
-	public List<AuctionOutput> getAuctionByIdCustomer(@Param("id") int idCus);
+	@Query("select new com.demo.Dtos.Output.AuctionOutput(auction.id, auction.eventdate) from Auctionhistory where account.id = :idCus")
+	    public List<AuctionOutput> getAuctionByIdCustomer(@Param("idCus") int idCus);
 
 	@Query("select new com.demo.Dtos.Output.AuctionHistoryOutput(id, product.name,  price, time) from Auctionhistory where account.id = :accountid and auction.id = :auctionid order by product.id desc")
 	public List<AuctionHistoryOutput> getAuction(@Param("accountid") int accountid, @Param("auctionid") int auctionid);

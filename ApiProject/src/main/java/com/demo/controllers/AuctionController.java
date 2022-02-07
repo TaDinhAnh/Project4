@@ -135,9 +135,7 @@ public class AuctionController {
 	@RequestMapping(value = "limit", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AuctionOutput>> getLimitAuctionHappening() {
 		List<AuctionOutput> auctionOutputs = auctionService.getLimitAuctionHappening();
-		if (auctionOutputs == null || auctionOutputs.size() <= 0) {
-			return new ResponseEntity<List<AuctionOutput>>(HttpStatus.NOT_FOUND);
-		}
+		
 		return new ResponseEntity<List<AuctionOutput>>(auctionOutputs, HttpStatus.OK);
 	}
 

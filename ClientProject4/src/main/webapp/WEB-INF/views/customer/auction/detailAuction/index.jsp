@@ -79,43 +79,18 @@
               </div>
             </div>
          <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
-                   
-<%--             <div class="title-box-d">
-              <h3 class="title-d">Comments (${count })</h3>
-            </div>
-             <c:forEach var="autionhistory" items="${auctionhistorys }">
-          
-            <div class="box-comments">
-              <ul class="list-comments">
-                <li>
-                  <div class="comment-avatar">
-                    <img
-												src="${pageContext.request.contextPath }/resources/assets/customer/img/author-2.jpg"
-												alt="">
-                  </div>
-                  <div class="comment-details">
-                    <h4 class="comment-author">${autionhistory.accountname }</h4>
-                    <span>${autionhistory.time }</span>
-                    <p class="comment-description">
-                      ${autionhistory.price } <strong>$</strong> 
-                    </p>                
-                  </div>
-                </li>                          
-              </ul>                         			            
-            </div>
-            	</c:forEach> --%>
             <div class="form-comments">
               <div class="title-box-d">
                 <h3 class="title-d"> Enter price:</h3>
               </div>
                <s:form class="form-a"
 									modelAttribute="auctionHistoryInput" method="post"
-									action="${pageContext.request.contextPath}/customer/auction/detailAuction/sendPrice?id=${auction.id}">
+									action="${pageContext.request.contextPath}/customer/auction/detailAuction/sendPrice?id=${auction.id}&proId=${product.id }">
                 <div class="row">
                   <div class="col-md-12 mb-3">
                     <div class="form-group">
-                      <label for="textMessage">Ten Nguoi Dang Nhap </label>   
-                      <s:input path="price" class="form-control" />           
+                      <label for="textMessage">${sessionScope.account.fullname } </label>   
+                      <s:input path="price" class="form-control allownumericwithdecimal" />           
                        												</div>
                   </div>
                    <div class="col-md-12">

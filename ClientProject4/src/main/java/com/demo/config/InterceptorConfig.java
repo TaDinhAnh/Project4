@@ -24,10 +24,10 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		registry.addInterceptor(adminInterceptor).addPathPatterns("/admin/**");
 		registry.addInterceptor(vendorInterceptor).addPathPatterns("/vendor/**").excludePathPatterns(
 				"/customer/view/**", "/customer/account/signIn", "/customer/account/register",
-				"/customer/account/changeInfor", "/customer/account/logout");
+				"/customer/account/changeInfor", "/customer/account/logout", "/customer/auction/detailAuction/sendPrice");
 		registry.addInterceptor(customerInterceptor).addPathPatterns("/customer/**").excludePathPatterns(
 				"/customer/view/**", "/customer/account/signIn", "/customer/account/register",
-				"/customer/account/changeInfor", "/customer/account/logout");
+				"/customer/account/changeInfor", "/customer/account/logout", "/customer/auction/detailAuction/sendPrice");
 	}
 
 }

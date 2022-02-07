@@ -52,20 +52,23 @@ public class AuctionDetailCustomerController {
 	}
 
 	@RequestMapping(value = { "sendPrice" }, method = RequestMethod.POST)
-	public String sendPrice(@RequestParam("id") int id,
+	public String sendPrice(@RequestParam("id") int id, @RequestParam("proId") int proId,
 			@ModelAttribute("aucHis") AuctionHistoryInput auctionHistoryInput, HttpSession session) {
+		if (session.getAttribute("account") == null) {
+			return "redirect:/customer/account/signIn";
+		}
 		try {
 			int accountid = (int) session.getAttribute("accountid");
 			auctionHistoryInput.setAccountid(accountid);
 			auctionHistoryInput.setAuctionid(id);
-			auctionHistoryInput.setProductid((int) session.getAttribute("productId"));
+			auctionHistoryInput.setProductid(proId);
 			Response<Boolean> response = auctionHistoryAPIService.create(auctionHistoryInput).execute();
 			int statusCode = response.code();
 			switch (statusCode) {
 			case 400:
 				return "error/400page";
 			default:
-				return "redirect:/customer/auction/detailAuction/index?id=" + id;
+				return "redirect:/customer/view/auction/getproduct/" + id +"/"+proId;
 			}
 		} catch (Exception e) {
 			return "error/400page";
