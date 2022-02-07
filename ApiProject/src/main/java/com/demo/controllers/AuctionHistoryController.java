@@ -93,12 +93,12 @@ public class AuctionHistoryController {
 
 	}
 
-	@RequestMapping(value = "/maxprice/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Double> maxPriceAuctionHistoryById(@PathVariable("id") int id) {
+	@RequestMapping(value = "/maxprice/{id}/{proid}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Double> maxPriceAuctionHistoryById(@PathVariable("id") int id, @PathVariable("proid") int proid) {
 		if (id <= 0) {
 			return new ResponseEntity<Double>(HttpStatus.BAD_REQUEST);
 		}
-		Double auctionHistoryOutputs = auctionHistoryService.maxPriceAuctionHistoryById(id);
+		Double auctionHistoryOutputs = auctionHistoryService.maxPriceAuctionHistoryById(id, proid);
 		if (auctionHistoryOutputs <= 0) {
 			return new ResponseEntity<Double>(HttpStatus.BAD_REQUEST);
 		}

@@ -101,7 +101,7 @@ $(document).ready(function() {
 		formData.append("fileImg", $('#updateImg')[0].files[0]);
 		$.ajax({
 			type: 'POST',
-			url: "http://localhost:9799/api/product/changeImg/"+ id + "/" + imgold,
+			url: "http://localhost:9799/api/product/changeImg/" + id + "/" + imgold,
 			data: formData,
 			processData: false,
 			contentType: false,
@@ -117,5 +117,20 @@ $(document).ready(function() {
 				}
 			}
 		});
+	}));
+
+	$("#formAuction").on('submit', (function(e) {
+
+		if ($("#priceCurent").val() === "") {
+			alert("Enter price");
+			return;
+		}
+		var priceMax = parseFloat($("#priceMax").text());
+		var priceCurent = parseFloat($("#priceCurent").val());
+
+		if (priceCurent <= priceMax) {
+			alert("Please re-enter the price greater than the price!!!");
+			return;
+		}
 	}));
 })

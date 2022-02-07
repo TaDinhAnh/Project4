@@ -16,6 +16,7 @@ import com.demo.Dtos.Output.AuctionOutput;
 import com.demo.Dtos.Output.AuctionProductOutput;
 import com.demo.services.APIClient;
 import com.demo.services.AuctionAPIService;
+import com.demo.services.AuctionHistoryAPIService;
 import com.demo.services.AuctionProductAPIService;
 import com.demo.Dtos.Output.ProductOutput;
 import com.demo.services.APIClient;
@@ -28,6 +29,8 @@ import retrofit2.Response;
 @RequestMapping(value = { "customer/view/auction" })
 public class AuctionCustomerController {
 	AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
+	private AuctionHistoryAPIService auctionHistoryAPIService = APIClient.getClient()
+			.create(AuctionHistoryAPIService.class);
 
 	@RequestMapping(value = { "happenning" }, method = RequestMethod.GET)
 	public String happenning(ModelMap modelMap) {
@@ -150,6 +153,8 @@ public class AuctionCustomerController {
 				modelMap.put("auctionHistoryInput", auctionHistoryInput);
 				modelMap.put("product", rs.getProductOutput());
 				modelMap.put("auction", rs.getAuctionOutput());
+				var maxpriceATM = auctionHistoryAPIService.maxPricetAuctionHistoryById(auctionid, productid).execute().body();
+				modelMap.put("maxPriceATM", maxpriceATM);
 				return "customer/auction/detailAuction/index";
 
 			}

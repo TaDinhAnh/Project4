@@ -17,7 +17,7 @@ public interface IAuctionHistoryService {
 
 	int countAuctionHistoryById(int id);
 
-	double maxPriceAuctionHistoryById(int id);
+	double maxPriceAuctionHistoryById(int id, int proid);
 	
 	List<AuctionOutput> getAuctionByIdCustomer(int idCus);
 	

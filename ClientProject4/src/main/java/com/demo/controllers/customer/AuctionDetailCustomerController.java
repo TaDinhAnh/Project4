@@ -25,35 +25,32 @@ public class AuctionDetailCustomerController {
 	private AuctionHistoryAPIService auctionHistoryAPIService = APIClient.getClient()
 			.create(AuctionHistoryAPIService.class);
 
-	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
-	public String index(@RequestParam("id") int id, ModelMap modelMap, HttpSession session) {
-		try {
-			List<AuctionHistoryOutput> auctionHistoryOutput = auctionHistoryAPIService.getAuctionHistoryById(id)
-					.execute().body();
-			var count = auctionHistoryAPIService.countAuctionHistoryById(id).execute().body();
-			modelMap.put("count", count);
-			var maxpriceATM = auctionHistoryAPIService.maxPricetAuctionHistoryById(id).execute().body();
-			modelMap.put("maxPriceATM", maxpriceATM);
-			for (int i = 0; i < auctionHistoryOutput.size(); i++) {
-				modelMap.put("getAuction", auctionHistoryOutput.get(1));
-				modelMap.put("vendor", auctionHistoryOutput.get(1).getAccountname());
-				session.setAttribute("productId", auctionHistoryOutput.get(1).getProductOutput().getId());
-			}
-
-			modelMap.put("auctionhistorys", auctionHistoryOutput);
-			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
-			AuctionOutput auctionOutput = auctionAPIService.search(id).execute().body();
-			modelMap.put("auction", auctionOutput);
-			modelMap.put("aucHis", new AuctionHistoryInput());
-			return "customer/auction/detailAuction/index";
-		} catch (Exception e) {
-			return "error/400page";
-		}
-	}
+//	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
+//	public String index(@RequestParam("id") int id, ModelMap modelMap, HttpSession session) {
+//		try {
+//			List<AuctionHistoryOutput> auctionHistoryOutput = auctionHistoryAPIService.getAuctionHistoryById(id)
+//					.execute().body();
+//			
+//			for (int i = 0; i < auctionHistoryOutput.size(); i++) {
+//				modelMap.put("getAuction", auctionHistoryOutput.get(1));
+//				modelMap.put("vendor", auctionHistoryOutput.get(1).getAccountname());
+//				session.setAttribute("productId", auctionHistoryOutput.get(1).getProductOutput().getId());
+//			}
+//
+//			modelMap.put("auctionhistorys", auctionHistoryOutput);
+//			AuctionAPIService auctionAPIService = APIClient.getClient().create(AuctionAPIService.class);
+//			AuctionOutput auctionOutput = auctionAPIService.search(id).execute().body();
+//			modelMap.put("auction", auctionOutput);
+//			modelMap.put("aucHis", new AuctionHistoryInput());
+//			return "customer/auction/detailAuction/index";
+//		} catch (Exception e) {
+//			return "error/400page";
+//		}
+//	}
 
 	@RequestMapping(value = { "sendPrice" }, method = RequestMethod.POST)
 	public String sendPrice(@RequestParam("id") int id, @RequestParam("proId") int proId,
-			@ModelAttribute("aucHis") AuctionHistoryInput auctionHistoryInput, HttpSession session) {
+			@ModelAttribute("aucHis") AuctionHistoryInput auctionHistoryInput, HttpSession session, ModelMap modelMap) {
 		if (session.getAttribute("account") == null) {
 			return "redirect:/customer/account/signIn";
 		}
@@ -68,6 +65,7 @@ public class AuctionDetailCustomerController {
 			case 400:
 				return "error/400page";
 			default:
+				
 				return "redirect:/customer/view/auction/getproduct/" + id +"/"+proId;
 			}
 		} catch (Exception e) {

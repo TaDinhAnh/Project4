@@ -72,7 +72,7 @@
                   <h5> The highest price at the moment: </h5>
                  </div>
                  <div class="col-lg-8">
-                  <h1 class="title-single" style="color: red">${product.priceMin } $</h1>
+                  <h1 class="title-single" style="color: red" id="priceMax">${maxPriceATM } $</h1>
                  </div>
                  </div>                     
             </div>             
@@ -83,14 +83,14 @@
               <div class="title-box-d">
                 <h3 class="title-d"> Enter price:</h3>
               </div>
-               <s:form class="form-a"
+               <s:form class="form-a" id="formAuction"
 									modelAttribute="auctionHistoryInput" method="post"
 									action="${pageContext.request.contextPath}/customer/auction/detailAuction/sendPrice?id=${auction.id}&proId=${product.id }">
                 <div class="row">
                   <div class="col-md-12 mb-3">
                     <div class="form-group">
                       <label for="textMessage">${sessionScope.account.fullname } </label>   
-                      <s:input path="price" class="form-control allownumericwithdecimal" />           
+                      <s:input path="price" id="priceCurent" class="form-control allownumericwithdecimal" />           
                        												</div>
                   </div>
                    <div class="col-md-12">

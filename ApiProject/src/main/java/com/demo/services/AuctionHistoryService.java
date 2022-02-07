@@ -86,8 +86,8 @@ public class AuctionHistoryService implements IAuctionHistoryService {
 	}
 
 	@Override
-	public double maxPriceAuctionHistoryById(int id) {
-		return auctionHistoryResponsitory.maxPriceAuctionHistoryById(id);
+	public double maxPriceAuctionHistoryById(int id, int proid) {
+		return auctionHistoryResponsitory.maxPriceAuctionHistoryById(id, proid);
 	}
 
 	@Override
