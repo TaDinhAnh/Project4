@@ -62,7 +62,7 @@ public class AuctionCustomerController {
 			ProductAPIService productAPIService = APIClient.getClient().create(ProductAPIService.class);
 			int accountid = (int) session.getAttribute("accountid");
 			List<AuctionOutput> auctionOutputs = auctionAPIService.getAuction(accountid).execute().body();
-			List<ProductOutput> productOutputs = productAPIService.getListProductUnsold(accountid).execute().body();
+			List<ProductOutput> productOutputs = productAPIService.getPro(accountid).execute().body();
 			modelMap.put("productOutputs", productOutputs);
 			modelMap.put("auctions", auctionOutputs);
 			return "vendor/auction/index";

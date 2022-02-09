@@ -39,13 +39,18 @@ public class AuctionProductService implements IAuctionProductService {
 		auctionproductId.setAuctionId(auctionproductInput.getAuctionId());
 		auctionproductId.setProId(auctionproductInput.getProId());
 		auctionproduct.setId(auctionproductId);
-		auctionproduct.setStatus(false);
 		return auctionProductReponsitory.save(auctionproduct) != null;
 	}
 
 	@Override
 	public List<AuctionProductOutput> findById(int accountId) {
 		return auctionProductReponsitory.findById(accountId);
+	}
+
+	@Override
+	public List<ProductOutput> getProduct(int idvendor) {
+	
+		return auctionProductReponsitory.getProduct(idvendor);
 	}
 
 }

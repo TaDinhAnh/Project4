@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.yaml.snakeyaml.util.ArrayUtils;
+
 import com.demo.Dtos.Input.ProductInput;
 import com.demo.Dtos.Input.SendMailInput;
 import com.demo.Dtos.Output.AccountOutput;
@@ -30,6 +32,9 @@ public class ProductService implements IProductService {
 
 	@Autowired
 	private ICategoryService categoryService;
+	
+	@Autowired
+	private IAuctionProductService auctionProductService;
 
 	@Override
 	public Product findById(int id) {
@@ -186,6 +191,21 @@ public class ProductService implements IProductService {
 	@Override
 	public List<ProductOutput> getListMinPrice(Double priceMin) {
 		return productReponsitory.getListMinPrice(priceMin);
+	}
+
+	@Override
+	public List<ProductOutput> getPro(int idVendor) {
+		List<ProductOutput> productOutputs = auctionProductService.getProduct(idVendor);
+		List<ProductOutput> productUnsolds = productReponsitory.getListProductUnsold(idVendor);
+		List<ProductOutput> rs = new ArrayList<>();
+		for (ProductOutput productOutput : productUnsolds) {
+			if(productOutputs.stream().anyMatch(pro -> pro.getId() == productOutput.getId())){
+				continue;
+			}
+			rs.add(productOutput);
+		}
+	
+		return rs;
 	}
 
 }

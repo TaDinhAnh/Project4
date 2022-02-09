@@ -12,7 +12,7 @@ $(document).ready(function() {
 		var yearRegister = dateRegister.getFullYear();
 		if(year - yearRegister < 18){
 			alert("Please enter dob again!!");
-			return;
+			e.preventDefault();
 		}
 		var fullname = $("#fullname").val();
 		var gmail = $("#gmail").val();

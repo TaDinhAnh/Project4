@@ -72,7 +72,8 @@
                   <h5> The highest price at the moment: </h5>
                  </div>
                  <div class="col-lg-8">
-                  <h1 class="title-single" style="color: red" id="priceMax">${maxPriceATM } $</h1>
+                  <h1 class="title-single" style="color: red"
+												id="priceMax">${maxPriceATM } $</h1>
                  </div>
                  </div>                     
             </div>             
@@ -90,7 +91,8 @@
                   <div class="col-md-12 mb-3">
                     <div class="form-group">
                       <label for="textMessage">${sessionScope.account.fullname } </label>   
-                      <s:input path="price" id="priceCurent" class="form-control allownumericwithdecimal" />           
+                      <s:input path="price" id="priceCurent"
+													class="form-control allownumericwithdecimal" />           
                        												</div>
                   </div>
                    <div class="col-md-12">

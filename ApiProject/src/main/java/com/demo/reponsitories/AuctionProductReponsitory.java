@@ -39,4 +39,8 @@ public interface AuctionProductReponsitory extends CrudRepository<Auctionproduct
 			+ "where auction.account.id= :accountid")
 	public List<AuctionProductOutput> findById(@Param("accountid") int accountId);
 
+	@Query("select new com.demo.Dtos.Output.ProductOutput(product.id ) "
+			+ "from Auctionproduct where product.vendorId = :idvendor and status = null")
+	public List<ProductOutput> getProduct(@Param("idvendor") int idvendor);
+
 }

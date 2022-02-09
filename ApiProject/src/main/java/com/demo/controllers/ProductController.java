@@ -138,10 +138,10 @@ public class ProductController {
 		}
 		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "searchbyPrice/{priceMin}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductOutput>> searchByPrice(@PathVariable("priceMin") Double priceMin) {
-		if (priceMin <=0) {
+		if (priceMin <= 0) {
 			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
 		}
 		List<ProductOutput> productOutputs = productService.getListMinPrice(priceMin);
@@ -174,13 +174,10 @@ public class ProductController {
 
 	@RequestMapping(value = "sold/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductOutput>> getListProductSold(@PathVariable("id") int vendorId) {
-		List<ProductOutput> productOutputs = productService.getListProductSold(vendorId);
 		if (vendorId <= 0) {
 			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
 		}
-		if (productOutputs == null || productOutputs.size() <= 0) {
-			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
-		}
+		List<ProductOutput> productOutputs = productService.getListProductSold(vendorId);
 		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 	}
 
@@ -193,15 +190,22 @@ public class ProductController {
 		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "getPro2/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductOutput>> getPro2(@PathVariable("id") int vendorId) {		
+		if (vendorId <= 0) {
+			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
+		}
+		List<ProductOutput> productOutputs = productService.getPro(vendorId);
+		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "listAccept/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductOutput>> getListProductAccept(@PathVariable("id") int vendorId) {
 		List<ProductOutput> productOutputs = productService.getListProductAccept(vendorId);
 		if (vendorId <= 0) {
 			return new ResponseEntity<List<ProductOutput>>(HttpStatus.BAD_REQUEST);
 		}
-		if (productOutputs == null || productOutputs.size() <= 0) {
-			return new ResponseEntity<List<ProductOutput>>(HttpStatus.NOT_FOUND);
-		}
+
 		return new ResponseEntity<List<ProductOutput>>(productOutputs, HttpStatus.OK);
 	}
 

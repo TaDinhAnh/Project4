@@ -20,5 +20,8 @@ public interface IAuctionProductService {
 	Boolean create(AuctionproductInput auctionproductInput);
 
 	List<AuctionProductOutput> findById(int accountId);
+	
+	List<ProductOutput> getProduct(int idvendor);
+
 
 }

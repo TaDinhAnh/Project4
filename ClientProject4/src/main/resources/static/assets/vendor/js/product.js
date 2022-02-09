@@ -133,4 +133,15 @@ $(document).ready(function() {
 			return;
 		}
 	}));
+
+	$("#formAuction").on('submit', (function(e) {
+		const ws = new WebSocket('ws://localhost:9799/auction-socket');
+		ws.onopen = (e) => {
+			ws.send(JSON.stringify({
+				action: 'connection',
+				payload: 'user connected'
+			}));
+		};
+	}));
+
 })

@@ -48,5 +48,5 @@ public interface IProductService {
 	
 	List<ProductOutput> getListMinPrice(Double priceMin);
 
-
+	List<ProductOutput> getPro( int idVendor);
 }

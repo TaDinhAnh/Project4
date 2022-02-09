@@ -28,7 +28,7 @@
                  <li class="breadcrumb-item">
                 							<button type="button" class="btn btn-light"
 											style="border: none; outline: 0 !important; color: #afa939;"
-											data-toggle="modal" data-target="#modalUpdateInfo">
+											data-toggle="modal" data-target="#modalUpdatePro">
 										Update Product
 							</button>              	
                 </li>

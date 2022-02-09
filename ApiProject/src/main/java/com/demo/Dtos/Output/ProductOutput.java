@@ -117,6 +117,11 @@ public class ProductOutput {
 		this.vendor = vendor;
 	}
 
+	public ProductOutput(int id) {
+		super();
+		this.id = id;
+	}
+
 	public ProductOutput(int id, String category, String name, Double priceMin, String image, String description,
 			EProduct status, Boolean isAccept) {
 		super();

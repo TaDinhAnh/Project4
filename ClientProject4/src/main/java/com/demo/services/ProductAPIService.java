@@ -52,6 +52,9 @@ public interface ProductAPIService {
 	@GET("product/unSold/{id}")
 	Call<List<ProductOutput>> getListProductUnsold(@Path("id") int id);
 
+	@GET("product/getPro2/{id}")
+	Call<List<ProductOutput>> getPro(@Path("id") int id);
+
 	@GET("product/sold/{id}")
 	Call<List<ProductOutput>> getListProductSold(@Path("id") int id);
 

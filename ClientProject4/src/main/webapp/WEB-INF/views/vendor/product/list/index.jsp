@@ -40,22 +40,22 @@
           </div>
         </div>
         <div id="news-carousel" class="swiper">
-          <div class="swiper-wrapper">
+         <div class="container">
+  <div class="row">
 		                <c:forEach var="productunSold"
-							items="${productOutputunSold }">
-            <div class="carousel-item-c swiper-slide">
+								items="${productOutputunSold }">
+         <div class="col-4">
               <div class="card-box-b card-shadow news-box">
                 <div class="img-box-b">
-                  <img
-											src="${productunSold.image}"
-											alt="" class="img-b img-fluid">
+                  <img src="${productunSold.image}" alt=""
+												class="img-b img-fluid">
                 </div>
                 <div class="card-overlay">
                   <div class="card-header-b">
                     <div class="card-category-b">
                       <a
-													href="${pageContext.request.contextPath }/vendor/product/detail?id=${productunSold.id}"
-													class="category-b">${productunSold.category}</a>
+														href="${pageContext.request.contextPath }/vendor/product/detail?id=${productunSold.id}"
+														class="category-b">${productunSold.category}</a>
                     </div>
                     <div class="card-title-b">
                       <h2 class="title-2">
@@ -68,10 +68,11 @@
                   </div>
                 </div>
               </div>
-            </div>
+         </div>
            </c:forEach>
           </div>
-        </div>
+         </div>
+          </div>
         <div class="news-carousel-pagination carousel-pagination"></div>     
       </div>	
 	          <div class="container">
@@ -176,6 +177,9 @@
 													class="link-one">
                           <i class="bi bi-heart" aria-hidden="true"></i>
                         </a>                       					
+											
+											
+											
 											
 											</ul>
                   </div>

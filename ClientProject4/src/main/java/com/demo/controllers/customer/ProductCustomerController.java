@@ -68,7 +68,7 @@ public class ProductCustomerController {
 					.create(AuctionProductAPIService.class);
 			OrdersAPIService ordersAPIService = APIClient.getClient().create(OrdersAPIService.class);
 			ProductAPIService productAPIService = APIClient.getClient().create(ProductAPIService.class);
-			AuctionProductOutput auctionproductOutput = auctionProductAPIService.findListSold(accountid, productId)
+			AuctionProductOutput auctionproductOutput = auctionProductAPIService.findListSold(1, productId)
 					.execute().body();
 			CategoryAPIService categoryAPIService = APIClient.getClient().create(CategoryAPIService.class);
 			List<CategoryOutput> categoryOutputs = categoryAPIService.getCateNotDel().execute().body();
